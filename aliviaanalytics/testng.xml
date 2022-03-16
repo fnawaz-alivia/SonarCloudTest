@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name=" FWA Test Collection Suite" verbose="10" configfailurepolicy="continue">
+	<test name="First Test">
+		<groups>
+			<run>
+				<include name="smokeTest" />
+			</run>
+		</groups>
+		<classes>
+			<class name="automationCases.CreateTestData" />
+		</classes>
+	</test>
+</suite>

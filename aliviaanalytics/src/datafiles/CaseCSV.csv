@@ -1,0 +1,8 @@
+﻿Case ID,Prepay Claims,Entity Under Review,Primary Subject ID,Primary Subject Name,Primary Allegation,Intake Date,Time Remaining,Triage Date,Case Priority,Case Status,Case Stage,Case Assignee,Allegation Type,Payment Program Start Date,Number Of Payment Remaining,Amount Paid,Amount At Risk,Amount Demanded,Amount Settled,Amount Recovered,Balance Due,Amount Arrears,Amount Auto Debit
+1,Prepay Review (6),,1093902082,Lemony Snicket,Suspicious Providers,8/27/2020,0:00,8/27/2020,High,Open,Overpayment recovery pending,test_ta@aliviaanalytics.com,Fraud,27/11/2020,0,,,27.09,27,0,27,27,
+2,Prepay Review (6),,1093902082,Lemony Snicket,Compound: Ineligible Ingedient/ Base,8/27/2020,0:00,8/27/2020,Medium,Open,Overpayment recovery pending,test_recovery@aliviaanalytics.com,Fraud,8/28/2020,0,,,20,150,150,0,0,0
+3,Prepay Review(0),,2001155,John Smith,Kickbacks,8/27/2020,0:00,8/27/2020,Medium,Open,Overpayment recovery pending,,Fraud,,0,,,-104,,0,,,0
+3,Prepay Review (6),,1093902082,Lemony Snicket,,8/25/2020,0:00,,Medium,New Lead,Triage,,,8/25/2020,0,125.17,125.17,60.17,60.17,90.26,-30.09,-30.09,
+3,Prepay Review (6),,1275720260,Mark Twain,Provider - Charging enrollees for covered services,8/25/2020,0:00,,Medium,New Lead,Triage,,Fraud,,,,,,,,,,
+4,Prepay Review(0),,1457548448,Mary Westmacott,Frequent Claimer,8/24/2020,0:00,,Medium,New Lead,Triage,,Fraud,8/24/2020,0,190,190,160,160,160,0,0,
+5,Prepay Review (4),,1467649459,Moliere Jean-Baptiste,"Provider - Altering, falsifying, or destroying clinical record",8/24/2020,0:00,8/24/2020,Medium,Open,Investigation in progress,test_investigator@aliviaanalytics.com,Abuse,8/24/2020,0,,,135.18,130,0,130,130,0

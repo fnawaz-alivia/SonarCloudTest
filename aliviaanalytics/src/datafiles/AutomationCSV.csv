@@ -1,0 +1,11 @@
+﻿IncompatibleProcedurePairID,IncompatibleProcedureCodeSet,FirstProcedureCode,FirstProcedureCategory,SecondProcedureCode,SecondProcedureCategory,ProcedureAtRiskFlag,IsSustainedInPairID,highestpay,AtRiskProcedureCode,SustainedProcedureCode
+1,18,,Complete Exam,1204,Complete Exam,2,,1,1204,1202
+2,18,,Complete Exam,1103,Complete Exam,2,,1,1103,1205
+3,18,,Complete Exam,1103,Complete Exam,2,,1,1103,1204
+4,1,,"Caries, Trauma, and Pain Control",21243,Amalgam Restorations,1,,1,20111,21243
+5,18,,Complete Exam,1103,Complete Exam,2,,1,1103,1205
+6,18,,Complete Exam,1103,Complete Exam,2,,1,1103,1205
+7,8,,"Caries, Trauma, and Pain Control",33134,Root Canal Treatment,1,,1,20111,33134
+8,40,,Complete Exam,1204,Limited Exams,2,,1,1204,1103
+9,40,,Complete Exam,1204,Limited Exams,2,,1,1204,1103
+5,18,,Complete Exam,1103,Complete Exam,2,,1,1103,1205

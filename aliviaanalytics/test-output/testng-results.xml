@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="3" total="4" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name=" FWA Test Collection Suite" duration-ms="36847" started-at="2022-03-16T13:16:07 PKT" finished-at="2022-03-16T13:16:44 PKT">
+    <groups>
+      <group name="smokeTest">
+        <method signature="CreateTestData.FWA_CreateTestData_004()[pri:1, instance:automationCases.CreateTestData@1d8d30f7]" name="FWA_CreateTestData_004" class="automationCases.CreateTestData"/>
+      </group> <!-- smokeTest -->
+    </groups>
+    <test name="First Test" duration-ms="36847" started-at="2022-03-16T13:16:07 PKT" finished-at="2022-03-16T13:16:44 PKT">
+      <class name="automationCases.CreateTestData">
+        <test-method status="PASS" signature="startreport()[pri:0, instance:automationCases.CreateTestData@1d8d30f7]" name="startreport" is-config="true" duration-ms="163" started-at="2022-03-16T13:16:07 PKT" finished-at="2022-03-16T13:16:07 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startreport -->
+        <test-method status="PASS" signature="FWA_CreateTestData_004()[pri:1, instance:automationCases.CreateTestData@1d8d30f7]" name="FWA_CreateTestData_004" duration-ms="36624" started-at="2022-03-16T13:16:07 PKT" finished-at="2022-03-16T13:16:44 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_CreateTestData_004 -->
+        <test-method status="PASS" signature="endreport()[pri:0, instance:automationCases.CreateTestData@1d8d30f7]" name="endreport" is-config="true" duration-ms="1" started-at="2022-03-16T13:16:44 PKT" finished-at="2022-03-16T13:16:44 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endreport -->
+      </class> <!-- automationCases.CreateTestData -->
+    </test> <!-- First Test -->
+  </suite> <!--  FWA Test Collection Suite -->
+</testng-results>

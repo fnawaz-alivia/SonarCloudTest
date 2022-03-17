@@ -28,7 +28,8 @@ import configuration.Configuration;
 public class Projects extends Configuration {
 	public static ExtentTest test;
 	public static ExtentReports report;
-	
+	String excldatasourcename1 = RandomStringUtils.randomAlphabetic(10);
+	String excldatasourcename = RandomStringUtils.randomAlphabetic(10);
 	
 	@BeforeClass(alwaysRun=true)
 	public static void startreport() {
@@ -262,7 +263,7 @@ public class Projects extends Configuration {
 		PM.DeleteAllAutoCreatedProjects("hello");
 	
 	}
-	@Test (enabled=false)
+	@Test(groups = {"testing"}, priority = 6)
 	public void FWA_Project_006() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -279,8 +280,6 @@ public class Projects extends Configuration {
 		LM.loginbutton.click();
 		PM.NoProjectClickOk();
 		PM.CreateNewProject("ProjectAddGit");
-		String excldatasourcename = RandomStringUtils.randomAlphabetic(10);
-		String excldatasourcename1 = RandomStringUtils.randomAlphabetic(10);
 		DSM.CreateMicrosoftExcelDS(excldatasourcename, "Automation1 - Dental01.xlsx");
 		int CountDS=DSM.CountDataSources(excldatasourcename);
 		System.out.println(CountDS);
@@ -296,6 +295,20 @@ public class Projects extends Configuration {
 		System.out.println(AddtoGitMessage);
 		utilityMethods.waitForVisibility(PM.OkExportProjectButton);
 		PM.OkExportProjectButton.click();
+		driver.close();
+	}
+	@Test(groups = {"testing"}, priority = 1,dependsOnMethods = { "FWA_Project_006" })
+	public void FWA_Project_0061() throws InterruptedException {
+		Configuration.BConfiguration();
+
+		Configuration.LoginApplication();
+		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
+		SecurityModel SM = PageFactory.initElements(driver, automationModels.SecurityModel.class);
+		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+
+		utilityMethods.waitForVisibility(PM.LoadedProjectText);
+		Thread.sleep(2000);
 		SM.MenuButton.click();
 		SM.LogoutButton.click();
 		LM.LoginFormFill("Test2@gmail.com", "Selenium@2022");
@@ -330,12 +343,31 @@ public class Projects extends Configuration {
 		PM.OkExportProjectButton.click();
 		String commitPushGitMessage=PM.MessageBoxTextAddPushPullDeleteToGit.getText();
 		System.out.println(commitPushGitMessage);
-		utilityMethods.waitForVisibility(PM.OkImportProjectFromGit);
-		PM.OkExportProjectButton.click();
+		utilityMethods.waitForVisibility(PM.OKButton);
+		PM.OKButton.click();
+		driver.close();
+		
+	}
+			
+	@Test(groups = {"testing"}, priority = 1,dependsOnMethods = { "FWA_Project_0061" })
+	public void FWA_Project_0062() throws InterruptedException {
+		Configuration.BConfiguration();
+
+		Configuration.LoginApplication();
+		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
+		SecurityModel SM = PageFactory.initElements(driver, automationModels.SecurityModel.class);
+		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+
+		utilityMethods.waitForVisibility(PM.LoadedProjectText);
+		Thread.sleep(2000);	
 		SM.MenuButton.click();
 		SM.LogoutButton.click();
+		Thread.sleep(2000);	
 		LM.LoginFormFill("Test@gmail.com", "Selenium@2022");
-		Thread.sleep(10000);
+		LM.loginbutton.click();
+		utilityMethods.waitForVisibility(PM.LoadedProjectText);
+		Thread.sleep(2000);
 		int CountDSBeforePulled=DSM.CountDataSources(excldatasourcename);
 		System.out.println(CountDSBeforePulled);
 		PM.GetStarted.click();
@@ -345,18 +377,19 @@ public class Projects extends Configuration {
 		Thread.sleep(2000);
 		PM.Pull.click();
 		Thread.sleep(2000);
-		PM.OkExportProjectButton.click();
+		utilityMethods.waitForVisibility(PM.OKButton);
+		PM.OKButton.click();
 		String pullGitMessage=PM.MessageBoxTextAddPushPullDeleteToGit.getText();
 		System.out.println(pullGitMessage);
-		utilityMethods.waitForVisibility(PM.OkImportProjectFromGit);
-		PM.OkExportProjectButton.click();
 		int CountDSafterPull=DSM.CountDataSources(excldatasourcename1);
 		System.out.println(CountDSafterPull);
 		SM.MenuButton.click();
 		SM.LogoutButton.click();
 		Configuration.LoginApplication();
+		utilityMethods.waitForVisibility(PM.LoadedProjectText);
+		Thread.sleep(2000);
 		PM.DeleteProject("ProjectAddGit");
-	
+		driver.close();
 	
 	}
 	

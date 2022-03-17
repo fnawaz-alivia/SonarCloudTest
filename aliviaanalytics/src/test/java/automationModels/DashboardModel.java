@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import automationUtils.utilityMethods;
 import configuration.Configuration;
 
 public class DashboardModel extends Configuration{
@@ -41,6 +42,9 @@ public class DashboardModel extends Configuration{
 
 	public WebElement SearchTabOnAddDashboardItemWidow;
 	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'messagebox-') and @type = 'text']")
+
+	public WebElement InputNameDashboard;
 	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'dashboard-savedDashboards-grid-022')]//child::table//tr//td[2]//div")
 
@@ -82,12 +86,23 @@ public class DashboardModel extends Configuration{
 	public void CreateDashboardwithChartItem(String item) throws InterruptedException {
 		
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		QueryBuilderModel QBM = PageFactory.initElements(driver, automationModels.QueryBuilderModel.class);
+		
 		PM.GetStarted.click();
 		this.Dashboard.click();
 		Thread.sleep(2000);
 		this.LoadDashboardItemsButton.click();
 		this.AddChartItem.click();
-		
+		this.SearchTabOnAddDashboardItemWidow.click();
+		this.SearchTabOnAddDashboardItemWidow.sendKeys(item);
+		Thread.sleep(2000);
+		this.DragItemDropOnDashboardCanvas(item);
+		new Actions(driver).moveToElement(this.saveButton).moveByOffset(-10, 0).click().perform();		
+		this.InputNameDashboard.sendKeys("AutoCreatedDashboard");	
+		utilityMethods.waitForVisibility(QBM.OkButtonQB);
+		QBM.OkButtonQB.click();
+		utilityMethods.waitForVisibility(QBM.OkButtonQB);
+		QBM.OkButtonQB.click();
 	}
 	
 

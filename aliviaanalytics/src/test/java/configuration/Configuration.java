@@ -1,6 +1,7 @@
 package configuration;
 
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -18,12 +19,13 @@ public class Configuration {
 		System.setProperty("webdriver.chrome.driver", "D:\\selenium\\driver.exe");
 		ChromeOptions options = new ChromeOptions();
 		options.setCapability("ACCEPT_INSECURE_CERTS", true);
-		//options.addArguments("--headless");
-		
+		options.addArguments("--headless");
 		 driver = new ChromeDriver(options);
-		
+		Dimension d = new Dimension(1360, 978);
+		//Resize the current window to the given dimension
+		driver.manage().window().setSize(d);	
 		 driver.get("http://localhost:8080/ai-web/application.jsp");
-		 driver.manage().window().maximize();
+		
 		
 	}
 

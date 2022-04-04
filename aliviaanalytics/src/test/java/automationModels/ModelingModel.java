@@ -3,26 +3,25 @@ package automationModels;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-
 import automationUtils.utilityMethods;
 import configuration.Configuration;
+
 
 public class ModelingModel  extends Configuration{
 	
 	@FindBy(how = How.XPATH, using = "//*[@class = 'x-tree-node-text ' and (text() = 'Modeling' or . = 'Modeling')]")
-
-	public WebElement Modeling;
-	@FindBy(how = How.XPATH, using = "//a[contains(@class,'analysis-modeling-executeButton-52')]")
-
-	public WebElement ModelExecutionButton;
 	
+	public WebElement Modeling;
+	
+	@FindBy(how = How.XPATH, using = "//a[contains(@class,'analysis-modeling-executeButton-52')]")
+	
+	public WebElement ModelExecutionButton;
 	
 	@FindBy(how = How.XPATH, using = "//a[contains(@class, 'analysis-modeling-executeButton-52')]//following::span[1]")
 

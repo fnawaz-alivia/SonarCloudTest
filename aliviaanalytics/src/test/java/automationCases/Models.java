@@ -1,7 +1,10 @@
 package automationCases;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
+import automationModels.ModelingLibraryModel;
 import automationModels.ModelingModel;
 import automationModels.ProjectModel;
 import automationUtils.utilityMethods;
@@ -11,8 +14,42 @@ public class Models extends Configuration {
 	
 	public class Charting  extends Configuration{
 		
-		@Test(groups = { "RegressionTest2" }, priority = 1)
+		@Test(groups = { "RegressionTest" }, priority = 1)
 		public void FWA_Model_001() throws InterruptedException {
+			Configuration.BConfiguration();
+			Configuration.LoginApplication();
+			ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+			ModelingModel MM = PageFactory.initElements(driver, automationModels.ModelingModel.class);
+			ModelingLibraryModel MLM = PageFactory.initElements(driver, automationModels.ModelingLibraryModel.class);
+			utilityMethods.waitForVisibility(PM.GetStarted);
+			Thread.sleep(2000);
+			MLM.LandingOnPageModlingLibrary();
+			MLM.GetIndexOfModel("R Operator");
+			System.out.println(MLM.index);
+			driver.findElement(By.xpath("//div[contains(@class, 'analysis-modelingLibrary-mainGrid-49')]//child::table['"+MLM.index+"'+'"+1+"']//tr//td[3]//div[1]//div[1]")).click();
+			WebElement ModelExecutionStatus = driver.findElement(By.xpath("//div[contains(@class,'analysis-modelingLibrary-mainGrid-49')]//child::table['"+MLM.index+"'+'"+1+"']//tr//td[4]//div"));	
+			String ExecutionStatus = ModelExecutionStatus.getText();
+			System.out.println(ExecutionStatus);	
+			while (ExecutionStatus== ("Running"))
+					{
+			Thread.sleep(2000);
+			System.out.println("inloop");
+			}
+			System.out.println(ModelExecutionStatus.getText());
+			
+			if (ExecutionStatus=="Complete") {
+				System.out.println("passed");
+				}
+
+				 else if (ExecutionStatus=="Error")  
+					 {
+					 System.out.println("failed");
+				}
+
+	}
+		
+		@Test(groups = { "RegressionTest2" }, priority = 1)
+		public void FWA_Model_002() throws InterruptedException {
 			Configuration.BConfiguration();
 			Configuration.LoginApplication();
 			ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
@@ -24,8 +61,8 @@ public class Models extends Configuration {
 
 	}
 		
-		@Test(groups = { "RegressionTest" }, priority = 1)
-		public void FWA_Model_002() throws InterruptedException {
+		@Test(groups = { "RegressionTest2" }, priority = 1)
+		public void FWA_Model_003() throws InterruptedException {
 			Configuration.BConfiguration();
 			Configuration.LoginApplication();
 			ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);

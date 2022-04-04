@@ -6,7 +6,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-
 import automationModels.ChartModel;
 import automationModels.DashboardModel;
 import automationModels.DataSourceModel;

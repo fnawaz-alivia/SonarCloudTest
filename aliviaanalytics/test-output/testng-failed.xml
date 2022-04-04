@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite configfailurepolicy="continue" guice-stage="DEVELOPMENT" verbose="10" name="Failed suite [ FWA Test Collection Suite]">
-  <test thread-count="5" verbose="10" name="First Test(failed)">
-    <groups>
-      <run>
-        <include name="RegressionTest5"/>
-      </run>
-    </groups>
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="automationCases.Projects">
+      <class name="automationCases.Ranking">
         <methods>
-          <include name="endreport"/>
-          <include name="FWA_Project_009"/>
-          <include name="startreport"/>
-          <include name="FWA_Project_008"/>
+          <include name="FWA_Ranking_001"/>
         </methods>
-      </class> <!-- automationCases.Projects -->
+      </class> <!-- automationCases.Ranking -->
     </classes>
-  </test> <!-- First Test(failed) -->
-</suite> <!-- Failed suite [ FWA Test Collection Suite] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

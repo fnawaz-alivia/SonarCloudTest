@@ -326,7 +326,9 @@ public class ProjectModel extends Configuration
 		this.CreateProjectButton.click();
 		this.InputFolderName.sendKeys(pname);
 		this.InputFolderDescription.sendKeys(pname);
+		this.PublicOption.click();
 		this.SaveButton.click();
+		utilityMethods.waitForVisibility(this.YesButton);
 		Thread.sleep(2000);
 		this.YesButton.click();
 		Thread.sleep(5000);
@@ -365,6 +367,7 @@ public class ProjectModel extends Configuration
 		}
 		Thread.sleep(2000);
 		this.DeleteOptionRightClickonProject.click();
+		utilityMethods.waitForVisibility(this.YesButton);
 		this.YesButton.click();
 		Thread.sleep(2000);
 		utilityMethods.waitForVisibility(this.OkButtonDeleteProject);
@@ -390,6 +393,7 @@ public class ProjectModel extends Configuration
 						break;
 					}
 				}
+				utilityMethods.waitForVisibility(this.YesButton);
 				Thread.sleep(2000);
 				this.YesButton.click();
 				Thread.sleep(2000);
@@ -408,7 +412,9 @@ public class ProjectModel extends Configuration
 				break;
 			}
 		}
+	
 		Thread.sleep(2000);
+		utilityMethods.waitForVisibility(this.YesButton);
 		this.YesButton.click();
 		Thread.sleep(5000);
 	}

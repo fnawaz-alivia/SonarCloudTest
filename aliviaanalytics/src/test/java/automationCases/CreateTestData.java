@@ -62,7 +62,7 @@ public class CreateTestData extends Configuration  {
 		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
 		utilityMethods.waitForVisibility(PM.GetStarted);
 		Thread.sleep(2000);
-	    CM.CreateChart("AutoCreatedChart");	 
+	    CM.CreateBubbleGroupChart("AutoCreatedChart");	 
 	    driver.close();
 	}
 	

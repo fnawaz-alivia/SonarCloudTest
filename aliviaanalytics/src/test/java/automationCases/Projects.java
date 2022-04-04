@@ -39,7 +39,7 @@ public class Projects extends Configuration {
 
 	}
 
-	@Test(groups = { "smokeTest" }, priority = 1)
+	@Test(groups = { "RegressionTest" }, priority = 1)
 	public void FWA_Project_001() throws InterruptedException {
 		
 		
@@ -78,7 +78,7 @@ public class Projects extends Configuration {
 		driver.close();
 	}
 
-	@Test(groups = { "smokeTest" }, priority = 2)
+	@Test(groups = { "RegressionTest" }, priority = 2)
 	public void FWA_Project_002() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -100,28 +100,35 @@ public class Projects extends Configuration {
 		PM.ExpandAllProjectItems();
 		test.log(Status.PASS, "Model Type type test is fine");
 		test = report.createTest("Verify Model Type");
-		PM.ClickItemProjectDetailTree("TEST MODEL");
+		PM.ClickItemProjectDetailTree("R Operator");
 		Thread.sleep(2000);
 		Assert.assertEquals("Analysis Model", PM.GetElementTypeText.getText());
 		test.log(Status.PASS, "Model Type type test is fine");
-		PM.ClickItemProjectDetailTree("autotesting");
 		Thread.sleep(2000);
-		Assert.assertEquals("Chart", PM.GetElementTypeText.getText());
-		
+		test = report.createTest("Verify Dashboard Type");
 		PM.ClickItemProjectDetailTree("AutoCreatedDashboard");
 		Thread.sleep(2000);
 		Assert.assertEquals("Dashboard", PM.GetElementTypeText.getText());
-		
+		test.log(Status.PASS, "Dashbaord Type type test is fine");
+		test = report.createTest("Verify Data Source Type");
 		PM.ClickItemProjectDetailTree("Medical Transactions");
 		Thread.sleep(2000);
 		Assert.assertEquals("Data Source", PM.GetElementTypeText.getText());
+		test.log(Status.PASS, "DataSource Type type test is fine");
+		test = report.createTest("Verify Query Filter Type");
 		PM.ClickItemProjectDetailTree("AutoCreatedQB");
 		Thread.sleep(2000);
 		Assert.assertEquals("Query Filter", PM.GetElementTypeText.getText());
+		test.log(Status.PASS, "Query Filter Type type test is fine");
+		test = report.createTest("Verify chart Type");
+		PM.ClickItemProjectDetailTree("AutoCreatedChart");
+		Thread.sleep(2000);
+		Assert.assertEquals("Chart", PM.GetElementTypeText.getText());
+		test.log(Status.PASS, "chart Type type test is fine");
 		driver.close();
 	}
 
-	@Test(groups = { "smokeTest" }, priority = 3)
+	@Test(groups = { "RegressionTest" }, priority = 3)
 	public void FWA_Project_003() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -142,7 +149,7 @@ public class Projects extends Configuration {
 		driver.close();
 	}
 	
-	@Test(groups = { "smokeTest" }, priority = 4)
+	@Test(groups = { "RegressionTest" }, priority = 4)
 	public void FWA_Project_004() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -185,6 +192,7 @@ public class Projects extends Configuration {
 		utilityMethods.waitForVisibility(PM.OKProjectImportButton);
 		PM.OKProjectImportButton.click();
 		PM.ReloadProjects.click();
+		utilityMethods.WaitforElementNotVisible(PM.LoadProjectsICon);
 		Thread.sleep(2000);
 		PM.LoadAutomationProject("Imported Project");
 		Thread.sleep(2000);
@@ -205,7 +213,7 @@ public class Projects extends Configuration {
 		PM.LoadAutomationProject("Training-Automation");
 		driver.close();
 	}
-	@Test (groups = { "smokeTest" }, priority = 5,dependsOnMethods = { "FWA_Project_004" })
+	@Test (groups = { "RegressionTest" }, priority = 5,dependsOnMethods = { "FWA_Project_004" })
 	public void FWA_Project_005() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -252,19 +260,181 @@ public class Projects extends Configuration {
 		PM.LoadAutomationProject("Training-Automation");
 		driver.close();
 	}
-	@Test
+	
+	
+	
+	@Test(groups = { "RegressionTest" }, priority = 6)
+	public void FWA_Project_006() throws InterruptedException {
+		Configuration.BConfiguration();
+		Configuration.LoginApplication();
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		utilityMethods.waitForVisibility(PM.LoadedProjectText);
+		Thread.sleep(2000);
+		PM.CreateFolderButton.click();
+		PM.ProjectFormFill("AutoCreatedFolder", "AutoCreatedFolder");
+		PM.PublicOption.click();
+		PM.SaveButton.click();
+		utilityMethods.waitForVisibility(PM.CheckFolderAccess);	
+		System.out.println(PM.CheckFolderAccess.getText());
+		System.out.println(PM.CheckFolderName.getText());
+		PM.ConfigButton.click();
+		Thread.sleep(2000);
+		PM.CancelButtonEditFolderWidnow.click();
+		Thread.sleep(2000);
+		PM.ConfigButton.click();
+		Thread.sleep(2000);
+		PM.CloseDialogEditFolderWidnow.click();
+		Thread.sleep(2000);
+		PM.RightClickOnProject("AutoCreatedFolder");
+		PM.EditOptionRightClikonFolder.click();
+		PM.InputFolderName.clear();
+		PM.InputFolderName.sendKeys("Updated");
+		PM.InputFolderDescription.clear();
+		PM.InputFolderDescription.sendKeys("Updated");
+		PM.Private.click();
+		PM.SaveButton.click();	
+		Thread.sleep(2000);
+		PM.ReloadProjects.click();
+		utilityMethods.WaitforElementNotVisible(PM.LoadProjectsICon);
+		Thread.sleep(2000);
+		PM.ClickOnProject("Updated");
+		System.out.println(PM.CheckFolderAccess.getText());
+		System.out.println(PM.CheckFolderName.getText());
+		PM.RightClickOnProject("Updated");
+		PM.RenameOptionRightClikonFolder.click();
+		PM.InputRenameFolder.clear();
+		PM.InputRenameFolder.sendKeys("Renamed");
+		PM.OKButtonSelectaProjectWondow.click();
+		utilityMethods.waitForVisibility(PM.RenameProjectOk);
+		PM.RenameProjectOk.click();
+		Thread.sleep(2000);
+		PM.DeleteProject("Renamed");	
+		driver.close();
+	}
+	
+	@Test(groups = { "RegressionTest" }, priority = 7)
+	public void FWA_Project_007() throws InterruptedException {
+		Configuration.BConfiguration();
+		Configuration.LoginApplication();
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		utilityMethods.waitForVisibility(PM.LoadedProjectText);
+		Thread.sleep(2000);
+		PM.CreateNewProject("AutoCreatedProject");
+		utilityMethods.waitForVisibility(PM.CheckFolderAccess);	
+		System.out.println(PM.CheckFolderAccess.getText());
+		System.out.println(PM.CheckFolderName.getText());
+		PM.ConfigButton.click();
+		Thread.sleep(2000);
+		PM.CancelButtonEditFolderWidnow.click();
+		Thread.sleep(2000);
+		PM.ConfigButton.click();
+		Thread.sleep(2000);
+		PM.CloseDialogEditFolderWidnow.click();
+		Thread.sleep(2000);
+		PM.RightClickOnProject("AutoCreatedProject");
+		PM.EditOptionRightClikonFolder.click();
+		PM.InputFolderName.clear();
+		PM.InputFolderName.sendKeys("UpdatedProject");
+		PM.InputFolderDescription.clear();
+		PM.InputFolderDescription.sendKeys("UpdatedProject");
+		PM.PublicOption.click();
+		PM.SaveButton.click();	
+		Thread.sleep(2000);
+		PM.ReloadProjects.click();
+		utilityMethods.WaitforElementNotVisible(PM.LoadProjectsICon);
+		Thread.sleep(2000);
+		PM.ClickOnProject("UpdatedProject");
+		System.out.println(PM.CheckFolderAccess.getText());
+		System.out.println(PM.CheckFolderName.getText());
+		PM.RightClickOnProject("UpdatedProject");
+		PM.RenameOptionRightClikonFolder.click();
+		PM.InputRenameFolder.clear();
+		PM.InputRenameFolder.sendKeys("RenamedProject");
+		PM.OKButtonSelectaProjectWondow.click();
+		Thread.sleep(2000);
+		PM.DeleteProject("RenamedProject");
+		PM.LoadAutomationProject("Training-Automation");
+		driver.close();
+	}
+	
+	@Test(groups = { "RegressionTest5" }, priority = 8)
 	public void FWA_Project_008() throws InterruptedException {
 		Configuration.BConfiguration();
-
-		Configuration.LoginApplication();
-
+		Configuration.LoginApplication();	
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		PM.DeleteAllAutoCreatedProjects("import");
-		PM.DeleteAllAutoCreatedProjects("hello");
-	
+		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
+		SecurityModel SM = PageFactory.initElements(driver, automationModels.SecurityModel.class);
+		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
+		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
+		utilityMethods.waitForVisibility(PM.LoadedProjectText);
+		Thread.sleep(2000);
+		PM.RightClickOnProject("Training-Automation");
+		PM.SharingOptionsRightClikonFolder.click();
+		utilityMethods.waitForVisibility(PM.SearchTabAddParticipantsWindow);
+		PM.SearchTabAddParticipantsWindow.sendKeys("Test");
+		Thread.sleep(3000);
+		PM.DragParticipantDropinCetralArea("Test1 Test1 (Test@gmail.com)");
+		Thread.sleep(3000);
+		utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
+		PM.OKButtonSelectaProjectWondow.click();
+		PM.SaveSharedProject.click();
+		SM.MenuButton.click();
+		SM.LogoutButton.click();
+		LM.LoginFormFill("Test@gmail.com", "Selenium@2022");
+		LM.loginbutton.click();
+		PM.NoProjectClickOk();
+		PM.LoadAutomationProject("Training-Automation");
+		int DSCount=DSM.CountDataSources("Medical Transactions");		
+		System.out.println(DSCount);	
+		int ChartCount=CM.CountSavedChart();
+		System.out.println(ChartCount);
+		driver.close();
 	}
-	@Test(groups = {"testing"}, priority = 6)
-	public void FWA_Project_006() throws InterruptedException {
+	
+	
+	@Test(groups = { "RegressionTest5" }, priority = 9)
+	public void FWA_Project_009() throws InterruptedException {
+		Configuration.BConfiguration();
+		Configuration.LoginApplication();	
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
+		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
+		DashboardModel DM = PageFactory.initElements(driver, automationModels.DashboardModel.class);
+		
+		utilityMethods.waitForVisibility(PM.LoadedProjectText);
+		Thread.sleep(2000);
+		PM.CreateNewProject("SharedProject");
+		PM.LoadAutomationProject("Training-Automation");
+		PM.GetIndexOfProject("Training-Automation");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@id='project-projectTree-treePanel-001']//child::table['" + PM.index + "'+'"
+				+ 1 + "']//tr//td[2]")).click();
+		Thread.sleep(2000);
+		PM.ExpandAllProjectItems();
+		PM.RightClickOnItemProjectDetailTree("AutoCreatedDashboard");
+		Thread.sleep(2000);
+		PM.ShareItemWithOtherProject.click();
+		Thread.sleep(2000);
+		PM.SelectProjectToshare("SharedProject");
+		PM.SaveSharedItemWithOtherProjects.click();
+		PM.LoadAutomationProject("SharedProject");
+		int DSCount=DSM.CountDataSources("Medical Transactions");		
+		System.out.println(DSCount);	
+		int ChartCount=CM.CountSavedChart();
+		System.out.println(ChartCount);
+		int CountDashboards= DM.CountDashboard();
+		System.out.println(CountDashboards);
+		Thread.sleep(2000);
+		PM.GetStarted.click();
+		PM.SearchTabProject.click();
+        PM.DeleteProject("SharedProject");
+        PM.LoadAutomationProject("Training-Automation");
+        driver.close();
+	}
+	
+
+	@Test(groups = {"RegressionTest1"}, priority = 10)
+	public void FWA_Project_010() throws InterruptedException {
 		Configuration.BConfiguration();
 
 		Configuration.LoginApplication();
@@ -297,8 +467,8 @@ public class Projects extends Configuration {
 		PM.OkExportProjectButton.click();
 		driver.close();
 	}
-	@Test(groups = {"testing"}, priority = 1,dependsOnMethods = { "FWA_Project_006" })
-	public void FWA_Project_0061() throws InterruptedException {
+	@Test(groups = {"RegressionTest1"}, priority = 11,dependsOnMethods = { "FWA_Project_010" })
+	public void FWA_Project_011() throws InterruptedException {
 		Configuration.BConfiguration();
 
 		Configuration.LoginApplication();
@@ -349,8 +519,8 @@ public class Projects extends Configuration {
 		
 	}
 			
-	@Test(groups = {"testing"}, priority = 1,dependsOnMethods = { "FWA_Project_0061" })
-	public void FWA_Project_0062() throws InterruptedException {
+	@Test(groups = {"RegressionTest1"}, priority = 12,dependsOnMethods = { "FWA_Project_011" })
+	public void FWA_Project_012() throws InterruptedException {
 		Configuration.BConfiguration();
 
 		Configuration.LoginApplication();
@@ -392,177 +562,17 @@ public class Projects extends Configuration {
 		driver.close();
 	
 	}
-	
-	@Test(groups = { "smokeTest" }, priority = 6)
-	public void FWA_Project_010() throws InterruptedException {
+	@Test
+	public void FWA_Project_013() throws InterruptedException {
 		Configuration.BConfiguration();
+
 		Configuration.LoginApplication();
+
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		utilityMethods.waitForVisibility(PM.LoadedProjectText);
-		Thread.sleep(2000);
-		PM.CreateFolderButton.click();
-		PM.ProjectFormFill("AutoCreatedFolder", "AutoCreatedFolder");
-		PM.PublicOption.click();
-		PM.SaveButton.click();
-		utilityMethods.waitForVisibility(PM.CheckFolderAccess);	
-		System.out.println(PM.CheckFolderAccess.getText());
-		System.out.println(PM.CheckFolderName.getText());
-		PM.ConfigButton.click();
-		Thread.sleep(2000);
-		PM.CancelButtonEditFolderWidnow.click();
-		Thread.sleep(2000);
-		PM.ConfigButton.click();
-		Thread.sleep(2000);
-		PM.CloseDialogEditFolderWidnow.click();
-		Thread.sleep(2000);
-		PM.RightClickOnProject("AutoCreatedFolder");
-		PM.EditOptionRightClikonFolder.click();
-		PM.InputFolderName.clear();
-		PM.InputFolderName.sendKeys("Updated");
-		PM.InputFolderDescription.clear();
-		PM.InputFolderDescription.sendKeys("Updated");
-		PM.Private.click();
-		PM.SaveButton.click();	
-		Thread.sleep(2000);
-		PM.ReloadProjects.click();
-		utilityMethods.WaitforElementNotVisible(PM.LoadProjectsICon);
-		Thread.sleep(2000);
-		PM.ClickOnProject("Updated");
-		System.out.println(PM.CheckFolderAccess.getText());
-		System.out.println(PM.CheckFolderName.getText());
-		PM.RightClickOnProject("Updated");
-		PM.RenameOptionRightClikonFolder.click();
-		PM.InputRenameFolder.clear();
-		PM.InputRenameFolder.sendKeys("Renamed");
-		PM.OKButtonSelectaProjectWondow.click();
-		utilityMethods.waitForVisibility(PM.RenameProjectOk);
-		PM.RenameProjectOk.click();
-		Thread.sleep(2000);
-		PM.DeleteProject("Renamed");	
-		driver.close();
+		PM.DeleteAllAutoCreatedProjects("import");
+		PM.DeleteAllAutoCreatedProjects("hello");
+	
 	}
-	
-	@Test(groups = { "smokeTest" }, priority = 7)
-	public void FWA_Project_011() throws InterruptedException {
-		Configuration.BConfiguration();
-		Configuration.LoginApplication();
-		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		utilityMethods.waitForVisibility(PM.LoadedProjectText);
-		Thread.sleep(2000);
-		PM.CreateNewProject("AutoCreatedProject");
-		utilityMethods.waitForVisibility(PM.CheckFolderAccess);	
-		System.out.println(PM.CheckFolderAccess.getText());
-		System.out.println(PM.CheckFolderName.getText());
-		PM.ConfigButton.click();
-		Thread.sleep(2000);
-		PM.CancelButtonEditFolderWidnow.click();
-		Thread.sleep(2000);
-		PM.ConfigButton.click();
-		Thread.sleep(2000);
-		PM.CloseDialogEditFolderWidnow.click();
-		Thread.sleep(2000);
-		PM.RightClickOnProject("AutoCreatedProject");
-		PM.EditOptionRightClikonFolder.click();
-		PM.InputFolderName.clear();
-		PM.InputFolderName.sendKeys("UpdatedProject");
-		PM.InputFolderDescription.clear();
-		PM.InputFolderDescription.sendKeys("UpdatedProject");
-		PM.PublicOption.click();
-		PM.SaveButton.click();	
-		Thread.sleep(2000);
-		PM.ReloadProjects.click();
-		utilityMethods.WaitforElementNotVisible(PM.LoadProjectsICon);
-		Thread.sleep(2000);
-		PM.ClickOnProject("UpdatedProject");
-		System.out.println(PM.CheckFolderAccess.getText());
-		System.out.println(PM.CheckFolderName.getText());
-		PM.RightClickOnProject("UpdatedProject");
-		PM.RenameOptionRightClikonFolder.click();
-		PM.InputRenameFolder.clear();
-		PM.InputRenameFolder.sendKeys("RenamedProject");
-		PM.OKButtonSelectaProjectWondow.click();
-		Thread.sleep(2000);
-		PM.DeleteProject("RenamedProject");
-		PM.LoadAutomationProject("Training-Automation");
-		driver.close();
-	}
-	
-	@Test(groups = { "smokeTest" }, priority = 8)
-	public void FWA_Project_007() throws InterruptedException {
-		Configuration.BConfiguration();
-		Configuration.LoginApplication();	
-		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
-		SecurityModel SM = PageFactory.initElements(driver, automationModels.SecurityModel.class);
-		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
-		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
-		utilityMethods.waitForVisibility(PM.LoadedProjectText);
-		Thread.sleep(2000);
-		PM.RightClickOnProject("Training-Automation");
-		PM.SharingOptionsRightClikonFolder.click();
-		utilityMethods.waitForVisibility(PM.SearchTabAddParticipantsWindow);
-		PM.SearchTabAddParticipantsWindow.sendKeys("Test");
-		Thread.sleep(3000);
-		PM.DragParticipantDropinCetralArea("Test1 Test1 (Test@gmail.com)");
-		Thread.sleep(3000);
-		utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
-		PM.OKButtonSelectaProjectWondow.click();
-		PM.SaveSharedProject.click();
-		SM.MenuButton.click();
-		SM.LogoutButton.click();
-		LM.LoginFormFill("Test@gmail.com", "Selenium@2022");
-		LM.loginbutton.click();
-		PM.NoProjectClickOk();
-		PM.LoadAutomationProject("Training-Automation");
-		int DSCount=DSM.CountDataSources("Medical Transactions");		
-		System.out.println(DSCount);	
-		int ChartCount=CM.CountSavedChart();
-		System.out.println(ChartCount);
-		driver.close();
-	}
-	
-	
-	@Test(groups = { "smokeTest" }, priority = 9)
-	public void FWA_Project_009() throws InterruptedException {
-		Configuration.BConfiguration();
-		Configuration.LoginApplication();	
-		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
-		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
-		DashboardModel DM = PageFactory.initElements(driver, automationModels.DashboardModel.class);
-		
-		utilityMethods.waitForVisibility(PM.LoadedProjectText);
-		Thread.sleep(2000);
-		PM.CreateNewProject("SharedProject");
-		PM.LoadAutomationProject("Training-Automation");
-		PM.GetIndexOfProject("Training-Automation");
-		Thread.sleep(2000);
-		driver.findElement(By.xpath("//*[@id='project-projectTree-treePanel-001']//child::table['" + PM.index + "'+'"
-				+ 1 + "']//tr//td[2]")).click();
-		Thread.sleep(2000);
-		PM.ExpandAllProjectItems();
-		PM.RightClickOnItemProjectDetailTree("AutoCreatedDashboard");
-		Thread.sleep(2000);
-		PM.ShareItemWithOtherProject.click();
-		Thread.sleep(2000);
-		PM.SelectProjectToshare("SharedProject");
-		PM.SaveSharedItemWithOtherProjects.click();
-		PM.LoadAutomationProject("SharedProject");
-		int DSCount=DSM.CountDataSources("Medical Transactions");		
-		System.out.println(DSCount);	
-		int ChartCount=CM.CountSavedChart();
-		System.out.println(ChartCount);
-		int CountDashboards= DM.CountDashboard();
-		System.out.println(CountDashboards);
-		Thread.sleep(2000);
-		PM.GetStarted.click();
-		PM.SearchTabProject.click();
-        PM.DeleteProject("SharedProject");
-        PM.LoadAutomationProject("Training-Automation");
-        driver.close();
-	}
-	
-	
 	@AfterClass(alwaysRun=true)
 	public static void endreport() {
 

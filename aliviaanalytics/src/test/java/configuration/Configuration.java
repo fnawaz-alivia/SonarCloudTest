@@ -19,7 +19,7 @@ public class Configuration {
 		System.setProperty("webdriver.chrome.driver", "D:\\selenium\\driver.exe");
 		ChromeOptions options = new ChromeOptions();
 		options.setCapability("ACCEPT_INSECURE_CERTS", true);
-		options.addArguments("--headless");
+		//options.addArguments("--headless");
 		 driver = new ChromeDriver(options);
 		Dimension d = new Dimension(1360, 978);
 		//Resize the current window to the given dimension
@@ -31,7 +31,7 @@ public class Configuration {
 
 	public static void LoginApplication() throws InterruptedException {
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
-		LM.LoginFormFill("admin", "Lahore@2022");
+		LM.LoginFormFill("admin", "Hello@464");
 		LM.loginbutton.click();
 		
 	}

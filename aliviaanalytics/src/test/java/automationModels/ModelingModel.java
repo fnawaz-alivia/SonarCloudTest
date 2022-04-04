@@ -1,5 +1,7 @@
 package automationModels;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
@@ -17,6 +19,15 @@ public class ModelingModel  extends Configuration{
 	@FindBy(how = How.XPATH, using = "//*[@class = 'x-tree-node-text ' and (text() = 'Modeling' or . = 'Modeling')]")
 
 	public WebElement Modeling;
+	@FindBy(how = How.XPATH, using = "//a[contains(@class,'analysis-modeling-executeButton-52')]")
+
+	public WebElement ModelExecutionButton;
+	
+	
+	@FindBy(how = How.XPATH, using = "//a[contains(@class, 'analysis-modeling-executeButton-52')]//following::span[1]")
+
+	public WebElement ModelExecutionButtonText;
+	
 	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-panel-body x-panel-body-default x-panel-body-default x-noborder-t x-panel-default-outer-border-rbl')]")
 
@@ -25,6 +36,7 @@ public class ModelingModel  extends Configuration{
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'analysis-modeling-leftGrid-dataSourcesGrid-54')]//child::input")
 
 	public WebElement SearchTabDatasourcesGrid;
+	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'analysis-modeling-rightGrid-algorithmsGrid-59')]//child::input")
 
 	public WebElement SearchTabalgorithmsGrid;
@@ -48,8 +60,11 @@ public class ModelingModel  extends Configuration{
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'ext-element') and @viewBox= 'null' and @width= '40']")
 
 	public List<WebElement> InputOutputNodesList;
-
 	
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class, 'x-window x-message-box x-layer x-window-default x-closable x-window-closable x-window-default-closable x-border-box')]//child::div")
+
+	public List<WebElement> ModelExecutionResult;
 	
 	
 	public void DragDropDataSource(String DSName) {
@@ -109,13 +124,46 @@ public class ModelingModel  extends Configuration{
 		CM.InputName.sendKeys(modelName);
 		CM.OKButton.click();
 		utilityMethods.waitForVisibility(CM.OKButton);
-		CM.OKButton.click();
-		
-		
-		
-		
+		CM.OKButton.click();	
 
 	}
 	
+public void ExecutionOfModel() throws InterruptedException {
 	
+	ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
+
+			this.ModelExecutionButton.click();
+	String EXecutionButtonText = this.ModelExecutionButtonText.getText();
+		System.out.println(EXecutionButtonText);
+		Instant start = Instant.now();
+		while (EXecutionButtonText== "Stop") {
+		    Thread.sleep(2000);
+		    Instant end = Instant.now();
+			Duration timeElapsed = Duration.between(start, end);
+			
+			long timetaken = timeElapsed.getSeconds();
+			if (timetaken>60) 
+				{				
+					driver.close();
+					break;
+				}
+		}
+
+		System.out.println(EXecutionButtonText);
+		
+		for (WebElement el : ModelExecutionResult) {
+
+		    if (el.getText().equals("Execution Error")) {
+		        System.out.println(el.getText());
+		        CM.OKButton.click();
+
+		        break;
+		    }
+			 else if (el.getText().equals("Execution Completed")) {
+				 System.out.println(el.getText());
+}
+	
+	
+}
+}
 }

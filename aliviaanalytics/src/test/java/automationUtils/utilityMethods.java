@@ -15,12 +15,19 @@ public class utilityMethods extends Configuration  {
 				action.doubleClick(element).perform();
 	}
 	
+	public static void SetTextwithActionClass (WebElement element,String text) {
+		Actions action = new Actions(driver);
+				action.sendKeys(element, text).perform();
+	}
+	
+	
+	
 	
 	  public static void waitForVisibility(WebElement element) throws Error{
           new WebDriverWait(driver, 120)
                .until(ExpectedConditions.visibilityOf(element));
    }
-	  
+  
 	  
 	  public static void WaitforElementNotVisible(WebElement element) throws Error{
           new WebDriverWait(driver, 120)

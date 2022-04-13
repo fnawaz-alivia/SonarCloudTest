@@ -3,20 +3,11 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="automationCases.Projects">
+      <class name="automationCases.QueryBuilder">
         <methods>
-          <include name="FWA_Project_002"/>
-          <include name="FWA_Project_004"/>
-          <include name="endreport"/>
-          <include name="FWA_Project_009"/>
-          <include name="startreport"/>
-          <include name="FWA_Project_005"/>
-          <include name="FWA_Project_0062"/>
-          <include name="FWA_Project_006"/>
-          <include name="FWA_Project_0061"/>
-          <include name="FWA_Project_007"/>
+          <include name="FWA_DataSource_001"/>
         </methods>
-      </class> <!-- automationCases.Projects -->
+      </class> <!-- automationCases.QueryBuilder -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

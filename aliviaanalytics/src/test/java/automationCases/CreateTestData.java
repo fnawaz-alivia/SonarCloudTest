@@ -24,7 +24,6 @@ public class CreateTestData extends Configuration  {
 	
 	@BeforeClass(alwaysRun=true)
 	public static void startreport() {
-
 		reportUtil.startTest();
 		report = reportUtil.getReport();
 
@@ -36,7 +35,6 @@ public class CreateTestData extends Configuration  {
 		
 		
 		Configuration.BConfiguration();
-		
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
@@ -92,6 +90,7 @@ public class CreateTestData extends Configuration  {
 		QueryBuilderModel QBM = PageFactory.initElements(driver, automationModels.QueryBuilderModel.class);
 		utilityMethods.waitForVisibility(PM.GetStarted);
 		Thread.sleep(2000);
+		QBM.LandingOnQueryBuilderPage();
 		QBM.CreateQueryBuilder();
 		driver.close();
 		

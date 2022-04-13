@@ -1,5 +1,8 @@
 package automationCases;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
@@ -10,12 +13,9 @@ import configuration.Configuration;
 
 public class Ranking extends Configuration {
 	
-	@Test(groups = { "RegressionTest" }, priority = 1)
+	@Test(groups = { "Smoke" }, priority = 1)
 	public void FWA_Ranking_001() throws InterruptedException {
-		
-		
 		Configuration.BConfiguration();
-		
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		RankingModel RM = PageFactory.initElements(driver, automationModels.RankingModel.class);
@@ -37,7 +37,18 @@ public class Ranking extends Configuration {
 		PM.OKProjectImportButton.click();
 		Thread.sleep(2000);
 		RM.CombinedHeader.click();
-		
+		Thread.sleep(4000);
+		List<String> AllPhysiciansName = new ArrayList<String>();
+
+		for (int i = 0; i < RM.PhysicianNameList.size(); i++) {
+
+			AllPhysiciansName.add(RM.PhysicianNameList.get(i).getText());
+			
+		}
+		System.out.println(RM.PhysicianNameList.get(0).getText());
+		int index = AllPhysiciansName.indexOf("High Risk Doctor");
+		 System.out.println(index);
+		 driver.close();
 		
 	}
 

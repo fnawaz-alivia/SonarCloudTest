@@ -49,7 +49,7 @@ public WebElement CombinedColumn;
 
 @FindBy(how = How.XPATH, using = "//*[@class = 'tableData text' and starts-with(@clip-path, 'url(#clip-BPHYSICIAN_NAME')]")
 
-public List<WebElement> ColumnsHeaderList;
+public List<WebElement> PhysicianNameList;
 
 @FindBy(how = How.XPATH, using = "//div[contains(@class, 'analysis-ranking-columns-71') ]//child::table//tr//td[2]")
 

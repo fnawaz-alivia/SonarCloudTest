@@ -361,7 +361,6 @@ public class ProjectModel extends Configuration
 		for (WebElement el : ProjectsList) {
 			if (el.getText().equals(projectname)) {
 				new Actions(driver).contextClick(el).perform();
-
 				break;
 			}
 		}

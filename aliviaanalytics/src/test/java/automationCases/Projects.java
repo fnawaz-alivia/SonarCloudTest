@@ -36,10 +36,9 @@ public class Projects extends Configuration {
 
 		reportUtil.startTest();
 		report = reportUtil.getReport();
-
 	}
 
-	@Test(groups = { "RegressionTest" }, priority = 1)
+	@Test(groups = { "Smoke" }, priority = 1)
 	public void FWA_Project_001() throws InterruptedException {
 		
 		
@@ -128,7 +127,7 @@ public class Projects extends Configuration {
 		driver.close();
 	}
 
-	@Test(groups = { "RegressionTest" }, priority = 3)
+	@Test(groups = { "Smoke" }, priority = 3)
 	public void FWA_Project_003() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -141,13 +140,14 @@ public class Projects extends Configuration {
 		PM.RightClickOnProject("Training-Automation");
 		PM.ExportOptionRightClickonProject.click();
 		Thread.sleep(2000);
+		utilityMethods.waitForVisibility(PM.CheckBoxForExportFilters);
 		PM.CheckBoxForExportFilters.click();
 		utilityMethods.waitForVisibility(PM.OkExportProjectButton);
 		PM.OkExportProjectButton.click();
 		utilityMethods.waitForVisibility(PM.OkExportProjectButton);
 		PM.OkExportProjectButton.click();
 		driver.close();
-	}
+	} 
 	
 	@Test(groups = { "RegressionTest" }, priority = 4)
 	public void FWA_Project_004() throws InterruptedException {
@@ -166,14 +166,12 @@ public class Projects extends Configuration {
 		PM.RightClickOnProject("Training-Automation");
 		PM.ExportOptionRightClickonProject.click();
 		Thread.sleep(2000);
-
 		utilityMethods.waitForVisibility(PM.OkExportProjectButton);
 		PM.OkExportProjectButton.click();
 		utilityMethods.waitForVisibility(PM.OkExportProjectButton);
 		PM.OkExportProjectButton.click();
 		Thread.sleep(2000);
 		PM.ImportLocalProjectButton.click();
-
 		String FilePathForImportProject = Paths
 				.get(System.getProperty("user.dir") + "\\src\\datafiles\\project-2022-01-11 15.45.54.alivia")
 				.toAbsolutePath().toString();
@@ -250,7 +248,6 @@ public class Projects extends Configuration {
 		Thread.sleep(2000);
 		PM.LoadAutomationProject("Imported Project");
 		Thread.sleep(2000);
-	
 		int QBCount=QBM.CountQB();
 		System.out.println(QBCount);
 		PM.GetStarted.click();

@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import configuration.Configuration;
 
-public class ModelingLibraryModel extends Configuration {
+public class ModelingLibraryModel extends Configuration { 
 	public int index;
 	@FindBy(how = How.XPATH, using = "//*[(text() = 'Modeling Library' or . = 'Modeling Library')]")
 

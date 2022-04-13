@@ -18,13 +18,10 @@ import automationUtils.utilityMethods;
 import configuration.Configuration;
 
 public class DataSource extends Configuration {
-	
-	@Test(groups = { "RegressionTest1" }, priority = 1)
+	@Test(groups = { "Smoke" }, priority = 1, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_DataSource_001() throws InterruptedException {
 		Configuration.BConfiguration();
-
 		Configuration.LoginApplication();
-
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
@@ -42,7 +39,7 @@ public class DataSource extends Configuration {
 		
 		
 	}
-	@Test(groups = { "RegressionTest" }, priority = 2)
+	@Test(groups = { "Smoke1" }, priority = 2)
 	public void FWA_DataSource_002() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -68,9 +65,7 @@ public class DataSource extends Configuration {
 	@Test(groups = { "RegressionTest" }, priority = 3)
 	public void FWA_DataSource_003() throws InterruptedException {
 		Configuration.BConfiguration();
-
 		Configuration.LoginApplication();
-
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
@@ -149,7 +144,7 @@ public class DataSource extends Configuration {
 
 	}
 	
-	@Test(groups = { "RegressionTest4" }, priority = 3)
+	@Test(groups = { "Smoke1" }, priority = 2)
 	public void FWA_DataSource_005() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -183,6 +178,7 @@ public class DataSource extends Configuration {
 		PM.YesButton.click();
 		utilityMethods.waitForVisibility(PM.RenameProjectOk);
 		PM.RenameProjectOk.click();
+		driver.close();
 	}
 	
 	@Test(groups = { "RegressionTest5" }, priority = 3)	

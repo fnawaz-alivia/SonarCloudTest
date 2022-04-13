@@ -3,11 +3,11 @@
 	<test name="First Test">
 		<groups>
 			<run>
-				<include name="RegressionTest" />
+				<include name="Smoke" />
 			</run>
 		</groups>
 		<classes>
-			<class name="automationCases.Models" />
+	<class name="automationCases.DataSource" />	
 		</classes>
 	</test>
 </suite>

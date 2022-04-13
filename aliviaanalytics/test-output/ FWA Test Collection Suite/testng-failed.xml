@@ -4,15 +4,15 @@
   <test thread-count="5" verbose="10" name="First Test(failed)">
     <groups>
       <run>
-        <include name="RegressionTest"/>
+        <include name="Smoke"/>
       </run>
     </groups>
     <classes>
-      <class name="automationCases.Models$Charting">
+      <class name="automationCases.DataSource">
         <methods>
-          <include name="FWA_Model_001"/>
+          <include name="FWA_DataSource_001"/>
         </methods>
-      </class> <!-- automationCases.Models$Charting -->
+      </class> <!-- automationCases.DataSource -->
     </classes>
   </test> <!-- First Test(failed) -->
 </suite> <!-- Failed suite [ FWA Test Collection Suite] -->

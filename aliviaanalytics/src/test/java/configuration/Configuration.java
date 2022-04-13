@@ -16,7 +16,7 @@ public class Configuration {
 	
 	public  static void  BConfiguration() {
 		
-		System.setProperty("webdriver.chrome.driver", "D:\\selenium\\driver.exe");
+		System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver.exe");
 		ChromeOptions options = new ChromeOptions();
 		options.setCapability("ACCEPT_INSECURE_CERTS", true);
 		//options.addArguments("--headless");
@@ -31,7 +31,7 @@ public class Configuration {
 
 	public static void LoginApplication() throws InterruptedException {
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
-		LM.LoginFormFill("admin", "Hello@464");
+		LM.LoginFormFill("admin@gmail.com", "Hello@464");
 		LM.loginbutton.click();
 		
 	}

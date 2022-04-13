@@ -146,12 +146,12 @@ public void ExecutionOfModel() throws InterruptedException {
 					driver.close();
 					break;
 				}
+		  
 		}
-
+		
 		System.out.println(EXecutionButtonText);
 		
 		for (WebElement el : ModelExecutionResult) {
-
 		    if (el.getText().equals("Execution Error")) {
 		        System.out.println(el.getText());
 		        CM.OKButton.click();
@@ -162,7 +162,6 @@ public void ExecutionOfModel() throws InterruptedException {
 				 System.out.println(el.getText());
 }
 	
-	
-}
+		}	
 }
 }

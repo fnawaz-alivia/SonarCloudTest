@@ -10,16 +10,12 @@ import automationModels.ProjectModel;
 import automationUtils.utilityMethods;
 import configuration.Configuration;
 
-public class Models extends Configuration {
-	
-	public class Charting  extends Configuration{
-		
+public class Models extends Configuration {		
 		@Test(groups = { "RegressionTest" }, priority = 1)
 		public void FWA_Model_001() throws InterruptedException {
 			Configuration.BConfiguration();
 			Configuration.LoginApplication();
 			ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-			ModelingModel MM = PageFactory.initElements(driver, automationModels.ModelingModel.class);
 			ModelingLibraryModel MLM = PageFactory.initElements(driver, automationModels.ModelingLibraryModel.class);
 			utilityMethods.waitForVisibility(PM.GetStarted);
 			Thread.sleep(2000);
@@ -29,8 +25,9 @@ public class Models extends Configuration {
 			driver.findElement(By.xpath("//div[contains(@class, 'analysis-modelingLibrary-mainGrid-49')]//child::table['"+MLM.index+"'+'"+1+"']//tr//td[3]//div[1]//div[1]")).click();
 			WebElement ModelExecutionStatus = driver.findElement(By.xpath("//div[contains(@class,'analysis-modelingLibrary-mainGrid-49')]//child::table['"+MLM.index+"'+'"+1+"']//tr//td[4]//div"));	
 			String ExecutionStatus = ModelExecutionStatus.getText();
-			System.out.println(ExecutionStatus);	
-			while (ExecutionStatus== ("Running"))
+			System.out.println(ExecutionStatus);
+			
+			while (ExecutionStatus == "Running")
 					{
 			Thread.sleep(2000);
 			System.out.println("inloop");
@@ -61,7 +58,7 @@ public class Models extends Configuration {
 
 	}
 		
-		@Test(groups = { "RegressionTest2" }, priority = 1)
+		@Test(groups = { "Smoke" }, priority = 1)
 		public void FWA_Model_003() throws InterruptedException {
 			Configuration.BConfiguration();
 			Configuration.LoginApplication();
@@ -76,4 +73,4 @@ public class Models extends Configuration {
 	}
 	
 }
-	}
+	

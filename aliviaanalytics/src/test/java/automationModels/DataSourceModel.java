@@ -172,7 +172,7 @@ public class DataSourceModel extends Configuration {
 		Thread.sleep(4000);
 		return this.DataSourcesList.size();
 	}
-	
+	 
 	public void LoadDataSoucre(String DSName) throws InterruptedException {
 		utilityMethods.waitForVisibility(this.SearchTabDataSource);
 		this.SearchTabDataSource.click();
@@ -204,8 +204,8 @@ public class DataSourceModel extends Configuration {
 
 	}
 	public void DeleteDataSoucre(String DSName) throws InterruptedException {
-	
 		this.DeleteLoadedDS.click();
+		Thread.sleep(2000);
 		utilityMethods.waitForVisibility(this.CheckBoxRemoveDatabaseTable);
 		this.CheckBoxRemoveDatabaseTable.click();
 		utilityMethods.waitForVisibility(this.yesDeletedConfirmationBOx);
@@ -219,7 +219,7 @@ public class DataSourceModel extends Configuration {
 		this.DataSourceName.clear();
 		this.DataSourceName.sendKeys(DSName);
 		this.SaveDataSoures.click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 	}
 	
 	public void ExportDataIntoCSV() throws InterruptedException {

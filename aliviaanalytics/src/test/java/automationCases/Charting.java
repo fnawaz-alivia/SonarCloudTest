@@ -11,7 +11,7 @@ import configuration.Configuration;
 
 public class Charting  extends Configuration{
 	
-	@Test(groups = { "RegressionTest" }, priority = 1)
+	@Test(groups = { "Smoke" }, priority = 1)
 	public void FWA_CreateTestData_001() throws InterruptedException {
 		
 		

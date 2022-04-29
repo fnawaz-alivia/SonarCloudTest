@@ -9,6 +9,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import automationUtils.utilityMethods;
 import configuration.Configuration;
 
@@ -17,7 +20,7 @@ public class ProjectModel extends Configuration
 {
 
 	public int index;
-	
+	public static ExtentTest test;
 	@FindBy(how = How.XPATH, using = "//div[contains(@class, 'x-window x-message-box x-layer x-window-default x-closable x-window-closable x-window-default-closable x-border-box')]")
 
 	public WebElement PleaseOpenOrSelectaProjectWindow;
@@ -155,8 +158,6 @@ public class ProjectModel extends Configuration
 
 	public WebElement LoadProjectsICon;
 	
-	
-	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class, 'x-container ai-accordion-static x-box-item x-container-default x-box-layout-ct')]//child::label[1]//span[2]")
 
 	public WebElement GetElementTypeText;
@@ -213,7 +214,6 @@ public class ProjectModel extends Configuration
 	@FindBy(how = How.XPATH, using = "//*[@id = 'import-file-btn-btnInnerEl' and (text() = 'Import File' or . = 'Import File')]")
 
 	public WebElement ImportFileForProject;
-	
 	
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'radio') and (text() = 'Create New' or . = 'Create New')]")
 
@@ -295,8 +295,12 @@ public class ProjectModel extends Configuration
 	public WebElement SelectProjectItemstoImport;
 
 	public void ProjectFormFill(String pname, String pdescription) {
+		test = report.createTest("Create New Folder Window - Folder name is editable. ");
 		this.InputFolderName.sendKeys(pname);
+		test.log(Status.PASS, "The folder name is enterred successfully");
+		test = report.createTest("Create New Folder Window - Folder description is editable.");
 		this.InputFolderDescription.sendKeys(pdescription);
+		test.log(Status.PASS, "The description is enterred successfully");
 	}
 	
 	public void SelectProjecttoImportFromGit(String pname) {

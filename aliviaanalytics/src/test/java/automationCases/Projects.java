@@ -7,10 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import automationModels.ChartModel;
@@ -21,58 +18,61 @@ import automationModels.ModelingLibraryModel;
 import automationModels.ProjectModel;
 import automationModels.QueryBuilderModel;
 import automationModels.SecurityModel;
-import automationUtils.reportUtil;
 import automationUtils.utilityMethods;
 import configuration.Configuration;
 
 public class Projects extends Configuration {
 	public static ExtentTest test;
-	public static ExtentReports report;
 	String excldatasourcename1 = RandomStringUtils.randomAlphabetic(10);
 	String excldatasourcename = RandomStringUtils.randomAlphabetic(10);
-	
-	@BeforeClass(alwaysRun=true)
-	public static void startreport() {
-
-		reportUtil.startTest();
-		report = reportUtil.getReport();
-	}
 
 	@Test(groups = { "Smoke" }, priority = 1)
 	public void FWA_Project_001() throws InterruptedException {
-		
-		
 		Configuration.BConfiguration();
-		
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		test = report.createTest("Verify the user is able to access the Project screen");
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
+		test.log(Status.PASS, "The Project screen is being shown");
 		Thread.sleep(2000);
 		test = report.createTest("Create Folder button works");
 		PM.CreateFolderButton.click();
-		test.log(Status.PASS, "Create Folder button is working as expected");
+		test.log(Status.PASS, "New Folder is being created");
 		PM.ProjectFormFill("AutoCreatedFolder", "AutoCreatedFolder");
+		test = report.createTest("Create New Folder Window - Folder visibility type.");
 		PM.PublicOption.click();
+		test.log(Status.PASS, "The public option is selected successfully");
+		test = report.createTest("Create New Folder Window - Details can be saved");
 		PM.SaveButton.click();
-		test = report.createTest("save button works");
-		test.log(Status.PASS, "save button is working as expected");
+		test.log(Status.PASS, "The folder details are saved successfully");
 		Thread.sleep(2000);
 		for (int i = 1; i < 3; i++) {
 			PM.RightClickOnProject("AutoCreatedFolder");
 			Thread.sleep(2000);
-			test = report.createTest("User can create project by right click on folder");
+			test = report.createTest("Verify that the Create Project option is enabled and Project can be created from right click selection menu.");
+			test = report.createTest("Verify the create project button is enabled when the user do the right click on the folder");
 			PM.CreateProjectOptionRightClickonFolder.click();
+			test.log(Status.PASS, "the create project button is enabled when the user do the right click on the folder");
 			test.log(Status.PASS, "User is able to create project");
 			PM.ProjectFormFill("AutoCreatedProject" + i, "AutoCreatedProject" + i);
+			test = report.createTest("Create New Project Window - Project visibility type.");
 			PM.PublicOption.click();
+			test.log(Status.PASS, "The public option is selected successfully");
+			test = report.createTest("Create New Folder Window - Details can be saved");
 			PM.SaveButton.click();
+			test.log(Status.PASS, "The project details are saved successfully");
 			Thread.sleep(2000);
+			test = report.createTest("Verify Newly created project laods");
 			PM.YesButton.click();
+			test.log(Status.PASS, "The project is being laoded");
 			Thread.sleep(2000);
-
+			test = report.createTest("Switch between projects Proj1 to another project");
 			Assert.assertEquals(PM.LoadedProjectText.getText(), "AutoCreatedProject" + i);
+			test.log(Status.PASS, "The projects are being swithced successfully");
 		}
+		test = report.createTest("Verify the user is able to delete the Project.");
 		PM.DeleteProject("AutoCreatedFolder");
+		test.log(Status.PASS, "The projects is deleted successfully");
 		PM.LoadAutomationProject("Training-Automation");
 		driver.close();
 	}
@@ -137,15 +137,28 @@ public class Projects extends Configuration {
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(2000);
 		PM.CheckLoadedProjectandLoadAutomationProject();
+		test = report.createTest("Verify the user can export project with filters");
+		test = report.createTest("Whole project can be exported");
+		test = report.createTest("All projects shall have option to export in their right click menu");
+		
 		PM.RightClickOnProject("Training-Automation");
+		test = report.createTest("All items of exported project shall be imported but shouldn't have any data and executions.");
+		
 		PM.ExportOptionRightClickonProject.click();
+		test.log(Status.PASS, "The projects have option to export in their right click menu");
 		Thread.sleep(2000);
 		utilityMethods.waitForVisibility(PM.CheckBoxForExportFilters);
+		test = report.createTest("Verify CheckBOx shows to export project with Filters");
 		PM.CheckBoxForExportFilters.click();
+		test.log(Status.PASS, "The Checkbox to export project is being shown");
 		utilityMethods.waitForVisibility(PM.OkExportProjectButton);
 		PM.OkExportProjectButton.click();
 		utilityMethods.waitForVisibility(PM.OkExportProjectButton);
+		test = report.createTest("Verify that on project export .alivia file shall be created");
 		PM.OkExportProjectButton.click();
+		test.log(Status.PASS, "The Project is being exported successfully");
+		test.log(Status.PASS, "The whole Project is being exported successfully");
+		test.log(Status.PASS, "The project is being created with .alivia file");
 		driver.close();
 	} 
 	
@@ -569,11 +582,5 @@ public class Projects extends Configuration {
 		PM.DeleteAllAutoCreatedProjects("import");
 		PM.DeleteAllAutoCreatedProjects("hello");
 	
-	}
-	@AfterClass(alwaysRun=true)
-	public static void endreport() {
-
-		reportUtil.endTest();
-
 	}
 }

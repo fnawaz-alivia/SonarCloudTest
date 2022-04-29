@@ -1,34 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="5" retried="2" total="8" passed="0">
+<testng-results skipped="0" failed="3" ignored="49" total="61" passed="9">
   <reporter-output>
   </reporter-output>
-  <suite name=" FWA Test Collection Suite" duration-ms="192389" started-at="2022-04-12T11:26:47 PKT" finished-at="2022-04-12T11:29:59 PKT">
+  <suite name=" FWA Test Collection Suite" duration-ms="613497" started-at="2022-04-29T05:36:18 PKT" finished-at="2022-04-29T05:46:32 PKT">
     <groups>
       <group name="Smoke">
-        <method signature="DataSource.FWA_DataSource_001()[pri:1, instance:automationCases.DataSource@30a3107a]" name="FWA_DataSource_001" class="automationCases.DataSource"/>
+        <method signature="Charting.FWA_CreateTestData_001()[pri:1, instance:automationCases.Charting@7a3d45bd]" name="FWA_CreateTestData_001" class="automationCases.Charting"/>
+        <method signature="Dashboard.FWA_Dashboard_001()[pri:1, instance:automationCases.Dashboard@a38d7a3]" name="FWA_Dashboard_001" class="automationCases.Dashboard"/>
+        <method signature="DataCleansing.FWA_DataSource_001()[pri:1, instance:automationCases.DataCleansing@50d0686]" name="FWA_DataSource_001" class="automationCases.DataCleansing"/>
+        <method signature="DataSource.FWA_DataSource_001()[pri:1, instance:automationCases.DataSource@13c27452]" name="FWA_DataSource_001" class="automationCases.DataSource"/>
+        <method signature="Models.FWA_Model_003()[pri:1, instance:automationCases.Models@262b2c86]" name="FWA_Model_003" class="automationCases.Models"/>
+        <method signature="Projects.FWA_Project_001()[pri:1, instance:automationCases.Projects@27f723]" name="FWA_Project_001" class="automationCases.Projects"/>
+        <method signature="Projects.FWA_Project_003()[pri:3, instance:automationCases.Projects@27f723]" name="FWA_Project_003" class="automationCases.Projects"/>
+        <method signature="QueryBuilder.FWA_DataSource_001()[pri:1, instance:automationCases.QueryBuilder@5ed828d]" name="FWA_DataSource_001" class="automationCases.QueryBuilder"/>
+        <method signature="Ranking.FWA_Ranking_001()[pri:1, instance:automationCases.Ranking@371a67ec]" name="FWA_Ranking_001" class="automationCases.Ranking"/>
+        <method signature="RuleLibrary.FWA_RuleLibrary_001()[pri:1, instance:automationCases.RuleLibrary@1a3869f4]" name="FWA_RuleLibrary_001" class="automationCases.RuleLibrary"/>
+        <method signature="Scheduler.FWA_Scheduler_001()[pri:1, instance:automationCases.Scheduler@77ec78b9]" name="FWA_Scheduler_001" class="automationCases.Scheduler"/>
+        <method signature="Security.FWA_Ranking_001()[pri:1, instance:automationCases.Security@1e7c7811]" name="FWA_Ranking_001" class="automationCases.Security"/>
       </group> <!-- Smoke -->
     </groups>
-    <test name="First Test" duration-ms="192389" started-at="2022-04-12T11:26:47 PKT" finished-at="2022-04-12T11:29:59 PKT">
-      <class name="automationCases.DataSource">
-        <test-method status="SKIP" signature="FWA_DataSource_001()[pri:1, instance:automationCases.DataSource@30a3107a]" name="FWA_DataSource_001" duration-ms="68900" retried="true" started-at="2022-04-12T11:26:47 PKT" finished-at="2022-04-12T11:27:56 PKT">
-          <exception class="org.openqa.selenium.ElementClickInterceptedException">
+    <test name="First Test" duration-ms="613497" started-at="2022-04-29T05:36:18 PKT" finished-at="2022-04-29T05:46:32 PKT">
+      <class name="automationCases.RuleLibrary">
+        <test-method status="FAIL" signature="FWA_RuleLibrary_001()[pri:1, instance:automationCases.RuleLibrary@1a3869f4]" name="FWA_RuleLibrary_001" duration-ms="42799" started-at="2022-04-29T05:44:15 PKT" finished-at="2022-04-29T05:44:58 PKT">
+          <exception class="java.lang.IndexOutOfBoundsException">
             <message>
-              <![CDATA[element click intercepted: Element <div class="x-field x-form-item x-form-item-default x-form-type-checkbox x-item-disabled x-window-item x-field-default x-autocontainer-form-item x-form-item-no-label" style="margin:20px 0px 0px 0px;" role="presentation" id="checkbox-2688">...</div> is not clickable at point (671, 337). Other element would receive the click: <div id="window-2686-innerCt" data-ref="innerCt" style="padding:15px 15px 15px 15px" role="presentation" class="x-autocontainer-innerCt">...</div>
-  (Session info: chrome=100.0.4896.75)
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'FAISAL', ip: '192.168.8.100', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 100.0.4896.75, chrome: {chromedriverVersion: 100.0.4896.60 (6a5d10861ce8..., userDataDir: C:\Users\Waseem\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:51794}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: bac153ce11cc354fd9c226ef29eafeee]]>
+              <![CDATA[Index: 3, Size: 0]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <div class="x-field x-form-item x-form-item-default x-form-type-checkbox x-item-disabled x-window-item x-field-default x-autocontainer-form-item x-form-item-no-label" style="margin:20px 0px 0px 0px;" role="presentation" id="checkbox-2688">...</div> is not clickable at point (671, 337). Other element would receive the click: <div id="window-2686-innerCt" data-ref="innerCt" style="padding:15px 15px 15px 15px" role="presentation" class="x-autocontainer-innerCt">...</div>
-  (Session info: chrome=100.0.4896.75)
+              <![CDATA[java.lang.IndexOutOfBoundsException: Index: 3, Size: 0
+at java.util.ArrayList.rangeCheck(Unknown Source)
+at java.util.ArrayList.get(Unknown Source)
+at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementListHandler.invoke(LocatingElementListHandler.java:39)
+at com.sun.proxy.$Proxy10.get(Unknown Source)
+at automationModels.QueryBuilderModel.CreateNewRuleAndGroup(QueryBuilderModel.java:164)
+at automationCases.RuleLibrary.FWA_RuleLibrary_001(RuleLibrary.java:24)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.util.ArrayList.forEach(Unknown Source)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.IndexOutOfBoundsException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_RuleLibrary_001 -->
+      </class> <!-- automationCases.RuleLibrary -->
+      <class name="automationCases.Security">
+        <test-method status="PASS" signature="FWA_Ranking_001()[pri:1, instance:automationCases.Security@1e7c7811]" name="FWA_Ranking_001" duration-ms="46606" started-at="2022-04-29T05:42:59 PKT" finished-at="2022-04-29T05:43:46 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_Ranking_001 -->
+      </class> <!-- automationCases.Security -->
+      <class name="automationCases.Projects">
+        <test-method status="PASS" signature="startTest()[pri:0, instance:automationCases.Projects@27f723]" name="startTest" is-config="true" duration-ms="135" started-at="2022-04-29T05:36:18 PKT" finished-at="2022-04-29T05:36:18 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startTest -->
+        <test-method status="PASS" signature="FWA_Project_001()[pri:1, instance:automationCases.Projects@27f723]" name="FWA_Project_001" duration-ms="80289" started-at="2022-04-29T05:36:18 PKT" finished-at="2022-04-29T05:37:39 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_Project_001 -->
+        <test-method status="PASS" signature="FWA_Project_003()[pri:3, instance:automationCases.Projects@27f723]" name="FWA_Project_003" duration-ms="42218" started-at="2022-04-29T05:37:39 PKT" finished-at="2022-04-29T05:38:21 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_Project_003 -->
+        <test-method status="PASS" signature="endTest()[pri:0, instance:automationCases.Projects@27f723]" name="endTest" is-config="true" duration-ms="599" started-at="2022-04-29T05:46:32 PKT" finished-at="2022-04-29T05:46:33 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endTest -->
+      </class> <!-- automationCases.Projects -->
+      <class name="automationCases.QueryBuilder">
+        <test-method status="PASS" signature="FWA_DataSource_001()[pri:1, instance:automationCases.QueryBuilder@5ed828d]" name="FWA_DataSource_001" duration-ms="56840" started-at="2022-04-29T05:40:51 PKT" finished-at="2022-04-29T05:41:48 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_DataSource_001 -->
+      </class> <!-- automationCases.QueryBuilder -->
+      <class name="automationCases.Scheduler">
+        <test-method status="FAIL" signature="FWA_Scheduler_001()[pri:1, instance:automationCases.Scheduler@77ec78b9]" name="FWA_Scheduler_001" duration-ms="29394" started-at="2022-04-29T05:43:46 PKT" finished-at="2022-04-29T05:44:15 PKT">
+          <exception class="org.openqa.selenium.ElementClickInterceptedException">
+            <message>
+              <![CDATA[element click intercepted: Element <a class="x-btn btn-save x-unselectable x-box-item x-toolbar-item x-btn-default-small" style="min-width: 75px; left: 800px; top: 0px; margin: 0px;" hidefocus="on" unselectable="on" role="button" aria-hidden="false" aria-disabled="false" id="button-2386" tabindex="-1" data-componentid="button-2386" data-tabindex-value="0" data-tabindex-counter="1">...</a> is not clickable at point (1024, 604). Other element would receive the click: <div role="presentation" class="x-mask x-border-box" style="height: 655px; width: 1344px; z-index: 28996; left: 0px; top: 0px;" id="ext-element-294"></div>
+  (Session info: chrome=100.0.4896.127)
 Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'FAISAL', ip: '192.168.8.100', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
+System info: host: 'FAISAL', ip: '192.168.206.12', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 100.0.4896.75, chrome: {chromedriverVersion: 100.0.4896.60 (6a5d10861ce8..., userDataDir: C:\Users\Waseem\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:51794}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: bac153ce11cc354fd9c226ef29eafeee
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 100.0.4896.127, chrome: {chromedriverVersion: 100.0.4896.60 (6a5d10861ce8..., userDataDir: C:\Users\Waseem\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:65337}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 4fc46f08dedfb894e28e537c5165db7f]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <a class="x-btn btn-save x-unselectable x-box-item x-toolbar-item x-btn-default-small" style="min-width: 75px; left: 800px; top: 0px; margin: 0px;" hidefocus="on" unselectable="on" role="button" aria-hidden="false" aria-disabled="false" id="button-2386" tabindex="-1" data-componentid="button-2386" data-tabindex-value="0" data-tabindex-counter="1">...</a> is not clickable at point (1024, 604). Other element would receive the click: <div role="presentation" class="x-mask x-border-box" style="height: 655px; width: 1344px; z-index: 28996; left: 0px; top: 0px;" id="ext-element-294"></div>
+  (Session info: chrome=100.0.4896.127)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'FAISAL', ip: '192.168.206.12', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 100.0.4896.127, chrome: {chromedriverVersion: 100.0.4896.60 (6a5d10861ce8..., userDataDir: C:\Users\Waseem\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:65337}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 4fc46f08dedfb894e28e537c5165db7f
 at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
 at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
@@ -45,9 +138,9 @@ at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
 at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
 at java.lang.reflect.Method.invoke(Unknown Source)
 at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
-at com.sun.proxy.$Proxy7.click(Unknown Source)
-at automationModels.DataSourceModel.DeleteDataSoucre(DataSourceModel.java:210)
-at automationCases.DataSource.FWA_DataSource_001(DataSource.java:37)
+at com.sun.proxy.$Proxy9.click(Unknown Source)
+at automationModels.SchedulerModel.CreateProcess(SchedulerModel.java:105)
+at automationCases.Scheduler.FWA_Scheduler_001(Scheduler.java:22)
 at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -81,28 +174,33 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           </exception> <!-- org.openqa.selenium.ElementClickInterceptedException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- FWA_DataSource_001 -->
-        <test-method status="SKIP" signature="FWA_DataSource_001()[pri:1, instance:automationCases.DataSource@30a3107a]" name="FWA_DataSource_001" duration-ms="63010" retried="true" started-at="2022-04-12T11:27:56 PKT" finished-at="2022-04-12T11:28:59 PKT">
-          <exception class="org.openqa.selenium.ElementClickInterceptedException">
+        </test-method> <!-- FWA_Scheduler_001 -->
+      </class> <!-- automationCases.Scheduler -->
+      <class name="automationCases.DataCleansing">
+        <test-method status="FAIL" signature="FWA_DataSource_001()[pri:1, instance:automationCases.DataCleansing@50d0686]" name="FWA_DataSource_001" duration-ms="27562" started-at="2022-04-29T05:41:48 PKT" finished-at="2022-04-29T05:42:15 PKT">
+          <exception class="org.openqa.selenium.NoSuchElementException">
             <message>
-              <![CDATA[element click intercepted: Element <div class="x-field x-form-item x-form-item-default x-form-type-checkbox x-item-disabled x-window-item x-field-default x-autocontainer-form-item x-form-item-no-label" style="margin:20px 0px 0px 0px;" role="presentation" id="checkbox-2688">...</div> is not clickable at point (671, 337). Other element would receive the click: <div id="window-2686-innerCt" data-ref="innerCt" style="padding:15px 15px 15px 15px" role="presentation" class="x-autocontainer-innerCt">...</div>
-  (Session info: chrome=100.0.4896.75)
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//div[contains(@class, 'dataRepo-dataClean-mainGridTable-grid-039')]//child::table['-1'+'1']//tr//td[2]"}
+  (Session info: chrome=100.0.4896.127)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'FAISAL', ip: '192.168.8.100', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
+System info: host: 'FAISAL', ip: '192.168.206.12', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 100.0.4896.75, chrome: {chromedriverVersion: 100.0.4896.60 (6a5d10861ce8..., userDataDir: C:\Users\Waseem\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:51835}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 0845d966fc9117ad03922fb6cf629fed]]>
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 100.0.4896.127, chrome: {chromedriverVersion: 100.0.4896.60 (6a5d10861ce8..., userDataDir: C:\Users\Waseem\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:65078}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 67a9562a799a1b7549d5f07e34ee2bca
+*** Element info: {Using=xpath, value=//div[contains(@class, 'dataRepo-dataClean-mainGridTable-grid-039')]//child::table['-1'+'1']//tr//td[2]}]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <div class="x-field x-form-item x-form-item-default x-form-type-checkbox x-item-disabled x-window-item x-field-default x-autocontainer-form-item x-form-item-no-label" style="margin:20px 0px 0px 0px;" role="presentation" id="checkbox-2688">...</div> is not clickable at point (671, 337). Other element would receive the click: <div id="window-2686-innerCt" data-ref="innerCt" style="padding:15px 15px 15px 15px" role="presentation" class="x-autocontainer-innerCt">...</div>
-  (Session info: chrome=100.0.4896.75)
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//div[contains(@class, 'dataRepo-dataClean-mainGridTable-grid-039')]//child::table['-1'+'1']//tr//td[2]"}
+  (Session info: chrome=100.0.4896.127)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'FAISAL', ip: '192.168.8.100', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
+System info: host: 'FAISAL', ip: '192.168.206.12', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 100.0.4896.75, chrome: {chromedriverVersion: 100.0.4896.60 (6a5d10861ce8..., userDataDir: C:\Users\Waseem\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:51835}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 0845d966fc9117ad03922fb6cf629fed
-at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 100.0.4896.127, chrome: {chromedriverVersion: 100.0.4896.60 (6a5d10861ce8..., userDataDir: C:\Users\Waseem\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:65078}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 67a9562a799a1b7549d5f07e34ee2bca
+*** Element info: {Using=xpath, value=//div[contains(@class, 'dataRepo-dataClean-mainGridTable-grid-039')]//child::table['-1'+'1']//tr//td[2]}
+at sun.reflect.GeneratedConstructorAccessor18.newInstance(Unknown Source)
 at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
 at java.lang.reflect.Constructor.newInstance(Unknown Source)
 at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
@@ -111,23 +209,20 @@ at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCo
 at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
 at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
 at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
-at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
-at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-at java.lang.reflect.Method.invoke(Unknown Source)
-at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
-at com.sun.proxy.$Proxy7.click(Unknown Source)
-at automationModels.DataSourceModel.DeleteDataSoucre(DataSourceModel.java:210)
-at automationCases.DataSource.FWA_DataSource_001(DataSource.java:37)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at automationModels.DataCleansingModel.MissingFillWithValue(DataCleansingModel.java:76)
+at automationCases.DataCleansing.FWA_DataSource_001(DataCleansing.java:23)
 at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
 at java.lang.reflect.Method.invoke(Unknown Source)
 at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
 at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-at org.testng.internal.TestInvoker.retryFailed(TestInvoker.java:213)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:58)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
 at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
 at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
 at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
@@ -150,83 +245,41 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.ElementClickInterceptedException -->
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- FWA_DataSource_001 -->
-        <test-method status="FAIL" signature="FWA_DataSource_001()[pri:1, instance:automationCases.DataSource@30a3107a]" name="FWA_DataSource_001" duration-ms="60394" started-at="2022-04-12T11:28:59 PKT" finished-at="2022-04-12T11:29:59 PKT">
-          <exception class="org.openqa.selenium.ElementClickInterceptedException">
-            <message>
-              <![CDATA[element click intercepted: Element <div class="x-field x-form-item x-form-item-default x-form-type-checkbox x-item-disabled x-window-item x-field-default x-autocontainer-form-item x-form-item-no-label" style="margin:20px 0px 0px 0px;" role="presentation" id="checkbox-2688">...</div> is not clickable at point (671, 337). Other element would receive the click: <div id="window-2686-innerCt" data-ref="innerCt" style="padding:15px 15px 15px 15px" role="presentation" class="x-autocontainer-innerCt">...</div>
-  (Session info: chrome=100.0.4896.75)
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'FAISAL', ip: '192.168.8.100', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 100.0.4896.75, chrome: {chromedriverVersion: 100.0.4896.60 (6a5d10861ce8..., userDataDir: C:\Users\Waseem\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:51868}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 0a4ae10957bd8339fd3101460adcdc88]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <div class="x-field x-form-item x-form-item-default x-form-type-checkbox x-item-disabled x-window-item x-field-default x-autocontainer-form-item x-form-item-no-label" style="margin:20px 0px 0px 0px;" role="presentation" id="checkbox-2688">...</div> is not clickable at point (671, 337). Other element would receive the click: <div id="window-2686-innerCt" data-ref="innerCt" style="padding:15px 15px 15px 15px" role="presentation" class="x-autocontainer-innerCt">...</div>
-  (Session info: chrome=100.0.4896.75)
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'FAISAL', ip: '192.168.8.100', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 100.0.4896.75, chrome: {chromedriverVersion: 100.0.4896.60 (6a5d10861ce8..., userDataDir: C:\Users\Waseem\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:51868}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 0a4ae10957bd8339fd3101460adcdc88
-at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
-at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
-at java.lang.reflect.Constructor.newInstance(Unknown Source)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
-at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
-at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-at java.lang.reflect.Method.invoke(Unknown Source)
-at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
-at com.sun.proxy.$Proxy7.click(Unknown Source)
-at automationModels.DataSourceModel.DeleteDataSoucre(DataSourceModel.java:210)
-at automationCases.DataSource.FWA_DataSource_001(DataSource.java:37)
-at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-at java.lang.reflect.Method.invoke(Unknown Source)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-at org.testng.internal.TestInvoker.retryFailed(TestInvoker.java:213)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:58)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.util.ArrayList.forEach(Unknown Source)
-at org.testng.TestRunner.privateRun(TestRunner.java:794)
-at org.testng.TestRunner.run(TestRunner.java:596)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
-at org.testng.SuiteRunner.run(SuiteRunner.java:276)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
-at org.testng.TestNG.runSuites(TestNG.java:1063)
-at org.testng.TestNG.run(TestNG.java:1031)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.ElementClickInterceptedException -->
+      </class> <!-- automationCases.DataCleansing -->
+      <class name="automationCases.DataSource">
+        <test-method status="PASS" signature="FWA_DataSource_001()[pri:1, instance:automationCases.DataSource@13c27452]" name="FWA_DataSource_001" duration-ms="69648" started-at="2022-04-29T05:38:21 PKT" finished-at="2022-04-29T05:39:31 PKT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- FWA_DataSource_001 -->
       </class> <!-- automationCases.DataSource -->
+      <class name="automationCases.Models">
+        <test-method status="PASS" signature="FWA_Model_003()[pri:1, instance:automationCases.Models@262b2c86]" name="FWA_Model_003" duration-ms="36275" started-at="2022-04-29T05:39:31 PKT" finished-at="2022-04-29T05:40:07 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_Model_003 -->
+      </class> <!-- automationCases.Models -->
+      <class name="automationCases.Ranking">
+        <test-method status="PASS" signature="FWA_Ranking_001()[pri:1, instance:automationCases.Ranking@371a67ec]" name="FWA_Ranking_001" duration-ms="44014" started-at="2022-04-29T05:40:07 PKT" finished-at="2022-04-29T05:40:51 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_Ranking_001 -->
+      </class> <!-- automationCases.Ranking -->
+      <class name="automationCases.Charting">
+        <test-method status="PASS" signature="FWA_CreateTestData_001()[pri:1, instance:automationCases.Charting@7a3d45bd]" name="FWA_CreateTestData_001" duration-ms="44187" started-at="2022-04-29T05:42:15 PKT" finished-at="2022-04-29T05:42:59 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_CreateTestData_001 -->
+      </class> <!-- automationCases.Charting -->
+      <class name="automationCases.Dashboard">
+        <test-method status="PASS" signature="FWA_Dashboard_001()[pri:1, instance:automationCases.Dashboard@a38d7a3]" name="FWA_Dashboard_001" duration-ms="93594" started-at="2022-04-29T05:44:58 PKT" finished-at="2022-04-29T05:46:32 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_Dashboard_001 -->
+      </class> <!-- automationCases.Dashboard -->
     </test> <!-- First Test -->
   </suite> <!--  FWA Test Collection Suite -->
 </testng-results>

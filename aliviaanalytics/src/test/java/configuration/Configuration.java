@@ -6,6 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+
 import automationModels.LoginModel;
 
 
@@ -13,6 +19,7 @@ import automationModels.LoginModel;
 public class Configuration {
 	
 	public static  WebDriver driver;
+	public static ExtentReports report;
 	
 	public  static void  BConfiguration() {
 		
@@ -31,7 +38,7 @@ public class Configuration {
 
 	public static void LoginApplication() throws InterruptedException {
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
-		LM.LoginFormFill("admin@gmail.com", "Hello@464");
+		LM.LoginFormFill("admin@gmail.com", "Faisal@464");
 		LM.loginbutton.click();
 		
 	}
@@ -42,6 +49,19 @@ public class Configuration {
 
 	public static void setDriver(WebDriver driver) {
 		Configuration.driver = driver;
+	}
+	@BeforeSuite(alwaysRun = true)
+	public static void startTest()
+	{
+	report = new ExtentReports();
+	ExtentHtmlReporter reporter=  new ExtentHtmlReporter("./Reports/FWA.html");
+	report.attachReporter(reporter);
+	}
+	@AfterSuite(alwaysRun = true)
+	public static void endTest()
+	{
+
+	report.flush();
 	}
 
 }

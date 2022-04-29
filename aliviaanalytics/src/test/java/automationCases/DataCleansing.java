@@ -3,13 +3,17 @@ package automationCases;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
+
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import automationModels.DataCleansingModel;
 import automationModels.ProjectModel;
 import automationUtils.utilityMethods;
 import configuration.Configuration;
 
 public class DataCleansing extends Configuration {
-	
+	public static ExtentTest test;
 	@Test(groups = { "Smoke" }, priority = 1)
 	public void FWA_DataSource_001() throws InterruptedException {
 		Configuration.BConfiguration();
@@ -18,8 +22,12 @@ public class DataCleansing extends Configuration {
 		DataCleansingModel DCM = PageFactory.initElements(driver, automationModels.DataCleansingModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(2000); 
+		test = report.createTest("Verify the user is able to access Data Cleansing Module by clicking on Data Cleansing under Data Repository");
 		DCM.LandingOnDataCleansingPage();
+		test.log(Status.PASS, "The user is able to access Data Cleansing Module by clicking on Data Cleansing under Data Repository");
+		test = report.createTest("Verify the user is able to select the Data Source for  Data Cleansing");
 		DCM.SelectDSForDataCleansing();
+		test.log(Status.PASS, "The user is able to select the Data Source for  Data Cleansing");
 		DCM.MissingFillWithValue();
 		String DCExportFileName = RandomStringUtils.randomAlphabetic(10);
 		DCM.ExportDataIntoCSV(DCExportFileName);

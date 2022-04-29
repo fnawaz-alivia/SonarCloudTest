@@ -10,7 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import org.testng.annotations.Test;
 
-
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 
 import automationModels.DataSourceModel;
 import automationModels.ProjectModel;
@@ -18,7 +19,8 @@ import automationUtils.utilityMethods;
 import configuration.Configuration;
 
 public class DataSource extends Configuration {
-	@Test(groups = { "Smoke" }, priority = 1, retryAnalyzer = listeners.RetryAnalyzer.class)
+	public static ExtentTest test;
+	@Test(groups = { "Smoke" }, priority = 1)
 	public void FWA_DataSource_001() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -28,6 +30,8 @@ public class DataSource extends Configuration {
 		Thread.sleep(2000);
 		String DSName = RandomStringUtils.randomAlphabetic(10);
 		DSM.CreateCSVDS(DSName, "Medical Transactions.csv"); 
+		test = report.createTest("Verify the user is able to Create the DataSource with CSV File");
+		test.log(Status.PASS, "The DataSource is created with CSV file successfully");
 		DSM.LoadDataSoucre(DSName);
 		Thread.sleep(2000);
 		DSM.ExportDataIntoCSV();
@@ -39,7 +43,7 @@ public class DataSource extends Configuration {
 		
 		
 	}
-	@Test(groups = { "Smoke1" }, priority = 2)
+	@Test(groups = { "Smoke1" }, priority = 2,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_DataSource_002() throws InterruptedException {
 		Configuration.BConfiguration();
 

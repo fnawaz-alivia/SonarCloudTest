@@ -7,7 +7,20 @@
 			</run>
 		</groups>
 		<classes>
-	<class name="automationCases.DataSource" />	
+	<class name="automationCases.Projects" />
+<class name="automationCases.DataSource" />		
+<class name="automationCases.Models" />
+<class name="automationCases.Ranking" />
+<class name="automationCases.QueryBuilder" />
+<class name="automationCases.DataCleansing" />
+<class name="automationCases.Charting" />
+<class name="automationCases.Security" />
+<class name="automationCases.Scheduler" />
+<class name="automationCases.RuleLibrary" />
+<class name="automationCases.Dashboard" />
+<class name="configuration.Configuration" />
+
+
 		</classes>
 	</test>
 </suite>

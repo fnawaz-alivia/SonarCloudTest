@@ -10,10 +10,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import automationUtils.utilityMethods;
 import configuration.Configuration;
 
 public class ChartModel extends Configuration {
+	public static ExtentTest test;
 
 	@FindBy(how = How.XPATH, using = "//*[(text() = 'Analysis' or . = 'Analysis')]")
 
@@ -135,12 +139,16 @@ public class ChartModel extends Configuration {
 	}
 	
 	public int VerifyChartSaved(String SavedChart) throws InterruptedException {
-		
+		test = report.createTest("Verify that the collapse panel for the saved charts works.");
 		this.SavedCharts.click();
+		test.log(Status.PASS, "The collapse panel for the saved charts works");
+		test = report.createTest("verify that search filter for saved charts works on charting screen ");
 		this.SearchTabSavedChartsGrid.sendKeys(SavedChart);
+		test.log(Status.PASS, "The search filter for saved charts works on charting screen");
+		test = report.createTest("Verify the created chart shows in saved charts panel");
 		Thread.sleep(2000);
 		this.SavedChartsList.size();
-
+		test.log(Status.PASS, "The created chart shows in saved charts panel");
 		return this.SavedChartsList.size();
 	}
 
@@ -188,18 +196,28 @@ public class ChartModel extends Configuration {
 
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		PM.GetStarted.click();
+		test = report.createTest("Verify the user is able to access Charting Module by clicking on Charting under Analysis");
 		this.Analysis.click();
 		this.Charting.click();
 		this.ClickonROW.click();
+		test.log(Status.PASS, "The user is able to access Charting Module by clicking on Charting under Analysis");
+		test = report.createTest("Verify the search tab works for data sources in right panel");
 		this.LeftSearchTabDataSourcesGrid.sendKeys("Automation1 - Dental01");
+		test.log(Status.PASS, "The search tab works for data sources in right panel");
 		Thread.sleep(2000);
+		test = report.createTest("Verify the search tab works for data sources in right panel");
 		this.SelectDataSource("Automation1 - Dental01");
+		test.log(Status.PASS, "The search tab works for data sources in right panel");
 		Thread.sleep(2000);
+		test = report.createTest("Verify that search feature on Descriptors.");
 		this.LeftSearchTabDescriptorsValuesGrid.sendKeys("amount");
+		test.log(Status.PASS, "The search feature on Descriptors works");
 		Thread.sleep(2000);
 		this.DragDescriptorValuesDropInRow("amountatrisk");
 		this.LeftSearchTabDescriptorsValuesGrid.clear();
+		test = report.createTest("Verify that search feature on values.");
 		this.LeftSearchTabDescriptorsValuesGrid.sendKeys("amount");
+		test.log(Status.PASS, "The search feature on values works");
 		this.DragDescriptorValuesDropInRow("amountallowed");
 		this.LeftSearchTabDescriptorsValuesGrid.clear();
 		this.LeftSearchTabDescriptorsValuesGrid.sendKeys("ad");
@@ -209,14 +227,26 @@ public class ChartModel extends Configuration {
 		this.LeftSearchTabDescriptorsValuesGrid.sendKeys("ad");
 		Thread.sleep(2000);
 		this.DragDescriptorValuesDropInCloumn("adjudicationdate");
+		test = report.createTest("Verify that chart palette button");
 		this.ChartPaletteButton.click();
+		test.log(Status.PASS, "The chart palette button works");
+		test = report.createTest("Verify Create Bubble Group in Charting");
 		this.BubbleGroup.click();
+		test.log(Status.PASS, "The bubble groupd is created successfully");
+		test = report.createTest("Verify the close button works on chart palette ");
 		this.ClosedialogChartPalette.click();
+		test.log(Status.PASS, "The chart palette window is clsoed successfully");
+		test = report.createTest("Verify the save button works");
 		this.SaveButton.click();
+		test.log(Status.PASS, "The save button works");
+		test = report.createTest("Verify the user is able to enter the chart name");
 		this.InputName.sendKeys(chartName);
+		test.log(Status.PASS, "The user is able to enter the chart name");
 		this.OKButton.click();
+		test = report.createTest("Verify the created chart is saved");
 		utilityMethods.waitForVisibility(this.OKButton);
 		this.OKButton.click();	
+		test.log(Status.PASS, "The created chart is saved successfully");
 	}
 	
 	public void CreateBarHorizontalChart(String chartName) throws InterruptedException {

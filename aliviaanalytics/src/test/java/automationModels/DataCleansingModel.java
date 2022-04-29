@@ -10,10 +10,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import automationUtils.utilityMethods;
 import configuration.Configuration;
 
 public class DataCleansingModel extends Configuration {
+	public static ExtentTest test;
 	@FindBy(how = How.XPATH, using = "//*[(text() = 'Data Cleansing' or . = 'Data Cleansing')]")
 
 	public WebElement DataCleansing;
@@ -74,20 +78,30 @@ public class DataCleansingModel extends Configuration {
 			int index = AllColumns.indexOf("amountallowed");
 			System.out.println(index);
 			driver.findElement(By.xpath("//div[contains(@class, 'dataRepo-dataClean-mainGridTable-grid-039')]//child::table['" +index + "'+'"+ 1 + "']//tr//td[2]")).click();
+			test = report.createTest("Verify the user is able to select the operator");
 			WebElement Operator =driver.findElement(By.xpath("//div[contains(@class, 'dataRepo-dataClean-mainGridTable-grid-039')]//child::table['" +index + "'+'"+ 1 + "']//tr//td[6]"));
 			utilityMethods.doubleClick(Operator);
+			test.log(Status.PASS, "The user is able to select the operator");
+			test = report.createTest("Verify the user is able to select the missing operator");
 			this.Missing.click();
+			test.log(Status.PASS, "The user is able to select the missing operator");
 			WebElement Action =driver.findElement(By.xpath("//div[contains(@class, 'dataRepo-dataClean-mainGridTable-grid-039')]//child::table['" +index + "'+'"+ 1 + "']//tr//td[7]"));
 			utilityMethods.doubleClick(Action);
+			test = report.createTest("Verify the user is able to select the fillwith action");
 			this.FillWith.click();
+			test.log(Status.PASS, "The user is able to select the fillwith action");
+			test = report.createTest("Verify the user is able to set the value ");
 			WebElement Value =driver.findElement(By.xpath("//div[contains(@class, 'dataRepo-dataClean-mainGridTable-grid-039')]//child::table['" +index + "'+'"+ 1 + "']//tr//td[8]"));
 			utilityMethods.SetTextwithActionClass(Value, "0");
+			test.log(Status.PASS, "The user is able to set the value");
+			test = report.createTest("Verify the dataclean execution button works ");
 			this.DataCleanExecuteButton.click();
+			test.log(Status.PASS, "The dataclean execution button works");
 			Thread.sleep(2000);	
 		}
 	
 	public void ExportDataIntoCSV(String fileName) throws InterruptedException {
-		
+		test = report.createTest("Export Cleansing Filter results data into CSV ");
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);	
 		utilityMethods.waitForVisibility(this.DataCleanExportButton);
@@ -98,10 +112,11 @@ public class DataCleansingModel extends Configuration {
 		utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
 		PM.OKButtonSelectaProjectWondow.click();
 		Thread.sleep(2000);
+		test.log(Status.PASS, "The user is able to export Cleansing Filter results data into CSV ");
 	}
 	
 	public void ExportDataIntoExcel(String fileName) throws InterruptedException {
-		
+		test = report.createTest("Export Cleansing Filter results data into Excel ");
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		utilityMethods.waitForVisibility(this.DataCleanExportButton);
@@ -112,6 +127,6 @@ public class DataCleansingModel extends Configuration {
 		utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
 		PM.OKButtonSelectaProjectWondow.click();
 		Thread.sleep(2000);
-
+		test.log(Status.PASS, "The user is able to export Cleansing Filter results data into Excel ");
 	}	
 }

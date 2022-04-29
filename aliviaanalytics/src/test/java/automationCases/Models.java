@@ -10,7 +10,8 @@ import automationModels.ProjectModel;
 import automationUtils.utilityMethods;
 import configuration.Configuration;
 
-public class Models extends Configuration {		
+public class Models extends Configuration {	
+	
 		@Test(groups = { "RegressionTest" }, priority = 1)
 		public void FWA_Model_001() throws InterruptedException {
 			Configuration.BConfiguration();
@@ -27,18 +28,17 @@ public class Models extends Configuration {
 			String ExecutionStatus = ModelExecutionStatus.getText();
 			System.out.println(ExecutionStatus);
 			
-			while (ExecutionStatus == "Running")
+			while (ExecutionStatus.equals("Running"))
 					{
 			Thread.sleep(2000);
-			System.out.println("inloop");
 			}
 			System.out.println(ModelExecutionStatus.getText());
 			
-			if (ExecutionStatus=="Complete") {
+			if (ExecutionStatus.equals("Complete")){
 				System.out.println("passed");
 				}
 
-				 else if (ExecutionStatus=="Error")  
+				 else if (ExecutionStatus.equals("Error"))  
 					 {
 					 System.out.println("failed");
 				}

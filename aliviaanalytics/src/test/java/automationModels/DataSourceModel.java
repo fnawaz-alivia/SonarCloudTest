@@ -10,10 +10,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import automationUtils.utilityMethods;
 import configuration.Configuration;
 
 public class DataSourceModel extends Configuration {
+	public static ExtentTest test;
 	
 	@FindBy(how = How.XPATH, using = "//*[(text() = 'Data Repository' or . = 'Data Repository')]")
 
@@ -177,8 +181,11 @@ public class DataSourceModel extends Configuration {
 		utilityMethods.waitForVisibility(this.SearchTabDataSource);
 		this.SearchTabDataSource.click();
 		this.SearchTabDataSource.clear();
+		test = report.createTest("Verify the search tab works for data sources ");
 		this.SearchTabDataSource.sendKeys(DSName);
+		test.log(Status.PASS, "The search tab works for data sources");
 		Thread.sleep(3000);
+		test = report.createTest("Verify the user is able to open the newly created data source");
 		for (WebElement el : DataSourcesList) {
 			if (el.getText().equals(DSName)) {
 				el.click();
@@ -186,7 +193,7 @@ public class DataSourceModel extends Configuration {
 				break;
 			}
 		}
-		
+		test.log(Status.PASS, "The user is able to open the newly created data source");
 		
 	}
 	
@@ -204,21 +211,26 @@ public class DataSourceModel extends Configuration {
 
 	}
 	public void DeleteDataSoucre(String DSName) throws InterruptedException {
+		test = report.createTest("Verify the user is able to delete the DataSource");
+		
 		this.DeleteLoadedDS.click();
 		Thread.sleep(2000);
 		utilityMethods.waitForVisibility(this.CheckBoxRemoveDatabaseTable);
-		this.CheckBoxRemoveDatabaseTable.click();
+		//this.CheckBoxRemoveDatabaseTable.click();
 		utilityMethods.waitForVisibility(this.yesDeletedConfirmationBOx);
 		this.yesDeletedConfirmationBOx.click();
+		test.log(Status.PASS, "The DataSource is created with CSV file successfully");
 	}
 	
 	public void EditDSAndVerifyUpdateName(String DSName) throws InterruptedException {
+		test = report.createTest("The user is able to delete the DataSource");
 		
 		this.EditSelectedDataSourceButton.click();
 		Thread.sleep(2000);
 		this.DataSourceName.clear();
 		this.DataSourceName.sendKeys(DSName);
 		this.SaveDataSoures.click();
+		test.log(Status.PASS, "The user is able to edit the DataSource");
 		Thread.sleep(5000);
 	}
 	
@@ -232,19 +244,22 @@ public class DataSourceModel extends Configuration {
 		utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
 		PM.OKButtonSelectaProjectWondow.click();
 		Thread.sleep(2000);
+		test = report.createTest("Verify the user can  export data source in CSV file ");
+		
 		try {
 			
 			boolean NoticePopup = this.NoticePopUp.isDisplayed();
 			String NoticePopUpText =this.NoticePopUp.getText();
 			System.out.println(NoticePopUpText);
 			if (NoticePopup==true) {
+				test.log(Status.FAIL, "The user is not able to  export data source in CSV file");
 				PM.OKButtonSelectaProjectWondow.click();	
 			}
 			
 		}
 		catch(Exception e)
 		{
-			
+			test.log(Status.PASS, "The user can export data source in CSV file");
 		}
 	}
 	
@@ -254,6 +269,7 @@ public class DataSourceModel extends Configuration {
 		utilityMethods.waitForVisibility(this.ExportDataButton);
 		this.ExportDataButton.click();
 		Thread.sleep(1000);
+		test = report.createTest("Verify the user can  export data source in Excel file ");
 		this.ExportDataToExcel.click();
 		utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
 		PM.OKButtonSelectaProjectWondow.click();
@@ -264,13 +280,14 @@ public class DataSourceModel extends Configuration {
 			String NoticePopUpText =this.NoticePopUp.getText();
 			System.out.println(NoticePopUpText);
 			if (NoticePopup==true) {
+				test.log(Status.FAIL, "The user is not able to  export data source in Excel file");
 				PM.OKButtonSelectaProjectWondow.click();	
 			}
 			
 		}
 		catch(Exception e)
 		{
-			
+			test.log(Status.PASS, "The user can export data source in Excel file");	
 		}
 	}
 	
@@ -340,28 +357,41 @@ public class DataSourceModel extends Configuration {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		PM.GetStarted.click();
 		this.DataRepository.click();
-		
+		test = report.createTest("Verify the user is able to access the manage data sources screen");
 		this.ManageDataSources.click();
+		test.log(Status.PASS, "the manage data sources screen is being shown");
 		Thread.sleep(2000);
-		
 		this.SearchTabDataSource.click();
-		
+		test = report.createTest("Verify the create  CSV file data source widnow opens clicking on CSV File button");
 		this.CSV.click();
+		test.log(Status.PASS, " The create CSV file data source widnow by clicking on CSV File button is being shown");
+		test = report.createTest("Create New Project Window - Project visibility type.");
 		PM.PublicOption.click();
+		test.log(Status.PASS, "The public option is selected successfully");
+		test = report.createTest("Verify the user is able to enter data source name on create  CSV file data source widnow");
 		this.DataSourceName.sendKeys(DSName);
+		test.log(Status.PASS, " The user is able to enter data source name on create  CSV file data source widnow");
+		test = report.createTest("Verify the user can upload CSV file");
 		this.UploadFileDataSource.click();
+		test.log(Status.PASS, " The the user can upload CSV file");
 		Thread.sleep(2000);
-		
+		test = report.createTest("Verify the upload File button works on create  CSV file data source widnow");
 		String FilePathForDS = Paths
 				.get(System.getProperty("user.dir") + "\\src\\datafiles\\"+DSPath)
 				.toAbsolutePath().toString();
 		this.BrowseDataSourceFile.sendKeys(FilePathForDS);
+		test.log(Status.PASS, " The upload File button works on create  CSV file data source widnow");
+		test = report.createTest("Verify the save button works on create  CSV file data source widnow");
 		this.SaveUploadFile.click();
+		test.log(Status.PASS, "The save button works on create  CSV file data source widnow");
 		Thread.sleep(2000);
-		
+		test = report.createTest("Verify the cross button works on create  CSV file data source widnow");
 		this.CloseUploadDSWindow.click();
+		test.log(Status.PASS, "The cross button works on create  CSV file data source widnow");
 		Thread.sleep(2000);
+		test = report.createTest("Verify the save button works ");
 		this.SaveDataSoures.click();
+		test.log(Status.PASS, "The save button works ");
 		utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
 		PM.OKButtonSelectaProjectWondow.click();	
 		

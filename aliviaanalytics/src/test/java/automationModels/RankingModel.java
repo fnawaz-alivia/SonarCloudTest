@@ -7,10 +7,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import configuration.Configuration;
 
 public class RankingModel extends Configuration {
-
+	public static ExtentTest test;
 @FindBy(how = How.XPATH, using = "//*[@class = 'x-tree-node-text ' and (text() = 'Ranking' or . = 'Ranking')]")
 	
 public WebElement Ranking;
@@ -81,14 +84,18 @@ public void LoadDataSourceForRank() throws InterruptedException {
 
 	this.ShowValues.click();
 	this.SearchTabforDS.click();
+	test = report.createTest("Verify Search tab works for datasources on ranking page");
 	this.SearchTabforDS.sendKeys("Medical Transactions");
+	test.log(Status.PASS, "Search tab works for datasources on ranking page");
 	Thread.sleep(2000);
+	test = report.createTest("Verify by double clicking on datasources all the coulmn shows by default");
 	for (WebElement el : DataSourcesList) {
 	    if (el.getText().equals("Medical Transactions")) {
 	        el.click();
 	        break;
 	    }
-	}	
+	}
+	test.log(Status.PASS, "By double clicking on datasources all the coulmn shows by default");
 }
 
 

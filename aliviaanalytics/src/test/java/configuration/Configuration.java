@@ -38,7 +38,7 @@ public class Configuration {
          String url = (String) jsonObject.get("url");
           username = (String) jsonObject.get("username");
           password = (String) jsonObject.get("password");
-	    System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver.exe");
+	    System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\datafiles\\chromedriver.exe");
 		ChromeOptions options = new ChromeOptions();
 		options.setCapability("ACCEPT_INSECURE_CERTS", true);
 		options.addArguments("--headless");

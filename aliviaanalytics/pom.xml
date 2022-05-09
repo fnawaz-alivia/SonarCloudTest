@@ -70,6 +70,7 @@
         <suiteXmlFiles>
             <suiteXmlFile>smoke.xml</suiteXmlFile>
         </suiteXmlFiles>
+        <testFailureIgnore>true</testFailureIgnore>
     </configuration>
 </plugin>
 </plugins>

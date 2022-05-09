@@ -14,14 +14,14 @@ import configuration.Configuration;
 
 public class Security extends Configuration {
 	public static ExtentTest test;
-	@Test(groups = { "Smoke" }, priority = 1)
+	@Test(groups = { "Smoke" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Ranking_001() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		SecurityModel SM = PageFactory.initElements(driver, automationModels.SecurityModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
-		Thread.sleep(2000);
+		Thread.sleep(8000);
 		test = report.createTest("Verify the user is able to access admin view page");
 		SM.LandingOnAdminViewPage();
 		test.log(Status.PASS, "The user is able to access admin view page");

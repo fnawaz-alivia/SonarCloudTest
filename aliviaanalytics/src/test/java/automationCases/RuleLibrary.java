@@ -9,7 +9,7 @@ import configuration.Configuration;
 
 public class RuleLibrary extends Configuration{
 	
-	@Test(groups = { "Smoke" }, priority = 1)
+	@Test(groups = { "Smoke" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_RuleLibrary_001() throws InterruptedException {
 		
 		
@@ -19,7 +19,7 @@ public class RuleLibrary extends Configuration{
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		QueryBuilderModel QBM = PageFactory.initElements(driver, automationModels.QueryBuilderModel.class);
 		utilityMethods.waitForVisibility(PM.GetStarted);
-		Thread.sleep(2000);
+		Thread.sleep(8000);
 		QBM.LandingOnQueryBuilderPage();
 		QBM.CreateNewRuleAndGroup();
 		QBM.CreateRuleChaining();

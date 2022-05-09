@@ -1,36 +1,20 @@
 package automationCases;
 
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
+import org.testng.annotations.BeforeSuite;
 import automationModels.ChartModel;
 import automationModels.DashboardModel;
 import automationModels.DataSourceModel;
 import automationModels.ModelingModel;
 import automationModels.ProjectModel;
 import automationModels.QueryBuilderModel;
-import automationUtils.reportUtil;
 import automationUtils.utilityMethods;
 import configuration.Configuration;
 
 public class CreateTestData extends Configuration  {
 	
-	public static ExtentTest test;
-	public static ExtentReports report;
 	
-	
-	@BeforeClass(alwaysRun=true)
-	public static void startreport() {
-		reportUtil.startTest();
-		report = reportUtil.getReport();
-
-	}
-	
-	
-	@Test(groups = { "smokeTest" }, priority = 1)
+	@BeforeSuite(alwaysRun = true)
 	public void FWA_CreateTestData_001() throws InterruptedException {
 		
 		
@@ -48,7 +32,7 @@ public class CreateTestData extends Configuration  {
 	    driver.close();
 	}
 	
-	@Test(groups = { "smokeTest" }, priority = 2,dependsOnMethods = { "FWA_CreateTestData_001" })
+	@BeforeSuite(dependsOnMethods = { "FWA_CreateTestData_001" })
 	public void FWA_CreateTestData_002() throws InterruptedException {
 		
 		
@@ -63,7 +47,7 @@ public class CreateTestData extends Configuration  {
 	    driver.close();
 	}
 	
-	@Test(groups = { "smokeTest" }, priority = 3)
+	@BeforeSuite(alwaysRun = true)
 	public void FWA_CreateTestData_003() throws InterruptedException {
 		
 		
@@ -79,7 +63,7 @@ public class CreateTestData extends Configuration  {
 	}
 	
 	
-	@Test(groups = { "smokeTest" }, priority = 4)
+	@BeforeSuite(alwaysRun = true)
 	public void FWA_CreateTestData_004() throws InterruptedException {
 		
 		
@@ -97,7 +81,7 @@ public class CreateTestData extends Configuration  {
 		
 	}
 	
-	@Test(groups = { "smokeTest" }, priority = 5)
+	@BeforeSuite(alwaysRun = true)
 	public void FWA_CreateTestData_005() throws InterruptedException {
 
 		Configuration.BConfiguration();
@@ -111,14 +95,6 @@ public class CreateTestData extends Configuration  {
 
 	}
 	
-	
-	
-	
-	@AfterClass(alwaysRun=true)
-	public static void endreport() {
 
-		reportUtil.endTest();
-
-	}
 
 }

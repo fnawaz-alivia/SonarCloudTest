@@ -3,11 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="automationCases.Scheduler">
+      <class name="automationCases.CreateTestData">
         <methods>
-          <include name="FWA_Scheduler_001"/>
+          <include name="startTest"/>
+          <include name="endTest"/>
+          <include name="FWA_CreateTestData_004"/>
         </methods>
-      </class> <!-- automationCases.Scheduler -->
+      </class> <!-- automationCases.CreateTestData -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

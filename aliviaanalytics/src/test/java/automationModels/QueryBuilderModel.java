@@ -174,12 +174,14 @@ public class QueryBuilderModel extends Configuration{
 		utilityMethods.waitForVisibility(RLM.RuleName.get(0));
 		test = report.createTest("Save As Rule Window -Verify The Rule name is editable");
 		RLM.RuleName.get(0).sendKeys(RuleName);
+		System.out.println("RuleName"+RuleName);
 		test.log(Status.PASS, "The Rule name is editable");
 		test = report.createTest("Verify the Create New group Button works");
 		RLM.CreateNewRuleGroup.click();
 		test.log(Status.PASS, "The Create New group Button works");
 		test = report.createTest("Save As Rule Window - Create New Rule Group - Verify Rule group name is editable.");
 		RLM.RuleName.get(1).sendKeys(RuleGroupName);
+		System.out.println("RuleGroup"+RuleGroupName);
 		test.log(Status.PASS, "The Rule group name is editable.");
 		test = report.createTest("Save As Rule Window - Create New Rule Group - Verify that the save option saves the details of rule group.");
 		RLM.SaveButton.get(4).click();
@@ -187,6 +189,12 @@ public class QueryBuilderModel extends Configuration{
 		test = report.createTest("Verify the user is able to select the rule Group while creating rule ");
 		RLM.RuleGroupId.click();
 		utilityMethods.SetTextwithActionClass(RLM.RuleGroupId, RuleGroupName);
+		Thread.sleep(2000);
+		RLM.RuleGroupId.clear();
+		Thread.sleep(2000);
+		RLM.RuleGroupId.sendKeys(RuleGroupName);
+		Thread.sleep(2000);
+		System.out.println("RuleGroup"+RuleGroupName);
 		RLM.RuleGroupId.sendKeys(Keys.ENTER);
 		test.log(Status.PASS, "The user is able to select the rule Group while creating rule");
 		Thread.sleep(2000);
@@ -209,6 +217,7 @@ public class QueryBuilderModel extends Configuration{
 		test.log(Status.PASS, "The enabling rule chaining also enables selecting rule group");
 		test = report.createTest("Verify that rule groups are listed in the Choose Rule Group drop down.");
 		RLM.ChooseRuleGroup.sendKeys(RuleGroupName);
+		System.out.println(RuleGroupName);
 		test.log(Status.PASS, "The rule groups are listed in the Choose Rule Group drop down.");
 		this.SelectDataSourceTab.click();
 		this.SelectDataSourceTab.sendKeys("Automation1 - Dental01");
@@ -221,6 +230,7 @@ public class QueryBuilderModel extends Configuration{
 		Thread.sleep(2000);
 		this.SelectDataSourceList.get(1).click();
 		this.SelectDataSourceList.get(1).sendKeys(RuleName);
+		System.out.println(RuleName);
 		this.SelectDataSourceList.get(1).sendKeys(Keys.ENTER);
 		Thread.sleep(2000);
 		this.AggrBuilderUtilityokButton.click();

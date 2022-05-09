@@ -20,14 +20,14 @@ import configuration.Configuration;
 
 public class DataSource extends Configuration {
 	public static ExtentTest test;
-	@Test(groups = { "Smoke" }, priority = 1)
+	@Test(groups = { "Smoke" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_DataSource_001() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
-		Thread.sleep(2000);
+		Thread.sleep(8000);
 		String DSName = RandomStringUtils.randomAlphabetic(10);
 		DSM.CreateCSVDS(DSName, "Medical Transactions.csv"); 
 		test = report.createTest("Verify the user is able to Create the DataSource with CSV File");

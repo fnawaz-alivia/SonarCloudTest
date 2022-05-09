@@ -26,7 +26,7 @@ public class Projects extends Configuration {
 	String excldatasourcename1 = RandomStringUtils.randomAlphabetic(10);
 	String excldatasourcename = RandomStringUtils.randomAlphabetic(10);
 
-	@Test(groups = { "Smoke" }, priority = 1)
+	@Test(groups = { "Smoke" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_001() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -34,7 +34,7 @@ public class Projects extends Configuration {
 		test = report.createTest("Verify the user is able to access the Project screen");
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		test.log(Status.PASS, "The Project screen is being shown");
-		Thread.sleep(2000);
+		Thread.sleep(8000);
 		test = report.createTest("Create Folder button works");
 		PM.CreateFolderButton.click();
 		test.log(Status.PASS, "New Folder is being created");
@@ -127,7 +127,7 @@ public class Projects extends Configuration {
 		driver.close();
 	}
 
-	@Test(groups = { "Smoke" }, priority = 3)
+	@Test(groups = { "Smoke" }, priority = 3,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_003() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -135,7 +135,7 @@ public class Projects extends Configuration {
 
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
-		Thread.sleep(2000);
+		Thread.sleep(8000);
 		PM.CheckLoadedProjectandLoadAutomationProject();
 		test = report.createTest("Verify the user can export project with filters");
 		test = report.createTest("Whole project can be exported");

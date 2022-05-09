@@ -14,14 +14,14 @@ import configuration.Configuration;
 
 public class QueryBuilder extends Configuration {
 	public static ExtentTest test;
-	@Test(groups = { "Smoke" }, priority = 1)
+	@Test(groups = { "Smoke" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_DataSource_001() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		QueryBuilderModel QBM = PageFactory.initElements(driver, automationModels.QueryBuilderModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
-		Thread.sleep(2000); 
+		Thread.sleep(8000); 
 		test = report.createTest("Verify the user is able to access Query Builder Module by clicking on Query Builder under Data Repository.");
 		QBM.LandingOnQueryBuilderPage();
 		test.log(Status.PASS, "The user is able to access Query Builder Module");

@@ -17,14 +17,14 @@ import configuration.Configuration;
 public class Ranking extends Configuration {
 	public static ExtentTest test;
 	
-	@Test(groups = { "Smoke" }, priority = 1)
+	@Test(groups = { "Smoke" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Ranking_001() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		RankingModel RM = PageFactory.initElements(driver, automationModels.RankingModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
-		Thread.sleep(2000);
+		Thread.sleep(8000);
 		test = report.createTest("Verify the user is able to access ranking page clicking on ranking under analysis ");
 		RM.LandingOnPageRanking();
 		test.log(Status.PASS, "The Ranking page is laoded");

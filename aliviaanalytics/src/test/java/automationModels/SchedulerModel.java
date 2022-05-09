@@ -133,7 +133,7 @@ public class SchedulerModel extends Configuration{
 		test = report.createTest("Verify the user is able to execute the process");
 		this.ExecuteNow.click();
 		test.log(Status.PASS, "The user is able to execute the process");
-		Thread.sleep(5000);
+		Thread.sleep(15000);
 		this.LastExecutedOn.click();
 		test = report.createTest("Verify the Processs execution result");
 		WebElement ele1 = driver.findElement(By.xpath(("//div[contains(@class, 'processSchedulerleft')]//child::table['"+index+"'+'"+1+"']//tr//td[5]//div")));

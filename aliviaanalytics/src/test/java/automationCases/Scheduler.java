@@ -9,7 +9,7 @@ import configuration.Configuration;
 
 public class Scheduler extends Configuration{
 	
-	@Test(groups = {"Smoke"}, priority = 1)
+	@Test(groups = {"Smoke"}, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Scheduler_001() throws InterruptedException {
 		
 		Configuration.BConfiguration();
@@ -17,7 +17,7 @@ public class Scheduler extends Configuration{
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		SchedulerModel SM = PageFactory.initElements(driver, automationModels.SchedulerModel.class);
 		utilityMethods.waitForVisibility(PM.GetStarted);
-		Thread.sleep(2000);
+		Thread.sleep(8000);
 		SM.LandingOnSchedulerPage();
 		SM.CreateProcess();
 		

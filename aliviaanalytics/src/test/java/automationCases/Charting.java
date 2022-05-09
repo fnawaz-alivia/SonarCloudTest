@@ -21,7 +21,7 @@ public class Charting  extends Configuration{
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
 		utilityMethods.waitForVisibility(PM.GetStarted);
-		Thread.sleep(2000);
+		Thread.sleep(8000);
 	    CM.CreateBubbleGroupChart("BubbleGroupChart");
 	    Thread.sleep(2000);
 	   int SavedChart =  CM.VerifyChartSaved("BubbleGroupChart");

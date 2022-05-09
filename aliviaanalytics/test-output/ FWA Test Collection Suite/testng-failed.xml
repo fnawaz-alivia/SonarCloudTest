@@ -8,13 +8,20 @@
       </run>
     </groups>
     <classes>
-      <class name="automationCases.Dashboard">
+      <class name="automationCases.Scheduler">
         <methods>
           <include name="startTest"/>
-          <include name="FWA_Dashboard_001"/>
+          <include name="FWA_Scheduler_001"/>
           <include name="endTest"/>
         </methods>
-      </class> <!-- automationCases.Dashboard -->
+      </class> <!-- automationCases.Scheduler -->
+      <class name="automationCases.DataSource">
+        <methods>
+          <include name="FWA_DataSource_001"/>
+          <include name="startTest"/>
+          <include name="endTest"/>
+        </methods>
+      </class> <!-- automationCases.DataSource -->
     </classes>
   </test> <!-- First Test(failed) -->
 </suite> <!-- Failed suite [ FWA Test Collection Suite] -->

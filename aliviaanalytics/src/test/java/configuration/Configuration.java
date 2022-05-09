@@ -36,14 +36,11 @@ public class Configuration {
 		Object obj = jsonParser.parse(reader);
 		 JSONObject jsonObject =  (JSONObject) obj;
          String url = (String) jsonObject.get("url");
-         System.out.println(url);
           username = (String) jsonObject.get("username");
           password = (String) jsonObject.get("password");
-
 	    System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver.exe");
 		ChromeOptions options = new ChromeOptions();
 		options.setCapability("ACCEPT_INSECURE_CERTS", true);
-		
 		options.addArguments("--headless");
 		 driver = new ChromeDriver(options);
 		Dimension d = new Dimension(1360, 978);

@@ -41,7 +41,7 @@ public class Configuration {
 	    System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\datafiles\\chromedriver.exe");
 		ChromeOptions options = new ChromeOptions();
 		options.setCapability("ACCEPT_INSECURE_CERTS", true);
-		options.addArguments("--headless");
+		//options.addArguments("--headless");
 		 driver = new ChromeDriver(options);
 		Dimension d = new Dimension(1360, 978);
 		//Resize the current window to the given dimension

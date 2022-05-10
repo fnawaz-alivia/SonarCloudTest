@@ -170,6 +170,7 @@ public class QueryBuilderModel extends Configuration{
 		new Actions(driver).moveToElement(this.QBSaveButton).moveByOffset(20, 5).click().perform();
 		Thread.sleep(2000);
 		RLM.SaveAsNewRule.click();
+		Thread.sleep(2000);
 		test.log(Status.PASS, "The rule is saved by clicking on save button.");
 		utilityMethods.waitForVisibility(RLM.RuleName.get(0));
 		test = report.createTest("Save As Rule Window -Verify The Rule name is editable");
@@ -177,12 +178,14 @@ public class QueryBuilderModel extends Configuration{
 		System.out.println("RuleName"+RuleName);
 		test.log(Status.PASS, "The Rule name is editable");
 		test = report.createTest("Verify the Create New group Button works");
+		Thread.sleep(2000);
 		RLM.CreateNewRuleGroup.click();
 		test.log(Status.PASS, "The Create New group Button works");
 		test = report.createTest("Save As Rule Window - Create New Rule Group - Verify Rule group name is editable.");
 		RLM.RuleName.get(1).sendKeys(RuleGroupName);
 		System.out.println("RuleGroup"+RuleGroupName);
 		test.log(Status.PASS, "The Rule group name is editable.");
+		Thread.sleep(2000);
 		test = report.createTest("Save As Rule Window - Create New Rule Group - Verify that the save option saves the details of rule group.");
 		RLM.SaveButton.get(4).click();
 		test.log(Status.PASS, "The save option saves the details of rule group");

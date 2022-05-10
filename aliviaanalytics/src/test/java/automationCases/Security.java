@@ -15,7 +15,7 @@ import configuration.Configuration;
 public class Security extends Configuration {
 	public static ExtentTest test;
 	@Test(groups = { "Smoke" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_Ranking_001() throws InterruptedException {	
+	public void FWA_Security_001() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
@@ -24,6 +24,7 @@ public class Security extends Configuration {
 		Thread.sleep(8000);
 		test = report.createTest("Verify the user is able to access admin view page");
 		SM.LandingOnAdminViewPage();
+		Thread.sleep(4000);
 		test.log(Status.PASS, "The user is able to access admin view page");
 		String UserName = RandomStringUtils.randomAlphabetic(10);
 		test = report.createTest("Verify the user is able to create user");

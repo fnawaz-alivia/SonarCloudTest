@@ -45,7 +45,7 @@ public class Models extends Configuration {
 
 	}
 		
-		@Test(groups = { "RegressionTest2" }, priority = 1)
+		@Test(groups = { "smoke" },  priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 		public void FWA_Model_002() throws InterruptedException {
 			Configuration.BConfiguration();
 			Configuration.LoginApplication();
@@ -54,11 +54,12 @@ public class Models extends Configuration {
 			utilityMethods.waitForVisibility(PM.GetStarted);
 			Thread.sleep(2000);
 			MM.CreateModel("R Operator");   
+			MM.ExecutionOfModel();
 			driver.close();
 
 	}
 		
-		@Test(groups = { "Smoke" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
+		@Test(groups = { "Regression" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 		public void FWA_Model_003() throws InterruptedException {
 			Configuration.BConfiguration();
 			Configuration.LoginApplication();

@@ -112,7 +112,7 @@ public class SchedulerModel extends Configuration{
 		test.log(Status.PASS, "The user is able to select Model Type");
 		test = report.createTest("Process Editor- verify the user can choose the task item");
 		this.ChooseTaskItem.click();
-		this.ChooseTaskItem.sendKeys("R Operator");
+		this.ChooseTaskItem.sendKeys("TEST MODEL");
 		this.ChooseTaskItem.sendKeys(Keys.ENTER);
 		test.log(Status.PASS, "The user can choose the task item");
 		test = report.createTest("Process Editor-  Verify the add to list button works ");
@@ -129,6 +129,7 @@ public class SchedulerModel extends Configuration{
 		test = report.createTest("Verify the user is able to access Process configure window ");
 		WebElement ele = driver.findElement(By.xpath(("//div[contains(@class, 'processSchedulerleft')]//child::table['"+index+"'+'"+1+"']//tr//td[6]//div//div[2]")));
 		new Actions(driver).moveToElement(ele).click().perform();
+		Thread.sleep(5000);
 		test.log(Status.PASS, " The user is able to access Process configure window ");
 		test = report.createTest("Verify the user is able to execute the process");
 		this.ExecuteNow.click();

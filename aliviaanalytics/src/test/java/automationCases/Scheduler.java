@@ -20,6 +20,7 @@ public class Scheduler extends Configuration{
 		Thread.sleep(8000);
 		SM.LandingOnSchedulerPage();
 		SM.CreateProcess();
+		driver.close();
 		
 	}
 }

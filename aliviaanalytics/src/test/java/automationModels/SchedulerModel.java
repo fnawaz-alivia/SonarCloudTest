@@ -112,7 +112,7 @@ public class SchedulerModel extends Configuration{
 		test.log(Status.PASS, "The user is able to select Model Type");
 		test = report.createTest("Process Editor- verify the user can choose the task item");
 		this.ChooseTaskItem.click();
-		this.ChooseTaskItem.sendKeys("TEST MODEL");
+		this.ChooseTaskItem.sendKeys("R Operator");
 		this.ChooseTaskItem.sendKeys(Keys.ENTER);
 		test.log(Status.PASS, "The user can choose the task item");
 		test = report.createTest("Process Editor-  Verify the add to list button works ");

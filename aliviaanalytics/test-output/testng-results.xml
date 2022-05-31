@@ -1,28 +1,265 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="51" retried="2" total="64" passed="11">
   <reporter-output>
   </reporter-output>
-  <suite name=" FWA Test Collection Suite" duration-ms="50671" started-at="2022-05-10T14:35:18 PKT" finished-at="2022-05-10T14:36:08 PKT">
+  <suite name=" FWA Test Collection Suite" duration-ms="707049" started-at="2022-05-24T19:07:04 PKT" finished-at="2022-05-24T19:18:51 PKT">
     <groups>
       <group name="Smoke">
-        <method signature="Scheduler.FWA_Scheduler_001()[pri:1, instance:automationCases.Scheduler@29b5cd00]" name="FWA_Scheduler_001" class="automationCases.Scheduler"/>
+        <method signature="Charting.FWA_CreateTestData_001()[pri:1, instance:automationCases.Charting@612fc6eb]" name="FWA_CreateTestData_001" class="automationCases.Charting"/>
+        <method signature="Dashboard.FWA_Dashboard_001()[pri:1, instance:automationCases.Dashboard@e720b71]" name="FWA_Dashboard_001" class="automationCases.Dashboard"/>
+        <method signature="DataCleansing.FWA_DataSource_001()[pri:1, instance:automationCases.DataCleansing@eafc191]" name="FWA_DataSource_001" class="automationCases.DataCleansing"/>
+        <method signature="DataSource.FWA_DataSource_001()[pri:1, instance:automationCases.DataSource@4d3167f4]" name="FWA_DataSource_001" class="automationCases.DataSource"/>
+        <method signature="Projects.FWA_Project_001()[pri:1, instance:automationCases.Projects@77ec78b9]" name="FWA_Project_001" class="automationCases.Projects"/>
+        <method signature="Projects.FWA_Project_003()[pri:3, instance:automationCases.Projects@77ec78b9]" name="FWA_Project_003" class="automationCases.Projects"/>
+        <method signature="QueryBuilder.FWA_DataSource_001()[pri:1, instance:automationCases.QueryBuilder@4eb7f003]" name="FWA_DataSource_001" class="automationCases.QueryBuilder"/>
+        <method signature="Ranking.FWA_Ranking_001()[pri:1, instance:automationCases.Ranking@6121c9d6]" name="FWA_Ranking_001" class="automationCases.Ranking"/>
+        <method signature="RuleLibrary.FWA_RuleLibrary_001()[pri:1, instance:automationCases.RuleLibrary@11758f2a]" name="FWA_RuleLibrary_001" class="automationCases.RuleLibrary"/>
+        <method signature="Scheduler.FWA_Scheduler_001()[pri:1, instance:automationCases.Scheduler@612679d6]" name="FWA_Scheduler_001" class="automationCases.Scheduler"/>
+        <method signature="Security.FWA_Security_001()[pri:1, instance:automationCases.Security@1060b431]" name="FWA_Security_001" class="automationCases.Security"/>
       </group> <!-- Smoke -->
     </groups>
-    <test name="First Test" duration-ms="50671" started-at="2022-05-10T14:35:18 PKT" finished-at="2022-05-10T14:36:08 PKT">
-      <class name="automationCases.Scheduler">
-        <test-method status="PASS" signature="startTest()[pri:0, instance:automationCases.Scheduler@29b5cd00]" name="startTest" is-config="true" duration-ms="169" started-at="2022-05-10T14:35:18 PKT" finished-at="2022-05-10T14:35:18 PKT">
+    <test name="First Test" duration-ms="707049" started-at="2022-05-24T19:07:04 PKT" finished-at="2022-05-24T19:18:51 PKT">
+      <class name="automationCases.RuleLibrary">
+        <test-method status="PASS" signature="FWA_RuleLibrary_001()[pri:1, instance:automationCases.RuleLibrary@11758f2a]" name="FWA_RuleLibrary_001" duration-ms="89870" started-at="2022-05-24T19:14:59 PKT" finished-at="2022-05-24T19:16:29 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_RuleLibrary_001 -->
+      </class> <!-- automationCases.RuleLibrary -->
+      <class name="automationCases.Security">
+        <test-method status="PASS" signature="FWA_Security_001()[pri:1, instance:automationCases.Security@1060b431]" name="FWA_Security_001" duration-ms="44475" started-at="2022-05-24T19:13:22 PKT" finished-at="2022-05-24T19:14:06 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_Security_001 -->
+      </class> <!-- automationCases.Security -->
+      <class name="automationCases.Projects">
+        <test-method status="PASS" signature="startTest()[pri:0, instance:automationCases.Projects@77ec78b9]" name="startTest" is-config="true" duration-ms="214" started-at="2022-05-24T19:04:24 PKT" finished-at="2022-05-24T19:04:25 PKT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startTest -->
-        <test-method status="PASS" signature="FWA_Scheduler_001()[pri:1, instance:automationCases.Scheduler@29b5cd00]" name="FWA_Scheduler_001" duration-ms="50635" started-at="2022-05-10T14:35:18 PKT" finished-at="2022-05-10T14:36:08 PKT">
+        <test-method status="PASS" signature="FWA_Project_001()[pri:1, instance:automationCases.Projects@77ec78b9]" name="FWA_Project_001" duration-ms="57387" started-at="2022-05-24T19:07:04 PKT" finished-at="2022-05-24T19:08:01 PKT">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- FWA_Scheduler_001 -->
-        <test-method status="PASS" signature="endTest()[pri:0, instance:automationCases.Scheduler@29b5cd00]" name="endTest" is-config="true" duration-ms="361" started-at="2022-05-10T14:36:08 PKT" finished-at="2022-05-10T14:36:09 PKT">
+        </test-method> <!-- FWA_Project_001 -->
+        <test-method status="PASS" signature="FWA_Project_003()[pri:3, instance:automationCases.Projects@77ec78b9]" name="FWA_Project_003" duration-ms="27205" started-at="2022-05-24T19:08:01 PKT" finished-at="2022-05-24T19:08:28 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_Project_003 -->
+        <test-method status="PASS" signature="FWA_Project_013()[pri:0, instance:automationCases.Projects@77ec78b9]" name="FWA_Project_013" is-config="true" duration-ms="31425" started-at="2022-05-24T19:18:51 PKT" finished-at="2022-05-24T19:19:22 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_Project_013 -->
+        <test-method status="PASS" signature="endTest()[pri:0, instance:automationCases.Projects@77ec78b9]" name="endTest" is-config="true" duration-ms="898" started-at="2022-05-24T19:19:22 PKT" depends-on-methods="automationCases.Projects.FWA_Project_013" finished-at="2022-05-24T19:19:23 PKT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endTest -->
+      </class> <!-- automationCases.Projects -->
+      <class name="automationCases.QueryBuilder">
+        <test-method status="PASS" signature="FWA_DataSource_001()[pri:1, instance:automationCases.QueryBuilder@4eb7f003]" name="FWA_DataSource_001" duration-ms="51549" started-at="2022-05-24T19:11:10 PKT" finished-at="2022-05-24T19:12:02 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_DataSource_001 -->
+      </class> <!-- automationCases.QueryBuilder -->
+      <class name="automationCases.DataCleansing">
+        <test-method status="PASS" signature="FWA_DataSource_001()[pri:1, instance:automationCases.DataCleansing@eafc191]" name="FWA_DataSource_001" duration-ms="39351" started-at="2022-05-24T19:12:02 PKT" finished-at="2022-05-24T19:12:41 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_DataSource_001 -->
+      </class> <!-- automationCases.DataCleansing -->
+      <class name="automationCases.Scheduler">
+        <test-method status="PASS" signature="FWA_Scheduler_001()[pri:1, instance:automationCases.Scheduler@612679d6]" name="FWA_Scheduler_001" duration-ms="52735" started-at="2022-05-24T19:14:06 PKT" finished-at="2022-05-24T19:14:59 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_Scheduler_001 -->
       </class> <!-- automationCases.Scheduler -->
+      <class name="automationCases.DataSource">
+        <test-method status="SKIP" signature="FWA_DataSource_001()[pri:1, instance:automationCases.DataSource@4d3167f4]" name="FWA_DataSource_001" duration-ms="56858" retried="true" started-at="2022-05-24T19:08:28 PKT" finished-at="2022-05-24T19:09:25 PKT">
+          <exception class="org.openqa.selenium.ElementClickInterceptedException">
+            <message>
+              <![CDATA[element click intercepted: Element <input id="textfield-1122-inputEl" data-ref="inputEl" type="text" size="1" name="textfield-1122-inputEl" placeholder="Search" aria-hidden="false" aria-disabled="false" role="textbox" aria-invalid="false" aria-readonly="false" aria-describedby="textfield-1122-ariaStatusEl" aria-required="false" class="x-form-field x-form-text x-form-text-default " autocomplete="off" data-componentid="textfield-1122" data-tabindex-value="none" tabindex="-1" data-tabindex-counter="1"> is not clickable at point (521, 83). Other element would receive the click: <div class="x-component x-border-box x-mask x-component-default" role="progressbar" aria-hidden="false" aria-disabled="false" id="loadmask-2041" tabindex="0" data-componentid="loadmask-2041" style="" aria-valuetext="Loading DataSources ...">...</div>
+  (Session info: headless chrome=101.0.4951.67)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'FAISAL', ip: '192.168.1.12', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 101.0.4951.67, chrome: {chromedriverVersion: 101.0.4951.41 (93c720db8323..., userDataDir: C:\Users\Waseem\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:57997}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: e51a2b4b1ab2f3110449534c9bee19bc]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <input id="textfield-1122-inputEl" data-ref="inputEl" type="text" size="1" name="textfield-1122-inputEl" placeholder="Search" aria-hidden="false" aria-disabled="false" role="textbox" aria-invalid="false" aria-readonly="false" aria-describedby="textfield-1122-ariaStatusEl" aria-required="false" class="x-form-field x-form-text x-form-text-default " autocomplete="off" data-componentid="textfield-1122" data-tabindex-value="none" tabindex="-1" data-tabindex-counter="1"> is not clickable at point (521, 83). Other element would receive the click: <div class="x-component x-border-box x-mask x-component-default" role="progressbar" aria-hidden="false" aria-disabled="false" id="loadmask-2041" tabindex="0" data-componentid="loadmask-2041" style="" aria-valuetext="Loading DataSources ...">...</div>
+  (Session info: headless chrome=101.0.4951.67)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'FAISAL', ip: '192.168.1.12', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 101.0.4951.67, chrome: {chromedriverVersion: 101.0.4951.41 (93c720db8323..., userDataDir: C:\Users\Waseem\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:57997}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: e51a2b4b1ab2f3110449534c9bee19bc
+at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+at java.lang.reflect.Constructor.newInstance(Unknown Source)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
+at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
+at com.sun.proxy.$Proxy9.click(Unknown Source)
+at automationModels.DataSourceModel.LoadDataSoucre(DataSourceModel.java:182)
+at automationCases.DataSource.FWA_DataSource_001(DataSource.java:40)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.util.ArrayList.forEach(Unknown Source)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.ElementClickInterceptedException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_DataSource_001 -->
+        <test-method status="PASS" signature="FWA_DataSource_001()[pri:1, instance:automationCases.DataSource@4d3167f4]" name="FWA_DataSource_001" duration-ms="65311" started-at="2022-05-24T19:09:25 PKT" finished-at="2022-05-24T19:10:31 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_DataSource_001 -->
+      </class> <!-- automationCases.DataSource -->
+      <class name="automationCases.Charting">
+        <test-method status="PASS" signature="FWA_CreateTestData_001()[pri:1, instance:automationCases.Charting@612fc6eb]" name="FWA_CreateTestData_001" duration-ms="40444" started-at="2022-05-24T19:12:41 PKT" finished-at="2022-05-24T19:13:22 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_CreateTestData_001 -->
+      </class> <!-- automationCases.Charting -->
+      <class name="automationCases.Ranking">
+        <test-method status="PASS" signature="FWA_Ranking_001()[pri:1, instance:automationCases.Ranking@6121c9d6]" name="FWA_Ranking_001" duration-ms="39924" started-at="2022-05-24T19:10:31 PKT" finished-at="2022-05-24T19:11:10 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_Ranking_001 -->
+      </class> <!-- automationCases.Ranking -->
+      <class name="automationCases.CreateTestData">
+        <test-method status="PASS" signature="FWA_CreateTestData_001()[pri:0, instance:automationCases.CreateTestData@42eca56e]" name="FWA_CreateTestData_001" is-config="true" duration-ms="73334" started-at="2022-05-24T19:04:25 PKT" depends-on-methods="configuration.Configuration.startTest" finished-at="2022-05-24T19:05:38 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_CreateTestData_001 -->
+        <test-method status="PASS" signature="FWA_CreateTestData_003()[pri:0, instance:automationCases.CreateTestData@42eca56e]" name="FWA_CreateTestData_003" is-config="true" duration-ms="29955" started-at="2022-05-24T19:05:38 PKT" depends-on-methods="configuration.Configuration.startTest" finished-at="2022-05-24T19:06:08 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_CreateTestData_003 -->
+        <test-method status="PASS" signature="FWA_CreateTestData_004()[pri:0, instance:automationCases.CreateTestData@42eca56e]" name="FWA_CreateTestData_004" is-config="true" duration-ms="34208" started-at="2022-05-24T19:06:08 PKT" depends-on-methods="configuration.Configuration.startTest" finished-at="2022-05-24T19:06:42 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_CreateTestData_004 -->
+        <test-method status="PASS" signature="FWA_CreateTestData_005()[pri:0, instance:automationCases.CreateTestData@42eca56e]" name="FWA_CreateTestData_005" is-config="true" duration-ms="21604" started-at="2022-05-24T19:06:42 PKT" depends-on-methods="configuration.Configuration.startTest" finished-at="2022-05-24T19:07:04 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_CreateTestData_005 -->
+      </class> <!-- automationCases.CreateTestData -->
+      <class name="automationCases.Dashboard">
+        <test-method status="SKIP" signature="FWA_Dashboard_001()[pri:1, instance:automationCases.Dashboard@e720b71]" name="FWA_Dashboard_001" duration-ms="58285" retried="true" started-at="2022-05-24T19:16:29 PKT" finished-at="2022-05-24T19:17:27 PKT">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//*[(text() = 'amountpaid' or . = 'amountpaid')]"}
+  (Session info: headless chrome=101.0.4951.67)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'FAISAL', ip: '192.168.1.12', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 101.0.4951.67, chrome: {chromedriverVersion: 101.0.4951.41 (93c720db8323..., userDataDir: C:\Users\Waseem\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:58549}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 39ee4b9132869ec444c158d523d6dc9f
+*** Element info: {Using=xpath, value=//*[(text() = 'amountpaid' or . = 'amountpaid')]}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[(text() = 'amountpaid' or . = 'amountpaid')]"}
+  (Session info: headless chrome=101.0.4951.67)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'FAISAL', ip: '192.168.1.12', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_201'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 101.0.4951.67, chrome: {chromedriverVersion: 101.0.4951.41 (93c720db8323..., userDataDir: C:\Users\Waseem\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:58549}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 39ee4b9132869ec444c158d523d6dc9f
+*** Element info: {Using=xpath, value=//*[(text() = 'amountpaid' or . = 'amountpaid')]}
+at sun.reflect.GeneratedConstructorAccessor21.newInstance(Unknown Source)
+at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+at java.lang.reflect.Constructor.newInstance(Unknown Source)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+at com.sun.proxy.$Proxy9.click(Unknown Source)
+at automationModels.DashboardModel.CreateDashboardAndAddKPIInWidgets(DashboardModel.java:266)
+at automationCases.Dashboard.FWA_Dashboard_001(Dashboard.java:22)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.util.ArrayList.forEach(Unknown Source)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_Dashboard_001 -->
+        <test-method status="PASS" signature="FWA_Dashboard_001()[pri:1, instance:automationCases.Dashboard@e720b71]" name="FWA_Dashboard_001" duration-ms="83580" started-at="2022-05-24T19:17:27 PKT" finished-at="2022-05-24T19:18:51 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_Dashboard_001 -->
+      </class> <!-- automationCases.Dashboard -->
     </test> <!-- First Test -->
   </suite> <!--  FWA Test Collection Suite -->
 </testng-results>

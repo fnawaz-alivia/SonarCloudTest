@@ -134,9 +134,9 @@ public class Charting  extends Configuration{
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
 		utilityMethods.waitForVisibility(PM.GetStarted);
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 	    CM.CreateLineStackChart("LineStackChart");	 
-	    Thread.sleep(2000);
+	    Thread.sleep(3000);
 		   int SavedChart =  CM.VerifyChartSaved("BubbleGroupChart");
 		   System.out.println(SavedChart);
 	    driver.close();

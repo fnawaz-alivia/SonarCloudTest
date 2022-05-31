@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Test;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
@@ -572,14 +573,16 @@ public class Projects extends Configuration {
 		driver.close();
 	
 	}
-	@Test
+	@AfterSuite(alwaysRun = true)
 	public void FWA_Project_013() throws InterruptedException {
 		Configuration.BConfiguration();
 
 		Configuration.LoginApplication();
 
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		PM.DeleteAllAutoCreatedProjects("import");
+		utilityMethods.waitForVisibility(PM.LoadedProjectText);
+		Thread.sleep(2000);	
+		PM.DeleteAllAutoCreatedProjects("Training-Automation");
 		PM.DeleteAllAutoCreatedProjects("hello");
 	
 	}

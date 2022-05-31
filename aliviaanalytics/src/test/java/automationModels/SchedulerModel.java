@@ -127,7 +127,7 @@ public class SchedulerModel extends Configuration{
 		this.LastExecutedOn.click();
 		test.log(Status.PASS, "The process are sorted by clicking on last execution column");
 		test = report.createTest("Verify the user is able to access Process configure window ");
-		WebElement ele = driver.findElement(By.xpath(("//div[contains(@class, 'processSchedulerleft')]//child::table['"+index+"'+'"+1+"']//tr//td[6]//div//div[2]")));
+		WebElement ele = driver.findElement(By.xpath(("//div[contains(@class, 'processSchedulerleft')]//child::table['"+index+"'+'"+1+"']//tr//td[6]//div//img[2]")));
 		new Actions(driver).moveToElement(ele).click().perform();
 		Thread.sleep(5000);
 		test.log(Status.PASS, " The user is able to access Process configure window ");

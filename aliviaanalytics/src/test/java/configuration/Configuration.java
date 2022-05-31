@@ -3,6 +3,7 @@ package configuration;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -11,6 +12,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -41,11 +43,14 @@ public class Configuration {
 	    System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\datafiles\\chromedriver.exe");
 		ChromeOptions options = new ChromeOptions();
 		options.setCapability("ACCEPT_INSECURE_CERTS", true);
-		options.addArguments("--headless");
+		options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+  		options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+		//options.addArguments("--headless");
 		 driver = new ChromeDriver(options);
 		Dimension d = new Dimension(1360, 978);
 		//Resize the current window to the given dimension
-		driver.manage().window().setSize(d);	
+		driver.manage().window().setSize(d);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		 driver.get(url);
 			
 		   } catch (FileNotFoundException e) {

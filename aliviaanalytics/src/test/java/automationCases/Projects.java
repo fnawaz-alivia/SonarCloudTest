@@ -89,42 +89,42 @@ public class Projects extends Configuration {
 		Thread.sleep(2000);
 		PM.GetIndexOfProject("Training-Automation");
 		Thread.sleep(2000);
-		test = report.createTest("Project Items details");
+		test = report.createTest("Verfiy the project Items details");
 		driver.findElement(By.xpath("//*[@id='project-projectTree-treePanel-001']//child::table['" + PM.index + "'+'"
 				+ 1 + "']//tr//td[2]")).click();
 		Thread.sleep(2000);
 	
-		test.log(Status.PASS, "Project Items details are being shown");
+		test.log(Status.PASS, "The project Items details are being shown");
 		Thread.sleep(2000);
-		test = report.createTest("Project Items details");
+		test = report.createTest("Verify the user can expand all project items in Items details panel");
 		PM.ExpandAllProjectItems();
-		test.log(Status.PASS, "Model Type type test is fine");
+		test.log(Status.PASS, " The user is able to expand all project items in Items details panel");
 		test = report.createTest("Verify Model Type");
 		PM.ClickItemProjectDetailTree("R Operator");
 		Thread.sleep(2000);
 		Assert.assertEquals("Analysis Model", PM.GetElementTypeText.getText());
-		test.log(Status.PASS, "Model Type type test is fine");
+		test.log(Status.PASS, "The Model type is being shown correct");
 		Thread.sleep(2000);
 		test = report.createTest("Verify Dashboard Type");
 		PM.ClickItemProjectDetailTree("AutoCreatedDashboard");
 		Thread.sleep(2000);
 		Assert.assertEquals("Dashboard", PM.GetElementTypeText.getText());
-		test.log(Status.PASS, "Dashbaord Type type test is fine");
+		test.log(Status.PASS, "The Dashboard type is being shown correct");
 		test = report.createTest("Verify Data Source Type");
 		PM.ClickItemProjectDetailTree("Medical Transactions");
 		Thread.sleep(2000);
 		Assert.assertEquals("Data Source", PM.GetElementTypeText.getText());
-		test.log(Status.PASS, "DataSource Type type test is fine");
+		test.log(Status.PASS, "The Data Source type is being shown correct");
 		test = report.createTest("Verify Query Filter Type");
 		PM.ClickItemProjectDetailTree("AutoCreatedQB");
 		Thread.sleep(2000);
 		Assert.assertEquals("Query Filter", PM.GetElementTypeText.getText());
-		test.log(Status.PASS, "Query Filter Type type test is fine");
+		test.log(Status.PASS, "The Query Filter type is being shown correct");
 		test = report.createTest("Verify chart Type");
 		PM.ClickItemProjectDetailTree("AutoCreatedChart");
 		Thread.sleep(2000);
 		Assert.assertEquals("Chart", PM.GetElementTypeText.getText());
-		test.log(Status.PASS, "chart Type type test is fine");
+		test.log(Status.PASS, "The Chart type is being shown correct");
 		driver.close();
 	}
 
@@ -179,22 +179,32 @@ public class Projects extends Configuration {
 		PM.CheckLoadedProjectandLoadAutomationProject();
 		PM.RightClickOnProject("Training-Automation");
 		PM.ExportOptionRightClickonProject.click();
+		test = report.createTest("Verify The user is able to export project without Filters");
 		Thread.sleep(2000);
 		utilityMethods.waitForVisibility(PM.OkExportProjectButton);
 		PM.OkExportProjectButton.click();
 		utilityMethods.waitForVisibility(PM.OkExportProjectButton);
 		PM.OkExportProjectButton.click();
+		test.log(Status.PASS, "The project is being exported without filtes");
 		Thread.sleep(2000);
+		test = report.createTest("Verify the import local project button works");
 		PM.ImportLocalProjectButton.click();
+		test.log(Status.PASS, "The import local project button works");
+		test = report.createTest("Verify User is able browseFile to import");
 		String FilePathForImportProject = Paths
 				.get(System.getProperty("user.dir") + "\\src\\datafiles\\project-2022-01-11 15.45.54.alivia")
 				.toAbsolutePath().toString();
 		PM.BrowseFileForProject.sendKeys(FilePathForImportProject);
+		test.log(Status.PASS, "The User is able browseFile to import");
 		PM.ImportFileForProject.click();
 		Thread.sleep(2000);
+		test = report.createTest("Verify User is able to import as a new project");
 		PM.RadioButtonforCreateNew.click();
+		test.log(Status.PASS, "Th User is able to import as a new project");
 		PM.InputProjectNameToImport.clear();
+		test = report.createTest("Verify User is able to enter Project name");
 		PM.InputProjectNameToImport.sendKeys("Imported Project");
+		test.log(Status.PASS, "Th User is able to enter Project name");
 		utilityMethods.waitForVisibility(PM.OKButton);
 		PM.OKButton.click();
 		utilityMethods.waitForVisibility(PM.CheckBoxToImportLocalPorojectData);
@@ -208,15 +218,22 @@ public class Projects extends Configuration {
 		Thread.sleep(2000);
 		PM.LoadAutomationProject("Imported Project");
 		Thread.sleep(2000);
+		test = report.createTest("Verify the chart shows in imported project");
 		int savedChartCount=CM.CountSavedChart();
 		System.out.println(savedChartCount);
+		test.log(Status.PASS, "The charts are being shown in imported project");
+		test = report.createTest("Verify  the datasource shows in imported project");
 		int dataSourcesCount=  DSM.CountDataSources("Medical Transactions");
 		System.out.println(dataSourcesCount);
-		test = report.createTest("Verify Model shows");
+		test.log(Status.PASS, "The datasources are being shown in imported project");
+		test = report.createTest("Verify the model shows in imported project");
 		int CountModels=  MLM.CountModlingLibrary();
 		System.out.println(CountModels);
+		test.log(Status.PASS, "The models are being shown in imported project");
+		test = report.createTest("Verify the dashboard shows in imported project");
 		int CountDashboards= DM.CountDashboard();
 		System.out.println(CountDashboards);
+		test.log(Status.PASS, "The dashboards are being shown in imported project");
 		
 		
 		PM.GetStarted.click();

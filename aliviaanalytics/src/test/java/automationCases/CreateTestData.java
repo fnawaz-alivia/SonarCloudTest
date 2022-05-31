@@ -32,7 +32,7 @@ public class CreateTestData extends Configuration  {
 	    driver.close();
 	}
 	
-	@BeforeSuite(dependsOnMethods = { "FWA_CreateTestData_001" })
+	@BeforeSuite(alwaysRun = true)
 	public void FWA_CreateTestData_002() throws InterruptedException {
 		
 		

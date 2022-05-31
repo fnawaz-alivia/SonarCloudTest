@@ -8,6 +8,43 @@
       </run>
     </groups>
     <classes>
+      <class name="automationCases.Scheduler">
+        <methods>
+          <include name="startTest"/>
+          <include name="FWA_Scheduler_001"/>
+          <include name="endTest"/>
+        </methods>
+      </class> <!-- automationCases.Scheduler -->
+      <class name="automationCases.Projects">
+        <methods>
+          <include name="FWA_Project_013"/>
+          <include name="FWA_Project_003"/>
+          <include name="startTest"/>
+          <include name="endTest"/>
+          <include name="FWA_Project_001"/>
+        </methods>
+      </class> <!-- automationCases.Projects -->
+      <class name="automationCases.DataCleansing">
+        <methods>
+          <include name="startTest"/>
+          <include name="FWA_DataSource_001"/>
+          <include name="endTest"/>
+        </methods>
+      </class> <!-- automationCases.DataCleansing -->
+      <class name="automationCases.RuleLibrary">
+        <methods>
+          <include name="startTest"/>
+          <include name="FWA_RuleLibrary_001"/>
+          <include name="endTest"/>
+        </methods>
+      </class> <!-- automationCases.RuleLibrary -->
+      <class name="automationCases.Charting">
+        <methods>
+          <include name="startTest"/>
+          <include name="FWA_CreateTestData_001"/>
+          <include name="endTest"/>
+        </methods>
+      </class> <!-- automationCases.Charting -->
       <class name="automationCases.DataSource">
         <methods>
           <include name="FWA_DataSource_001"/>
@@ -15,6 +52,20 @@
           <include name="endTest"/>
         </methods>
       </class> <!-- automationCases.DataSource -->
+      <class name="automationCases.Security">
+        <methods>
+          <include name="startTest"/>
+          <include name="FWA_Security_001"/>
+          <include name="endTest"/>
+        </methods>
+      </class> <!-- automationCases.Security -->
+      <class name="automationCases.Ranking">
+        <methods>
+          <include name="startTest"/>
+          <include name="FWA_Ranking_001"/>
+          <include name="endTest"/>
+        </methods>
+      </class> <!-- automationCases.Ranking -->
       <class name="automationCases.Dashboard">
         <methods>
           <include name="startTest"/>
@@ -22,6 +73,13 @@
           <include name="endTest"/>
         </methods>
       </class> <!-- automationCases.Dashboard -->
+      <class name="automationCases.QueryBuilder">
+        <methods>
+          <include name="startTest"/>
+          <include name="FWA_DataSource_001"/>
+          <include name="endTest"/>
+        </methods>
+      </class> <!-- automationCases.QueryBuilder -->
     </classes>
   </test> <!-- First Test(failed) -->
 </suite> <!-- Failed suite [ FWA Test Collection Suite] -->

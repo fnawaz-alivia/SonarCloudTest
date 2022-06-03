@@ -532,6 +532,96 @@ public class ChartModel extends Configuration {
 		utilityMethods.waitForVisibility(this.OKButton);
 		this.OKButton.click();	
 	}
+	
+public void DeleteChart() throws InterruptedException {
+	  DashboardModel DM = PageFactory.initElements(driver, automationModels.DashboardModel.class);
+	    this.SavedCharts.click();
+		this.SearchTabSavedChartsGrid.clear();
+		Thread.sleep(1000);
+		this.SearchTabSavedChartsGrid.sendKeys("BubbleGroupChart");
+		System.out.println("BubbleGroupChart");
+		Thread.sleep(2000);
+		int listSizebeforeDelete= this.SavedChartsList.size();
+        this.RightClickOnChartName();
+        Thread.sleep(2000);
+        DM.RightDeleteOption.click();
+        Thread.sleep(2000);
+        test = report.createTest("Verify the user is able to delete the chart ");
+        int listSizeafterdelete= this.SavedChartsList.size();
+        
+       if (listSizebeforeDelete> listSizeafterdelete) {
+    	   test.log(Status.PASS, "The user is able to delete the chart");  
+       }
+       
+       else {
+    	   test.log(Status.FAIL, "The user is not able to delete the chart");  
+    	   
+       }
+	}
+	
+public void ReNameChart() throws InterruptedException {
+	   DashboardModel DM = PageFactory.initElements(driver, automationModels.DashboardModel.class);
+	    QueryBuilderModel QBM = PageFactory.initElements(driver, automationModels.QueryBuilderModel.class);
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		PM.GetStarted.click();
+		this.Analysis.click();
+		Thread.sleep(2000);
+		this.Charting.click();
+		this.ClickonROW.click();
+		this.SavedCharts.click();
+		this.SearchTabSavedChartsGrid.clear();
+		this.SearchTabSavedChartsGrid.sendKeys("BubbleGroupChart");
+		Thread.sleep(2000);
+		this.SavedChartsList.size();
+		Thread.sleep(2000);
+        this.RightClickOnChartName();
+        Thread.sleep(2000);
+        DM.RightRenameOption.click();
+        Thread.sleep(2000);
+        test = report.createTest("Verify the user is able to rename the chart ");
+        DM.InputNameDashboard.sendKeys("RenamedChartName");
+         QBM.OkButtonQB.click();
+         Thread.sleep(2000);
+         
+	try {
+			
+			boolean ErrorAlertBox = DM.ErrorAlertMessage.isDisplayed();
+			String ErrorAlertBoxText =DM.ErrorAlertMessage.getText();
+			System.out.println(ErrorAlertBoxText);
+			if (ErrorAlertBox==true) {
+				test.log(Status.FAIL, "The user is not able to  rename the chart ");
+				QBM.OkButtonQB.click();	
+			}
+			
+		}
+		catch(Exception e)
+		{
+			test.log(Status.PASS, "The user is  able to  rename the chart ");
+		}
+	this.SavedCharts.click();
+	this.SearchTabSavedChartsGrid.clear();
+	this.SearchTabSavedChartsGrid.sendKeys("RenamedChartName");
+ 		Thread.sleep(1000);
+ 
+ 		System.out.println(this.SavedChartsList.size());
+       
+	}
+	
+	
+
+
+	public void RightClickOnChartName() {
+
+		for (WebElement el : SavedChartsList) {
+
+			if (el.getText().equals("BubbleGroupChart")) {
+				  new Actions(driver).contextClick(el).perform();
+
+			        break;
+			    }
+			}
+
+	}
 		
 
 }

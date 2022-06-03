@@ -26,6 +26,8 @@ public class Charting  extends Configuration{
 	    Thread.sleep(2000);
 	   int SavedChart =  CM.VerifyChartSaved("BubbleGroupChart");
 	   System.out.println(SavedChart);
+	   CM.ReNameChart();
+	   CM.DeleteChart();
 	    driver.close();
 	}
 	

@@ -19,6 +19,7 @@ import configuration.Configuration;
 
 public class DashboardModel extends Configuration{
 	public static ExtentTest test;
+	String  DBNameValue = RandomStringUtils.randomAlphabetic(10);
 	@FindBy(how = How.XPATH, using = "//*[(text() = 'Dashboard' or . = 'Dashboard')]")
 
 	public WebElement Dashboard;
@@ -26,6 +27,18 @@ public class DashboardModel extends Configuration{
 	@FindBy(how = How.XPATH, using = "//div[contains(@class, 'dashboard-savedDashboards-grid-022')]//child::input")
 
 	public WebElement SearchTabDashboard;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class, 'x-window x-message-box x-layer x-window-default x-closable x-window-closable x-window-default-closable x-border-box')]")
+
+	public WebElement ErrorAlertMessage;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'menuitem') and (text() = 'Delete' or . = 'Delete')]")
+
+	public WebElement RightDeleteOption;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'menuitem') and (text() = 'Rename' or . = 'Rename')]")
+
+	public WebElement RightRenameOption;
 	
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'menuitem') and (text() = 'Add KPI Item' or . = 'Add KPI Item')]")
 
@@ -303,8 +316,9 @@ public class DashboardModel extends Configuration{
 		this.Apply.click();
 		test = report.createTest("KPI - Configure KPI Input -Verify the user can save dashboard.");
 	    new Actions(driver).moveToElement(this.saveButton).moveByOffset(-10, 0).click().perform();	
-	    String DBName = RandomStringUtils.randomAlphabetic(10);
-		this.InputNameDashboard.sendKeys(DBName);	
+	    
+		this.InputNameDashboard.sendKeys(DBNameValue);	
+		System.out.println(DBNameValue);
 		utilityMethods.waitForVisibility(QBM.OkButtonQB);
 		QBM.OkButtonQB.click();
 		utilityMethods.waitForVisibility(QBM.OkButtonQB);
@@ -313,14 +327,96 @@ public class DashboardModel extends Configuration{
 		this.SearchTabDashboard.click();
 		Thread.sleep(1000);
 		test = report.createTest("Verify the search tab works for saved dashboads");
-		this.SearchTabDashboard.sendKeys(DBName);
+		this.SearchTabDashboard.sendKeys(DBNameValue);
 		Thread.sleep(2000);
 		test.log(Status.PASS, "the search tab works for saved dashboads");
 		System.out.println(this.DashboardList.size());
 		
 	}
 	
+	public void DeleteDashboard() throws InterruptedException {
+		
+		this.SearchTabDashboard.click();
+		this.SearchTabDashboard.clear();
+		Thread.sleep(1000);
+		this.SearchTabDashboard.sendKeys(DBNameValue);
+		System.out.println(DBNameValue);
+		Thread.sleep(2000);
+		int listSizebeforeDelete= this.DashboardList.size();
+        this.RightClickOnDashboardName(DBNameValue);
+        Thread.sleep(2000);
+        this.RightDeleteOption.click();
+        Thread.sleep(2000);
+        test = report.createTest("Verify the user is able to delete the dashbaord ");
+        int listSizeafterdelete= this.DashboardList.size();
+        
+       if (listSizebeforeDelete> listSizeafterdelete) {
+    	   test.log(Status.PASS, "The user is able to delete the dashbaord");  
+       }
+       
+       else {
+    	   test.log(Status.FAIL, "The user is not able to delete the dashbaord");  
+    	   
+       }
+	}
 	
+public void ReNameDashboard() throws InterruptedException {
+	    QueryBuilderModel QBM = PageFactory.initElements(driver, automationModels.QueryBuilderModel.class);
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		PM.GetStarted.click();
+		this.Dashboard.click();
+		Thread.sleep(2000);
+		this.ClearAllDashboard.click();
+		Thread.sleep(2000);
+		this.SearchTabDashboard.click();
+		this.SearchTabDashboard.clear();
+		Thread.sleep(1000);
+		this.SearchTabDashboard.sendKeys(DBNameValue);
+		Thread.sleep(2000);
+        this.RightClickOnDashboardName(DBNameValue);
+        Thread.sleep(2000);
+         this.RightRenameOption.click();
+        Thread.sleep(2000);
+        test = report.createTest("Verify the user is able to rename the dashbaord ");
+         this.InputNameDashboard.sendKeys("RenamedDB");
+         QBM.OkButtonQB.click();
+         Thread.sleep(2000);
+         
+	try {
+			
+			boolean ErrorAlertBox = this.ErrorAlertMessage.isDisplayed();
+			String ErrorAlertBoxText =this.ErrorAlertMessage.getText();
+			System.out.println(ErrorAlertBoxText);
+			if (ErrorAlertBox==true) {
+				test.log(Status.FAIL, "The user is not able to  rename the dashboad ");
+				QBM.OkButtonQB.click();	
+			}
+			
+		}
+		catch(Exception e)
+		{
+			test.log(Status.PASS, "The user is  able to  rename the dashboad ");
+		}
+         this.SearchTabDashboard.click();
+         this.SearchTabDashboard.clear();
+ 		Thread.sleep(1000);
+ 		this.SearchTabDashboard.sendKeys("RenamedDB");
+ 		System.out.println(this.DashboardList.size());
+       
+	}
+	
+	public void RightClickOnDashboardName(String DBName) {
+
+		for (WebElement el : DashboardList) {
+
+			if (el.getText().equals(DBName)) {
+				  new Actions(driver).contextClick(el).perform();
+
+			        break;
+			    }
+			}
+
+	}
 	
 
 }

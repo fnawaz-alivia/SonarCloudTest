@@ -20,6 +20,15 @@ public class Dashboard extends Configuration{
 		utilityMethods.waitForVisibility(PM.GetStarted);
 		Thread.sleep(8000);
 		DM.CreateDashboardAndAddKPIInWidgets("KPI Widget");	
+		Thread.sleep(4000);
+		DM.ReNameDashboard();
+		DM.DeleteDashboard();
 		driver.close();
 	}
+	
+
+	
+	
+	
+	
 }

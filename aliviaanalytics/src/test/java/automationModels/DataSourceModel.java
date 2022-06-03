@@ -216,7 +216,7 @@ public class DataSourceModel extends Configuration {
 		this.DeleteLoadedDS.click();
 		Thread.sleep(2000);
 		utilityMethods.waitForVisibility(this.CheckBoxRemoveDatabaseTable);
-		//this.CheckBoxRemoveDatabaseTable.click();
+		this.CheckBoxRemoveDatabaseTable.click();
 		utilityMethods.waitForVisibility(this.yesDeletedConfirmationBOx);
 		this.yesDeletedConfirmationBOx.click();
 		test.log(Status.PASS, "The DataSource is created with CSV file successfully");

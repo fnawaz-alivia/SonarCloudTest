@@ -8,7 +8,8 @@
 			</run>
 		</groups>
 		<classes>
-<class name="automationCases.Ranking" />
+<class name="automationCases.Charting" />
+<class name="automationCases.Dashboard" />
 		</classes>
 	</test>
 </suite>

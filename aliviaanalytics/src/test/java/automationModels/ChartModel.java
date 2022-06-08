@@ -2,6 +2,7 @@ package automationModels;
 
 import java.util.List;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -18,7 +19,7 @@ import configuration.Configuration;
 
 public class ChartModel extends Configuration {
 	public static ExtentTest test;
-
+	   String RenameChartName = RandomStringUtils.randomAlphabetic(10);
 	@FindBy(how = How.XPATH, using = "//*[(text() = 'Analysis' or . = 'Analysis')]")
 
 	public WebElement Analysis;
@@ -534,15 +535,17 @@ public class ChartModel extends Configuration {
 	}
 	
 public void DeleteChart() throws InterruptedException {
+	
+	try {
 	  DashboardModel DM = PageFactory.initElements(driver, automationModels.DashboardModel.class);
 	    this.SavedCharts.click();
 		this.SearchTabSavedChartsGrid.clear();
 		Thread.sleep(1000);
-		this.SearchTabSavedChartsGrid.sendKeys("BubbleGroupChart");
-		System.out.println("BubbleGroupChart");
+		this.SearchTabSavedChartsGrid.sendKeys(RenameChartName);
+	
 		Thread.sleep(2000);
 		int listSizebeforeDelete= this.SavedChartsList.size();
-        this.RightClickOnChartName();
+        this.RightClickOnChartName(RenameChartName);
         Thread.sleep(2000);
         DM.RightDeleteOption.click();
         Thread.sleep(2000);
@@ -550,13 +553,23 @@ public void DeleteChart() throws InterruptedException {
         int listSizeafterdelete= this.SavedChartsList.size();
         
        if (listSizebeforeDelete> listSizeafterdelete) {
-    	   test.log(Status.PASS, "The user is able to delete the chart");  
+    	   test.log(Status.PASS, "The user is able to delete the chart"); 
+    	   System.out.println("The user is able to delete the chart");
        }
        
        else {
     	   test.log(Status.FAIL, "The user is not able to delete the chart");  
+    	   System.out.println("The user is not able to delete the chart");
     	   
        }
+	
+}
+catch(Exception e)
+{
+	
+	System.out.println("The user is not  able to delete the chart");
+	test.log(Status.FAIL, "The user is not able to delete the chart"); 
+	}
 	}
 	
 public void ReNameChart() throws InterruptedException {
@@ -574,12 +587,15 @@ public void ReNameChart() throws InterruptedException {
 		Thread.sleep(2000);
 		this.SavedChartsList.size();
 		Thread.sleep(2000);
-        this.RightClickOnChartName();
+        this.RightClickOnChartName("BubbleGroupChart");
         Thread.sleep(2000);
         DM.RightRenameOption.click();
         Thread.sleep(2000);
         test = report.createTest("Verify the user is able to rename the chart ");
-        DM.InputNameDashboard.sendKeys("RenamedChartName");
+        DM.InputNameDashboard.clear();
+        Thread.sleep(2000);
+     
+        DM.InputNameDashboard.sendKeys(RenameChartName);
          QBM.OkButtonQB.click();
          Thread.sleep(2000);
          
@@ -596,25 +612,35 @@ public void ReNameChart() throws InterruptedException {
 		}
 		catch(Exception e)
 		{
-			test.log(Status.PASS, "The user is  able to  rename the chart ");
+			System.out.println("No Error alert is shown for renamed chart");
 		}
 	this.SavedCharts.click();
 	this.SearchTabSavedChartsGrid.clear();
-	this.SearchTabSavedChartsGrid.sendKeys("RenamedChartName");
- 		Thread.sleep(1000);
- 
- 		System.out.println(this.SavedChartsList.size());
+	this.SearchTabSavedChartsGrid.sendKeys(RenameChartName);
+ 		Thread.sleep(4000);
+ 		int listSizeAfterRenameChart= this.SavedChartsList.size();
+ 		System.out.println("listSizeAfterRenameChart"+listSizeAfterRenameChart);
+ 		int expectedSizeAfterRenameChart=1;
+ 		
+ 		if (listSizeAfterRenameChart==expectedSizeAfterRenameChart) {
+ 			test.log(Status.PASS, "The user is able to  rename the chart ");	
+ 			
+ 		}
+ 		else {
+ 			
+ 			test.log(Status.FAIL, "The user is not able to  rename the chart ");
+ 		}
        
 	}
 	
 	
 
 
-	public void RightClickOnChartName() {
+	public void RightClickOnChartName(String chartName) {
 
 		for (WebElement el : SavedChartsList) {
 
-			if (el.getText().equals("BubbleGroupChart")) {
+			if (el.getText().equals(chartName)) {
 				  new Actions(driver).contextClick(el).perform();
 
 			        break;

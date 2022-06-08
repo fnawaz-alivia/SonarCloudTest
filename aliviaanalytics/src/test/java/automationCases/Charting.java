@@ -4,13 +4,16 @@ package automationCases;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import automationModels.ChartModel;
 import automationModels.ProjectModel;
 import automationUtils.utilityMethods;
 import configuration.Configuration;
 
 public class Charting  extends Configuration{
-	
+	public static ExtentTest test;
 	@Test(groups = { "Smoke" }, priority = 1)
 	public void FWA_CreateTestData_001() throws InterruptedException {
 		
@@ -24,8 +27,19 @@ public class Charting  extends Configuration{
 		Thread.sleep(8000);
 	    CM.CreateBubbleGroupChart("BubbleGroupChart");
 	    Thread.sleep(2000);
+	    test = report.createTest("Verify the chart is saved and showing in saved chart list");
 	   int SavedChart =  CM.VerifyChartSaved("BubbleGroupChart");
 	   System.out.println(SavedChart);
+	   if (SavedChart>0)
+		   
+	   {
+			test.log(Status.PASS, "The Chart is saved successfully");
+		   System.out.println("The Chart is saved successfully");
+	   }
+	   else {
+		   System.out.println("The Chart is not saved");
+			test.log(Status.FAIL, "The Chart is not saved"); 
+	   }
 	   CM.ReNameChart();
 	   CM.DeleteChart();
 	    driver.close();

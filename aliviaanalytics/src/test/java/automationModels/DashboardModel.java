@@ -20,6 +20,7 @@ import configuration.Configuration;
 public class DashboardModel extends Configuration{
 	public static ExtentTest test;
 	String  DBNameValue = RandomStringUtils.randomAlphabetic(10);
+	  String RenameDashboardName = RandomStringUtils.randomAlphabetic(10);
 	@FindBy(how = How.XPATH, using = "//*[(text() = 'Dashboard' or . = 'Dashboard')]")
 
 	public WebElement Dashboard;
@@ -335,39 +336,48 @@ public class DashboardModel extends Configuration{
 	}
 	
 	public void DeleteDashboard() throws InterruptedException {
-		
+	try {	
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		QueryBuilderModel QBM = PageFactory.initElements(driver, automationModels.QueryBuilderModel.class);
 		this.SearchTabDashboard.click();
 		this.SearchTabDashboard.clear();
 		Thread.sleep(1000);
-		this.SearchTabDashboard.sendKeys(DBNameValue);
-		System.out.println(DBNameValue);
+		this.SearchTabDashboard.sendKeys(RenameDashboardName);
+		System.out.println(RenameDashboardName);
 		Thread.sleep(2000);
 		int listSizebeforeDelete= this.DashboardList.size();
-        this.RightClickOnDashboardName(DBNameValue);
+        this.RightClickOnDashboardName(RenameDashboardName);
         Thread.sleep(2000);
         this.RightDeleteOption.click();
-        Thread.sleep(2000);
+        Thread.sleep(4000);
+        PM.YesButton.click();
+		Thread.sleep(2000);
+		utilityMethods.waitForVisibility(PM.OkButtonDeleteProject);
+		QBM.OkButtonQB.click();
         test = report.createTest("Verify the user is able to delete the dashbaord ");
         int listSizeafterdelete= this.DashboardList.size();
         
        if (listSizebeforeDelete> listSizeafterdelete) {
-    	   test.log(Status.PASS, "The user is able to delete the dashbaord");  
+    	   test.log(Status.PASS, "The user is able to delete the dashbaord");
+    	   System.out.println("The user is  able to delete the dashbaord");
        }
        
        else {
     	   test.log(Status.FAIL, "The user is not able to delete the dashbaord");  
-    	   
+    	   System.out.println("The user is not  able to delete the dashbaord");
        }
+	}
+	catch(Exception e)
+	{
+		System.out.println("The user is not  able to delete the dashbaord");
+		test.log(Status.FAIL, "The user is not able to delete the dashbaord"); 
+	}
+	
 	}
 	
 public void ReNameDashboard() throws InterruptedException {
 	    QueryBuilderModel QBM = PageFactory.initElements(driver, automationModels.QueryBuilderModel.class);
-		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		PM.GetStarted.click();
-		this.Dashboard.click();
-		Thread.sleep(2000);
-		this.ClearAllDashboard.click();
-		Thread.sleep(2000);
+	
 		this.SearchTabDashboard.click();
 		this.SearchTabDashboard.clear();
 		Thread.sleep(1000);
@@ -378,7 +388,9 @@ public void ReNameDashboard() throws InterruptedException {
          this.RightRenameOption.click();
         Thread.sleep(2000);
         test = report.createTest("Verify the user is able to rename the dashbaord ");
-         this.InputNameDashboard.sendKeys("RenamedDB");
+        this.InputNameDashboard.clear();
+        Thread.sleep(2000);
+         this.InputNameDashboard.sendKeys(RenameDashboardName);
          QBM.OkButtonQB.click();
          Thread.sleep(2000);
          
@@ -395,12 +407,13 @@ public void ReNameDashboard() throws InterruptedException {
 		}
 		catch(Exception e)
 		{
-			test.log(Status.PASS, "The user is  able to  rename the dashboad ");
+			System.out.println("No Error alert is shown for renamed dashboard");
 		}
          this.SearchTabDashboard.click();
          this.SearchTabDashboard.clear();
  		Thread.sleep(1000);
- 		this.SearchTabDashboard.sendKeys("RenamedDB");
+ 		this.SearchTabDashboard.sendKeys(RenameDashboardName);
+ 		Thread.sleep(5000);
  		System.out.println(this.DashboardList.size());
        
 	}

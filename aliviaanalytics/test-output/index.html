@@ -93,7 +93,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">2 methods,   2 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -104,7 +104,12 @@
                     <div class="method-list-content passed suite-_FWA_Test_Collection_Suite">
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-_FWA_Test_Collection_Suite" title="automationCases.Ranking" hash-for-method="FWA_Ranking_001">FWA_Ranking_001</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-_FWA_Test_Collection_Suite" title="automationCases.Charting" hash-for-method="FWA_CreateTestData_001">FWA_CreateTestData_001</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-_FWA_Test_Collection_Suite" title="automationCases.Dashboard" hash-for-method="FWA_Dashboard_001">FWA_Dashboard_001</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-_FWA_Test_Collection_Suite -->
@@ -122,14 +127,29 @@
           <div class="suite-_FWA_Test_Collection_Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">automationCases.Ranking</span>
+              <span class="class-name">automationCases.Charting</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="FWA_Ranking_001">
-                  </a> <!-- FWA_Ranking_001 -->
-                  <span class="method-name">FWA_Ranking_001</span>
+                  <a name="FWA_CreateTestData_001">
+                  </a> <!-- FWA_CreateTestData_001 -->
+                  <span class="method-name">FWA_CreateTestData_001</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-_FWA_Test_Collection_Suite-class-passed -->
+          <div class="suite-_FWA_Test_Collection_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">automationCases.Dashboard</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="FWA_Dashboard_001">
+                  </a> <!-- FWA_Dashboard_001 -->
+                  <span class="method-name">FWA_Dashboard_001</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -151,7 +171,8 @@
       &lt;/run&gt;
     &lt;/groups&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;automationCases.Ranking&quot;/&gt;
+      &lt;class name=&quot;automationCases.Charting&quot;/&gt;
+      &lt;class name=&quot;automationCases.Dashboard&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- First Test --&gt;
 &lt;/suite&gt; &lt;!--  FWA Test Collection Suite --&gt;
@@ -165,7 +186,7 @@
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">First Test (1 class)</span>
+                <span class="test-name">First Test (2 classes)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -179,7 +200,11 @@
               <span class="test-group-name">Smoke</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">FWA_Ranking_001</span>
+                <span class="method-in-group-name">FWA_CreateTestData_001</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">FWA_Dashboard_001</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -199,16 +224,20 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(2);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'FWA_Ranking_001')
-data.setCell(0, 2, 'automationCases.Ranking')
-data.setCell(0, 3, 42345);
+data.setCell(0, 1, 'FWA_Dashboard_001')
+data.setCell(0, 2, 'automationCases.Dashboard')
+data.setCell(0, 3, 143433);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'FWA_CreateTestData_001')
+data.setCell(1, 2, 'automationCases.Charting')
+data.setCell(1, 3, 106354);
 window.suiteTableData['_FWA_Test_Collection_Suite']= { tableData: data, tableDiv: 'times-div-_FWA_Test_Collection_Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 42 seconds</span>
+              <span class="suite-total-time">Total running time: 4 minutes</span>
               <div id="times-div-_FWA_Test_Collection_Suite">
               </div> <!-- times-div-_FWA_Test_Collection_Suite -->
             </div> <!-- times-div -->
@@ -223,9 +252,39 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-_FWA_Test_Collection_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">0 ignored methods</span>
+            <span class="header-content">10 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">automationCases.Charting</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">FWA_CreateTestData_009</span>
+                <br/>
+                <span class="ignored-method-name">FWA_CreateTestData_006</span>
+                <br/>
+                <span class="ignored-method-name">FWA_CreateTestData_008</span>
+                <br/>
+                <span class="ignored-method-name">FWA_CreateTestData_003</span>
+                <br/>
+                <span class="ignored-method-name">FWA_CreateTestData_005</span>
+                <br/>
+                <span class="ignored-method-name">FWA_CreateTestData_002</span>
+                <br/>
+                <span class="ignored-method-name">FWA_CreateTestData_007</span>
+                <br/>
+                <span class="ignored-method-name">FWA_CreateTestData_004</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">automationCases.Dashboard</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">startTest</span>
+                <br/>
+                <span class="ignored-method-name">endTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-_FWA_Test_Collection_Suite" class="panel">
@@ -234,18 +293,28 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">automationCases.Ranking</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">automationCases.Charting</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">startTest</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="test-method">
-                <span class="method-name">FWA_Ranking_001</span>
-                <span class="method-start">283 ms</span>
+                <span class="method-name">FWA_CreateTestData_001</span>
+                <span class="method-start">122 ms</span>
               </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">automationCases.Dashboard</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">FWA_Dashboard_001</span>
+                <span class="method-start">106483 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">automationCases.Charting</div> <!-- chronological-class-name -->
               <div class="configuration-suite after">
                 <span class="method-name">endTest</span>
-                <span class="method-start">42715 ms</span>
+                <span class="method-start">249947 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

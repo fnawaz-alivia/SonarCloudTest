@@ -254,33 +254,44 @@ public class Projects extends Configuration {
 		Thread.sleep(2000);
 		PM.CheckLoadedProjectandLoadAutomationProject();
 		Thread.sleep(2000);
+		test = report.createTest("Verify the import local project button works");
 		PM.ImportLocalProjectButton.click();
-
+		test.log(Status.PASS, "The import local project button is working as expected");
+		test = report.createTest("Verify the user is able to browse the local project");
 		String FilePathForImportProject = Paths
 				.get(System.getProperty("user.dir") + "\\src\\datafiles\\project-2021-12-15 17.15.22.alivia")
 				.toAbsolutePath().toString();
+		test.log(Status.PASS, "The user is able to browse the local project");
 		PM.BrowseFileForProject.sendKeys(FilePathForImportProject);
 		PM.ImportFileForProject.click();
 		Thread.sleep(2000);
+		test = report.createTest("Verify the user is able to checked the radio button for existing project");
 		PM.RadioButtonChooseExistingProject.click();
+		test.log(Status.PASS, "The user is able to checked the radio button for existing project");
 		utilityMethods.waitForVisibility(PM.OKButton);
 		PM.OKButton.click();
 		utilityMethods.waitForVisibility(PM.SelectProjectImportLocalProjectDataWindow);
 		PM.SelectProjectImportLocalProjectDataWindow.click();
+		test = report.createTest("Verify the user is able to select the existing project");
 		PM.SelectProjectImportLocalProjectDataWindow.sendKeys("Imported Project");
 		PM.SelectProjectImportLocalProjectDataWindow.sendKeys(Keys.ENTER);
 		Thread.sleep(2000);
 		PM.SelectProjectItemstoImport.click();
+		test.log(Status.PASS, "The user is able to select the existing project");
 		utilityMethods.waitForVisibility(PM.SaveImportProjectButton);
 		PM.SaveImportProjectButton.click();
 		utilityMethods.waitForVisibility(PM.OKProjectImportButton);
 		PM.OKProjectImportButton.click();
 		PM.ReloadProjects.click();
 		Thread.sleep(2000);
+		test = report.createTest("Verify the user is able to load the imported project");
 		PM.LoadAutomationProject("Imported Project");
 		Thread.sleep(2000);
+		test.log(Status.PASS, "The user is able to load the imported project");
+		test = report.createTest("Verify the Query Filters are avilable in imported project");
 		int QBCount=QBM.CountQB();
 		System.out.println(QBCount);
+		test.log(Status.PASS, "The Query Filters are avilable in imported project");
 		PM.GetStarted.click();
 		PM.SearchTabProject.click();
 		Thread.sleep(2000);

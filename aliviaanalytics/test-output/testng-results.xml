@@ -1,35 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="10" total="12" passed="2">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name=" FWA Test Collection Suite" duration-ms="184653" started-at="2022-06-03T19:27:31 PKT" finished-at="2022-06-03T19:30:35 PKT">
+  <suite name=" FWA Test Collection Suite" duration-ms="42426" started-at="2022-06-07T19:38:01 PKT" finished-at="2022-06-07T19:38:43 PKT">
     <groups>
       <group name="Smoke">
-        <method signature="Charting.FWA_CreateTestData_001()[pri:1, instance:automationCases.Charting@42d8062c]" name="FWA_CreateTestData_001" class="automationCases.Charting"/>
-        <method signature="Dashboard.FWA_Dashboard_001()[pri:1, instance:automationCases.Dashboard@5bcea91b]" name="FWA_Dashboard_001" class="automationCases.Dashboard"/>
+        <method signature="Ranking.FWA_Ranking_001()[pri:1, instance:automationCases.Ranking@29b5cd00]" name="FWA_Ranking_001" class="automationCases.Ranking"/>
       </group> <!-- Smoke -->
     </groups>
-    <test name="First Test" duration-ms="184653" started-at="2022-06-03T19:27:31 PKT" finished-at="2022-06-03T19:30:35 PKT">
-      <class name="automationCases.Charting">
-        <test-method status="PASS" signature="startTest()[pri:0, instance:automationCases.Charting@42d8062c]" name="startTest" is-config="true" duration-ms="141" started-at="2022-06-03T19:27:31 PKT" finished-at="2022-06-03T19:27:31 PKT">
+    <test name="First Test" duration-ms="42426" started-at="2022-06-07T19:38:01 PKT" finished-at="2022-06-07T19:38:43 PKT">
+      <class name="automationCases.Ranking">
+        <test-method status="PASS" signature="startTest()[pri:0, instance:automationCases.Ranking@29b5cd00]" name="startTest" is-config="true" duration-ms="231" started-at="2022-06-07T19:38:00 PKT" finished-at="2022-06-07T19:38:01 PKT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startTest -->
-        <test-method status="PASS" signature="FWA_CreateTestData_001()[pri:1, instance:automationCases.Charting@42d8062c]" name="FWA_CreateTestData_001" duration-ms="76904" started-at="2022-06-03T19:27:31 PKT" finished-at="2022-06-03T19:28:48 PKT">
+        <test-method status="PASS" signature="FWA_Ranking_001()[pri:1, instance:automationCases.Ranking@29b5cd00]" name="FWA_Ranking_001" duration-ms="42345" started-at="2022-06-07T19:38:01 PKT" finished-at="2022-06-07T19:38:43 PKT">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- FWA_CreateTestData_001 -->
-        <test-method status="PASS" signature="endTest()[pri:0, instance:automationCases.Charting@42d8062c]" name="endTest" is-config="true" duration-ms="380" started-at="2022-06-03T19:30:35 PKT" finished-at="2022-06-03T19:30:36 PKT">
+        </test-method> <!-- FWA_Ranking_001 -->
+        <test-method status="PASS" signature="endTest()[pri:0, instance:automationCases.Ranking@29b5cd00]" name="endTest" is-config="true" duration-ms="370" started-at="2022-06-07T19:38:43 PKT" finished-at="2022-06-07T19:38:44 PKT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endTest -->
-      </class> <!-- automationCases.Charting -->
-      <class name="automationCases.Dashboard">
-        <test-method status="PASS" signature="FWA_Dashboard_001()[pri:1, instance:automationCases.Dashboard@5bcea91b]" name="FWA_Dashboard_001" duration-ms="107705" started-at="2022-06-03T19:28:48 PKT" finished-at="2022-06-03T19:30:35 PKT">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- FWA_Dashboard_001 -->
-      </class> <!-- automationCases.Dashboard -->
+      </class> <!-- automationCases.Ranking -->
     </test> <!-- First Test -->
   </suite> <!--  FWA Test Collection Suite -->
 </testng-results>

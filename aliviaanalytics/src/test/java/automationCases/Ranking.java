@@ -73,9 +73,17 @@ public class Ranking extends Configuration {
 		System.out.println(RM.PhysicianNameList.get(0).getText());
 		int index = AllPhysiciansName.indexOf("High Risk Doctor");
 		 System.out.println(index);
-		 test.log(Status.PASS, "The user is able to create  a Ranking Using the Medical Transactions Demo Source");
+		 int expectedindex=0 ;
+		 if(index==expectedindex) {
+			 
+			 test.log(Status.PASS, "The user is able to create  a Ranking Using the Medical Transactions Demo Source");
+		 }
+		 else {
+		 test.log(Status.FAIL, "The user is not able to create  a Ranking Using the Medical Transactions Demo Source");
+	 System.out.println("passed");
+		 }
 		 driver.close();
-		
+		 
 	}
 
 }

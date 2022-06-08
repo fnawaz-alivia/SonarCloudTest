@@ -59,9 +59,7 @@ public class Configuration {
 	           e.printStackTrace();
 	       } catch (ParseException e) {
 	           e.printStackTrace();
-	       }
-		
-		
+	       }	
 	}
 
 	public static void LoginApplication() throws InterruptedException {

@@ -566,7 +566,7 @@ public void DeleteChart() throws InterruptedException {
 }
 catch(Exception e)
 {
-	
+	test = report.createTest("Verify the user is able to delete the chart ");
 	System.out.println("The user is not  able to delete the chart");
 	test.log(Status.FAIL, "The user is not able to delete the chart"); 
 	}

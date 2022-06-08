@@ -369,6 +369,7 @@ public class DashboardModel extends Configuration{
 	}
 	catch(Exception e)
 	{
+	    test = report.createTest("Verify the user is able to delete the dashbaord ");
 		System.out.println("The user is not  able to delete the dashbaord");
 		test.log(Status.FAIL, "The user is not able to delete the dashbaord"); 
 	}

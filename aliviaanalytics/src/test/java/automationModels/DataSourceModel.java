@@ -173,7 +173,7 @@ public class DataSourceModel extends Configuration {
 		this.SearchTabDataSource.click();
 		this.SearchTabDataSource.clear();
 		this.SearchTabDataSource.sendKeys(DSName);
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 		return this.DataSourcesList.size();
 	}
 	 

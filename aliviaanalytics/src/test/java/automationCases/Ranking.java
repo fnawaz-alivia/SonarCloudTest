@@ -17,7 +17,7 @@ import configuration.Configuration;
 public class Ranking extends Configuration {
 	public static ExtentTest test;
 	
-	@Test(groups = { "Smoke" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = { "Smoke", "RegressionTest11" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Ranking_001() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();

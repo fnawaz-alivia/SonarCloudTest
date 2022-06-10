@@ -31,7 +31,17 @@ public class ProjectModel extends Configuration
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'name' and @role = 'textbox']")
 
 	public WebElement InputFolderName;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'detail' and @role = 'textbox']")
 
+	public WebElement InputProjectType;
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield') and @class = 'x-form-error-msg x-form-invalid-icon x-form-invalid-icon-default' and (text() = 'This field is required' or . = 'This field is required')]")
+
+	public WebElement exclamationmark ;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield') and @class = 'x-form-error-msg x-form-invalid-icon x-form-invalid-icon-default' and (text() = 'This field is required' or . = 'This field is required')]")
+
+	public WebElement exclamationmarkTooltip ;
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button') and (text() = 'Save' or . = 'Save')]")
 
 	public WebElement SaveSharedProject;
@@ -327,14 +337,136 @@ public class ProjectModel extends Configuration
 	}
 	
 	public void CreateNewProject(String pname) throws InterruptedException {
+		test = report.createTest("Verify that Create Project Button is visible on the landing screen");
+		if(this.CreateProjectButton.isDisplayed())
+		{
+			test.log(Status.PASS, "The Create Project Button is visible on the landing screen");	
+		}
+		else {
+			test.log(Status.FAIL, "The Create Project Button is visible on the landing screen");
+		}	
+		test = report.createTest("Verify that Create Project Button is Clickable and user can click");
 		this.CreateProjectButton.click();
+		test.log(Status.PASS, "The Create Project Button is Clickable and user can click");
+		test = report.createTest("Verify that the Create Project Buttons open 'Create New Project Screen' upon clicking");
+		if(this.InputFolderName.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The Create Project Buttons open 'Create New Project Screen' upon clicking");	
+		}
+		else {
+			test.log(Status.FAIL, "The Create Project Buttons don't open 'Create New Project Screen' upon clicking");			
+		}
+		test = report.createTest("Verify that 'Project Name Text Field' appears on the 'Create New Project Screen'");
+		if(this.InputFolderName.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The 'Project Name Text Field' appears on the 'Create New Project Screen'");	
+		}
+		else {
+			test.log(Status.FAIL, "The 'Project Name Text Field' doesn't appear on the 'Create New Project Screen'");			
+		}
+		test = report.createTest("Verify that the 'Project Name Text Field' is mandatory");
+		test = report.createTest("Verify that if the Project Name is empty an exclamation mark should appear on right side");
+		this.InputFolderName.click();
+		this.InputFolderDescription.click();
+		Thread.sleep(2000);
+		if(this.exclamationmark.isDisplayed()) {
+			test.log(Status.PASS, "if the Project Name is empty an exclamation mark appears on right side");
+		}
+		else {
+			test.log(Status.FAIL, "if the Project Name is empty an exclamation mark doesn't appear on right side");
+		}
+		test = report.createTest("Verify that hovering on the exclamation mark should display 'This field is required' message");
+		if(this.exclamationmark.getAttribute("data-errorqtip").contains("This field is required")) {
+			test.log(Status.PASS, "hovering on the exclamation mark displays 'This field is required' message");
+		}
+		else
+		{
+			test.log(Status.FAIL, "hovering on the exclamation mark dosn't display 'This field is required' message");
+		}
+		test = report.createTest("Verify that 'Project Name Text Field' inputs alphabets");	
 		this.InputFolderName.sendKeys(pname);
+		test.log(Status.PASS, "The user is able to enter alphabets as inputs in Project Name Text Field ");
+		test = report.createTest("Verify that 'Project Type Text Field' appears on the 'Create New Project Screen'");
+		if(this.InputProjectType.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The 'Project Type Text Field' appears on the 'Create New Project Screen'");	
+		}
+		else {
+			test.log(Status.FAIL, "The 'Project Type Text Field' doesn't appear on the 'Create New Project Screen'");			
+		}
+		test = report.createTest("Verify that 'Project type Text Field' inputs alphabets");	
+		this.InputProjectType.sendKeys(pname);
+		test.log(Status.PASS, "The user is able to enter alphabets as inputs in Project type Text Field ");
+		test = report.createTest("Verify that a 'Project Description' box appears on the 'Create New Project Screen'");
+		if(this.InputFolderDescription.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The 'Project Description' box appears appears on the 'Create New Project Screen'");	
+		}
+		else {
+			test.log(Status.FAIL, "The 'Project Description' box doesn't appear on the 'Create New Project Screen'");			
+		}
+	
+		test = report.createTest("Verify that the 'Project Description' inputs alphabets");
 		this.InputFolderDescription.sendKeys(pname);
+		test.log(Status.PASS, "The user is able to enter alphabets as inputs in 'Project Description' Text Field ");
+		test = report.createTest("Create New Project Window -Verfiy the project visibility type.");
+		test = report.createTest("Verify that 'Visibility Radio Button' appears on the 'Create New Project Screen'");
+		if(this.PublicOption.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The 'Visibility Radio Button' appears appears on the 'Create New Project Screen'");	
+		}
+		else {
+			test.log(Status.FAIL, "The 'Visibility Radio Button' doesn't appear on the 'Create New Project Screen'");			
+		}
+		test = report.createTest("Verify that both Public and Private Radio Buttons are Clickable");
+		if(this.Private.isDisplayed()) 
+		{
+			test.log(Status.PASS, "both Public and Private Radio Buttons are Clickable");	
+		}
+		else {
+			test.log(Status.FAIL, "both Public and Private Radio Buttons are not Clickable");			
+		}
+		test = report.createTest("Verify that both Public and Private Radio Buttons cannot be clicked simultaneously.");
 		this.PublicOption.click();
+		test.log(Status.PASS, "both Public and Private Radio Buttons cannot be clicked simultaneously.");
+		test = report.createTest("Verify that Save Button appears on the 'Create New Project Screen'");
+		if(this.SaveButton.isDisplayed()) 
+		{
+			test.log(Status.PASS, " The Save Button appears on the 'Create New Project Screen");	
+		}
+		else {
+			test.log(Status.FAIL, "The Save Button doesn't appear on the 'Create New Project Screen");			
+		}
+		test = report.createTest("Verify that the Save Button is Clickable");
+		if (this.SaveButton.isEnabled()) {
+			test.log(Status.PASS, " The Save Button is Clickable");
+		}
+		else {
+			test.log(Status.FAIL, "The Save Button is not Clickable");			
+		}
+		test = report.createTest("Verify that the Save Button saves the Project in the project list on the Landing Screen");
+		test = report.createTest("Verify that on clicking the Save Button 'Please Confirm Screen appears'");
 		this.SaveButton.click();
+		test.log(Status.PASS, " on clicking the Save Button 'Please Confirm Screen appears'");
 		utilityMethods.waitForVisibility(this.YesButton);
 		Thread.sleep(2000);
+		test = report.createTest("Verify that Yes Button appears on the 'Please Confirm Screen'");
+		if (this.YesButton.isDisplayed()) {
+			test.log(Status.PASS, "Yes Button appears on the 'Please Confirm Screen'");
+		}
+		else {
+			test.log(Status.FAIL, "Yes Button doesn't appear on the 'Please Confirm Screen'");			
+		}
+		test = report.createTest("Verify that Yes Button is clickable");
+		if (this.YesButton.isEnabled()) {
+			test.log(Status.PASS, " The Yes Button is Clickable");
+		}
+		else {
+			test.log(Status.FAIL, "The Yes Button is not Clickable");			
+		}
+		test = report.createTest("Verify that on Clicking Yes the Project opens and navigates back to Landing Screen");
 		this.YesButton.click();
+		test.log(Status.PASS, " on Clicking Yes the Project opens and navigates back to Landing Screen");
 		Thread.sleep(5000);
 
 	}

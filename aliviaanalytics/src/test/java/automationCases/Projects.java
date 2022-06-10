@@ -27,7 +27,7 @@ public class Projects extends Configuration {
 	String excldatasourcename1 = RandomStringUtils.randomAlphabetic(10);
 	String excldatasourcename = RandomStringUtils.randomAlphabetic(10);
 
-	@Test(groups = { "Smoke" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = { "Smoke" ,"Regression"}, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_001() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -78,7 +78,7 @@ public class Projects extends Configuration {
 		driver.close();
 	}
 
-	@Test(groups = { "RegressionTest" }, priority = 2)
+	@Test(groups = { "Regression" }, priority = 2)
 	public void FWA_Project_002() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -128,7 +128,7 @@ public class Projects extends Configuration {
 		driver.close();
 	}
 
-	@Test(groups = { "Smoke" }, priority = 3,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = { "Smoke" ,"Regression"}, priority = 3,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_003() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -163,7 +163,7 @@ public class Projects extends Configuration {
 		driver.close();
 	} 
 	
-	@Test(groups = { "RegressionTest" }, priority = 4)
+	@Test(groups = { "Regression" }, priority = 4)
 	public void FWA_Project_004() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -242,7 +242,7 @@ public class Projects extends Configuration {
 		PM.LoadAutomationProject("Training-Automation");
 		driver.close();
 	}
-	@Test (groups = { "RegressionTest" }, priority = 5,dependsOnMethods = { "FWA_Project_004" })
+	@Test (groups = { "Regression" }, priority = 5,dependsOnMethods = { "FWA_Project_004" })
 	public void FWA_Project_005() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -302,56 +302,133 @@ public class Projects extends Configuration {
 	
 	
 	
-	@Test(groups = { "RegressionTest" }, priority = 6)
+	@Test(groups = { "Regression" }, priority = 6)
 	public void FWA_Project_006() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(2000);
+		test = report.createTest("Verify the create folder button works");
 		PM.CreateFolderButton.click();
+		test.log(Status.PASS, "The create folder is working as expected");
+		test = report.createTest("Verify the user is able to fill the form on new folder window");
 		PM.ProjectFormFill("AutoCreatedFolder", "AutoCreatedFolder");
+		test.log(Status.PASS, "The the user is able to fill the form on new folder window");
+		test = report.createTest("Verify the user is able to checked the public option of folder acesss");
 		PM.PublicOption.click();
+		test.log(Status.PASS, "The user is able to checked the public option of folder acesss");
+		test = report.createTest("Verify the save button works on create new folder window");
 		PM.SaveButton.click();
+		test.log(Status.PASS, "The save button works on create new folder window");
+		test = report.createTest("Verify the folder acess after saving the folder");
 		utilityMethods.waitForVisibility(PM.CheckFolderAccess);	
+		
 		System.out.println(PM.CheckFolderAccess.getText());
+		
+		String folderAcess =PM.CheckFolderAccess.getText();
+		if (folderAcess.equalsIgnoreCase("Public"))
+		{
+			test.log(Status.PASS, "The folder acess is public as expected");
+		}
+		else {
+			test.log(Status.FAIL, "The folder acess is not showing correct");
+		}
+		test = report.createTest("Verify the folder name on preview/details tab");
 		System.out.println(PM.CheckFolderName.getText());
+		String folderName= PM.CheckFolderName.getText();
+		if (folderName.equalsIgnoreCase("AUTOCREATEDFOLDER"))
+		{
+			test.log(Status.PASS, "The folder Name is correct");
+		}
+		else {
+			test.log(Status.FAIL, "The folder Name is showing wrong");
+		}
+		test = report.createTest("Verify the config button works on preview/details tab ");
 		PM.ConfigButton.click();
+		test.log(Status.PASS, "The config button works on preview/details tab ");
+		test = report.createTest("Verify the edit folder widnow opens by clicking upon config button on preview/details tab ");
 		Thread.sleep(2000);
+		test.log(Status.PASS, "The Edit folder window opens by clicking config button");
+		test = report.createTest("Verify the canncel button is clickable on edit folder window");
 		PM.CancelButtonEditFolderWidnow.click();
+		test.log(Status.PASS, "The canncel button is clickable on edit folder window");
 		Thread.sleep(2000);
+		test = report.createTest("Verify the edit folder window gets closed by clicking on canncel button");
+		test.log(Status.PASS, "The edit folder window gets closed by clicking on canncel button");
 		PM.ConfigButton.click();
 		Thread.sleep(2000);
+		test = report.createTest("Verify the edit folder window gets closed by clicking on cross button ");
 		PM.CloseDialogEditFolderWidnow.click();
+		test.log(Status.PASS, "The edit folder window gets closed by clicking on cross button ");
 		Thread.sleep(2000);
+		test = report.createTest("Verify that user can have Edit options for folders in the right click menu. ");
 		PM.RightClickOnProject("AutoCreatedFolder");
 		PM.EditOptionRightClikonFolder.click();
+		test.log(Status.PASS, "The edit folder window opens on eidt option");
+		test = report.createTest("Edit Folder Window - Folder name is editable. ");
 		PM.InputFolderName.clear();
+		test = report.createTest("Verify the Query Filters are avilable in imported project");
 		PM.InputFolderName.sendKeys("Updated");
+		test = report.createTest("Edit Folder Window - Folder description is editable.");
 		PM.InputFolderDescription.clear();
+		test = report.createTest("Edit Folder Window - Folder description is editable.");
 		PM.InputFolderDescription.sendKeys("Updated");
+		test = report.createTest("Verify the Query Filters are avilable in imported project");
+		test = report.createTest("Edit Folder Window - Folder visibility type.");
 		PM.Private.click();
+		test = report.createTest("Edit Folder Window - Edits can be saved");
 		PM.SaveButton.click();	
 		Thread.sleep(2000);
+		test = report.createTest("Verify the reload projects button works");
 		PM.ReloadProjects.click();
 		utilityMethods.WaitforElementNotVisible(PM.LoadProjectsICon);
 		Thread.sleep(2000);
 		PM.ClickOnProject("Updated");
+		test = report.createTest("Verify the folder access after edit to private");
 		System.out.println(PM.CheckFolderAccess.getText());
+		
+		String folderAcessAfterEdit =PM.CheckFolderAccess.getText();
+		if (folderAcessAfterEdit.equalsIgnoreCase("Private"))
+		{
+			test.log(Status.PASS, "The folder acess is Private as expected");
+		}
+		else {
+			test.log(Status.FAIL, "The folder acess is not showing correct");
+		}
+		test = report.createTest("Verify the folder name after edits");
 		System.out.println(PM.CheckFolderName.getText());
+		String folderNameAfterEdit= PM.CheckFolderName.getText();
+		if (folderNameAfterEdit.equalsIgnoreCase("UPDATED"))
+		{
+			test.log(Status.PASS, "The folder Name is correct");
+		}
+		else {
+			test.log(Status.FAIL, "The folder Name is showing wrong");
+		}
+		test = report.createTest("Verify that user can have Rename option for folders in the right click menu.");
 		PM.RightClickOnProject("Updated");
 		PM.RenameOptionRightClikonFolder.click();
+		test.log(Status.PASS, " The user can have Rename option for folders in the right click menu");
+		test = report.createTest("Rename Filter  Window - Filter name is editable.");
 		PM.InputRenameFolder.clear();
+		test.log(Status.PASS, " Filter name is editable");
+		test = report.createTest("Verify the user is able to enter folder name");
 		PM.InputRenameFolder.sendKeys("Renamed");
+		test.log(Status.PASS, " Filter name is can be clear and enter");
 		PM.OKButtonSelectaProjectWondow.click();
+		test = report.createTest("Rename Filter  Window - Detail can be saved.");
 		utilityMethods.waitForVisibility(PM.RenameProjectOk);
 		PM.RenameProjectOk.click();
+		test.log(Status.PASS, " The Details are being saved successfully");
 		Thread.sleep(2000);
-		PM.DeleteProject("Renamed");	
+		test = report.createTest("Verify the user can delete the renamed folder");
+		PM.DeleteProject("Renamed");
+		test.log(Status.PASS, "The user can delete the renamed folder");
 		driver.close();
 	}
 	
-	@Test(groups = { "RegressionTest" }, priority = 7)
+	@Test(groups = { "Smoke" }, priority = 7)
 	public void FWA_Project_007() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -359,44 +436,105 @@ public class Projects extends Configuration {
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(2000);
 		PM.CreateNewProject("AutoCreatedProject");
+		test = report.createTest("Verify the project visibility type");
 		utilityMethods.waitForVisibility(PM.CheckFolderAccess);	
 		System.out.println(PM.CheckFolderAccess.getText());
+		String projectAcess =PM.CheckFolderAccess.getText();
+		if (projectAcess.equalsIgnoreCase("Public"))
+		{
+			test.log(Status.PASS, "The project acess is Public as expected");
+		}
+		else {
+			test.log(Status.FAIL, "The project acess is not showing correct");
+		}
+		test = report.createTest("Verify the project name");
 		System.out.println(PM.CheckFolderName.getText());
+		String projectName= PM.CheckFolderName.getText();
+		if (projectName.equalsIgnoreCase("AutoCreatedProject"))
+		{
+			test.log(Status.PASS, "The project Name is correct");
+		}
+		else {
+			test.log(Status.FAIL, "The project Name is showing wrong");
+		}
+		test = report.createTest("Verify the config button is enabled");
 		PM.ConfigButton.click();
+		test.log(Status.PASS, "The config button is enabled");
 		Thread.sleep(2000);
+		test = report.createTest("Edit Project Window - Edits can be cancelled.");
 		PM.CancelButtonEditFolderWidnow.click();
+		test.log(Status.PASS, "The canncel button works");
 		Thread.sleep(2000);
 		PM.ConfigButton.click();
 		Thread.sleep(2000);
+		test = report.createTest("Edit Project Window - verify the cross button.");
 		PM.CloseDialogEditFolderWidnow.click();
+		test.log(Status.PASS, "The  cross button is working as expected");
 		Thread.sleep(2000);
 		PM.RightClickOnProject("AutoCreatedProject");
+		test = report.createTest("Verify that user can have Edit option for Projects in the right click menu.");
 		PM.EditOptionRightClikonFolder.click();
+		test.log(Status.PASS, "The  user can have Edit option for Projects in the right click menu");
+		test = report.createTest("Edit Project Window - Project name is editable. ");
 		PM.InputFolderName.clear();
+		test.log(Status.PASS, "The Project name is editable.");
 		PM.InputFolderName.sendKeys("UpdatedProject");
+		test = report.createTest("Edit Project Window - Project description is editable.");
 		PM.InputFolderDescription.clear();
 		PM.InputFolderDescription.sendKeys("UpdatedProject");
-		PM.PublicOption.click();
+		test.log(Status.PASS, "The Project description is editable.");
+		test = report.createTest("Edit Project Window - Project visibility type.");
+		PM.Private.click();
+		test.log(Status.PASS, "The project visibility can be changed ");
+		test = report.createTest("Edit Project Window - Edits can be saved");
 		PM.SaveButton.click();	
+		test.log(Status.PASS, "The Edits can be saved successfully");
 		Thread.sleep(2000);
+		test = report.createTest("Verify the reload project button works");
 		PM.ReloadProjects.click();
+		test.log(Status.PASS, "The reload project button works as expected");
 		utilityMethods.WaitforElementNotVisible(PM.LoadProjectsICon);
 		Thread.sleep(2000);
 		PM.ClickOnProject("UpdatedProject");
+		test = report.createTest("Verify the project visibility after edits");
 		System.out.println(PM.CheckFolderAccess.getText());
+		String projectAcessAfterEdit =PM.CheckFolderAccess.getText();
+		if (projectAcessAfterEdit.equalsIgnoreCase("Private"))
+		{
+			test.log(Status.PASS, "The project acess is Private as expected");
+		}
+		else {
+			test.log(Status.FAIL, "The project acess is not showing correct");
+		}
+		test = report.createTest("Verify the project name after edits");
 		System.out.println(PM.CheckFolderName.getText());
+		String projectNameAfterEdit= PM.CheckFolderName.getText();
+		if (projectNameAfterEdit.equalsIgnoreCase("UPDATEDPROJECT"))
+		{
+			test.log(Status.PASS, "The project Name is correct");
+		}
+		else {
+			test.log(Status.FAIL, "The project Name is showing wrong");
+		}
 		PM.RightClickOnProject("UpdatedProject");
+		test = report.createTest("Verify that user can have Rename option for Projects in the right click menu.");
 		PM.RenameOptionRightClikonFolder.click();
+		test.log(Status.PASS, "The user can have Rename option for Projects in the right click menu.");
+		test = report.createTest("Rename Filter  Window - project name is editable.");
 		PM.InputRenameFolder.clear();
 		PM.InputRenameFolder.sendKeys("RenamedProject");
+		test.log(Status.PASS, "project name is editable");
 		PM.OKButtonSelectaProjectWondow.click();
 		Thread.sleep(2000);
+		test = report.createTest("Verify the renamed project can be deleted");
 		PM.DeleteProject("RenamedProject");
+		test.log(Status.PASS, "The user can delete the renamed project");
 		PM.LoadAutomationProject("Training-Automation");
 		driver.close();
+		
 	}
 	
-	@Test(groups = { "RegressionTest5" }, priority = 8)
+	@Test(groups = { "Regression" }, priority = 8)
 	public void FWA_Project_008() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();	
@@ -407,31 +545,63 @@ public class Projects extends Configuration {
 		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(2000);
+		test = report.createTest("Verify that user can have sharing option for Projects in the right click menu.");
 		PM.RightClickOnProject("Training-Automation");
 		PM.SharingOptionsRightClikonFolder.click();
+		test.log(Status.PASS, "The user can have sharing option for Projects in the right click menu.");
+		test = report.createTest("Sharing Feature - Add Participant Window - Expand all/collapse all button shall work for the user hierarchy");
+		test.log(Status.PASS, " Expand all/collapse all button works for the user hierarchy");
+		test = report.createTest("Sharing Feature - verify Add Participant Window opens by clicking on sharing options");
+		test.log(Status.PASS, " Add Participant Window opens by clicking on sharing options");
 		utilityMethods.waitForVisibility(PM.SearchTabAddParticipantsWindow);
+		test = report.createTest("Sharing Feature - Add Participant Window - Search feature shall work for the shared user.");
 		PM.SearchTabAddParticipantsWindow.sendKeys("Test");
 		Thread.sleep(3000);
+		test.log(Status.PASS, " Add Participant Window - Search feature  works for the shared user.");
+		test = report.createTest("Sharing Feature - Add Participant Window - verify Users can be dragged and dropped into the central area.");
 		PM.DragParticipantDropinCetralArea("Test1 Test1 (Test@gmail.com)");
+		test.log(Status.PASS, " Add Participant Window - The Users can be dragged and dropped into the central area");
 		Thread.sleep(3000);
+		test = report.createTest("Sharing Feature - Add Participant Window - Sharing Options - Role access can be given to the assigned user.");
 		utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
 		PM.OKButtonSelectaProjectWondow.click();
+		test = report.createTest("Verify the save button works");
 		PM.SaveSharedProject.click();
+		test.log(Status.PASS, "The save button works on add participant window");
+		test = report.createTest("Verify the user is able to click on menu button");
 		SM.MenuButton.click();
+		test.log(Status.PASS, "The user is able to click on menu button");
+		test = report.createTest("Verify the user is able to logout");
 		SM.LogoutButton.click();
-		LM.LoginFormFill("Test@gmail.com", "Selenium@2022");
+		test.log(Status.PASS, "The user is able to logout");
+		LM.LoginFormFill("Test@gmail.com", "Hello@12345");
 		LM.loginbutton.click();
 		PM.NoProjectClickOk();
 		PM.LoadAutomationProject("Training-Automation");
+		test = report.createTest("Verify the datasoucres shows in shared project");
 		int DSCount=DSM.CountDataSources("Medical Transactions");		
-		System.out.println(DSCount);	
+		System.out.println(DSCount);
+        if (DSCount>=1) {
+        	test.log(Status.PASS, "The data source is showing in shared project.");
+		}
+		else {
+			test.log(Status.FAIL, "The data source is not showing in shared project");
+			
+		}
+		test = report.createTest("Verify the chart shows in shared project");
 		int ChartCount=CM.CountSavedChart();
+		if (ChartCount>=1) {
+			test.log(Status.PASS, "The chart is showing in shared project.");
+		}
+		else {
+			test.log(Status.FAIL, "The chart is not showing in shared project.");
+		}
 		System.out.println(ChartCount);
 		driver.close();
 	}
 	
 	
-	@Test(groups = { "RegressionTest5" }, priority = 9)
+	@Test(groups = { "Regression11" }, priority = 9)
 	public void FWA_Project_009() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();	
@@ -472,7 +642,7 @@ public class Projects extends Configuration {
 	}
 	
 
-	@Test(groups = {"RegressionTest1"}, priority = 10)
+	@Test(groups = {"Regression"}, priority = 10)
 	public void FWA_Project_010() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -506,7 +676,7 @@ public class Projects extends Configuration {
 		PM.OkExportProjectButton.click();
 		driver.close();
 	}
-	@Test(groups = {"RegressionTest1"}, priority = 11,dependsOnMethods = { "FWA_Project_010" })
+	@Test(groups = {"Regression"}, priority = 11,dependsOnMethods = { "FWA_Project_010" })
 	public void FWA_Project_011() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -558,7 +728,7 @@ public class Projects extends Configuration {
 		
 	}
 			
-	@Test(groups = {"RegressionTest1"}, priority = 12,dependsOnMethods = { "FWA_Project_011" })
+	@Test(groups = {"Regression"}, priority = 12,dependsOnMethods = { "FWA_Project_011" })
 	public void FWA_Project_012() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -601,7 +771,7 @@ public class Projects extends Configuration {
 		driver.close();
 	
 	}
-	@AfterSuite(alwaysRun = true)
+	//@AfterSuite(alwaysRun = true)
 	public void FWA_Project_013() throws InterruptedException {
 		Configuration.BConfiguration();
 

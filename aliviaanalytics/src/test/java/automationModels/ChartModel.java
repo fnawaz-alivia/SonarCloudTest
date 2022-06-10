@@ -127,13 +127,14 @@ public class ChartModel extends Configuration {
 
 	public List<WebElement> DescriptorsValuesList;
 
-	public int CountSavedChart() {
+	public int CountSavedChart() throws InterruptedException {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		PM.GetStarted.click();
 		this.Analysis.click();
 		this.Charting.click();
 		this.ClickonROW.click();
 		this.SavedCharts.click();
+		Thread.sleep(5000);
 		this.SavedChartsList.size();
 
 		return this.SavedChartsList.size();

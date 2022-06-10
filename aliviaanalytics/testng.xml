@@ -4,12 +4,12 @@
 	<test name="First Test">
 		<groups>
 			<run>
-				<include name="Smoke" />
+				<include name="Regression33" />
 			</run>
 		</groups>
 		<classes>
-<class name="automationCases.Charting" />
-<class name="automationCases.Dashboard" />
+<class name="automationCases.Projects" />
+
 		</classes>
 	</test>
 </suite>

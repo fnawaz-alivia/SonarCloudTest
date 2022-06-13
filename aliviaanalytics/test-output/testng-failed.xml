@@ -11,8 +11,8 @@
       <class name="automationCases.Projects">
         <methods>
           <include name="startTest"/>
+          <include name="FWA_Project_006"/>
           <include name="endTest"/>
-          <include name="FWA_Project_007"/>
         </methods>
       </class> <!-- automationCases.Projects -->
     </classes>

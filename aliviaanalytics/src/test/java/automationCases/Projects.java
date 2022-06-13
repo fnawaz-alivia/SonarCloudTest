@@ -302,7 +302,7 @@ public class Projects extends Configuration {
 	
 	
 	
-	@Test(groups = { "Regression" }, priority = 6)
+	@Test(groups = { "Smoke" }, priority = 6)
 	public void FWA_Project_006() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -460,7 +460,99 @@ public class Projects extends Configuration {
 		test = report.createTest("Verify the config button is enabled");
 		PM.ConfigButton.click();
 		test.log(Status.PASS, "The config button is enabled");
-		Thread.sleep(2000);
+		Thread.sleep(4000);
+		test = report.createTest("Edit Project Screen:- Verify that Project Name Text Field is auto populated when Edit Project Screen opens");
+		String projectNameOnEditpage= PM.InputFolderName.getAttribute("value");
+		if (projectNameOnEditpage.equalsIgnoreCase("AutoCreatedProject"))
+		{
+			test.log(Status.PASS, "Project Name Text Field is auto populated when Edit Project Screen opens");
+		}
+		else {
+			test.log(Status.FAIL, "The Project Name Text Field is not auto populated when Edit Project Screen opens");
+		}
+		test = report.createTest("Edit Project Screen:- Verify that Project Type Text Field is auto populated when Edit Project Screen opens");
+		String projectTypeOnEditpage=PM.InputProjectType.getAttribute("value");
+		if (projectTypeOnEditpage.equalsIgnoreCase("AutoCreatedProject"))
+		{
+			test.log(Status.PASS, "The Project Type Text Field is auto populated when Edit Project Screen opens");
+		}
+		else {
+			test.log(Status.FAIL, "The Project Type Text Field is not auto populated when Edit Project Screen opens");
+		}
+		test = report.createTest("Edit Project Screen:- Verify that Project Description Text Field is auto populated when Edit Project Screen opens");
+		String projectDescriptionOnEditpage=PM.InputFolderDescription.getAttribute("value");
+		if (projectDescriptionOnEditpage.equalsIgnoreCase("AutoCreatedProject"))
+		{
+			test.log(Status.PASS, "The Project Description Text Field is auto populated when Edit Project Screen opens");
+		}
+		else {
+			test.log(Status.FAIL, "TheProject Description Text Field is not auto populated when Edit Project Screen opens");
+		}
+		
+		test = report.createTest("Edit Project Screen:- Verify that 'Project Name Text Field' appears on the 'Edit Project''");
+		if(PM.InputFolderName.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The 'Project Name Text Field' appears on the 'Edit Project Screen'");	
+		}
+		else {
+			test.log(Status.FAIL, "The 'Project Name Text Field' doesn't appear on the 'Edit Project Screen'");			
+		}
+		test = report.createTest("Edit Project screen:Verify that the 'Project Name Text Field' is mandatory");
+		test = report.createTest("Edit Project screen:Verify that if the Project Name is empty an exclamation mark should appear on right side");
+		PM.InputFolderName.click();
+		PM.InputFolderName.clear();
+		PM.InputFolderDescription.click();
+		Thread.sleep(3000);
+		if(PM.exclamationmark.isDisplayed()) {
+			test.log(Status.PASS, "if the Project Name is empty an exclamation mark appears on right side");
+		}
+		else {
+			test.log(Status.FAIL, "if the Project Name is empty an exclamation mark doesn't appear on right side");
+		}
+		test = report.createTest("Edit Project screen:Verify that hovering on the exclamation mark should display 'This field is required' message");
+		if(PM.exclamationmark.getAttribute("data-errorqtip").contains("This field is required")) {
+			test.log(Status.PASS, "hovering on the exclamation mark displays 'This field is required' message");
+		}
+		else
+		{
+			test.log(Status.FAIL, "hovering on the exclamation mark dosn't display 'This field is required' message");
+		}
+         PM.InputFolderName.sendKeys("AutoCreatedProject");
+		test = report.createTest("Edit Project screen:Verify that 'Project Type Text Field' appears on the 'Edit Project screen'");
+		if(PM.InputProjectType.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The 'Project Type Text Field' appears on the 'Edit Project screen'");	
+		}
+		else {
+			test.log(Status.FAIL, "The 'Project Type Text Field' doesn't appear on the 'Edit Project screen'");			
+		}
+		test = report.createTest("Edit Project screen:Verify that a 'Project Description' box appears on the 'Edit Project screen'");
+		if(PM.InputFolderDescription.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The 'Project Description' box appears appears on the 'Edit Project screen'");	
+		}
+		else {
+			test.log(Status.FAIL, "The 'Project Description' box doesn't appear on the 'Edit Project screen'");			
+		}
+	
+		test = report.createTest("Edit Project screen -Verfiy the project visibility type.");
+		test = report.createTest("Edit Project screen:Verify that 'Visibility Radio Button' appears on the 'Edit Project screen'");
+		if(PM.PublicOption.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The 'Visibility Radio Button' appears appears on the 'Edit Project screen'");	
+		}
+		else {
+			test.log(Status.FAIL, "The 'Visibility Radio Button' doesn't appear on the 'Edit Project screen'");			
+		}
+		test = report.createTest("Edit Project screen:Verify that both Public and Private Radio Buttons are Clickable");
+		if(PM.Private.isDisplayed()) 
+		{
+			test.log(Status.PASS, "both Public and Private Radio Buttons are Clickable");	
+		}
+		else {
+			test.log(Status.FAIL, "both Public and Private Radio Buttons are not Clickable");			
+		}
+
 		test = report.createTest("Edit Project Window - Edits can be cancelled.");
 		PM.CancelButtonEditFolderWidnow.click();
 		test.log(Status.PASS, "The canncel button works");

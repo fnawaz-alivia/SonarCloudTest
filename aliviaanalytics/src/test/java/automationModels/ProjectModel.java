@@ -500,7 +500,7 @@ public class ProjectModel extends Configuration
 				break;
 			}
 		}
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		this.DeleteOptionRightClickonProject.click();
 		utilityMethods.waitForVisibility(this.YesButton);
 		this.YesButton.click();

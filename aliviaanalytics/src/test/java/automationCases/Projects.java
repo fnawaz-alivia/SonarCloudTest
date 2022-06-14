@@ -626,7 +626,7 @@ public class Projects extends Configuration {
 		
 	}
 	
-	@Test(groups = { "Regression" }, priority = 8)
+	@Test(groups = { "Smoke" }, priority = 8)
 	public void FWA_Project_008() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();	
@@ -693,7 +693,7 @@ public class Projects extends Configuration {
 	}
 	
 	
-	@Test(groups = { "Regression11" }, priority = 9)
+	@Test(groups = { "Smoke" }, priority = 9)
 	public void FWA_Project_009() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();	
@@ -720,11 +720,32 @@ public class Projects extends Configuration {
 		PM.SaveSharedItemWithOtherProjects.click();
 		PM.LoadAutomationProject("SharedProject");
 		int DSCount=DSM.CountDataSources("Medical Transactions");		
-		System.out.println(DSCount);	
+		System.out.println(DSCount);
+		test = report.createTest("Verify the datasource is shared with dashoabrd");
+		if (DSCount>=1) {
+			test.log(Status.PASS, "The datasource is being shared with dashoabrd.");
+		}
+		else {
+			test.log(Status.FAIL, "The datasource is not being shared with dashoabrd.");
+		}
 		int ChartCount=CM.CountSavedChart();
+		test = report.createTest("Verify the chart is shared with dashoabrd");
 		System.out.println(ChartCount);
+		if (ChartCount>=1) {
+			test.log(Status.PASS, "The chart is being shared with dashoabrd");
+		}
+		else {
+			test.log(Status.FAIL, "The chart is being shared with dashoabrd");
+		}
+		test = report.createTest("Verify the shared dashobaod shows in shared project");
 		int CountDashboards= DM.CountDashboard();
 		System.out.println(CountDashboards);
+		if (CountDashboards>=1) {
+			test.log(Status.PASS, "The shared dashobaod is being shown in shared project");
+		}
+		else {
+			test.log(Status.FAIL, "The shared dashobaod is not being shown in shared project");
+		}
 		Thread.sleep(2000);
 		PM.GetStarted.click();
 		PM.SearchTabProject.click();

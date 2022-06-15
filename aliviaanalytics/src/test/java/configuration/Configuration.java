@@ -45,12 +45,14 @@ public class Configuration {
 		options.setCapability("ACCEPT_INSECURE_CERTS", true);
 		options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
   		options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-		options.addArguments("--headless");
+		//options.addArguments("--headless");
 		 driver = new ChromeDriver(options);
 		Dimension d = new Dimension(1360, 978);
 		//Resize the current window to the given dimension
 		driver.manage().window().setSize(d);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
 		 driver.get(url);
 			
 		   } catch (FileNotFoundException e) {

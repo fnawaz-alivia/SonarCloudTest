@@ -304,13 +304,60 @@ public class ProjectModel extends Configuration
 
 	public WebElement SelectProjectItemstoImport;
 
-	public void ProjectFormFill(String pname, String pdescription) {
-		test = report.createTest("Create New Folder Window - Folder name is editable. ");
+	public void ProjectFormFill(String pname, String pdescription) throws InterruptedException {
+		
+		test = report.createTest("Verify that 'Create Folder Button' when clicked pops up 'Create New Folder' screen");
+		if (this.InputFolderName.isDisplayed()) {
+			test.log(Status.PASS, "The 'Create New Folder' screen opens clicking on create folder button");	
+		}
+		
+		else {
+			
+			test.log(Status.FAIL, "The 'Create New Folder' screen doesn't open clicking on create folder button");
+		}
+		
+		test = report.createTest("Verify that Folder Name Text Field is visible on 'Create New Folder' screen");
+		if (this.InputFolderName.isDisplayed()) {
+			test.log(Status.PASS, "The Folder Name Text Field is visible on 'Create New Folder' screen");	
+		}
+		
+		else {
+			
+			test.log(Status.FAIL, "The Folder Name Text Field is not visible on 'Create New Folder' screen");
+		}	
+		test = report.createTest("Verify that the 'Project Name Text Field' is mandatory");
+		test = report.createTest("Verify that if the Project Name is empty an exclamation mark should appear on right side");
+		this.InputFolderName.click();
+		this.InputFolderDescription.click();
+		Thread.sleep(2000);
+		if(this.exclamationmark.isDisplayed()) {
+			test.log(Status.PASS, "if the folder Name is empty an exclamation mark appears on right side");
+		}
+		else {
+			test.log(Status.FAIL, "if the folder Name is empty an exclamation mark doesn't appear on right side");
+		}
+		test = report.createTest("Verify that hovering on the exclamation mark should display 'This field is required' message");
+		if(this.exclamationmark.getAttribute("data-errorqtip").contains("This field is required")) {
+			test.log(Status.PASS, "hovering on the exclamation mark displays 'This field is required' message");
+		}
+		else
+		{
+			test.log(Status.FAIL, "hovering on the exclamation mark dosn't display 'This field is required' message");
+		}
+		test = report.createTest("Verify that 'Folder Name' accepts  alphabets");
 		this.InputFolderName.sendKeys(pname);
-		test.log(Status.PASS, "The folder name is enterred successfully");
-		test = report.createTest("Create New Folder Window - Folder description is editable.");
+		test.log(Status.PASS, "The user is able to enter the folder name");
+		test = report.createTest("Verify that 'Folder Description' Text Field is visible on Create Folder screen");
+		if(this.InputFolderDescription.isDisplayed()) {
+			test.log(Status.PASS, "The 'Folder Description' Text Field is visible on Create Folder screen");
+		}
+		else
+		{
+			test.log(Status.FAIL, "The 'Folder Description' Text Field is not visible on Create Folder screen\"");
+		}
+		test = report.createTest("Verify that 'Folder Description' accepts  alphabets");
 		this.InputFolderDescription.sendKeys(pdescription);
-		test.log(Status.PASS, "The description is enterred successfully");
+		test.log(Status.PASS, "The user is able to enter the alphabets in field ");
 	}
 	
 	public void SelectProjecttoImportFromGit(String pname) {

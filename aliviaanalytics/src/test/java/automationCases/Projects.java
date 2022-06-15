@@ -78,7 +78,7 @@ public class Projects extends Configuration {
 		driver.close();
 	}
 
-	@Test(groups = { "Regression" }, priority = 2)
+	@Test(groups = { "smoke" }, priority = 2,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_002() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -302,22 +302,57 @@ public class Projects extends Configuration {
 	
 	
 	
-	@Test(groups = { "Smoke" }, priority = 6)
+	@Test(groups = { "smoke" }, priority = 6,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_006() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(2000);
+		test = report.createTest("Verify that Create folder Button is visible on the landing screen");
+		if(PM.CreateFolderButton.isDisplayed())
+		{
+			test.log(Status.PASS, "The Create folder Button is visible on the landing screen");	
+		}
+		else {
+			test.log(Status.FAIL, "The Create folder Button is visible on the landing screen");
+		}	
+		
+		test = report.createTest("Verify that 'Create Folder Button' is clickable");
+		if(PM.CreateFolderButton.isEnabled())
+		{
+			test.log(Status.PASS, "The 'Create Folder Button' is clickable");	
+		}
+		else {
+			test.log(Status.FAIL, "The 'Create Folder Button' is not clickable");
+		}	
+		
 		test = report.createTest("Verify the create folder button works");
 		PM.CreateFolderButton.click();
 		test.log(Status.PASS, "The create folder is working as expected");
 		test = report.createTest("Verify the user is able to fill the form on new folder window");
 		PM.ProjectFormFill("AutoCreatedFolder", "AutoCreatedFolder");
 		test.log(Status.PASS, "The the user is able to fill the form on new folder window");
-		test = report.createTest("Verify the user is able to checked the public option of folder acesss");
+		test = report.createTest("Create New Project Window -Verfiy the project visibility type.");
+		test = report.createTest("Verify that 'Visibility Radio Button' appears on the 'Create New Project Screen'");
+		if(PM.PublicOption.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The 'Visibility Radio Button' appears appears on the 'Create New Project Screen'");	
+		}
+		else {
+			test.log(Status.FAIL, "The 'Visibility Radio Button' doesn't appear on the 'Create New Project Screen'");			
+		}
+		test = report.createTest("Verify that both Public and Private Radio Buttons are Clickable");
+		if(PM.Private.isDisplayed()) 
+		{
+			test.log(Status.PASS, "both Public and Private Radio Buttons are Clickable");	
+		}
+		else {
+			test.log(Status.FAIL, "both Public and Private Radio Buttons are not Clickable");			
+		}
+		test = report.createTest("Verify that both Public and Private Radio Buttons cannot be clicked simultaneously.");
 		PM.PublicOption.click();
-		test.log(Status.PASS, "The user is able to checked the public option of folder acesss");
+		test.log(Status.PASS, "both Public and Private Radio Buttons cannot be clicked simultaneously.");
 		test = report.createTest("Verify the save button works on create new folder window");
 		PM.SaveButton.click();
 		test.log(Status.PASS, "The save button works on create new folder window");
@@ -428,7 +463,7 @@ public class Projects extends Configuration {
 		driver.close();
 	}
 	
-	@Test(groups = { "Smoke" }, priority = 7)
+	@Test(groups = { "Smoke" }, priority = 7,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_007() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -626,7 +661,7 @@ public class Projects extends Configuration {
 		
 	}
 	
-	@Test(groups = { "Smoke" }, priority = 8)
+	@Test(groups = { "Smoke" }, priority = 8,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_008() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();	
@@ -645,7 +680,23 @@ public class Projects extends Configuration {
 		test.log(Status.PASS, " Expand all/collapse all button works for the user hierarchy");
 		test = report.createTest("Sharing Feature - verify Add Participant Window opens by clicking on sharing options");
 		test.log(Status.PASS, " Add Participant Window opens by clicking on sharing options");
+		test = report.createTest("Verify that on Clicking the Share Button 'Add Participants' Screen opens");
 		utilityMethods.waitForVisibility(PM.SearchTabAddParticipantsWindow);
+		if(PM.SearchTabAddParticipantsWindow.isDisplayed()) {
+			test.log(Status.PASS, "on Clicking the Share Button 'Add Participants' Screen opens");
+		}
+		else {
+			test.log(Status.FAIL, "on Clicking the Share Button 'Add Participants' Screen doesn't open");
+		}
+		test = report.createTest("Verify the Search Input Field is visible on 'Add Participant Screen'");
+		if (PM.SearchTabAddParticipantsWindow.isDisplayed())
+		{
+			test.log(Status.PASS, " the Search Input Field is visible on 'Add Participant Screen'");
+		}
+		else {
+			test.log(Status.FAIL, "the Search Input Field is not visible on 'Add Participant Screen'");
+		}
+		test.log(Status.PASS, " Add Participant Window - Search feature  works for the shared user.");
 		test = report.createTest("Sharing Feature - Add Participant Window - Search feature shall work for the shared user.");
 		PM.SearchTabAddParticipantsWindow.sendKeys("Test");
 		Thread.sleep(3000);
@@ -693,7 +744,7 @@ public class Projects extends Configuration {
 	}
 	
 	
-	@Test(groups = { "Smoke" }, priority = 9)
+	@Test(groups = { "Smoke" }, priority = 9,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_009() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();	

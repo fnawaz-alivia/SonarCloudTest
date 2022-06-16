@@ -45,7 +45,7 @@ public class Models extends Configuration {
 
 	}
 		
-		@Test(groups = { "smoke" },  priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
+		@Test(groups = { "smoke","regression" },  priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 		public void FWA_Model_002() throws InterruptedException {
 			Configuration.BConfiguration();
 			Configuration.LoginApplication();
@@ -59,7 +59,7 @@ public class Models extends Configuration {
 
 	}
 		
-		@Test(groups = { "Regression" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
+		@Test(groups = {"smoke", "regression" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 		public void FWA_Model_003() throws InterruptedException {
 			Configuration.BConfiguration();
 			Configuration.LoginApplication();

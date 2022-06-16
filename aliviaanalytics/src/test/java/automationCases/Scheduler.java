@@ -9,7 +9,7 @@ import configuration.Configuration;
 
 public class Scheduler extends Configuration{
 	
-	@Test(groups = {"Smoke"}, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = {"smoke","regression"}, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Scheduler_001() throws InterruptedException {
 		
 		Configuration.BConfiguration();

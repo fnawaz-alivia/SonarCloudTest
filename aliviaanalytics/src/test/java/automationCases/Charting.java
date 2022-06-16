@@ -14,7 +14,7 @@ import configuration.Configuration;
 
 public class Charting  extends Configuration{
 	public static ExtentTest test;
-	@Test(groups = { "Smoke" }, priority = 1)
+	@Test(groups = { "smoke","regression" }, priority = 1)
 	public void FWA_CreateTestData_001() throws InterruptedException {
 		
 		

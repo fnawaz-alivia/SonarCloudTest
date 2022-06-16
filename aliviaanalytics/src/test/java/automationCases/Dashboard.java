@@ -8,7 +8,7 @@ import automationUtils.utilityMethods;
 import configuration.Configuration;
 
 public class Dashboard extends Configuration{
-	@Test(groups = { "Smoke" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = { "smoke","regression" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Dashboard_001() throws InterruptedException {
 		
 		

@@ -27,7 +27,7 @@ public class Projects extends Configuration {
 	String excldatasourcename1 = RandomStringUtils.randomAlphabetic(10);
 	String excldatasourcename = RandomStringUtils.randomAlphabetic(10);
 
-	@Test(groups = { "Smoke" ,"Regression"}, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = {"smoke" ,"regression"}, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_001() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -78,7 +78,7 @@ public class Projects extends Configuration {
 		driver.close();
 	}
 
-	@Test(groups = { "smoke" }, priority = 2,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = {"regression"}, priority = 2,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_002() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -128,7 +128,7 @@ public class Projects extends Configuration {
 		driver.close();
 	}
 
-	@Test(groups = { "Smoke" ,"Regression"}, priority = 3,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = {"smoke" ,"regression"}, priority = 3,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_003() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -163,7 +163,7 @@ public class Projects extends Configuration {
 		driver.close();
 	} 
 	
-	@Test(groups = { "Regression" }, priority = 4)
+	@Test(groups = {"regression"}, priority = 4)
 	public void FWA_Project_004() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -242,7 +242,7 @@ public class Projects extends Configuration {
 		PM.LoadAutomationProject("Training-Automation");
 		driver.close();
 	}
-	@Test (groups = { "Regression" }, priority = 5,dependsOnMethods = { "FWA_Project_004" })
+	@Test (groups = {"regression"}, priority = 5,dependsOnMethods = { "FWA_Project_004" })
 	public void FWA_Project_005() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -302,7 +302,7 @@ public class Projects extends Configuration {
 	
 	
 	
-	@Test(groups = { "smoke" }, priority = 6,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = {"regression"}, priority = 6,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_006() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -463,7 +463,7 @@ public class Projects extends Configuration {
 		driver.close();
 	}
 	
-	@Test(groups = { "Smoke" }, priority = 7,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = {"regression"}, priority = 7,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_007() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -661,7 +661,7 @@ public class Projects extends Configuration {
 		
 	}
 	
-	@Test(groups = { "Smoke" }, priority = 8,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = {"regression"}, priority = 8,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_008() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();	
@@ -717,7 +717,7 @@ public class Projects extends Configuration {
 		test = report.createTest("Verify the user is able to logout");
 		SM.LogoutButton.click();
 		test.log(Status.PASS, "The user is able to logout");
-		LM.LoginFormFill("Test@gmail.com", "Hello@12345");
+		LM.LoginFormFill("Test@gmail.com", "Lahore@2022@");
 		LM.loginbutton.click();
 		PM.NoProjectClickOk();
 		PM.LoadAutomationProject("Training-Automation");
@@ -744,7 +744,7 @@ public class Projects extends Configuration {
 	}
 	
 	
-	@Test(groups = { "Smoke" }, priority = 9,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = {"regression"}, priority = 9,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_009() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();	
@@ -806,7 +806,7 @@ public class Projects extends Configuration {
 	}
 	
 
-	@Test(groups = {"Regression"}, priority = 10)
+	@Test(groups = {"regression"}, priority = 10)
 	public void FWA_Project_010() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -840,7 +840,7 @@ public class Projects extends Configuration {
 		PM.OkExportProjectButton.click();
 		driver.close();
 	}
-	@Test(groups = {"Regression"}, priority = 11,dependsOnMethods = { "FWA_Project_010" })
+	@Test(groups = {"regression"}, priority = 11,dependsOnMethods = { "FWA_Project_010" })
 	public void FWA_Project_011() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -892,7 +892,7 @@ public class Projects extends Configuration {
 		
 	}
 			
-	@Test(groups = {"Regression"}, priority = 12,dependsOnMethods = { "FWA_Project_011" })
+	@Test(groups = {"regression"}, priority = 12,dependsOnMethods = { "FWA_Project_011" })
 	public void FWA_Project_012() throws InterruptedException {
 		Configuration.BConfiguration();
 

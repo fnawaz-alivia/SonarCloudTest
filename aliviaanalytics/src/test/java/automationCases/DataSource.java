@@ -20,7 +20,7 @@ import configuration.Configuration;
 
 public class DataSource extends Configuration {
 	public static ExtentTest test;
-	@Test(groups = { "Smoke" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = { "smoke","regression" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_DataSource_001() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();

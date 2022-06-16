@@ -4,6 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
+
+import com.aventstack.extentreports.ExtentTest;
+
 import automationModels.ModelingLibraryModel;
 import automationModels.ModelingModel;
 import automationModels.ProjectModel;
@@ -11,7 +14,7 @@ import automationUtils.utilityMethods;
 import configuration.Configuration;
 
 public class Models extends Configuration {	
-	
+	public static ExtentTest test;
 		@Test(groups = { "RegressionTest" }, priority = 1)
 		public void FWA_Model_001() throws InterruptedException {
 			Configuration.BConfiguration();
@@ -53,6 +56,7 @@ public class Models extends Configuration {
 			ModelingModel MM = PageFactory.initElements(driver, automationModels.ModelingModel.class);
 			utilityMethods.waitForVisibility(PM.GetStarted);
 			Thread.sleep(2000);
+			test = report.createTest("Verify that the Model 'R Operator' is executed as intended.");
 			MM.CreateModel("R Operator");   
 			MM.ExecutionOfModel();
 			driver.close();
@@ -67,6 +71,7 @@ public class Models extends Configuration {
 			ModelingModel MM = PageFactory.initElements(driver, automationModels.ModelingModel.class);
 			utilityMethods.waitForVisibility(PM.GetStarted);
 			Thread.sleep(8000);
+			test = report.createTest("Verify that the Model 'FP Growth' is executed as intended.");
 			MM.CreateModel("FP Growth");   
 			MM.ExecutionOfModel();
 			driver.close();

@@ -806,7 +806,7 @@ public class Projects extends Configuration {
 	}
 	
 
-	@Test(groups = {"regression"}, priority = 10)
+	@Test(groups = {"regressiontest"}, priority = 10)
 	public void FWA_Project_010() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -840,7 +840,7 @@ public class Projects extends Configuration {
 		PM.OkExportProjectButton.click();
 		driver.close();
 	}
-	@Test(groups = {"regression"}, priority = 11,dependsOnMethods = { "FWA_Project_010" })
+	@Test(groups = {"regressiontest"}, priority = 11,dependsOnMethods = { "FWA_Project_010" })
 	public void FWA_Project_011() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -892,7 +892,7 @@ public class Projects extends Configuration {
 		
 	}
 			
-	@Test(groups = {"regression"}, priority = 12,dependsOnMethods = { "FWA_Project_011" })
+	@Test(groups = {"regressiontest"}, priority = 12,dependsOnMethods = { "FWA_Project_011" })
 	public void FWA_Project_012() throws InterruptedException {
 		Configuration.BConfiguration();
 

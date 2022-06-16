@@ -158,9 +158,12 @@ public class ModelingModel  extends Configuration{
 	}
 	
 public void ExecutionOfModel() throws InterruptedException {
-	ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
+	
 	try {
+		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
+		test = report.createTest("Verify that the Model is executed as intended.");
 	this.ModelExecutionButton.click();
+	Thread.sleep(2000);
 	System.out.println(this.ModelExecutionButtonText.getText());
 	Instant start = Instant.now();
 	while (this.ModelExecutionButtonText.getText().equals("Stop")) {
@@ -170,33 +173,32 @@ public void ExecutionOfModel() throws InterruptedException {
 		Duration timeElapsed = Duration.between(start, end);
 		long timetaken = timeElapsed.getSeconds();
 		if (timetaken > 100) {
-			test.log(Status.FAIL, " There is an issue with Model execution");
-			driver.close();
-			
+			test.log(Status.FAIL, " There is an issue with Model execution,it is taking much for execution");	
 			break;
 		}
 
 	}
-	}
-	catch(Exception e)
-	{
-		System.out.println("Model execution is taking too much time , close the browser");
-	}
+	
 	System.out.println(this.ModelExecutionButtonText.getText());
 	for (WebElement el : ModelExecutionResult) {
 		if (el.getText().equals("Execution Error")) {
-			test.log(Status.FAIL, " There is an issue with Model execution");
+			test.log(Status.FAIL, " The Model execution is failed");
 			System.out.println(el.getText());
 			CM.OKButton.click();
 			break;
 		} 
 		else if (el.getText().equals("Execution Completed")) {
 			System.out.println(el.getText());
-			test.log(Status.PASS, " There Model execution is completed successfully");
+			test.log(Status.PASS, " The Model execution is completed successfully");
 		}
 
 	}
 
-
+	}
+	catch(Exception e)
+	{
+		System.out.println("There is an issue with model execution");
+		driver.close();
+	}
 	}
 }

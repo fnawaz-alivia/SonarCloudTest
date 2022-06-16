@@ -57,13 +57,12 @@ public class Models extends Configuration {
 			utilityMethods.waitForVisibility(PM.GetStarted);
 			Thread.sleep(2000);
 			MM.CreateModel("R Operator");   
-			test = report.createTest("Verify that the Model 'R Operator' is executed as intended.");
 			MM.ExecutionOfModel();
 			driver.close();
 
 	}
 		
-		@Test(groups = {"smoke", "Regression333" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
+		@Test(groups = {"smoke", "regression" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 		public void FWA_Model_003() throws InterruptedException {
 			Configuration.BConfiguration();
 			Configuration.LoginApplication();
@@ -72,7 +71,6 @@ public class Models extends Configuration {
 			utilityMethods.waitForVisibility(PM.GetStarted);
 			Thread.sleep(8000);	
 			MM.CreateModel("FP Growth"); 
-			test = report.createTest("Verify that the Model 'FP Growth' is executed as intended.");
 			MM.ExecutionOfModel();
 			driver.close();
 

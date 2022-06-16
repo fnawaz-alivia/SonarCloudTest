@@ -56,23 +56,23 @@ public class Models extends Configuration {
 			ModelingModel MM = PageFactory.initElements(driver, automationModels.ModelingModel.class);
 			utilityMethods.waitForVisibility(PM.GetStarted);
 			Thread.sleep(2000);
-			test = report.createTest("Verify that the Model 'R Operator' is executed as intended.");
 			MM.CreateModel("R Operator");   
+			test = report.createTest("Verify that the Model 'R Operator' is executed as intended.");
 			MM.ExecutionOfModel();
 			driver.close();
 
 	}
 		
-		@Test(groups = {"smoke", "regression" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
+		@Test(groups = {"smoke", "Regression333" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 		public void FWA_Model_003() throws InterruptedException {
 			Configuration.BConfiguration();
 			Configuration.LoginApplication();
 			ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 			ModelingModel MM = PageFactory.initElements(driver, automationModels.ModelingModel.class);
 			utilityMethods.waitForVisibility(PM.GetStarted);
-			Thread.sleep(8000);
+			Thread.sleep(8000);	
+			MM.CreateModel("FP Growth"); 
 			test = report.createTest("Verify that the Model 'FP Growth' is executed as intended.");
-			MM.CreateModel("FP Growth");   
 			MM.ExecutionOfModel();
 			driver.close();
 

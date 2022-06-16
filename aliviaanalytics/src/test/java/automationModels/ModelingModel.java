@@ -158,25 +158,29 @@ public class ModelingModel  extends Configuration{
 	}
 	
 public void ExecutionOfModel() throws InterruptedException {
-	try {
 	ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
-	
+	try {
 	this.ModelExecutionButton.click();
 	System.out.println(this.ModelExecutionButtonText.getText());
 	Instant start = Instant.now();
 	while (this.ModelExecutionButtonText.getText().equals("Stop")) {
-		System.out.println("loopin");
+		System.out.println("The Model Execution is inprogress");
 		Thread.sleep(2000);
 		Instant end = Instant.now();
 		Duration timeElapsed = Duration.between(start, end);
 		long timetaken = timeElapsed.getSeconds();
-		if (timetaken > 180) {
+		if (timetaken > 100) {
 			test.log(Status.FAIL, " There is an issue with Model execution");
 			driver.close();
 			
 			break;
 		}
 
+	}
+	}
+	catch(Exception e)
+	{
+		System.out.println("Model execution is taking too much time , close the browser");
 	}
 	System.out.println(this.ModelExecutionButtonText.getText());
 	for (WebElement el : ModelExecutionResult) {
@@ -193,10 +197,6 @@ public void ExecutionOfModel() throws InterruptedException {
 
 	}
 
-}
-	catch(Exception e)
-	{
-		System.out.println("Model execution is taking too much time , close the browser");
-	}
+
 	}
 }

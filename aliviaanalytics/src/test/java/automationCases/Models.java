@@ -48,7 +48,7 @@ public class Models extends Configuration {
 
 	}
 		
-		@Test(groups = { "smoke","regression" },  priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
+		@Test(groups = { "smoke","regression" },  priority = 2,retryAnalyzer = listeners.RetryAnalyzer.class)
 		public void FWA_Model_002() throws InterruptedException {
 			Configuration.BConfiguration();
 			Configuration.LoginApplication();
@@ -62,7 +62,7 @@ public class Models extends Configuration {
 
 	}
 		
-		@Test(groups = {"smoke", "regression" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
+		@Test(groups = {"smoke", "regression" }, priority = 3,retryAnalyzer = listeners.RetryAnalyzer.class)
 		public void FWA_Model_003() throws InterruptedException {
 			Configuration.BConfiguration();
 			Configuration.LoginApplication();
@@ -71,6 +71,20 @@ public class Models extends Configuration {
 			utilityMethods.waitForVisibility(PM.GetStarted);
 			Thread.sleep(8000);	
 			MM.CreateModel("FP Growth"); 
+			MM.ExecutionOfModel();
+			driver.close();
+
+	}
+		
+		@Test(groups = {"smoke", "regression1" }, priority = 4,retryAnalyzer = listeners.RetryAnalyzer.class)
+		public void FWA_Model_004() throws InterruptedException {
+			Configuration.BConfiguration();
+			Configuration.LoginApplication();
+			ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+			ModelingModel MM = PageFactory.initElements(driver, automationModels.ModelingModel.class);
+			utilityMethods.waitForVisibility(PM.GetStarted);
+			Thread.sleep(8000);	
+			MM.CreateModel("Python Operator Template"); 
 			MM.ExecutionOfModel();
 			driver.close();
 

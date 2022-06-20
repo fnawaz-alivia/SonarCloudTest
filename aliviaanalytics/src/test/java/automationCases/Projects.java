@@ -26,6 +26,7 @@ public class Projects extends Configuration {
 	public static ExtentTest test;
 	String excldatasourcename1 = RandomStringUtils.randomAlphabetic(10);
 	String excldatasourcename = RandomStringUtils.randomAlphabetic(10);
+	String ImportedProject = RandomStringUtils.randomAlphabetic(10);
 
 	@Test(groups = {"smoke" ,"regression"}, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_001() throws InterruptedException {
@@ -163,7 +164,7 @@ public class Projects extends Configuration {
 		driver.close();
 	} 
 	
-	@Test(groups = {"regressiontest"}, priority = 4)
+	@Test(groups = {"regression"}, priority = 4)
 	public void FWA_Project_004() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -203,7 +204,7 @@ public class Projects extends Configuration {
 		test.log(Status.PASS, "Th User is able to import as a new project");
 		PM.InputProjectNameToImport.clear();
 		test = report.createTest("Verify User is able to enter Project name");
-		PM.InputProjectNameToImport.sendKeys("Imported Project");
+		PM.InputProjectNameToImport.sendKeys(ImportedProject);
 		test.log(Status.PASS, "Th User is able to enter Project name");
 		utilityMethods.waitForVisibility(PM.OKButton);
 		PM.OKButton.click();
@@ -216,7 +217,7 @@ public class Projects extends Configuration {
 		PM.ReloadProjects.click();
 		utilityMethods.WaitforElementNotVisible(PM.LoadProjectsICon);
 		Thread.sleep(2000);
-		PM.LoadAutomationProject("Imported Project");
+		PM.LoadAutomationProject(ImportedProject);
 		Thread.sleep(2000);
 		test = report.createTest("Verify the chart shows in imported project");
 		int savedChartCount=CM.CountSavedChart();
@@ -242,7 +243,7 @@ public class Projects extends Configuration {
 		PM.LoadAutomationProject("Training-Automation");
 		driver.close();
 	}
-	@Test (groups = {"regressiontest"}, priority = 5,dependsOnMethods = { "FWA_Project_004" })
+	@Test (groups = {"regression"}, priority = 5,dependsOnMethods = { "FWA_Project_004" })
 	public void FWA_Project_005() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -273,7 +274,7 @@ public class Projects extends Configuration {
 		utilityMethods.waitForVisibility(PM.SelectProjectImportLocalProjectDataWindow);
 		PM.SelectProjectImportLocalProjectDataWindow.click();
 		test = report.createTest("Verify the user is able to select the existing project");
-		PM.SelectProjectImportLocalProjectDataWindow.sendKeys("Imported Project");
+		PM.SelectProjectImportLocalProjectDataWindow.sendKeys(ImportedProject);
 		PM.SelectProjectImportLocalProjectDataWindow.sendKeys(Keys.ENTER);
 		Thread.sleep(2000);
 		PM.SelectProjectItemstoImport.click();
@@ -285,7 +286,7 @@ public class Projects extends Configuration {
 		PM.ReloadProjects.click();
 		Thread.sleep(2000);
 		test = report.createTest("Verify the user is able to load the imported project");
-		PM.LoadAutomationProject("Imported Project");
+		PM.LoadAutomationProject(ImportedProject);
 		Thread.sleep(2000);
 		test.log(Status.PASS, "The user is able to load the imported project");
 		test = report.createTest("Verify the Query Filters are avilable in imported project");
@@ -295,7 +296,7 @@ public class Projects extends Configuration {
 		PM.GetStarted.click();
 		PM.SearchTabProject.click();
 		Thread.sleep(2000);
-		PM.DeleteProject("Imported Project");
+		PM.DeleteProject(ImportedProject);
 		PM.LoadAutomationProject("Training-Automation");
 		driver.close();
 	}

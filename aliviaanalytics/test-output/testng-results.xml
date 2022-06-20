@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="2" total="3" passed="1">
+<testng-results skipped="0" failed="0" ignored="10" total="12" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name=" FWA Test Collection Suite" duration-ms="40764" started-at="2022-06-16T18:38:51 PKT" finished-at="2022-06-16T18:39:31 PKT">
+  <suite name=" FWA Test Collection Suite" duration-ms="145087" started-at="2022-06-20T18:04:26 PKT" finished-at="2022-06-20T18:06:51 PKT">
     <groups>
-      <group name="Regression333">
-        <method signature="Models.FWA_Model_003()[pri:1, instance:automationCases.Models@60285225]" name="FWA_Model_003" class="automationCases.Models"/>
-      </group> <!-- Regression333 -->
-      <group name="smoke">
-        <method signature="Models.FWA_Model_003()[pri:1, instance:automationCases.Models@60285225]" name="FWA_Model_003" class="automationCases.Models"/>
-      </group> <!-- smoke -->
+      <group name="regressiontest1">
+        <method signature="Projects.FWA_Project_004()[pri:4, instance:automationCases.Projects@74ad1f1f]" name="FWA_Project_004" class="automationCases.Projects"/>
+        <method signature="Projects.FWA_Project_005()[pri:5, instance:automationCases.Projects@74ad1f1f]" name="FWA_Project_005" class="automationCases.Projects"/>
+      </group> <!-- regressiontest1 -->
     </groups>
-    <test name="First Test" duration-ms="40764" started-at="2022-06-16T18:38:51 PKT" finished-at="2022-06-16T18:39:31 PKT">
-      <class name="automationCases.Models">
-        <test-method status="PASS" signature="startTest()[pri:0, instance:automationCases.Models@60285225]" name="startTest" is-config="true" duration-ms="172" started-at="2022-06-16T18:38:51 PKT" finished-at="2022-06-16T18:38:51 PKT">
+    <test name="First Test" duration-ms="145087" started-at="2022-06-20T18:04:26 PKT" finished-at="2022-06-20T18:06:51 PKT">
+      <class name="automationCases.Projects">
+        <test-method status="PASS" signature="startTest()[pri:0, instance:automationCases.Projects@74ad1f1f]" name="startTest" is-config="true" duration-ms="135" started-at="2022-06-20T18:04:26 PKT" finished-at="2022-06-20T18:04:26 PKT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startTest -->
-        <test-method status="PASS" signature="FWA_Model_003()[pri:1, instance:automationCases.Models@60285225]" name="FWA_Model_003" duration-ms="40719" started-at="2022-06-16T18:38:51 PKT" finished-at="2022-06-16T18:39:31 PKT">
+        <test-method status="PASS" signature="FWA_Project_004()[pri:4, instance:automationCases.Projects@74ad1f1f]" name="FWA_Project_004" duration-ms="76856" started-at="2022-06-20T18:04:26 PKT" finished-at="2022-06-20T18:05:43 PKT">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- FWA_Model_003 -->
-        <test-method status="PASS" signature="endTest()[pri:0, instance:automationCases.Models@60285225]" name="endTest" is-config="true" duration-ms="473" started-at="2022-06-16T18:39:32 PKT" finished-at="2022-06-16T18:39:32 PKT">
+        </test-method> <!-- FWA_Project_004 -->
+        <test-method status="PASS" signature="FWA_Project_005()[pri:5, instance:automationCases.Projects@74ad1f1f]" name="FWA_Project_005" duration-ms="68179" started-at="2022-06-20T18:05:43 PKT" depends-on-methods="automationCases.Projects.FWA_Project_004" finished-at="2022-06-20T18:06:51 PKT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_Project_005 -->
+        <test-method status="PASS" signature="endTest()[pri:0, instance:automationCases.Projects@74ad1f1f]" name="endTest" is-config="true" duration-ms="415" started-at="2022-06-20T18:06:51 PKT" finished-at="2022-06-20T18:06:52 PKT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endTest -->
-      </class> <!-- automationCases.Models -->
+      </class> <!-- automationCases.Projects -->
     </test> <!-- First Test -->
   </suite> <!--  FWA Test Collection Suite -->
 </testng-results>

@@ -21,6 +21,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 import automationModels.LoginModel;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 
 
@@ -40,7 +41,8 @@ public class Configuration {
          String url = (String) jsonObject.get("url");
           username = (String) jsonObject.get("username");
           password = (String) jsonObject.get("password");
-	    System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\datafiles\\chromedriver.exe");
+//	  System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\datafiles\\chromedriver.exe");
+	     WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
 		options.setCapability("ACCEPT_INSECURE_CERTS", true);
 		options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);

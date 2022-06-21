@@ -161,7 +161,6 @@ public void ExecutionOfModel() throws InterruptedException {
 	
 	try {
 		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
-		test = report.createTest("Verify that the Model is executed as intended.");
 	this.ModelExecutionButton.click();
 	Thread.sleep(2000);
 	System.out.println(this.ModelExecutionButtonText.getText());

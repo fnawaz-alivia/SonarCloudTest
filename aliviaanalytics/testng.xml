@@ -5,11 +5,11 @@
 		<groups>
 			<run>
 			
-				<include name="regressiontest1" />
+				<include name="regression" />
 			</run>
 		</groups>
 		<classes>
-<class name="automationCases.Projects" />
+<class name="automationCases.Models" />
 
 		</classes>
 	</test>

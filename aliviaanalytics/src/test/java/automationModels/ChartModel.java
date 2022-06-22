@@ -539,6 +539,8 @@ public void DeleteChart() throws InterruptedException {
 	
 	try {
 	  DashboardModel DM = PageFactory.initElements(driver, automationModels.DashboardModel.class);
+	  ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+	  QueryBuilderModel QBM = PageFactory.initElements(driver, automationModels.QueryBuilderModel.class);
 	    this.SavedCharts.click();
 		this.SearchTabSavedChartsGrid.clear();
 		Thread.sleep(1000);
@@ -550,7 +552,16 @@ public void DeleteChart() throws InterruptedException {
 		this.RightClickOnChartName(RenameChartName);
         Thread.sleep(3000);
         DM.RightDeleteOption.click();
-        Thread.sleep(3000);
+        Thread.sleep(2000);
+        PM.YesButton.click();
+		Thread.sleep(2000);
+		utilityMethods.waitForVisibility(QBM.OkButtonQB);
+		QBM.OkButtonQB.click();
+        this.SavedCharts.click();
+		this.SearchTabSavedChartsGrid.clear();
+		Thread.sleep(1000);
+		this.SearchTabSavedChartsGrid.sendKeys(RenameChartName);
+		Thread.sleep(3000);
         test = report.createTest("Verify the user is able to delete the chart ");
         int listSizeafterdelete= this.SavedChartsList.size();
         System.out.println("Chart list size after the delete chart"+listSizeafterdelete);   
@@ -578,13 +589,6 @@ catch(Exception e)
 public void ReNameChart() throws InterruptedException {
 	   DashboardModel DM = PageFactory.initElements(driver, automationModels.DashboardModel.class);
 	    QueryBuilderModel QBM = PageFactory.initElements(driver, automationModels.QueryBuilderModel.class);
-		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		PM.GetStarted.click();
-		this.Analysis.click();
-		Thread.sleep(2000);
-		this.Charting.click();
-		this.ClickonROW.click();
-		this.SavedCharts.click();
 		this.SearchTabSavedChartsGrid.clear();
 		this.SearchTabSavedChartsGrid.sendKeys("BubbleGroupChart");
 		Thread.sleep(2000);

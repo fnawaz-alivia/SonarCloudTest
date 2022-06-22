@@ -546,12 +546,14 @@ public void DeleteChart() throws InterruptedException {
 	
 		Thread.sleep(2000);
 		int listSizebeforeDelete= this.SavedChartsList.size();
-        this.RightClickOnChartName(RenameChartName);
-        Thread.sleep(2000);
+		System.out.println("Chart list size before the delete chart"+listSizebeforeDelete);        
+		this.RightClickOnChartName(RenameChartName);
+        Thread.sleep(3000);
         DM.RightDeleteOption.click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         test = report.createTest("Verify the user is able to delete the chart ");
         int listSizeafterdelete= this.SavedChartsList.size();
+        System.out.println("Chart list size after the delete chart"+listSizeafterdelete);   
         
        if (listSizebeforeDelete> listSizeafterdelete) {
     	   test.log(Status.PASS, "The user is able to delete the chart"); 

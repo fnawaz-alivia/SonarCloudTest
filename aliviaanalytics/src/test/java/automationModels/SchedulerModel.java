@@ -15,6 +15,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
+import automationUtils.utilityMethods;
 import configuration.Configuration;
 
 public class SchedulerModel extends Configuration{
@@ -94,6 +95,7 @@ public class SchedulerModel extends Configuration{
 	}
 	
 	public void CreateProcess() throws InterruptedException {
+		QueryBuilderModel QBM = PageFactory.initElements(driver, automationModels.QueryBuilderModel.class);
 		new Actions(driver).moveToElement(this.Scheduler).moveByOffset(150, 0).click().perform();
 		this.Process.click();
 		Thread.sleep(2000);
@@ -134,7 +136,9 @@ public class SchedulerModel extends Configuration{
 		test = report.createTest("Verify the user is able to execute the process");
 		this.ExecuteNow.click();
 		test.log(Status.PASS, "The user is able to execute the process");
-		Thread.sleep(15000);
+		Thread.sleep(10000);
+		utilityMethods.waitForVisibility(QBM.OkButtonQB);
+		QBM.OkButtonQB.click();
 		this.LastExecutedOn.click();
 		test = report.createTest("Verify the Processs execution result");
 		WebElement ele1 = driver.findElement(By.xpath(("//div[contains(@class, 'processSchedulerleft')]//child::table['"+index+"'+'"+1+"']//tr//td[5]//div")));

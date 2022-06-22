@@ -936,7 +936,7 @@ public class Projects extends Configuration {
 		driver.close();
 	
 	}
-	//@AfterSuite(alwaysRun = true)
+	@AfterSuite(alwaysRun = true)
 	public void FWA_Project_013() throws InterruptedException {
 		Configuration.BConfiguration();
 

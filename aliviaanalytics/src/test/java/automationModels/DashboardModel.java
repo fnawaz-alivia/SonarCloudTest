@@ -352,7 +352,7 @@ public class DashboardModel extends Configuration{
         Thread.sleep(4000);
         PM.YesButton.click();
 		Thread.sleep(2000);
-		utilityMethods.waitForVisibility(PM.OkButtonDeleteProject);
+		utilityMethods.waitForVisibility(QBM.OkButtonQB);
 		QBM.OkButtonQB.click();
         test = report.createTest("Verify the user is able to delete the dashbaord ");
         int listSizeafterdelete= this.DashboardList.size();

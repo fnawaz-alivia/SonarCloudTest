@@ -164,7 +164,7 @@ public class Projects extends Configuration {
 		driver.close();
 	} 
 	
-	@Test(groups = {"regression"}, priority = 4)
+	@Test(groups = {"regression"}, priority = 4,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_004() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -243,7 +243,7 @@ public class Projects extends Configuration {
 		PM.LoadAutomationProject("Training-Automation");
 		driver.close();
 	}
-	@Test (groups = {"regression"}, priority = 5,dependsOnMethods = { "FWA_Project_004" })
+	@Test (groups = {"regression"}, priority = 5,dependsOnMethods = { "FWA_Project_004" },retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_005() throws InterruptedException {
 		Configuration.BConfiguration();
 

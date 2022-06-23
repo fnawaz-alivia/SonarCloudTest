@@ -354,6 +354,40 @@ public class Projects extends Configuration {
 		test = report.createTest("Verify that both Public and Private Radio Buttons cannot be clicked simultaneously.");
 		PM.PublicOption.click();
 		test.log(Status.PASS, "both Public and Private Radio Buttons cannot be clicked simultaneously.");
+		test = report.createTest("Verify that Save Button is visible on 'Create Folder' screen");
+		if(PM.SaveButton.isDisplayed()) 
+		{
+			test.log(Status.PASS, " The Save Button appears on the 'Create Folder' Screen");	
+		}
+		else {
+			test.log(Status.FAIL, "The Save Button doesn't appear on the Create Folder' Screen");			
+		}
+		test = report.createTest("Create Folder:- Verify that Save Button is Clickable ");
+		if (PM.SaveButton.isEnabled()) {
+			test.log(Status.PASS, " The Save Button is Clickable");
+		}
+		else {
+			test.log(Status.FAIL, "The Save Button is not Clickable");	
+		}
+		
+		test = report.createTest("New Folder Screen:- Verify that Cancel button appears on the New Project Screen");
+		if(PM.CancelButtonEditFolderWidnow.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The cancel button appears on the new folder Screen");	
+		}
+		else {
+			test.log(Status.FAIL, "The cancel button doesn't appear on the new folder Screen");			
+		}
+		
+		test = report.createTest("New folder Screen:- Verify that Cancel button is Clickable");
+		if(PM.CancelButtonEditFolderWidnow.isEnabled()) 
+		{
+			test.log(Status.PASS, "The cancel button is Clickable");	
+		}
+		else {
+			test.log(Status.FAIL, "The cancel button is not Clickable");			
+		}
+		
 		test = report.createTest("Verify the save button works on create new folder window");
 		PM.SaveButton.click();
 		test.log(Status.PASS, "The save button works on create new folder window");
@@ -380,15 +414,105 @@ public class Projects extends Configuration {
 		else {
 			test.log(Status.FAIL, "The folder Name is showing wrong");
 		}
+		test = report.createTest("Verify the edit folder widnow opens by clicking upon config button on preview/details tab ");
 		test = report.createTest("Verify the config button works on preview/details tab ");
 		PM.ConfigButton.click();
 		test.log(Status.PASS, "The config button works on preview/details tab ");
-		test = report.createTest("Verify the edit folder widnow opens by clicking upon config button on preview/details tab ");
-		Thread.sleep(2000);
-		test.log(Status.PASS, "The Edit folder window opens by clicking config button");
-		test = report.createTest("Verify the canncel button is clickable on edit folder window");
+		test = report.createTest("Edit folder Screen:- Verify that Project Name Text Field is auto populated when Edit Project Screen opens");
+		String projectNameOnEditpage= PM.InputFolderName.getAttribute("value");
+		if (projectNameOnEditpage.equalsIgnoreCase("AUTOCREATEDFOLDER"))
+		{
+			test.log(Status.PASS, "The folder Name Text Field is auto populated when Edit folder Screen opens");
+		}
+		else {
+			test.log(Status.FAIL, "The folder Name Text Field is not auto populated when Edit folder Screen opens");
+		}
+		test = report.createTest("Edit Project Screen:- Verify that Project Description Text Field is auto populated when Edit Project Screen opens");
+		String projectDescriptionOnEditpage=PM.InputFolderDescription.getAttribute("value");
+		if (projectDescriptionOnEditpage.equalsIgnoreCase("AUTOCREATEDFOLDER"))
+		{
+			test.log(Status.PASS, "The folder Description Text Field is auto populated when Edit folder Screen opens");
+		}
+		else {
+			test.log(Status.FAIL, "The folder  Description Text Field is not auto populated when Edit folder Screen opens");
+		}
+	
+		test = report.createTest("Edit folder Screen:- Verify that 'folder Name Text Field' appears on the 'Edit folder''");
+		if(PM.InputFolderName.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The 'folder Name Text Field' appears on the 'Edit folder Screen'");	
+		}
+		else {
+			test.log(Status.FAIL, "The 'folder Name Text Field' doesn't appear on the 'Edit folder Screen'");			
+		}
+		test = report.createTest("Edit folder screen:Verify that the 'folder Name Text Field' is mandatory");
+		test = report.createTest("Edit folder screen:Verify that if the folder Name is empty an exclamation mark should appear on right side");
+		PM.InputFolderName.click();
+		PM.InputFolderName.clear();
+		PM.InputFolderDescription.click();
+		Thread.sleep(3000);
+		if(PM.exclamationmark.isDisplayed()) {
+			test.log(Status.PASS, "if the folder Name is empty an exclamation mark appears on right side");
+		}
+		else {
+			test.log(Status.FAIL, "if the folder Name is empty an exclamation mark doesn't appear on right side");
+		}
+		test = report.createTest("Edit folder screen:Verify that hovering on the exclamation mark should display 'This field is required' message");
+		if(PM.exclamationmark.getAttribute("data-errorqtip").contains("This field is required")) {
+			test.log(Status.PASS, "hovering on the exclamation mark displays 'This field is required' message");
+		}
+		else
+		{
+			test.log(Status.FAIL, "hovering on the exclamation mark dosn't display 'This field is required' message");
+		}
+         PM.InputFolderName.sendKeys("AutoCreatedProject");
+		
+		test = report.createTest("Edit folder screen:Verify that a 'folder Description' box appears on the 'Edit folder screen'");
+		if(PM.InputFolderDescription.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The 'folder Description' box appears appears on the 'Edit folder screen'");	
+		}
+		else {
+			test.log(Status.FAIL, "The 'folder Description' box doesn't appear on the 'Edit folder screen'");			
+		}
+	
+		test = report.createTest("Edit folder screen -Verfiy the folder visibility type.");
+		test = report.createTest("Edit folder screen:Verify that 'Visibility Radio Button' appears on the 'Edit folder screen'");
+		if(PM.PublicOption.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The 'Visibility Radio Button' appears appears on the 'Edit folder screen'");	
+		}
+		else {
+			test.log(Status.FAIL, "The 'Visibility Radio Button' doesn't appear on the 'Edit folder screen'");			
+		}
+		test = report.createTest("Edit folder screen:Verify that both Public and Private Radio Buttons are Clickable");
+		if(PM.Private.isDisplayed()) 
+		{
+			test.log(Status.PASS, "both Public and Private Radio Buttons are Clickable");	
+		}
+		else {
+			test.log(Status.FAIL, "both Public and Private Radio Buttons are not Clickable");			
+		}
+		test = report.createTest("Edit Folder Screen:- Verify that Cancel button appears on the Edit Project Screen");
+		if(PM.CancelButtonEditFolderWidnow.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The cancel button appears on the Edit folder Screen");	
+		}
+		else {
+			test.log(Status.FAIL, "The cancel button doesn't appear on the Edit folder Screen");			
+		}
+		
+		test = report.createTest("Edit folder Screen:- Verify that Cancel button is Clickable");
+		if(PM.CancelButtonEditFolderWidnow.isEnabled()) 
+		{
+			test.log(Status.PASS, "The cancel button is Clickable");	
+		}
+		else {
+			test.log(Status.FAIL, "The cancel button is not Clickable");			
+		}
+		test = report.createTest("Edit Folder:- Verify that clicking on Cancel Button discards the chnages and navigates back to Landing screen");
 		PM.CancelButtonEditFolderWidnow.click();
-		test.log(Status.PASS, "The canncel button is clickable on edit folder window");
+		test.log(Status.PASS, "clicking on Cancel Button discards the chnages and navigates back to Landing screen");
 		Thread.sleep(2000);
 		test = report.createTest("Verify the edit folder window gets closed by clicking on canncel button");
 		test.log(Status.PASS, "The edit folder window gets closed by clicking on canncel button");
@@ -413,6 +537,21 @@ public class Projects extends Configuration {
 		test = report.createTest("Verify the Query Filters are avilable in imported project");
 		test = report.createTest("Edit Folder Window - Folder visibility type.");
 		PM.Private.click();
+		test = report.createTest("Edit Folder:- Verify that Save Button is visible on Edit Folder screen");
+		if(PM.SaveButton.isDisplayed()) 
+		{
+			test.log(Status.PASS, " The Save Button appears on the Edit Folder screen");	
+		}
+		else {
+			test.log(Status.FAIL, "The Save Button doesn't appear on the Edit Folder screen");			
+		}
+		test = report.createTest("Edit Folder screen:- Verify that Save Button is Clickable ");
+		if (PM.SaveButton.isEnabled()) {
+			test.log(Status.PASS, " The Save Button is Clickable");
+		}
+		else {
+			test.log(Status.FAIL, "The Save Button is not Clickable");
+		}
 		test = report.createTest("Edit Folder Window - Edits can be saved");
 		PM.SaveButton.click();	
 		Thread.sleep(2000);
@@ -462,9 +601,11 @@ public class Projects extends Configuration {
 		PM.DeleteProject("Renamed");
 		test.log(Status.PASS, "The user can delete the renamed folder");
 		driver.close();
-	}
+		
 	
-	@Test(groups = {"regression"}, priority = 7,retryAnalyzer = listeners.RetryAnalyzer.class)
+		}
+		
+		@Test(groups = {"regression"}, priority = 7,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_007() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -980,7 +1121,7 @@ public class Projects extends Configuration {
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(2000);	
 		PM.DeleteAllAutoCreatedProjects("Training-Automation");
-		PM.DeleteAllAutoCreatedProjects("hello");
+		driver.close();
 	
 	}
 }

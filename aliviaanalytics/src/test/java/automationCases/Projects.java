@@ -589,9 +589,27 @@ public class Projects extends Configuration {
 			test.log(Status.FAIL, "both Public and Private Radio Buttons are not Clickable");			
 		}
 
-		test = report.createTest("Edit Project Window - Edits can be cancelled.");
+		test = report.createTest("Edit Project Screen:- Verify that Cancel button appears on the Edit Project Screen");
+		if(PM.CancelButtonEditFolderWidnow.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The cancel button appears on the Edit Project Screen");	
+		}
+		else {
+			test.log(Status.FAIL, "The cancel button doesn't appear on the Edit Project Screen");			
+		}
+		
+		test = report.createTest("Edit Project Screen:- Verify that Cancel button is Clickable");
+		if(PM.CancelButtonEditFolderWidnow.isEnabled()) 
+		{
+			test.log(Status.PASS, "The cancel button is Clickable");	
+		}
+		else {
+			test.log(Status.FAIL, "The cancel button is not Clickable");			
+		}
+		
+		test = report.createTest("Edit Project Screen:- Verify that on Clicking the Cancel Button the 'Edit Project Screen' Disapperas and navigates back to Landing Screen");
 		PM.CancelButtonEditFolderWidnow.click();
-		test.log(Status.PASS, "The canncel button works");
+		test.log(Status.PASS, "on Clicking the Cancel Button the 'Edit Project Screen' Disapperas and navigates back to Landing Screen");
 		Thread.sleep(2000);
 		PM.ConfigButton.click();
 		Thread.sleep(2000);
@@ -614,9 +632,25 @@ public class Projects extends Configuration {
 		test = report.createTest("Edit Project Window - Project visibility type.");
 		PM.Private.click();
 		test.log(Status.PASS, "The project visibility can be changed ");
-		test = report.createTest("Edit Project Window - Edits can be saved");
+		test = report.createTest("Edit Project Screen:- Verify that Save Button appears on the Edit Project Screen");
+		if(PM.SaveButton.isDisplayed()) 
+		{
+			test.log(Status.PASS, " The Save Button appears on the 'Edit Project Screen");	
+		}
+		else {
+			test.log(Status.FAIL, "The Save Button doesn't appear on the 'Edit Project Screen");			
+		}
+		test = report.createTest("Edit Project Screen:- Verify that the Save Button is Clickable");
+		if (PM.SaveButton.isEnabled()) {
+			test.log(Status.PASS, " The Save Button is Clickable");
+		}
+		else {
+			test.log(Status.FAIL, "The Save Button is not Clickable");			
+		
+		
+		test = report.createTest("Edit Project Screen:- Verify that the Save Button saves the Edited Project in the project list on the Landing Screen");
 		PM.SaveButton.click();	
-		test.log(Status.PASS, "The Edits can be saved successfully");
+		test.log(Status.PASS, "The Save Button saves the Edited Project in the project list on the Landing Screen");
 		Thread.sleep(2000);
 		test = report.createTest("Verify the reload project button works");
 		PM.ReloadProjects.click();
@@ -661,7 +695,7 @@ public class Projects extends Configuration {
 		driver.close();
 		
 	}
-	
+	}
 	@Test(groups = {"regression"}, priority = 8,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_008() throws InterruptedException {
 		Configuration.BConfiguration();

@@ -476,6 +476,23 @@ public class ProjectModel extends Configuration
 		test = report.createTest("Verify that both Public and Private Radio Buttons cannot be clicked simultaneously.");
 		this.PublicOption.click();
 		test.log(Status.PASS, "both Public and Private Radio Buttons cannot be clicked simultaneously.");
+		test = report.createTest("'Create New Project Screen':- Verify that Cancel button appears on the Edit Project Screen");
+		if(this.CancelButtonEditFolderWidnow.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The cancel button appears on the 'Create New Project Screen'");	
+		}
+		else {
+			test.log(Status.FAIL, "The cancel button doesn't appear on the 'Create New Project Screen'");			
+		}
+		
+		test = report.createTest("'Create New Project Screen':- Verify that Cancel button is Clickable");
+		if(this.CancelButtonEditFolderWidnow.isEnabled()) 
+		{
+			test.log(Status.PASS, "The cancel button is Clickable");	
+		}
+		else {
+			test.log(Status.FAIL, "The cancel button is not Clickable");			
+		}
 		test = report.createTest("Verify that Save Button appears on the 'Create New Project Screen'");
 		if(this.SaveButton.isDisplayed()) 
 		{
@@ -510,6 +527,20 @@ public class ProjectModel extends Configuration
 		}
 		else {
 			test.log(Status.FAIL, "The Yes Button is not Clickable");			
+		}
+		test = report.createTest("Verify that NO Button appears on the 'Please Confirm Screen'");
+		if (this.NoButtonProjectLoad.isDisplayed()) {
+			test.log(Status.PASS, "NO Button appears on the 'Please Confirm Screen'");
+		}
+		else {
+			test.log(Status.FAIL, "No Button doesn't appear on the 'Please Confirm Screen'");			
+		}
+		test = report.createTest("Verify that No Button is clickable");
+		if (this.NoButtonProjectLoad.isEnabled()) {
+			test.log(Status.PASS, " The No Button is Clickable");
+		}
+		else {
+			test.log(Status.FAIL, "The No Button is not Clickable");			
 		}
 		test = report.createTest("Verify that on Clicking Yes the Project opens and navigates back to Landing Screen");
 		this.YesButton.click();

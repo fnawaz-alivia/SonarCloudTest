@@ -1,49 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="1" total="5" passed="4">
+<testng-results skipped="0" failed="0" ignored="10" total="12" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name=" FWA Test Collection Suite" duration-ms="194291" started-at="2022-06-21T18:12:41 PKT" finished-at="2022-06-21T18:15:56 PKT">
+  <suite name=" FWA Test Collection Suite" duration-ms="94449" started-at="2022-06-23T18:15:47 PKT" finished-at="2022-06-23T18:17:21 PKT">
     <groups>
-      <group name="regression">
-        <method signature="Models.FWA_Model_002()[pri:2, instance:automationCases.Models@eafc191]" name="FWA_Model_002" class="automationCases.Models"/>
-        <method signature="Models.FWA_Model_003()[pri:3, instance:automationCases.Models@eafc191]" name="FWA_Model_003" class="automationCases.Models"/>
-        <method signature="Models.FWA_Model_004()[pri:4, instance:automationCases.Models@eafc191]" name="FWA_Model_004" class="automationCases.Models"/>
-        <method signature="Models.FWA_Model_005()[pri:4, instance:automationCases.Models@eafc191]" name="FWA_Model_005" class="automationCases.Models"/>
-      </group> <!-- regression -->
-      <group name="smoke">
-        <method signature="Models.FWA_Model_002()[pri:2, instance:automationCases.Models@eafc191]" name="FWA_Model_002" class="automationCases.Models"/>
-        <method signature="Models.FWA_Model_003()[pri:3, instance:automationCases.Models@eafc191]" name="FWA_Model_003" class="automationCases.Models"/>
-        <method signature="Models.FWA_Model_004()[pri:4, instance:automationCases.Models@eafc191]" name="FWA_Model_004" class="automationCases.Models"/>
-        <method signature="Models.FWA_Model_005()[pri:4, instance:automationCases.Models@eafc191]" name="FWA_Model_005" class="automationCases.Models"/>
-      </group> <!-- smoke -->
+      <group name="regression11">
+        <method signature="Projects.FWA_Project_006()[pri:6, instance:automationCases.Projects@6a1aab78]" name="FWA_Project_006" class="automationCases.Projects"/>
+        <method signature="Projects.FWA_Project_007()[pri:7, instance:automationCases.Projects@6a1aab78]" name="FWA_Project_007" class="automationCases.Projects"/>
+      </group> <!-- regression11 -->
     </groups>
-    <test name="First Test" duration-ms="194291" started-at="2022-06-21T18:12:41 PKT" finished-at="2022-06-21T18:15:56 PKT">
-      <class name="automationCases.Models">
-        <test-method status="PASS" signature="startTest()[pri:0, instance:automationCases.Models@eafc191]" name="startTest" is-config="true" duration-ms="111" started-at="2022-06-21T18:12:41 PKT" finished-at="2022-06-21T18:12:41 PKT">
+    <test name="First Test" duration-ms="94449" started-at="2022-06-23T18:15:47 PKT" finished-at="2022-06-23T18:17:21 PKT">
+      <class name="automationCases.Projects">
+        <test-method status="PASS" signature="startTest()[pri:0, instance:automationCases.Projects@6a1aab78]" name="startTest" is-config="true" duration-ms="128" started-at="2022-06-23T18:15:47 PKT" finished-at="2022-06-23T18:15:47 PKT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startTest -->
-        <test-method status="PASS" signature="FWA_Model_002()[pri:2, instance:automationCases.Models@eafc191]" name="FWA_Model_002" duration-ms="37663" started-at="2022-06-21T18:12:41 PKT" finished-at="2022-06-21T18:13:19 PKT">
+        <test-method status="PASS" signature="FWA_Project_006()[pri:6, instance:automationCases.Projects@6a1aab78]" name="FWA_Project_006" duration-ms="53496" started-at="2022-06-23T18:15:47 PKT" finished-at="2022-06-23T18:16:40 PKT">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- FWA_Model_002 -->
-        <test-method status="PASS" signature="FWA_Model_003()[pri:3, instance:automationCases.Models@eafc191]" name="FWA_Model_003" duration-ms="37505" started-at="2022-06-21T18:13:19 PKT" finished-at="2022-06-21T18:13:57 PKT">
+        </test-method> <!-- FWA_Project_006 -->
+        <test-method status="PASS" signature="FWA_Project_007()[pri:7, instance:automationCases.Projects@6a1aab78]" name="FWA_Project_007" duration-ms="40916" started-at="2022-06-23T18:16:40 PKT" finished-at="2022-06-23T18:17:21 PKT">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- FWA_Model_003 -->
-        <test-method status="PASS" signature="FWA_Model_004()[pri:4, instance:automationCases.Models@eafc191]" name="FWA_Model_004" duration-ms="59882" started-at="2022-06-21T18:13:57 PKT" finished-at="2022-06-21T18:14:57 PKT">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- FWA_Model_004 -->
-        <test-method status="PASS" signature="FWA_Model_005()[pri:4, instance:automationCases.Models@eafc191]" name="FWA_Model_005" duration-ms="59201" started-at="2022-06-21T18:14:57 PKT" finished-at="2022-06-21T18:15:56 PKT">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- FWA_Model_005 -->
-        <test-method status="PASS" signature="endTest()[pri:0, instance:automationCases.Models@eafc191]" name="endTest" is-config="true" duration-ms="433" started-at="2022-06-21T18:15:56 PKT" finished-at="2022-06-21T18:15:56 PKT">
+        </test-method> <!-- FWA_Project_007 -->
+        <test-method status="PASS" signature="endTest()[pri:0, instance:automationCases.Projects@6a1aab78]" name="endTest" is-config="true" duration-ms="573" started-at="2022-06-23T18:17:21 PKT" finished-at="2022-06-23T18:17:22 PKT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endTest -->
-      </class> <!-- automationCases.Models -->
+      </class> <!-- automationCases.Projects -->
     </test> <!-- First Test -->
   </suite> <!--  FWA Test Collection Suite -->
 </testng-results>

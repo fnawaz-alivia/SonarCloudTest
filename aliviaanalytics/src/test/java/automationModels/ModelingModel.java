@@ -121,13 +121,13 @@ public class ModelingModel  extends Configuration{
 		this.ModelSurface.click();
 		Thread.sleep(2000);
 		test = report.createTest("Verify the search tab works for data sources in Artifacts.");
-		this.SearchTabDatasourcesGrid.sendKeys("Automation1 - Dental01");
+		this.SearchTabDatasourcesGrid.sendKeys("Medical Transactions");
 		test.log(Status.PASS, "The search tab works for data sources in Artifacts.");
 		Thread.sleep(3000);
 		test = report.createTest("Verify that all the data sources are loaded in the panel.");
 		test.log(Status.PASS, " all the data sources are loaded in the panel");
 		test = report.createTest("Verify the user is able to drag and drop datasource into Modeling Surface");
-		this.DragDropDataSource("Automation1 - Dental01");
+		this.DragDropDataSource("Medical Transactions");
 		test.log(Status.PASS, " The user is able to drag and drop datasource into Modeling Surface");
 		test = report.createTest("Verify that the algorithms are listed as tree in left pane.");
 		test.log(Status.PASS, " The algorithms are listed as tree in left pane.");

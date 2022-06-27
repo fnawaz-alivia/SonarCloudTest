@@ -31,8 +31,9 @@ public class DataSource extends Configuration {
 		String DSName = RandomStringUtils.randomAlphabetic(10);
 		DSM.CreateCSVDS(DSName, "Medical Transactions.csv"); 
 		test = report.createTest("Verify the user is able to Create the DataSource with CSV File");
-		test.log(Status.PASS, "The DataSource is created with CSV file successfully");
+		
 		DSM.LoadDataSoucre(DSName);
+		test.log(Status.PASS, "The DataSource is created with CSV file successfully");
 		Thread.sleep(2000);
 		DSM.ExportDataIntoCSV();
 		DSM.ExportDataIntoExcel();
@@ -43,7 +44,7 @@ public class DataSource extends Configuration {
 		
 		
 	}
-	@Test(groups = { "Smoke1" }, priority = 2,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = { "regression" }, priority = 2,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_DataSource_002() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -54,8 +55,10 @@ public class DataSource extends Configuration {
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(2000);
 		String DSName = RandomStringUtils.randomAlphabetic(10);
+		test = report.createTest("Verify the user is able to Create the DataSource with xsl File");
 		DSM.CreateMicrosoftExcelDS(DSName, "Automation1 - Dental01.xlsx");
 		DSM.LoadDataSoucre(DSName);
+		test.log(Status.PASS, "The DataSource is created with xsl file successfully");
 		Thread.sleep(2000);
 		DSM.ExportDataIntoCSV();
 		DSM.ExportDataIntoExcel();

@@ -1,6 +1,7 @@
 package automationCases;
 
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
@@ -57,10 +58,11 @@ public class Charting  extends Configuration{
 		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
 		utilityMethods.waitForVisibility(PM.GetStarted);
 		Thread.sleep(2000);
-	    CM.CreateBarHorizontalChart("BarHorizontalChart");
+		String ChartName = RandomStringUtils.randomAlphabetic(10);
+	    CM.CreateBarHorizontalChart(ChartName);
 	    Thread.sleep(2000);
 	    test = report.createTest("Verify the BarHorizontalChart is saved and showing in saved chart list");
-		   int SavedChart =  CM.VerifyChartSaved("BarHorizontalChart");
+		   int SavedChart =  CM.VerifyChartSaved(ChartName);
 		   System.out.println(SavedChart);
 		   if (SavedChart>0)
 			   
@@ -86,10 +88,11 @@ public class Charting  extends Configuration{
 		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
 		utilityMethods.waitForVisibility(PM.GetStarted);
 		Thread.sleep(2000);
-	    CM.CreateDrillDownBarChart("DrillDownBarChart");
+		String ChartName = RandomStringUtils.randomAlphabetic(10);
+	    CM.CreateDrillDownBarChart(ChartName);
 	    Thread.sleep(2000);
 	    test = report.createTest("Verify the DrillDownBarChart is saved and showing in saved chart list");
-		   int SavedChart =  CM.VerifyChartSaved("DrillDownBarChart");
+		   int SavedChart =  CM.VerifyChartSaved(ChartName);
 		   System.out.println(SavedChart);
 		   if (SavedChart>0)
 			   
@@ -116,10 +119,11 @@ public class Charting  extends Configuration{
 		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
 		utilityMethods.waitForVisibility(PM.GetStarted);
 		Thread.sleep(2000);
-	    CM.CreatePieChart("PieChart");	
+		String ChartName = RandomStringUtils.randomAlphabetic(10);
+	    CM.CreatePieChart(ChartName);	
 	    Thread.sleep(2000);
 	    test = report.createTest("Verify the PieChart is saved and showing in saved chart list");
-		   int SavedChart =  CM.VerifyChartSaved("PieChart");
+		   int SavedChart =  CM.VerifyChartSaved(ChartName);
 		   System.out.println(SavedChart);
 		   if (SavedChart>0)
 			   
@@ -147,9 +151,10 @@ public class Charting  extends Configuration{
 		utilityMethods.waitForVisibility(PM.GetStarted);
 		Thread.sleep(2000);
 		   test = report.createTest("Verify the ScatterChart is saved and showing in saved chart list");
-	    CM.CreateScatterChart("ScatterChart");	
+		   String ChartName = RandomStringUtils.randomAlphabetic(10);
+	    CM.CreateScatterChart(ChartName);	
 	    Thread.sleep(2000);
-		   int SavedChart =  CM.VerifyChartSaved("ScatterChart");
+		   int SavedChart =  CM.VerifyChartSaved(ChartName);
 		   System.out.println(SavedChart);
 		   if (SavedChart>0)
 			   
@@ -177,9 +182,11 @@ public class Charting  extends Configuration{
 		utilityMethods.waitForVisibility(PM.GetStarted);
 		Thread.sleep(2000);
 		   test = report.createTest("Verify the LineChart is saved and showing in saved chart list");
-	    CM.CreateLineChart("LineChart");
+		   String ChartName = RandomStringUtils.randomAlphabetic(10);
+	    CM.CreateLineChart(ChartName);
+	    
 	    Thread.sleep(2000);
-		   int SavedChart =  CM.VerifyChartSaved("LineChart");
+		   int SavedChart =  CM.VerifyChartSaved(ChartName);
 		   System.out.println(SavedChart);
 		   if (SavedChart>0)
 			   
@@ -206,10 +213,11 @@ public class Charting  extends Configuration{
 		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
 		utilityMethods.waitForVisibility(PM.GetStarted);
 		Thread.sleep(3000);
-	    CM.CreateLineStackChart("LineStackChart");	 
+		String ChartName = RandomStringUtils.randomAlphabetic(10);
+	    CM.CreateLineStackChart(ChartName);	 
 	    Thread.sleep(3000);
 	    test = report.createTest("Verify the LineStackChart is saved and showing in saved chart list");
-		   int SavedChart =  CM.VerifyChartSaved("LineStackChart");
+		   int SavedChart =  CM.VerifyChartSaved(ChartName);
 		   System.out.println(SavedChart);
 		   if (SavedChart>0)
 			   
@@ -236,10 +244,11 @@ public class Charting  extends Configuration{
 		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
 		utilityMethods.waitForVisibility(PM.GetStarted);
 		Thread.sleep(2000);
-	    CM.CreateDrillDownLineGroupChart("DrillDownLineGroupChart");
+		String ChartName = RandomStringUtils.randomAlphabetic(10);
+	    CM.CreateDrillDownLineGroupChart(ChartName);
 	    Thread.sleep(2000);
 	    test = report.createTest("Verify the DrillDownLineGroupChart is saved and showing in saved chart list");
-		   int SavedChart =  CM.VerifyChartSaved("DrillDownLineGroupChart");
+		   int SavedChart =  CM.VerifyChartSaved(ChartName);
 		   System.out.println(SavedChart);
 		   if (SavedChart>0)
 			   
@@ -265,10 +274,11 @@ public class Charting  extends Configuration{
 		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
 		utilityMethods.waitForVisibility(PM.GetStarted);
 		Thread.sleep(2000);
-	    CM.CreateLineGroupChart("LineGroupChart");
+		String ChartName = RandomStringUtils.randomAlphabetic(10);
+	    CM.CreateLineGroupChart(ChartName);
 	    Thread.sleep(2000);
 	    test = report.createTest("Verify the LineGroupChart is saved and showing in saved chart list");
-		   int SavedChart =  CM.VerifyChartSaved("LineGroupChart");
+		   int SavedChart =  CM.VerifyChartSaved(ChartName);
 		   System.out.println(SavedChart);
 		   if (SavedChart>0)
 			   

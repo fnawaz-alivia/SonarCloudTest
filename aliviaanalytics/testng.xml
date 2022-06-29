@@ -9,7 +9,7 @@
 			</run>
 		</groups>
 		<classes>
-<class name="automationCases.Charting" />
+<class name="automationCases.Projects" />
 		</classes>
 	</test>
 </suite>

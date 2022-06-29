@@ -601,8 +601,6 @@ public class Projects extends Configuration {
 		PM.DeleteProject("Renamed");
 		test.log(Status.PASS, "The user can delete the renamed folder");
 		driver.close();
-		
-	
 		}
 		
 		@Test(groups = {"regression"}, priority = 7,retryAnalyzer = listeners.RetryAnalyzer.class)
@@ -782,13 +780,13 @@ public class Projects extends Configuration {
 			test.log(Status.FAIL, "The Save Button doesn't appear on the 'Edit Project Screen");			
 		}
 		test = report.createTest("Edit Project Screen:- Verify that the Save Button is Clickable");
-		if (PM.SaveButton.isEnabled()) {
+if (PM.SaveButton.isEnabled()) {
 			test.log(Status.PASS, " The Save Button is Clickable");
 		}
 		else {
-			test.log(Status.FAIL, "The Save Button is not Clickable");			
+	test.log(Status.FAIL, "The Save Button is not Clickable");			
 		
-		
+		}
 		test = report.createTest("Edit Project Screen:- Verify that the Save Button saves the Edited Project in the project list on the Landing Screen");
 		PM.SaveButton.click();	
 		test.log(Status.PASS, "The Save Button saves the Edited Project in the project list on the Landing Screen");
@@ -835,7 +833,6 @@ public class Projects extends Configuration {
 		PM.LoadAutomationProject("Training-Automation");
 		driver.close();
 		
-	}
 	}
 	@Test(groups = {"regression"}, priority = 8,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_008() throws InterruptedException {

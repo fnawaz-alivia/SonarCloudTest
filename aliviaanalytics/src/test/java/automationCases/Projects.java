@@ -845,6 +845,59 @@ if (PM.SaveButton.isEnabled()) {
 		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(2000);
+		PM.GetIndexOfProject("Training-Automation");
+		Thread.sleep(2000);
+		test = report.createTest("Verify that a Share Button is visible on the right side of project in the Project List on Landing Screen");
+		if(driver.findElement(By.xpath("//*[@id='project-projectTree-treePanel-001']//child::table['" + PM.index + "'+'"
+				+ 1 + "']//tr//td[5]")).isDisplayed())
+		{
+			test.log(Status.PASS, "The Share Button is visible on the right side of project in the Project List on Landing Screen");
+		}
+		else {
+			test.log(Status.FAIL, "The Share Button is not visible on the right side of project in the Project List on Landing Screen");			
+		}
+		test = report.createTest("Verify that the Share Button is Clickable");
+		
+		if(driver.findElement(By.xpath("//*[@id='project-projectTree-treePanel-001']//child::table['" + PM.index + "'+'"
+				+ 1 + "']//tr//td[5]")).isEnabled())
+		{
+			test.log(Status.PASS, " The Share Button is Clickable");
+		}
+		else {
+			test.log(Status.FAIL, "The Share Button is not Clickable");			
+		}
+			
+		driver.findElement(By.xpath("//*[@id='project-projectTree-treePanel-001']//child::table['" + PM.index + "'+'"
+				+ 1 + "']//tr//td[5]")).click();
+		Thread.sleep(2000);
+		test = report.createTest("Verify that on Clicking the Share Button 'Add Participants' Screen opens");
+		utilityMethods.waitForVisibility(PM.SearchTabAddParticipantsWindow);
+		if(PM.SearchTabAddParticipantsWindow.isDisplayed()) {
+			test.log(Status.PASS, "on Clicking the Share Button 'Add Participants' Screen opens");
+		}
+		else {
+			test.log(Status.FAIL, "on Clicking the Share Button 'Add Participants' Screen doesn't open");
+		}
+		test = report.createTest("Verify that Cancel Button is visible on 'Sharing Options' screen");
+		if(PM.CancelButtonEditFolderWidnow.isDisplayed()) 
+		{
+			test.log(Status.PASS, "The cancel button appears on the 'Sharing Options' Screen");	
+		}
+		else {
+			test.log(Status.FAIL, "The cancel button doesn't appear on the 'Sharing Options' Screen");			
+		}
+		
+		test = report.createTest("'Sharing Options' Screen:- Verify that Cancel button is Clickable");
+		if(PM.CancelButtonEditFolderWidnow.isEnabled()) 
+		{
+			test.log(Status.PASS, "The cancel button is Clickable");
+		}
+		else
+		{
+			test.log(Status.FAIL, "The cancel button is not Clickable");			
+		}
+		
+		PM.CancelButtonEditFolderWidnow.click();
 		test = report.createTest("Verify that user can have sharing option for Projects in the right click menu.");
 		PM.RightClickOnProject("Training-Automation");
 		PM.SharingOptionsRightClikonFolder.click();

@@ -39,8 +39,11 @@ public class Configuration {
 		Object obj = jsonParser.parse(reader);
 		 JSONObject jsonObject =  (JSONObject) obj;
          String url = (String) jsonObject.get("url");
+         System.out.println(url);
           username = (String) jsonObject.get("username");
+          System.out.println(username);
           password = (String) jsonObject.get("password");
+          System.out.println(password);
 //	  System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\datafiles\\chromedriver.exe");
 	     WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
@@ -71,7 +74,7 @@ public class Configuration {
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
 		LM.LoginFormFill(username, password );
 		LM.loginbutton.click();
-		
+		 System.out.println("User click on login button");
 	}
 
 	public static WebDriver getDriver() {

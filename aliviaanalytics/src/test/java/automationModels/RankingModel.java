@@ -71,12 +71,32 @@ public List<WebElement> ColumnsListOnCombinedColumnWindow;
 public List<WebElement> SeachtabInputOnCombinedColumnWindow;
 
 
-public void LandingOnPageRanking() {
+public void LandingOnPageRanking() throws InterruptedException {
 	ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 	ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
 	PM.GetStarted.click();
 	CM.Analysis.click();
+	test = report.createTest("Side Pane: Verify that Ranking Button is present in Analysis dropdown");
+	if (CM.Analysis.isDisplayed()) {
+		test.log(Status.PASS, " The Ranking Button is present in Analysis dropdown");
+	} else {
+		test.log(Status.FAIL, " The Ranking Button is not present in Analysis dropdown");
+	}
+	test = report.createTest("Side Pane: Verify that Ranking Button is clickable");
+	if (CM.Analysis.isEnabled()) {
+		test.log(Status.PASS, " Ranking Button is clickable");
+	} else {
+		test.log(Status.FAIL, "Ranking Button is not clickable");
+	}
+	
+	test = report.createTest("Side Pane: Verify that clicking on Ranking Button navigates to Ranking screen");
 	this.Ranking.click();
+	Thread.sleep(2000);
+	if (this.ShowValues.isDisplayed()) {
+		test.log(Status.PASS, " clicking on Ranking Button navigates to Ranking screen");
+	} else {
+		test.log(Status.FAIL, " clicking on Ranking Button doesn't navigate to Ranking screen");
+	}
 	
 }
 

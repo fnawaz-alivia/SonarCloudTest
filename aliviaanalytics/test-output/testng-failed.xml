@@ -13,7 +13,7 @@
           <include name="FWA_Project_013"/>
           <include name="startTest"/>
           <include name="endTest"/>
-          <include name="FWA_Project_007"/>
+          <include name="FWA_Project_008"/>
         </methods>
       </class> <!-- automationCases.Projects -->
     </classes>

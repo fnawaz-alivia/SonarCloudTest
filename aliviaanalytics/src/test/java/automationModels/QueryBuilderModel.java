@@ -115,8 +115,30 @@ public class QueryBuilderModel extends Configuration{
 		PM.GetStarted.click();
 		DSM.DataRepository.click();
 		Thread.sleep(2000);
+		test = report.createTest("Side Pane:Verify that Query Builder Button is present in Data Repository dropdown");
+		if (this.QueryBuilder.isDisplayed()) {
+			test.log(Status.PASS, "The Query Builder Button is present in Data Repository dropdown");
+		} else {
+			test.log(Status.FAIL, "The Query Builder Button is not present in Data Repository dropdown");
+		}
+		
+		test = report.createTest("Side Pane: Verify that Quey Builder Button is clickable");
+		if (this.QueryBuilder.isEnabled()) {
+			test.log(Status.PASS, "The Query Builder Button is clickable");
+		} else {
+			test.log(Status.FAIL, "The Query Builder Button is not clickable");
+		}
+		test = report.createTest("Side Pane: Verify that clicking on Query Builder Button navigates to 'Query Builder' screen");
 		this.QueryBuilder.click();
 		Thread.sleep(2000);
+		if (this.SelectDataSourceTab.isEnabled()) {
+			test.log(Status.PASS, "clicking on Query Builder Button navigates to 'Query Builder' screen");
+		} else {
+			test.log(Status.FAIL, "clicking on Query Builder Button doesn't  navigate to 'Query Builder' screen");
+		}
+			
+	
+	
 	}
 	
 	public int CountQB() throws InterruptedException {

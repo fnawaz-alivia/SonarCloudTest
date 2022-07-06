@@ -191,9 +191,29 @@ public class DashboardModel extends Configuration{
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		QueryBuilderModel QBM = PageFactory.initElements(driver, automationModels.QueryBuilderModel.class);
 		PM.GetStarted.click();
-		test = report.createTest("Verify the user is able to access the dashboard screen");
+		
+		test = report.createTest("Side Pane: Verify that Dashboard Button is present in side pane");
+		if (this.Dashboard.isDisplayed()) {
+			test.log(Status.PASS, " The Dashboard Button is present in side pane");
+		} else {
+			test.log(Status.FAIL, " The Dashboard Button is not present in side pane");
+		}
+		test = report.createTest("Side Pane: Verify that Dashboard Button is clickable");
+		if (this.Dashboard.isEnabled()) {
+			test.log(Status.PASS, " Dashboard Button is clickable");
+		} else {
+			test.log(Status.FAIL, "Dashboard Button is not clickable");
+		}
+		
+		test = report.createTest("Side Pane: Verify that clicking on Dashboard Button navigates Dashboard screen");
 		this.Dashboard.click();
-		test.log(Status.PASS, "The user is able to access the dashboard screen");
+		Thread.sleep(2000);
+		if (this.LoadDashboardItemsButton.isDisplayed()) {
+			test.log(Status.PASS, " clicking on Charting Button navigates to Charting screen");
+		} else {
+			test.log(Status.FAIL, " clicking on Charting Button doesn't navigate to Charting screen");
+		}
+		
 		Thread.sleep(2000);
 		test = report.createTest("Verify that Load Dashboard items works.");
 		this.LoadDashboardItemsButton.click();

@@ -15,7 +15,7 @@ import configuration.Configuration;
 public class DataCleansing extends Configuration {
 	public static ExtentTest test;
 	@Test(groups = {"smoke","regression" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_DataSource_001() throws InterruptedException {
+	public void FWA_DataCleansing_001() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);

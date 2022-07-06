@@ -55,8 +55,29 @@ public class DataCleansingModel extends Configuration {
 		DataSourceModel DS = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		PM.GetStarted.click();
 		DS.DataRepository.click();
-		this.DataCleansing.click();
+		test = report.createTest("Side Pane: Verify that Data Cleansing Button is present in Data Repository dropdown");
+
+		if (this.DataCleansing.isDisplayed()) {
+			test.log(Status.PASS, "The Data Cleansing Button is present in Data Repository dropdown");
+		} else {
+			test.log(Status.FAIL, "The Data Cleansing Button is not  present in Data Repository dropdown");
+		}
+		test = report.createTest("Side Pane: Verify that Data Cleansing Button is clickable");
+
+		if (this.DataCleansing.isEnabled()) {
+			test.log(Status.PASS, "The Data Cleansing Button is clickable");
+		} else {
+			test.log(Status.FAIL, "The Data Cleansing Button is not clickable");
+		}
 		
+		test = report.createTest("Side Pane: Verify that clicking on Data Cleansing Button navigates to 'Data Cleansing' screen");
+		this.DataCleansing.click();
+		if (this.SelectDSForDataCleansing.isDisplayed()) {
+			test.log(Status.PASS, "clicking on Data Cleansing Button navigates to 'Data Cleansing' screen");
+		} else {
+			test.log(Status.FAIL, "clicking on Data Cleansing Button doesn't  navigate to 'Data Cleansing' screen");
+		}
+			
 	}
 	
 	public void SelectDSForDataCleansing() throws InterruptedException {

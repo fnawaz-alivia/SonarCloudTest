@@ -114,10 +114,49 @@ public class ModelingModel  extends Configuration{
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
 		PM.GetStarted.click();
+		test = report.createTest("Side Pane: Verify that Analysis dropdown is visible in the side pane");
+		if (CM.Analysis.isDisplayed()) {
+			test.log(Status.PASS, " Analysis dropdown is visible in the side pane");
+		} else {
+			test.log(Status.FAIL, " Analysis dropdown is not visible in the side pane");
+		}
+		test = report.createTest("Side Pane: Verify that Analysis dropdown is clickable");
+		if (CM.Analysis.isEnabled()) {
+			test.log(Status.PASS, " Analysis dropdown is clickable");
+		} else {
+			test.log(Status.FAIL, " Analysis dropdown is not clickable");
+		}
+		test = report.createTest("Side Pane: Verify that clicking on the Analysis Dropdown displays a list of its sub-modules in the dropdown");
 		CM.Analysis.click();
-		test = report.createTest("Verify the user is able to access Modeling Module by clicking on Modeling under Analysis");
+		
+		if (this.Modeling.isDisplayed()) {
+			test.log(Status.PASS, " clicking on the Analysis Dropdown displays a list of its sub-modules in the dropdown");
+		} else {
+			test.log(Status.FAIL, " clicking on the Analysis Dropdown doesn't display a list of its sub-modules in the dropdown");
+		}
+		
+		test = report.createTest("Side Pane: Verify that Modeling Button is present in Analysis dropdown");
+		if (this.Modeling.isDisplayed()) {
+			test.log(Status.PASS, " The Modeling Button is present in Analysis dropdown");
+		} else {
+			test.log(Status.FAIL, " The Modeling Button is not present in Analysis dropdown");
+		}
+		test = report.createTest("Side Pane: Verify that Modeling Button is clickable");
+		if (this.Modeling.isEnabled()) {
+			test.log(Status.PASS, " Modeling Button is clickable");
+		} else {
+			test.log(Status.FAIL, "Modeling Button is not clickable");
+		}
+		
+		test = report.createTest("Side Pane: Verify that clicking on the Modeling Button navigates to the Modeling screen");
 		this.Modeling.click();
-		test.log(Status.PASS, "The user is able to access Modeling Module by clicking on Modeling under Analysis");
+		Thread.sleep(2000);
+		if (this.ModelSurface.isDisplayed()) {
+			test.log(Status.PASS, " clicking on the Modeling Button navigates to the Modeling screen");
+		} else {
+			test.log(Status.FAIL, "clicking on the Modeling Button navigates to the Modeling screen");
+		}
+		
 		this.ModelSurface.click();
 		Thread.sleep(2000);
 		test = report.createTest("Verify the search tab works for data sources in Artifacts.");

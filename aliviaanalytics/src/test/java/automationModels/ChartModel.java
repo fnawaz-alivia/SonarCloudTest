@@ -200,7 +200,28 @@ public class ChartModel extends Configuration {
 		PM.GetStarted.click();
 		test = report.createTest("Verify the user is able to access Charting Module by clicking on Charting under Analysis");
 		this.Analysis.click();
+		test = report.createTest("Side Pane: Verify that Charting Button is present in Analysis dropdown");
+		if (this.Charting.isDisplayed()) {
+			test.log(Status.PASS, " The Charting Button is present in Analysis dropdown");
+		} else {
+			test.log(Status.FAIL, " The Charting Button is not present in Analysis dropdown");
+		}
+		test = report.createTest("Side Pane: Verify that Charting Button is clickable");
+		if (this.Charting.isEnabled()) {
+			test.log(Status.PASS, " Charting Button is clickable");
+		} else {
+			test.log(Status.FAIL, "Charting Button is not clickable");
+		}
+		
+		test = report.createTest("Side Pane: Verify that clicking on Charting Button navigates Charting screen");
 		this.Charting.click();
+		Thread.sleep(2000);
+		if (this.ClickonROW.isDisplayed()) {
+			test.log(Status.PASS, " clicking on Charting Button navigates to Charting screen");
+		} else {
+			test.log(Status.FAIL, " clicking on Charting Button doesn't navigate to Charting screen");
+		}
+
 		this.ClickonROW.click();
 		test.log(Status.PASS, "The user is able to access Charting Module by clicking on Charting under Analysis");
 		test = report.createTest("Verify the search tab works for data sources in right panel");

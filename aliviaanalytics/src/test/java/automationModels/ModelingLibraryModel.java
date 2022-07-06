@@ -8,10 +8,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import configuration.Configuration;
 
 public class ModelingLibraryModel extends Configuration { 
 	public int index;
+	public static ExtentTest test;
 	@FindBy(how = How.XPATH, using = "//*[(text() = 'Modeling Library' or . = 'Modeling Library')]")
 
 	public WebElement ModelingLibrary;
@@ -28,12 +32,33 @@ public class ModelingLibraryModel extends Configuration {
 	
 	
 	
-	public void LandingOnPageModlingLibrary() {
+	public void LandingOnPageModlingLibrary() throws InterruptedException {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
 		PM.GetStarted.click();
 		CM.Analysis.click();
+		test = report.createTest("Side Pane: Verify that Modeling Library Button is present in Analysis dropdown");
+		if (this.ModelingLibrary.isDisplayed()) {
+			test.log(Status.PASS, " The Modeling Library Button is present in Analysis dropdown");
+		} else {
+			test.log(Status.FAIL, " The Modeling Library Button is not present in Analysis dropdown");
+		}
+		test = report.createTest("Side Pane: Verify that Modeling Library Button is clickable");
+		if (this.ModelingLibrary.isEnabled()) {
+			test.log(Status.PASS, " Modeling Library Button is clickable");
+		} else {
+			test.log(Status.FAIL, "Modeling Library Button is not clickable");
+		}
+		
+		test = report.createTest("Side Pane: Verify that clicking on Modeling Library Button navigates to Modeling Library screen");
 		this.ModelingLibrary.click();
+		Thread.sleep(2000);
+		if (this.SearchTabModelingLibrary.isDisplayed()) {
+			test.log(Status.PASS, " clicking on Modeling Library Button navigates to Modeling Library screen");
+		} else {
+			test.log(Status.FAIL, " clicking on Modeling Library Button doesn't navigate to Modeling Library screen");
+		}
+		
 		this.SearchTabModelingLibrary.click();
 		
 	}

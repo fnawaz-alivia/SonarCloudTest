@@ -16,7 +16,7 @@ import configuration.Configuration;
 public class Charting  extends Configuration{
 	public static ExtentTest test;
 	@Test(groups = { "smoke","regression" }, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_CreateTestData_001() throws InterruptedException {
+	public void FWA_Charting_001() throws InterruptedException {
 		
 		
 		Configuration.BConfiguration();
@@ -48,7 +48,7 @@ public class Charting  extends Configuration{
 	
 	
 	@Test(groups = { "regression" }, priority = 2,retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_CreateTestData_002() throws InterruptedException {
+	public void FWA_Charting_002() throws InterruptedException {
 		
 		
 		Configuration.BConfiguration();
@@ -78,7 +78,7 @@ public class Charting  extends Configuration{
 	}
 	
 	@Test(groups = { "regression" }, priority = 3,retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_CreateTestData_003() throws InterruptedException {
+	public void FWA_Charting_003() throws InterruptedException {
 		
 		
 		Configuration.BConfiguration();
@@ -109,7 +109,7 @@ public class Charting  extends Configuration{
 	
 	
 	@Test(groups = { "regression" }, priority = 4,retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_CreateTestData_004() throws InterruptedException {
+	public void FWA_Charting_004() throws InterruptedException {
 		
 		
 		Configuration.BConfiguration();
@@ -140,7 +140,7 @@ public class Charting  extends Configuration{
 	
 	
 	@Test(groups = { "regression" }, priority = 5,retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_CreateTestData_005() throws InterruptedException {
+	public void FWA_Charting_005() throws InterruptedException {
 		
 		
 		Configuration.BConfiguration();
@@ -171,7 +171,7 @@ public class Charting  extends Configuration{
 	
 	
 	@Test(groups = { "regression" }, priority = 6,retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_CreateTestData_006() throws InterruptedException {
+	public void FWA_Charting_006() throws InterruptedException {
 		
 		
 		Configuration.BConfiguration();
@@ -203,7 +203,7 @@ public class Charting  extends Configuration{
 	
 	
 	@Test(groups = { "regression" }, priority = 7,retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_CreateTestData_007() throws InterruptedException {
+	public void FWA_Charting_007() throws InterruptedException {
 		
 		
 		Configuration.BConfiguration();
@@ -234,7 +234,7 @@ public class Charting  extends Configuration{
 	
 	
 	@Test(groups = { "regression" }, priority = 8,retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_CreateTestData_008() throws InterruptedException {
+	public void FWA_Charting_008() throws InterruptedException {
 		
 		
 		Configuration.BConfiguration();
@@ -264,7 +264,7 @@ public class Charting  extends Configuration{
 	}
 	
 	@Test(groups = { "regression" }, priority = 9,retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_CreateTestData_009() throws InterruptedException {
+	public void FWA_Charting_009() throws InterruptedException {
 		
 		
 		Configuration.BConfiguration();

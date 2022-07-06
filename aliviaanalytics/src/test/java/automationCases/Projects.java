@@ -235,9 +235,25 @@ public class Projects extends Configuration {
 		int CountDashboards= DM.CountDashboard();
 		System.out.println(CountDashboards);
 		test.log(Status.PASS, "The dashboards are being shown in imported project");
+		test = report.createTest("Verify that Get Started Button is Clickble");
 		
-		
-		PM.GetStarted.click();
+		if(PM.GetStarted.isEnabled())
+		{
+			test.log(Status.PASS, "The Get Started Button is Clickble");	
+		}
+		else {
+			test.log(Status.FAIL, "The Get Started Button is not Clickble");
+		}
+        test = report.createTest("Verify that Clicking on Get Started Button will navigate to the Landing Screen");
+        PM.GetStarted.click();
+		if(PM.SearchTabProject.isDisplayed())
+		{
+			test.log(Status.PASS, "Clicking on Get Started Button navigates to the Landing Screen");	
+		}
+		else {
+			test.log(Status.FAIL, "Clicking on Get Started Button doesn't navigate to the Landing Screen");
+		}
+
 		PM.SearchTabProject.click();
 		Thread.sleep(2000);
 		PM.LoadAutomationProject("Training-Automation");

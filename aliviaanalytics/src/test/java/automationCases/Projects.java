@@ -850,7 +850,7 @@ if (PM.SaveButton.isEnabled()) {
 		driver.close();
 		
 	}
-	@Test(groups = {"regression1"}, priority = 8,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = {"regression"}, priority = 8,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Project_008() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();	

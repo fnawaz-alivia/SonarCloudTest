@@ -69,7 +69,7 @@ public class DataSource extends Configuration {
 
 	}
 
-	@Test(groups = { "regression1" }, priority = 3)
+	@Test(groups = { "regression" }, priority = 3)
 	public void FWA_DataSource_003() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -90,7 +90,7 @@ public class DataSource extends Configuration {
 
 	}
 
-	@Test(groups = { "regression1" }, priority = 3)
+	@Test(groups = { "regression" }, priority = 3)
 	public void FWA_DataSource_004() throws InterruptedException {
 		Configuration.BConfiguration();
 

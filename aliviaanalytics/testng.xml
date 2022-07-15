@@ -9,7 +9,7 @@
 			</run>
 		</groups>
 		<classes>
-<class name="automationCases.Projects" />
+<class name="automationCases.DataSource" />
 		</classes>
 	</test>
 </suite>

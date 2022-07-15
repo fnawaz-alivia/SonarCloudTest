@@ -204,19 +204,41 @@ public class DataSourceModel extends Configuration {
 	}
 
 	public void DeleteDataSoucre(String DSName) throws InterruptedException {
-		test = report.createTest("Verify the user is able to delete the DataSource");
+		test = report.createTest("Verify the delete button is displayed on datasource detials page");
+		if (this.DeleteLoadedDS.isDisplayed()) {
+			test.log(Status.PASS, "The delete button is being shown ");
 
+		} else {
+			test.log(Status.FAIL, "The delete button is not being shown ");
+		}
+		test = report.createTest("Verify the delete button is clickable on datasource detials page");
+		if (this.DeleteLoadedDS.isEnabled()) {
+			test.log(Status.PASS, "The delete button is clickable");
+
+		} else {
+			test.log(Status.FAIL, "The delete button is not clickable");
+		}
+		test = report.createTest("Verify that a pop up to select check box to remove database table ");
 		this.DeleteLoadedDS.click();
 		Thread.sleep(2000);
+		if (this.CheckBoxRemoveDatabaseTable.isDisplayed()) {
+			test.log(Status.PASS, "A pop up to select check box to remove database table is being shown");
+
+		} else {
+			test.log(Status.FAIL, "A pop up to select check box to remove database table is not being shown");
+		}
+		test = report.createTest("Verify that the user is able to select check box to remove database table  ");
 		utilityMethods.waitForVisibility(this.CheckBoxRemoveDatabaseTable);
 		this.CheckBoxRemoveDatabaseTable.click();
+		test.log(Status.PASS, "The user is able to select check box to remove database table  ");
 		utilityMethods.waitForVisibility(this.yesDeletedConfirmationBOx);
+		test = report.createTest("Verify that user is able to click on yes button for on confirmation box");
 		this.yesDeletedConfirmationBOx.click();
-		test.log(Status.PASS, "The DataSource is created with CSV file successfully");
+		test.log(Status.PASS, "The user is able to click on yes button for on confirmation box");
 	}
 
 	public void EditDSAndVerifyUpdateName(String DSName) throws InterruptedException {
-		test = report.createTest("The user is able to delete the DataSource");
+		test = report.createTest("The user is able to edit the DataSource");
 
 		this.EditSelectedDataSourceButton.click();
 		Thread.sleep(2000);
@@ -430,30 +452,48 @@ public class DataSourceModel extends Configuration {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		PM.GetStarted.click();
 		this.DataRepository.click();
-
+		test = report.createTest("Verify the user is able to access the manage data sources screen");
 		this.ManageDataSources.click();
+		test.log(Status.PASS, "the manage data sources screen is being shown");
 		Thread.sleep(2000);
-
 		this.SearchTabDataSource.click();
-
+		test = report.createTest("Verify the create  Text file data source widnow opens clicking on Text File button");
 		this.TextFile.click();
+		test.log(Status.PASS, " The create text file data source widnow by clicking on text File button is being shown");
+		test = report.createTest("Create New Project Window - Project visibility type.");
 		PM.PublicOption.click();
+		test.log(Status.PASS, "The public option is selected successfully");
+		test = report
+				.createTest("Verify the user is able to enter data source name on create  text file data source widnow");
 		this.DataSourceName.sendKeys(DSName);
+		test.log(Status.PASS, " The user is able to enter data source name on create  text file data source widnow");
+		test = report.createTest("Verify the user can upload text file");
 		this.UploadFileDataSource.click();
+		test.log(Status.PASS, " The the user can upload text file");
 		Thread.sleep(2000);
-
+		test = report.createTest("Verify the upload File button works on create  text file data source widnow");
 		String FilePathForDS = Paths.get(System.getProperty("user.dir") + "\\src\\datafiles\\" + DSPath)
-				.toAbsolutePath().toString();
+		.toAbsolutePath().toString();
 		this.BrowseDataSourceFile.sendKeys(FilePathForDS);
+		test.log(Status.PASS, " The upload File button works on create  text file data source widnow");
+		test = report.createTest("Verify the save button works on create  text file data source widnow");
 		this.SaveUploadFile.click();
+		test.log(Status.PASS, "The save button works on create  text file data source widnow");
 		Thread.sleep(2000);
-
+		test = report.createTest("Verify the cross button works on create  text file data source widnow");
 		this.CloseUploadDSWindow.click();
+		test.log(Status.PASS, "The cross button works on create  text file data source widnow");
 		Thread.sleep(2000);
+		test = report.createTest("Verify the save button works ");
 		this.SaveDataSoures.click();
+		test.log(Status.PASS, "The save button works ");
 		utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
 		PM.OKButtonSelectaProjectWondow.click();
+		
+		
 
 	}
 
 }
+
+

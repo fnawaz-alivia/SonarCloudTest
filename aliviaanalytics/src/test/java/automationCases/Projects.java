@@ -959,7 +959,7 @@ if (PM.SaveButton.isEnabled()) {
 		test = report.createTest("Verify the user is able to logout");
 		SM.LogoutButton.click();
 		test.log(Status.PASS, "The user is able to logout");
-		LM.LoginFormFill("Test@gmail.com", "Lahore@2022@");
+		LM.LoginFormFill(Configuration.test1username, Configuration.test1password);
 		LM.loginbutton.click();
 		PM.NoProjectClickOk();
 		PM.LoadAutomationProject("Training-Automation");
@@ -1061,7 +1061,7 @@ if (PM.SaveButton.isEnabled()) {
 		Thread.sleep(2000);
 		SM.MenuButton.click();
 		SM.LogoutButton.click();
-		LM.LoginFormFill("Test@gmail.com", "Selenium@2022");
+		LM.LoginFormFill(Configuration.test1username, Configuration.test1password);
 		LM.loginbutton.click();
 		PM.NoProjectClickOk();
 		PM.CreateNewProject("ProjectAddGit");
@@ -1135,7 +1135,7 @@ if (PM.SaveButton.isEnabled()) {
 	}
 			
 	@Test(groups = {"regressiontest"}, priority = 12,dependsOnMethods = { "FWA_Project_011" })
-	public void FWA_Project_012() throws InterruptedException {
+	public  void FWA_Project_012() throws InterruptedException {
 		Configuration.BConfiguration();
 
 		Configuration.LoginApplication();
@@ -1149,7 +1149,7 @@ if (PM.SaveButton.isEnabled()) {
 		SM.MenuButton.click();
 		SM.LogoutButton.click();
 		Thread.sleep(2000);	
-		LM.LoginFormFill("Test@gmail.com", "Selenium@2022");
+		LM.LoginFormFill(Configuration.test1username, Configuration.test1password);
 		LM.loginbutton.click();
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(2000);

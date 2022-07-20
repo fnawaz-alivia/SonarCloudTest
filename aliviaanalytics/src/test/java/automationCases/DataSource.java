@@ -69,7 +69,7 @@ public class DataSource extends Configuration {
 
 	}
 
-	@Test(groups = { "regression" }, priority = 3)
+	@Test(groups = { "regression" }, priority = 3, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_DataSource_003() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -90,7 +90,7 @@ public class DataSource extends Configuration {
 
 	}
 
-	@Test(groups = { "regression" }, priority = 3)
+	@Test(groups = { "regression" }, priority = 3, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_DataSource_004() throws InterruptedException {
 		Configuration.BConfiguration();
 
@@ -277,7 +277,7 @@ public class DataSource extends Configuration {
 
 	}
 
-	@Test(groups = { "regression2" }, priority = 2)
+	@Test(groups = { "regression" }, priority = 2, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_DataSource_005() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -290,20 +290,83 @@ public class DataSource extends Configuration {
 		DSM.ManageDataSources.click();
 		utilityMethods.waitForVisibility(DSM.SearchTabDataSource);
 		DSM.SearchTabDataSource.click();
+		test = report.createTest(
+				"Data source Tree: Verify that create new folder button is visible ");
+
+		if (DSM.CreateFolder.isDisplayed()) {
+			test.log(Status.PASS, "The create folder button is visible");
+		} else {
+			test.log(Status.FAIL, "The create folder button is not visible");
+		}
+		test = report.createTest(
+				"Data source Tree: Verify that create new folder button is clickable ");
+
+		if (DSM.CreateFolder.isEnabled()) {
+			test.log(Status.PASS, "The create folder button is clickable");
+		} else {
+			test.log(Status.FAIL, "The create folder button is not clickable");
+		}
+		
+		test = report.createTest("Verify that the user is able to create the folder in data source tree");
 		DSM.CreateFolder.click();
+		test.log(Status.PASS, "The user is able to create the folder in data source tree");
 		PM.InputFolderName.sendKeys("AutoCreatedFolder");
+		test = report.createTest("Create New folder Window - folder visibility type.");
 		PM.PublicOption.click();
+		test.log(Status.PASS, "The public option is selected successfully");
+		test = report.createTest("Verify the save button works ");
 		PM.SaveButton.click();
+		test.log(Status.PASS, "The save button works ");
 		Thread.sleep(3000);
 		String DSName = RandomStringUtils.randomAlphabetic(10);
 		DSM.CreateMicrosoftExcelDS(DSName, "metadataDS.xlsx");
+		test = report.createTest(
+				"Data source Tree: Verify that expand all button is visible ");
+
+		if (DSM.ExpandAllDSButton.isDisplayed()) {
+			test.log(Status.PASS, "The expand all  button is visible");
+		} else {
+			test.log(Status.FAIL, "The expand all create folder button is not visible");
+		}
+		test = report.createTest(
+				"Data source Tree: Verify that expand all  button is clickable ");
+
+		if (DSM.ExpandAllDSButton.isEnabled()) {
+			test.log(Status.PASS, "The expand all button is clickable");
+		} else {
+			test.log(Status.FAIL, "The expand all button is not clickable");
+		}
 		DSM.ExpandAllDSButton.click();
 		int DSListSizeAfterExpand = DSM.DataSourcesList.size();
 		System.out.println(DSListSizeAfterExpand);
+		test = report.createTest(
+				"Data source Tree: Verify that collapse all button is visible ");
+
+		if (DSM.CollapseAllDSButton.isDisplayed()) {
+			test.log(Status.PASS, "The collapse all  button is visible");
+		} else {
+			test.log(Status.FAIL, "The collapse all create folder button is not visible");
+		}
+		test = report.createTest(
+				"Data source Tree: Verify that collapse all  button is clickable ");
+
+		if (DSM.CollapseAllDSButton.isEnabled()) {
+			test.log(Status.PASS, "The collapse all button is clickable");
+		} else {
+			test.log(Status.FAIL, "The collapse all button is not clickable");
+		}
 		DSM.CollapseAllDSButton.click();
 		Thread.sleep(2000);
 		int DSListSizeAfterCollapse = DSM.DataSourcesList.size();
 		System.out.println(DSListSizeAfterCollapse);
+		test = report.createTest(
+				"Data source Tree: Verify that collapse all and expand all  button is working as expected ");
+
+		if (DSListSizeAfterExpand>DSListSizeAfterCollapse) {
+			test.log(Status.PASS, "The  collapse all and expand all  button is working as expected");
+		} else {
+			test.log(Status.FAIL, "The  collapse all and expand all  button is not working as expected");
+		}
 		DSM.LoadDataSoucre("AutoCreatedFolder");
 		DSM.RightClickOnDS("AutoCreatedFolder");
 		PM.DeleteOptionRightClickonProject.click();

@@ -23,58 +23,65 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import automationModels.LoginModel;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-
-
 public class Configuration {
-	
-	public static  WebDriver driver;
+
+	public static WebDriver driver;
 	public static ExtentReports report;
-	
-	 static String username;
-	 static String password;
-	public  static void  BConfiguration()   {
-		
-		try {JSONParser jsonParser = new JSONParser();
-		FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\datafiles\\login.json");
-		Object obj = jsonParser.parse(reader);
-		 JSONObject jsonObject =  (JSONObject) obj;
-         String url = (String) jsonObject.get("url");
-         System.out.println(url);
-          username = (String) jsonObject.get("username");
-          System.out.println(username);
-          password = (String) jsonObject.get("password");
-          System.out.println(password);
+
+	static String username;
+	static String url;
+	static String password;
+	public static String test1username;
+	public static String test1password;
+
+	public static void BConfiguration() {
+
+		try {
+			JSONParser jsonParser = new JSONParser();
+			FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\datafiles\\login.json");
+			Object obj = jsonParser.parse(reader);
+			JSONObject jsonObject = (JSONObject) obj;
+			url = (String) jsonObject.get("url");
+			System.out.println(url);
+			username = (String) jsonObject.get("username");
+			System.out.println(username);
+			password = (String) jsonObject.get("password");
+			System.out.println(password);
+			test1username = (String) jsonObject.get("test1username");
+			System.out.println(test1username);
+			test1password = (String) jsonObject.get("test1password");
+			System.out.println(test1password);
 //	  System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\datafiles\\chromedriver.exe");
-	     WebDriverManager.chromedriver().setup();
-		ChromeOptions options = new ChromeOptions();
-		options.setCapability("ACCEPT_INSECURE_CERTS", true);
-		options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-  		options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-		options.addArguments("--headless");
-		 driver = new ChromeDriver(options);
-		Dimension d = new Dimension(1360, 978);
-		//Resize the current window to the given dimension
-		driver.manage().window().setSize(d);
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
-		driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
-		 driver.get(url);
-			
-		   } catch (FileNotFoundException e) {
-	           e.printStackTrace();
-	       } catch (IOException e) {
-	           e.printStackTrace();
-	       } catch (ParseException e) {
-	           e.printStackTrace();
-	       }	
+			WebDriverManager.chromedriver().setup();
+			ChromeOptions options = new ChromeOptions();
+			options.setCapability("ACCEPT_INSECURE_CERTS", true);
+			options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+			options.addArguments("--headless");
+			driver = new ChromeDriver(options);
+			Dimension d = new Dimension(1360, 978);
+			// Resize the current window to the given dimension
+			driver.manage().window().setSize(d);
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+			driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
+			driver.get(url);
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void LoginApplication() throws InterruptedException {
-		
+
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
-		LM.LoginFormFill(username, password );
+		LM.LoginFormFill(username, password);
 		LM.loginbutton.click();
-		 System.out.println("User click on login button");
+		System.out.println("User click on login button");
 	}
 
 	public static WebDriver getDriver() {
@@ -84,18 +91,18 @@ public class Configuration {
 	public static void setDriver(WebDriver driver) {
 		Configuration.driver = driver;
 	}
-	@BeforeSuite(alwaysRun = true)
-	public static void startTest()
-	{
-	report = new ExtentReports();
-	ExtentHtmlReporter reporter=  new ExtentHtmlReporter("./Reports/FWA.html");
-	report.attachReporter(reporter);
-	}
-	@AfterSuite(alwaysRun = true)
-	public static void endTest()
-	{
 
-	report.flush();
+	@BeforeSuite(alwaysRun = true)
+	public static void startTest() {
+		report = new ExtentReports();
+		ExtentHtmlReporter reporter = new ExtentHtmlReporter("./Reports/FWA.html");
+		report.attachReporter(reporter);
+	}
+
+	@AfterSuite(alwaysRun = true)
+	public static void endTest() {
+
+		report.flush();
 	}
 
 }

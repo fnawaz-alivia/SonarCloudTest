@@ -16,11 +16,11 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-
 import automationModels.LoginModel;
+import automationModels.ProjectModel;
+import automationUtils.utilityMethods;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Configuration {
@@ -77,11 +77,21 @@ public class Configuration {
 	}
 
 	public static void LoginApplication() throws InterruptedException {
-
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
 		LM.LoginFormFill(username, password);
 		LM.loginbutton.click();
 		System.out.println("User click on login button");
+		utilityMethods.waitForVisibility(PM.GetStarted);
+		if(PM.GetStarted.isDisplayed()) {
+			System.out.println("The User is logged in successfully");
+		}
+		else {
+			
+			System.out.println("The User is not able to login");
+		}
+		
 	}
 
 	public static WebDriver getDriver() {

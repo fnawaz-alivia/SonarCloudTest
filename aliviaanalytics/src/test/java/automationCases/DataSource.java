@@ -369,11 +369,77 @@ public class DataSource extends Configuration {
 		}
 		DSM.LoadDataSoucre("AutoCreatedFolder");
 		DSM.RightClickOnDS("AutoCreatedFolder");
+		test = report.createTest("Verify the delete option is displayed when the user does the right click on folder");
+		if (PM.DeleteOptionRightClickonProject.isDisplayed()) {
+			test.log(Status.PASS, "The delete option is being shown ");
+
+		} else {
+			test.log(Status.FAIL, "The delete option  is not being shown ");
+		}
+		test = report.createTest("Verify the delete option is clickable  when the user does the right click on folder");
+		if (PM.DeleteOptionRightClickonProject.isEnabled()) {
+			test.log(Status.PASS, "The delete option is clickable");
+
+		} else {
+			test.log(Status.FAIL, "The delete option is not clickable");
+		}
+		test = report.createTest("Verify that please confirm screen shows  when the user clicks on delete option");
 		PM.DeleteOptionRightClickonProject.click();
 		utilityMethods.waitForVisibility(PM.YesButton);
+		if (PM.YesButton.isDisplayed()) {
+			test.log(Status.PASS, "Please confirm screen is being shown");
+
+		} else {
+			test.log(Status.FAIL, "Please confirm screen is not being shown");
+		}
+		test = report.createTest("Verify the yes button is displayed on please confirm screen");
+		if (PM.YesButton.isDisplayed()) {
+			test.log(Status.PASS, "The yes button is being shown ");
+
+		} else {
+			test.log(Status.FAIL, "The yes button is not being shown ");
+		}
+		test = report.createTest("Verify the yes button is clickable on please confirm screen");
+		if (PM.YesButton.isEnabled()) {
+			test.log(Status.PASS, "The yes button is clickable");
+
+		} else {
+			test.log(Status.FAIL, "The yes button is not clickable");
+		}
+		utilityMethods.waitForVisibility(PM.YesButton);
+		test = report.createTest("Verify that delete folder screen shows for successfull message by clicking on yes button ");
 		PM.YesButton.click();
 		utilityMethods.waitForVisibility(PM.RenameProjectOk);
+		if (PM.RenameProjectOk.isDisplayed()) {
+			test.log(Status.PASS, "The delete folder screen is being shown");
+
+		} else {
+			test.log(Status.FAIL, "The delete folder screen is not being shown");
+		}
+		test = report.createTest("Verify that OK button shows on delete folder screen");
+		if (PM.RenameProjectOk.isDisplayed()) {
+			test.log(Status.PASS, "The OK button is being shown ");
+
+		} else {
+			test.log(Status.FAIL, "The OK button is not being shown ");
+		}
+		test = report.createTest("Verify that OK button is clickable on delete folder screen");
+		if (PM.RenameProjectOk.isEnabled()) {
+			test.log(Status.PASS, "The OK button is clickable");
+
+		} else {
+			test.log(Status.FAIL, "The OK button is not clickable");
+		}
 		PM.RenameProjectOk.click();
+		int foldercount= DSM.CountDataSources("AutoCreatedFolder");
+		System.out.println("foldercount in data source tree after delete"+foldercount);
+		test = report.createTest("Verify that deleted folder is removed from data source list ");
+		if (foldercount=='0') {
+			test.log(Status.PASS, "The deleted folder is removed from data source list ");
+
+		} else {
+			test.log(Status.FAIL, "The deleted folder is not removed from data source list ");
+		}
 		driver.close();
 	}
 

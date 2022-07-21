@@ -125,6 +125,10 @@ public class DataSourceModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and @class = 'x-btn-button x-btn-button-default-small x-btn-text  x-btn-icon x-btn-icon-left x-btn-button-center ' and (text() = 'Yes' or . = 'Yes')]")
 
 	public WebElement yesDeletedConfirmationBOx;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-')and @data-qtip = 'Refresh DataSource list']")
+
+	public WebElement RefreshDataSourcelist;
 
 	@FindBy(how = How.XPATH, using = "//*[(text() = 'CSV File' or . = 'CSV File')]")
 
@@ -167,6 +171,7 @@ public class DataSourceModel extends Configuration {
 		this.SearchTabDataSource.click();
 		this.SearchTabDataSource.clear();
 		this.SearchTabDataSource.sendKeys(DSName);
+		this.RefreshDataSourcelist.click();
 		Thread.sleep(5000);
 		return this.DataSourcesList.size();
 	}
@@ -178,6 +183,17 @@ public class DataSourceModel extends Configuration {
 		test = report.createTest("Verify the search tab works for data sources ");
 		this.SearchTabDataSource.sendKeys(DSName);
 		test.log(Status.PASS, "The search tab works for data sources");
+		test = report.createTest("Verify that updated DataSource file shows in datasources list");
+		int updatedDSCount= this.CountDataSources(DSName);
+		System.out.println(updatedDSCount);
+		if (updatedDSCount==2)
+		{
+			test.log(Status.PASS, "The created/updated DataSource file is being shown in datasources list");
+
+		} else {
+			test.log(Status.FAIL, "The created/updated DataSource file is not being shown in datasources list");
+		}
+
 		Thread.sleep(3000);
 		test = report.createTest("Verify the user is able to open the newly created data source");
 		for (WebElement el : DataSourcesList) {
@@ -235,17 +251,65 @@ public class DataSourceModel extends Configuration {
 		test = report.createTest("Verify that user is able to click on yes button for on confirmation box");
 		this.yesDeletedConfirmationBOx.click();
 		test.log(Status.PASS, "The user is able to click on yes button for on confirmation box");
+		
+		int DSCount= this.CountDataSources(DSName);
+		System.out.println("DSCount After delete"+DSCount);
+		test = report.createTest("Verify that deleted Datasource is removed from data source list ");
+		if (DSCount==0) {
+			test.log(Status.PASS, "The deleted Datasource is removed from data source list ");
+
+		} else {
+			test.log(Status.FAIL, "The deleted Datasource is not removed from data source list ");
+		}
 	}
 
 	public void EditDSAndVerifyUpdateName(String DSName) throws InterruptedException {
-		test = report.createTest("The user is able to edit the DataSource");
+		test = report.createTest("Verify that edit button is visible on data source details page");
+		if (this.EditSelectedDataSourceButton.isDisplayed()) {
+			test.log(Status.PASS, "The edit button is visible on data source details page");
 
+		} else {
+			test.log(Status.FAIL, "The edit button is not  visible on data source details page");
+		}
+		test = report.createTest("Verify that edit button is clickable on data source details page");
+		if (this.EditSelectedDataSourceButton.isEnabled()) {
+			test.log(Status.PASS, "The edit button is clickable on data source details page");
+
+		} else {
+			test.log(Status.FAIL, "The edit button is not  clickable on data source details page");
+		}
+		
+		test = report.createTest("Update datasouce screen shows by clicking on edit button ");
 		this.EditSelectedDataSourceButton.click();
 		Thread.sleep(2000);
+		if (this.DataSourceName.isDisplayed()) {
+			test.log(Status.PASS, "The Update datasouce screen is being shown by clicking on edit button");
+
+		} else {
+			test.log(Status.FAIL, "The Update datasouce screen is not being shown by clicking on edit button");
+		}
+		test = report.createTest("Verfiy that user is able to clear existing datasouce name  from data source name field");
 		this.DataSourceName.clear();
+		System.out.println(this.DataSourceName.getText());
+		test = report.createTest("Verfiy that user is able to enter the datasouce name  in  data source name field");
 		this.DataSourceName.sendKeys(DSName);
+		System.out.println(this.DataSourceName.getText());
+		
+		test = report.createTest("Verify that save button is visible on update data source screen");
+		if (this.SaveDataSoures.isDisplayed()) {
+			test.log(Status.PASS, "The save button is visible  on update data source screen");
+
+		} else {
+			test.log(Status.FAIL, "The save button is not visible  on update data source screen");
+		}
+		test = report.createTest("Verify that save button is clickable on update data source screen");
+		if (this.SaveDataSoures.isEnabled()) {
+			test.log(Status.PASS, "The save button is clickable on update data source screen");
+
+		} else {
+			test.log(Status.FAIL, "The save button is not clickable on update data source screen");
+		}
 		this.SaveDataSoures.click();
-		test.log(Status.PASS, "The user is able to edit the DataSource");
 		Thread.sleep(5000);
 	}
 
@@ -253,10 +317,68 @@ public class DataSourceModel extends Configuration {
 
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		utilityMethods.waitForVisibility(this.ExportDataButton);
+		test = report.createTest("Verify that export data button is visible on data source details page");
+		if (this.ExportDataButton.isDisplayed()) {
+			test.log(Status.PASS, "The export data button is visible on data source details page");
+
+		} else {
+			test.log(Status.FAIL, "The export data button  is not visible on data source details page");
+		}
+		test = report.createTest("Verify that export data button is clickable on data source details page");
+		if (this.ExportDataButton.isEnabled()) {
+			test.log(Status.PASS, "The export data button is clickable on data source details page");
+
+		} else {
+			test.log(Status.FAIL, "The export data button is not  clickable on data source details page");
+		}
+		test = report.createTest("Verify that dropdown opens by clicking on export data button");
 		this.ExportDataButton.click();
 		Thread.sleep(1000);
+		if (this.ExportDataToCSV.isDisplayed()) {
+			test.log(Status.PASS, "The dropdown opens by clicking on export data button");
+
+		} else {
+			test.log(Status.FAIL, "The dropdown doesn't open by clicking on export data button");
+		}
+		test = report.createTest("Verify that Export to CSV option is available in dropdown list ");
+		if (this.ExportDataToCSV.isDisplayed()) {
+			test.log(Status.PASS, "The Export to CSV option is available in dropdown list ");
+
+		} else {
+			test.log(Status.FAIL, "The Export to CSV option is not available in dropdown list ");
+		}
+		
+		
+		test = report.createTest("Verify that Export to CSV option is clickable in dropdown list ");
+		if (this.ExportDataToCSV.isEnabled()) {
+			test.log(Status.PASS, "The  Export to CSV option is clickable in dropdown list");
+
+		} else {
+			test.log(Status.FAIL, "The  Export to CSV option is not clickable in dropdown list");
+		}
+		test = report.createTest("Verify that Export to CSV screen shows by clicking on export to CSV option");
 		this.ExportDataToCSV.click();
 		utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
+		if (PM.OKButtonSelectaProjectWondow.isDisplayed()) {
+			test.log(Status.PASS, "The Export to CSV screen shows by clicking on export to CSV option");
+
+		} else {
+			test.log(Status.FAIL, "The Export to CSV screen does not shows by clicking on export to CSV option");
+		}
+		test = report.createTest("Verify that ok button is visible on Export to CSV screen");
+		if (PM.OKButtonSelectaProjectWondow.isDisplayed()) {
+			test.log(Status.PASS, "The ok button is visible on Export to CSV screen");
+
+		} else {
+			test.log(Status.FAIL, "The ok button is not visible on Export to CSV screen");
+		}
+		test = report.createTest("Verify that ok button is clickable on Export to CSV screen");
+		if (this.EditSelectedDataSourceButton.isEnabled()) {
+			test.log(Status.PASS, "The ok button is clickable on Export to CSV screen");
+
+		} else {
+			test.log(Status.FAIL, "The ok button is not clickable on Export to CSV screen");
+		}
 		PM.OKButtonSelectaProjectWondow.click();
 		Thread.sleep(2000);
 		test = report.createTest("Verify the user can  export data source in CSV file ");
@@ -277,16 +399,73 @@ public class DataSourceModel extends Configuration {
 	}
 
 	public void ExportDataIntoExcel() throws InterruptedException {
-
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		utilityMethods.waitForVisibility(this.ExportDataButton);
+		test = report.createTest("Verify that export data button is visible on data source details page");
+		if (this.ExportDataButton.isDisplayed()) {
+			test.log(Status.PASS, "The export data button is visible on data source details page");
+
+		} else {
+			test.log(Status.FAIL, "The export data button  is not visible on data source details page");
+		}
+		test = report.createTest("Verify that export data button is clickable on data source details page");
+		if (this.ExportDataButton.isEnabled()) {
+			test.log(Status.PASS, "The export data button is clickable on data source details page");
+
+		} else {
+			test.log(Status.FAIL, "The export data button is not  clickable on data source details page");
+		}
+		test = report.createTest("Verify that dropdown opens by clicking on export data button");
 		this.ExportDataButton.click();
 		Thread.sleep(1000);
-		test = report.createTest("Verify the user can  export data source in Excel file ");
+		if (this.ExportDataToExcel.isDisplayed()) {
+			test.log(Status.PASS, "The dropdown opens by clicking on export data button");
+
+		} else {
+			test.log(Status.FAIL, "The dropdown doesn't open by clicking on export data button");
+		}
+		test = report.createTest("Verify that Export to excel option is available in dropdown list ");
+		if (this.ExportDataToExcel.isDisplayed()) {
+			test.log(Status.PASS, "The Export to excel option is available in dropdown list ");
+
+		} else {
+			test.log(Status.FAIL, "The Export to excel option is not available in dropdown list ");
+		}
+		
+		
+		test = report.createTest("Verify that Export to excel option is clickable in dropdown list ");
+		if (this.ExportDataToExcel.isEnabled()) {
+			test.log(Status.PASS, "The  Export to excel option is clickable in dropdown list");
+
+		} else {
+			test.log(Status.FAIL, "The  Export to excel option is not clickable in dropdown list");
+		}
+		test = report.createTest("Verify that Export to excel screen shows by clicking on export to excel option");
 		this.ExportDataToExcel.click();
 		utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
+		if (PM.OKButtonSelectaProjectWondow.isDisplayed()) {
+			test.log(Status.PASS, "The Export to excel screen shows by clicking on export to excel option");
+
+		} else {
+			test.log(Status.FAIL, "The Export to excel screen does not shows by clicking on export to excel option");
+		}
+		test = report.createTest("Verify that ok button is visible on Export to excel screen");
+		if (PM.OKButtonSelectaProjectWondow.isDisplayed()) {
+			test.log(Status.PASS, "The ok button is visible on Export to excel screen");
+
+		} else {
+			test.log(Status.FAIL, "The ok button is not visible on Export to excel screen");
+		}
+		test = report.createTest("Verify that ok button is clickable on Export to excel screen");
+		if (this.EditSelectedDataSourceButton.isEnabled()) {
+			test.log(Status.PASS, "The ok button is clickable on Export to excel screen");
+
+		} else {
+			test.log(Status.FAIL, "The ok button is not clickable on Export to CSV screen");
+		}
 		PM.OKButtonSelectaProjectWondow.click();
 		Thread.sleep(2000);
+		test = report.createTest("Verify the user can  export data source in Excel file");
 		try {
 
 			boolean NoticePopup = this.NoticePopUp.isDisplayed();

@@ -5,7 +5,7 @@
 		<groups>
 			<run>
 			
-				<include name="regression" />
+				<include name="regression11" />
 			</run>
 		</groups>
 		<classes>

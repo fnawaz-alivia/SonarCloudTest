@@ -16,11 +16,8 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-
-import automationModels.DataSourceModel;
 import automationModels.LoginModel;
 import automationModels.ProjectModel;
 import automationUtils.utilityMethods;
@@ -86,8 +83,8 @@ public class Configuration {
 		LM.LoginFormFill(username, password);
 		LM.loginbutton.click();
 		System.out.println("User click on login button");
-		utilityMethods.waitForVisibility(PM.LoadedProjectText);
-		if(PM.LoadedProjectText.isDisplayed()) {
+		utilityMethods.waitForVisibility(PM.GetStarted);
+		if(PM.GetStarted.isDisplayed()) {
 			System.out.println("The User is logged in successfully");
 		}
 		else {

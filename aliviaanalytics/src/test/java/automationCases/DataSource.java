@@ -432,7 +432,7 @@ public class DataSource extends Configuration {
 		}
 		PM.RenameProjectOk.click();
 		int foldercount= DSM.CountDataSources("AutoCreatedFolder");
-		System.out.println(foldercount);
+		System.out.println("foldercount in data source tree after delete"+foldercount);
 		test = report.createTest("Verify that deleted folder is removed from data source list ");
 		if (foldercount=='0') {
 			test.log(Status.PASS, "The deleted folder is removed from data source list ");

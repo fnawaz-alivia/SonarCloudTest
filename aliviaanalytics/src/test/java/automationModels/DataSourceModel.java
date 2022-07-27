@@ -30,6 +30,9 @@ public class DataSourceModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[@style = 'left: 690px; top: 3px; margin: 0px;' and starts-with(@class, 'x-tool x-box-item x-tool-default x-tool-after-title') and @data-qtip = 'Close dialog']")
 
 	public WebElement CloseDialog;
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-resizable')]//a[3]//span[text()='Cancel']")
+
+	public WebElement cancelbutton;
 
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and (text() = 'Connect' or . = 'Connect')]")
 
@@ -42,7 +45,48 @@ public class DataSourceModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @type = 'text' and @name = 'databaseName']")
 
 	public WebElement databaseName;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'fieldset-') and (text() = 'Config' or . = 'Config')]")
 
+	public WebElement config;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-default-resizable')]//fieldset[2]//div[2]//input")
+
+	public WebElement choosedrilldownsourcecolumn;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-default-resizable')]//fieldset[2]//div[3]//input")
+
+	public WebElement choosedrilldowndetailscolumn;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'numberfield-') and @type = 'text' and @name = 'rowsForMetadata']")
+
+	public WebElement processrowsForMetadata;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'checkbox-') and (text() = 'Mark First Row as Header' or . = 'Mark First Row as Header')]")
+
+	public WebElement MarkFirstRowasHeader;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'numberfield-') and @type = 'text' and @name = 'skipRowsFromTop']")
+
+	public WebElement skipRowsFromTop;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @type = 'text' and @name = 'lineSeparator']")
+
+	public WebElement lineSeparator;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @type = 'text' and @name = 'quoteCharacter']")
+
+	public WebElement quoteCharacter;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @type = 'text' and @name = 'colSeparator']")
+
+	public WebElement columnSeparator;
+	
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'checkbox-') and (text() = 'Trim Spaces around Text' or . = 'Trim Spaces around Text')]")
+
+	public WebElement TrimSpacesaroundText;
+	
 	@FindBy(how = How.XPATH, using = "//*[contains(@class, 'dataRepo-manageDatasources-dataDetailView-deleteButton-012')]")
 
 	public WebElement DeleteLoadedDS;
@@ -58,7 +102,35 @@ public class DataSourceModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[@id = 'dataRepo-manageDatasources-dataDetailView-loadedDSName-011']")
 
 	public WebElement LoadedDSFileName;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'checkbox-') and (text() = 'mask for me' or . = 'mask for me')]")
 
+	public WebElement maskforme;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'preview-') and (text() = 'Preview Data' or . = 'Preview Data')]")
+
+	public WebElement PreviewData;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'checkbox-') and (text() = 'Distinct Results' or . = 'Distinct Results')]")
+
+	public WebElement DistinctResults;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'checkbox-') and (text() = 'Lock Data Source and Make it Read Only' or . = 'Lock Data Source and Make it Read Only')]")
+
+	public WebElement LockDataSourceandMakeitReadOnly;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id = 'combo-' and @type = 'text' and @name = 'connectionType' and @placeholder = 'Select Connection Type ...']")
+
+	public WebElement connectionType;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @type = 'text' and @name = 'detailDataSourceId' and @placeholder = 'Select Detail Source ...']")
+
+	public WebElement detailDataSourceId;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'fieldset-') and (text() = 'Drill Down Details' or . = 'Drill Down Details')]")
+
+	public WebElement DrillDownDetails;
+	
 	@FindBy(how = How.XPATH, using = "//*[contains(@class, 'dataRepo-manageDatasources-dataDetailView-dataSnapshotHeader-014')]")
 
 	public WebElement DataSnapshotGridText;
@@ -109,6 +181,18 @@ public class DataSourceModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and (text() = 'Close' or . = 'Close')]")
 
 	public WebElement CloseUploadDSWindow;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @type = 'text' and @placeholder= 'Select File...']")
+
+	public WebElement SelectFileDropDown;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'checkbox-') and (text() = 'Geo Mapping' or . = 'Geo Mapping')]")
+
+	public WebElement GeoMapping;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and (text() = 'Advance' or . = 'Advance')]")
+
+	public WebElement AdvanceButton;
 
 	@FindBy(how = How.XPATH, using = "//*[@id = 'dataRepo-manageDatasources-saveButton-009']")
 
@@ -161,6 +245,13 @@ public class DataSourceModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[@id='DataRepo-ManageDS-dataDetailView-gridPanel-003-bodyWrap']//child::table//tr//td[2]//div")
 
 	public List<WebElement> ColumnsMetaDataDetails;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-resizable')]//div[contains(@class,'x-form-type-radio')]")
+
+	public List<WebElement> RadioButtonList;
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-resizable')]//div[contains(@class,'x-form-item-body')]//div[contains(@class,'x-form-cb-checked')]")
+
+	public List<WebElement> SelectRadioButton;
 
 	public int CountDataSources(String DSName) throws InterruptedException {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
@@ -172,7 +263,7 @@ public class DataSourceModel extends Configuration {
 		this.SearchTabDataSource.clear();
 		this.SearchTabDataSource.sendKeys(DSName);
 		this.RefreshDataSourcelist.click();
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		return this.DataSourcesList.size();
 	}
 
@@ -203,6 +294,7 @@ public class DataSourceModel extends Configuration {
 				break;
 			}
 		}
+		
 		test.log(Status.PASS, "The user is able to open the newly created data source");
 
 	}
@@ -237,6 +329,7 @@ public class DataSourceModel extends Configuration {
 		test = report.createTest("Verify that a pop up to select check box to remove database table ");
 		this.DeleteLoadedDS.click();
 		Thread.sleep(2000);
+		utilityMethods.waitForVisibility(this.CheckBoxRemoveDatabaseTable);
 		if (this.CheckBoxRemoveDatabaseTable.isDisplayed()) {
 			test.log(Status.PASS, "A pop up to select check box to remove database table is being shown");
 
@@ -244,7 +337,7 @@ public class DataSourceModel extends Configuration {
 			test.log(Status.FAIL, "A pop up to select check box to remove database table is not being shown");
 		}
 		test = report.createTest("Verify that the user is able to select check box to remove database table  ");
-		utilityMethods.waitForVisibility(this.CheckBoxRemoveDatabaseTable);
+		
 		this.CheckBoxRemoveDatabaseTable.click();
 		test.log(Status.PASS, "The user is able to select check box to remove database table  ");
 		utilityMethods.waitForVisibility(this.yesDeletedConfirmationBOx);
@@ -310,7 +403,7 @@ public class DataSourceModel extends Configuration {
 			test.log(Status.FAIL, "The save button is not clickable on update data source screen");
 		}
 		this.SaveDataSoures.click();
-		Thread.sleep(5000);
+		Thread.sleep(7000);
 	}
 
 	public void ExportDataIntoCSV() throws InterruptedException {
@@ -373,7 +466,7 @@ public class DataSourceModel extends Configuration {
 			test.log(Status.FAIL, "The ok button is not visible on Export to CSV screen");
 		}
 		test = report.createTest("Verify that ok button is clickable on Export to CSV screen");
-		if (this.EditSelectedDataSourceButton.isEnabled()) {
+		if (PM.OKButtonSelectaProjectWondow.isEnabled()) {
 			test.log(Status.PASS, "The ok button is clickable on Export to CSV screen");
 
 		} else {
@@ -481,73 +574,99 @@ public class DataSourceModel extends Configuration {
 		}
 	}
 
-	public void CreateMicrosoftExcelDS(String DSName, String DSPath) throws InterruptedException {
+	public void CreateMicrosoftExcelDS(String DSName, String DSPath) throws Exception {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		PM.GetStarted.click();
-
-		test = report.createTest("Side Pane: Verify that Data Repository dropdown is visible in the side pane");
-		if (this.DataRepository.isDisplayed()) {
-			test.log(Status.PASS, "The Data Repository dropdown is visible in the side pane");
-		} else {
-			test.log(Status.FAIL, "The Data Repository dropdown is not visible in the side pane");
-		}
-
-		test = report.createTest("Side Pane: Verify that Data Repository dropdown is clickable ");
-		if (this.DataRepository.isEnabled()) {
-			test.log(Status.PASS, "The Data Repository dropdown is clickable ");
-		} else {
-			test.log(Status.FAIL, "The Data Repository dropdown is not clickable ");
-		}
-
-		test = report.createTest(
-				"Side Pane:Verify that clicking on the Data Repository displays a list of its sub-modules in the dropdown ");
-		this.DataRepository.click();
-		if (this.ManageDataSources.isDisplayed()) {
-			test.log(Status.PASS, "clicking on the Data Repository displays a list of its sub-modules in the dropdown");
-		} else {
-			test.log(Status.FAIL,
-					"clicking on the Data Repository does not display a list of its sub-modules in the dropdown");
-		}
-		test = report.createTest(
-				"Side Pane: Verify that Manage Data Sources Button is present in Data Repository dropdown ");
-
-		if (this.ManageDataSources.isDisplayed()) {
-			test.log(Status.PASS, "the Manage Data Sources Button is present in Data Repository dropdown");
-		} else {
-			test.log(Status.FAIL, "the Manage Data Sources Button is not present in Data Repository dropdown");
-		}
-		test = report.createTest("Side Pane: Verify that Manage Data Sources Button is clickable ");
-
-		if (this.ManageDataSources.isEnabled()) {
-			test.log(Status.PASS, "the Manage Data Sources Button is clickable ");
-		} else {
-			test.log(Status.FAIL, "the Manage Data Sources Button is not clickable ");
-		}
-		
-		test = report.createTest("Side Pane: Verify that clicking on Manage Data Sources Button navigates to 'Manage Data Sources' screen");
-		this.ManageDataSources.click();
-		if (this.SearchTabDataSource.isDisplayed()) {
-			test.log(Status.PASS, "clicking on Manage Data Sources Button navigates to 'Manage Data Sources' screen");
-		} else {
-			test.log(Status.FAIL, "clicking on Manage Data Sources Button doesn't navigate to 'Manage Data Sources' screen");
-		}
+		utilityMethods.visible(this.DataRepository, "Side Pane: Verify that Data Repository dropdown is visible in the side pane");
+		utilityMethods.clickable(this.DataRepository, "Side Pane: Verify that Data Repository dropdown is clickable ");
+		utilityMethods.clicked_Single(this.DataRepository, 0, this.ManageDataSources, "Side Pane:Verify that clicking on the Data Repository displays a list of its sub-modules in the dropdown ");
+		utilityMethods.visible(this.ManageDataSources, "Side Pane: Verify that Manage Data Sources Button is present in Data Repository dropdown ");
+		utilityMethods.clickable(this.ManageDataSources, "Side Pane: Verify that Manage Data Sources Button is clickable ");
+		utilityMethods.clicked_Single(this.ManageDataSources, 0, this.SearchTabDataSource, "Side Pane: Verify that clicking on Manage Data Sources Button navigates to 'Manage Data Sources' screen");
 		Thread.sleep(2000);
+		utilityMethods.visible(this.SearchTabDataSource, "Verify that Search Text Field is visible on the Data source screen. ");
+		utilityMethods.clickable(this.SearchTabDataSource, "Verify that Search Text Field is clickable and editable on the Data source screen.");
 		this.SearchTabDataSource.click();
+		utilityMethods.visible(this.MicrosoftExcel, "Verify that CSV File Button is visible");
+		utilityMethods.clickable(this.MicrosoftExcel, "Verify that CSV File Button is clickable and the user can click.");
+		utilityMethods.clicked_Single(this.MicrosoftExcel, 1000, PM.PublicOption, "Verify that Excel File Button opens 'Create Microsoft Excel  Data Source' screen upon clicking.");
+		utilityMethods.verifyRadioButtonPrivatePublicVisible(RadioButtonList);
+		utilityMethods.verifyRadioButtonPrivatePublicClickable(RadioButtonList);
+		utilityMethods.verifyRadioButtonSelection(RadioButtonList, SelectRadioButton);
+		utilityMethods.visible(this.config, "Verify that Config Button is visible.");
+		utilityMethods.clicked_Single(this.config, 1000, this.processrowsForMetadata, "Verify that Config Button upon clicking expands and displays further fields.");
+		utilityMethods.visible(this.processrowsForMetadata, "Verify that Process Rows for Metadata Prediction Text Field is visible. ");
+		utilityMethods.clickable(this.processrowsForMetadata, "Verify that Process Rows for Metadata Prediction Text Field is clickable and editable.");
+		utilityMethods.verifyfieldmandatory(this.processrowsForMetadata, 2000, PM.exclamationmark, "Verify that Process Rows for Metadata Prediction Text Field is highlighted red upon leaving it empty. ");
+		utilityMethods.visible(this.skipRowsFromTop, "Verify thatS kip Rows from Top Text Field is visible. ");
+		utilityMethods.clickable(this.skipRowsFromTop, "Verify that Skip Rows from Top Text Field is clickable and editable.");
+		utilityMethods.verifyfieldmandatory(this.skipRowsFromTop, 2000, PM.exclamationmark, "Verify that Skip Rows from Top Text Field is highlighted red upon leaving it empty.");
+		utilityMethods.visible(this.MarkFirstRowasHeader, "Verify that Mark First Row as Header Check Box is visible.");
+		utilityMethods.clickable(this.MarkFirstRowasHeader, "Verify that Mark First Row as Header Check Box is clickable");
+		utilityMethods.visible(this.TrimSpacesaroundText, "Verify that Trim Spaces around Text Check Box is visible. ");
+		utilityMethods.clickable(this.TrimSpacesaroundText, "Verify that Trim Spaces around Text Check Box is clickable");
+		this.config.click();
+		utilityMethods.visible(this.DrillDownDetails, "Verify that Drill Down Details Dropdown is visible.");
+		utilityMethods.clickable(this.DrillDownDetails, "Verify that Drill Down Details Dropdown is clickable.");
+		utilityMethods.clicked_Single(this.DrillDownDetails, 1000, this.detailDataSourceId, "Verify that Drill Down Details Dropdown upon clicking expands and displays further fields");
+		utilityMethods.visible(this.detailDataSourceId, "Verify that Choose Detail Source Dropdown is visible");
+		utilityMethods.clickable(this.detailDataSourceId, "Verify that Choose Detail Source Dropdown is clickable and editable.");
+		utilityMethods.visible(this.choosedrilldownsourcecolumn, "Verify that Choose Drill Down Source Column Dropdown is  visible");
+		utilityMethods.clickable(this.choosedrilldownsourcecolumn, "Verify that Choose Drill Down Source Column Dropdown is clickable and editable.");
+		utilityMethods.visible(this.choosedrilldowndetailscolumn, "Verify that Choose Drill Down Detail Column Dropdown is visible");
+		utilityMethods.clickable(this.choosedrilldowndetailscolumn, "Verify that Choose Drill Down Detail Column Dropdown is clickable and editable.");
+		utilityMethods.visible(this.LockDataSourceandMakeitReadOnly, "Verify that Lock Data Source to Make it Read Only Check Box is visible. ");
+		utilityMethods.clickable(this.LockDataSourceandMakeitReadOnly, "Verify that Lock Data Source to Make it Read Only Check Box is clickable. ");
+		utilityMethods.visible(this.DistinctResults, "Verify that Distinct Results Check Box is visible");
+		utilityMethods.clickable(this.DistinctResults, "Verify that Distinct Results Check Box is clickable. ");
+		utilityMethods.visible(this.DistinctResults, "Verify that Mask for me Check Box is visible.");
+		utilityMethods.clickable(this.DistinctResults, "Verify that Mask for me Check Box is clickable. ");
+		utilityMethods.visible(this.DistinctResults, "Verify that Preview Data Button is visible");
+		utilityMethods.clickable(this.DistinctResults, "Verify that Preview Data Button is clickable.  ");
+		this.DrillDownDetails.click();
+		utilityMethods.visible(this.cancelbutton, "Create Microsoft Excel  Data Source Window :Verify that Cancel Data Button is visible");
+		utilityMethods.clickable(this.cancelbutton, "Create Microsoft Excel  Data Source Window:Verify that Cancel Button is clickable. ");
+		utilityMethods.clicked_Single(this.cancelbutton, 2000, this.MicrosoftExcel, "Verify that clicking the Cancel Button takes the user back to the 'Manage Data Sources' landing page. ");
 		this.MicrosoftExcel.click();
-		PM.PublicOption.click();
-		this.DataSourceName.sendKeys(DSName);
-		this.UploadFileDataSource.click();
 		Thread.sleep(2000);
-
+		test = report.createTest("Create Microsoft Excel  Data Source- The user is able to select public visibility type.");
+		PM.PublicOption.click();
+		test.log(Status.PASS, "The user is able to select public visibility type.");
+		utilityMethods.visible(this.DataSourceName, "Create Microsoft Excel  Data Source Window: Verify that Data Source Name Text Box is visible on the Landing Page");
+		utilityMethods.clickable(this.DataSourceName, "Create Microsoft Excel  Data Source Window:Verify that Data Source Name Text Box is editable.");
+		utilityMethods.verifyfieldmandatory(this.DataSourceName, 2000, PM.exclamationmark, "Verify that if the Data Source  Name is empty an exclamation mark should appear on right side");
+		utilityMethods.verifyFieldInputs(this.DataSourceName);
+		this.DataSourceName.clear();
+		this.DataSourceName.sendKeys(DSName);
+		utilityMethods.visible(this.SelectFileDropDown, "Create Microsoft Excel  Data SourceWindow : Verify that Select FIle Dropdown is visible.");
+		utilityMethods.clickable(this.SelectFileDropDown, "Create Microsoft Excel  Data Source Window:Verify that Select FIle Dropdown is clickable.");
+		utilityMethods.visible(this.AdvanceButton, "Create Microsoft Excel  Data Source Window: Verify that Advance Button is visible.");
+		utilityMethods.clickable(this.AdvanceButton, "Create Microsoft Excel  Data Source Window:Verify that Advance Button is clickable.");
+		utilityMethods.visible(this.UploadFileDataSource, "Create Microsoft Excel  Data Source Window:Verify that Upload File Button is visible in the list of sub modules displayed under Data Repository Bread Crumb.");
+		utilityMethods.clickable(this.UploadFileDataSource, "Create Microsoft Excel  Data Source Window:Verify that Upload File Button is clickable.");
+		utilityMethods.visible(this.GeoMapping, "Create Microsoft Excel  Data Source Window:Verify that Geo Mapping Check Box is visible.");
+		utilityMethods.clickable(this.GeoMapping, "Create Microsoft Excel  Data Source Window :Verify that Geo Mapping Check Box  is clickable.");
+		utilityMethods.clicked_Single(this.UploadFileDataSource, 2000, this.SaveUploadFile, "Verify that Upload File Button navigates to Upload File Screen.");
+		Thread.sleep(2000);
+		//utilityMethods.visible(this.BrowseDataSourceFile, "Upload File Window :Verify that browse button is visible.");
+		utilityMethods.clickable(this.BrowseDataSourceFile, "Upload File Window:Verify thatbrowse button  is clickable.");
+		test = report.createTest("Verify the user is able to browse the file ");
 		String FilePathForDS = Paths.get(System.getProperty("user.dir") + "\\src\\datafiles\\" + DSPath)
 				.toAbsolutePath().toString();
 		this.BrowseDataSourceFile.sendKeys(FilePathForDS);
-		this.SaveUploadFile.click();
-		Thread.sleep(2000);
-
-		this.CloseUploadDSWindow.click();
-		Thread.sleep(2000);
+		test.log(Status.PASS, " The user is able to browse the file ");
+		utilityMethods.visible(this.SaveUploadFile, "Upload File Window :Verify that save button is visible.");
+		utilityMethods.clickable(this.SaveUploadFile, "Upload File Window:Verify that save button  is clickable.");
+		utilityMethods.clicked_Single(this.SaveUploadFile, 2000, this.CloseUploadDSWindow, "Upload File Window :Verify that save button is works.");
+		
+		utilityMethods.visible(this.CloseUploadDSWindow, "File Manager Window :Verify that close button is visible.");
+		utilityMethods.clickable(this.CloseUploadDSWindow, "File Manager Window:Verify that close button  is clickable.");
+		utilityMethods.clicked_Single(this.CloseUploadDSWindow, 2000, this.SaveDataSoures, "File Manager Window :Verify the close button works");
+		utilityMethods.visible(this.SaveDataSoures, "Create Microsoft Excel  Data Source Window : Verify that save Button is visible.");
+		utilityMethods.clickable(this.SaveDataSoures, "Create Microsoft Excel  Data Source Window : Verify that save Button is visible.");
+		test = report.createTest("Verify the save button works ");
 		this.SaveDataSoures.click();
+		test.log(Status.PASS, "The save button works ");
 		utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
 		PM.OKButtonSelectaProjectWondow.click();
 
@@ -557,23 +676,98 @@ public class DataSourceModel extends Configuration {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		PM.GetStarted.click();
 		try {
-			this.DataRepository.click();
-			this.ManageDataSources.click();
+			utilityMethods.visible(this.DataRepository, "Side Pane: Verify that Data Repository dropdown is visible in the side pane");
+			utilityMethods.clickable(this.DataRepository, "Side Pane: Verify that Data Repository dropdown is clickable ");
+			utilityMethods.clicked_Single(this.DataRepository, 0, this.ManageDataSources, "Side Pane:Verify that clicking on the Data Repository displays a list of its sub-modules in the dropdown ");
+			utilityMethods.visible(this.ManageDataSources, "Side Pane: Verify that Manage Data Sources Button is present in Data Repository dropdown ");
+			utilityMethods.clickable(this.ManageDataSources, "Side Pane: Verify that Manage Data Sources Button is clickable ");
+			utilityMethods.clicked_Single(this.ManageDataSources, 0, this.SearchTabDataSource, "Side Pane: Verify that clicking on Manage Data Sources Button navigates to 'Manage Data Sources' screen");
 			Thread.sleep(2000);
+			utilityMethods.visible(this.SearchTabDataSource, "Verify that Search Text Field is visible on the Data source screen. ");
+			utilityMethods.clickable(this.SearchTabDataSource, "Verify that Search Text Field is clickable and editable on the Data source screen.");
 			this.SearchTabDataSource.click();
+			utilityMethods.visible(this.MicrosoftSQLServer, "Verify that Create Microsoft SQL Server  Button is visible");
+			utilityMethods.clickable(this.MicrosoftSQLServer, "Verify that Create Microsoft SQL Server  Button is clickable and the user can click.");
+			utilityMethods.clicked_Single(this.MicrosoftSQLServer, 1000, PM.PublicOption, "Verify that Create Microsoft SQL Server Button opens 'Create Microsoft SQL Server Data Source' screen upon clicking.");
+			utilityMethods.verifyRadioButtonPrivatePublicVisible(RadioButtonList);
+			utilityMethods.verifyRadioButtonPrivatePublicClickable(RadioButtonList);
+			//utilityMethods.verifyRadioButtonSelection(RadioButtonList, SelectRadioButton);
+			utilityMethods.visible(this.DrillDownDetails, "Verify that Drill Down Details Dropdown is visible.");
+			utilityMethods.clickable(this.DrillDownDetails, "Verify that Drill Down Details Dropdown is clickable.");
+			/*
+			 * utilityMethods.clicked_Single(this.DrillDownDetails, 1000,
+			 * this.detailDataSourceId,
+			 * "Verify that Drill Down Details Dropdown upon clicking expands and displays further fields"
+			 * ); utilityMethods.visible(this.detailDataSourceId,
+			 * "Verify that Choose Detail Source Dropdown is visible");
+			 * utilityMethods.clickable(this.detailDataSourceId,
+			 * "Verify that Choose Detail Source Dropdown is clickable and editable.");
+			 * utilityMethods.visible(this.choosedrilldownsourcecolumn,
+			 * "Verify that Choose Drill Down Source Column Dropdown is  visible");
+			 * utilityMethods.clickable(this.choosedrilldownsourcecolumn,
+			 * "Verify that Choose Drill Down Source Column Dropdown is clickable and editable."
+			 * ); utilityMethods.visible(this.choosedrilldowndetailscolumn,
+			 * "Verify that Choose Drill Down Detail Column Dropdown is visible");
+			 * utilityMethods.clickable(this.choosedrilldowndetailscolumn,
+			 * "Verify that Choose Drill Down Detail Column Dropdown is clickable and editable."
+			 * ); utilityMethods.visible(this.LockDataSourceandMakeitReadOnly,
+			 * "Verify that Lock Data Source to Make it Read Only Check Box is visible. ");
+			 * utilityMethods.clickable(this.LockDataSourceandMakeitReadOnly,
+			 * "Verify that Lock Data Source to Make it Read Only Check Box is clickable. "
+			 * ); utilityMethods.visible(this.DistinctResults,
+			 * "Verify that Distinct Results Check Box is visible");
+			 * utilityMethods.clickable(this.DistinctResults,
+			 * "Verify that Distinct Results Check Box is clickable. ");
+			 * utilityMethods.visible(this.DistinctResults,
+			 * "Verify that Mask for me Check Box is visible.");
+			 * utilityMethods.clickable(this.DistinctResults,
+			 * "Verify that Mask for me Check Box is clickable. ");
+			 * this.DrillDownDetails.click();
+			 */
+			utilityMethods.visible(this.cancelbutton, "Create Microsoft SQL Server Data Source Window :Verify that Cancel Data Button is visible");
+			utilityMethods.clickable(this.cancelbutton, "Create Microsoft SQL Server Data Source Window :Verify that Cancel Button is clickable. ");
+			utilityMethods.clicked_Single(this.cancelbutton, 2000, this.MicrosoftSQLServer, "Verify that clicking the Cancel Button takes the user back to the 'Manage Data Sources' landing page. ");
 			this.MicrosoftSQLServer.click();
 			Thread.sleep(2000);
+			test = report.createTest("Create Microsoft SQL Server Data Source Window- The user is able to select public visibility type.");
 			PM.PublicOption.click();
+			test.log(Status.PASS, "The user is able to select public visibility type.");
+			utilityMethods.visible(this.DataSourceName, "Create Microsoft SQL Server Data Source Window: Verify that Data Source Name Text Box is visible on the Landing Page");
+			utilityMethods.clickable(this.DataSourceName, "Create Microsoft SQL Server Data Source Window :Verify that Data Source Name Text Box is editable.");
+			utilityMethods.verifyfieldmandatory(this.DataSourceName, 2000, PM.exclamationmark, "Verify that if the Data Source  Name is empty an exclamation mark should appear on right side");
+			utilityMethods.verifyFieldInputs(this.DataSourceName);
+			this.DataSourceName.clear();
 			this.DataSourceName.sendKeys(DSName);
+			utilityMethods.visible(this.AdvanceButton, "Create Microsoft SQL Server Data Source: Verify that Advance Button is visible.");
+			utilityMethods.clickable(this.AdvanceButton, "Create Microsoft SQL Server Data Source :Verify that Advance Button is clickable.");
+			utilityMethods.visible(this.GeoMapping, "Create Microsoft SQL Server Data Source Window :Verify that Geo Mapping Check Box is visible.");
+			utilityMethods.clickable(this.GeoMapping, "Create Microsoft SQL Server Data Source Window :Verify that Geo Mapping Check Box  is clickable.");
+			utilityMethods.visible(this.SaveDataSoures, "Create CSV File Data Source Window : Verify that save Button is visible.");
+			utilityMethods.clickable(this.SaveDataSoures, "Create CSV File Data Source Window : Verify that save Button is visible.");
+			Thread.sleep(2000);
+			utilityMethods.visible(this.instanceName, "Create Microsoft SQL Server Data Source:Verify that Instance Name/IP Address Dropdown Text Box is visible on the Landing Page. ");
+			utilityMethods.clickable(this.instanceName, "Create Microsoft SQL Server Data Source :Verify that Instance Name/IP Address Dropdown Text Box is  clickable.");
+			//utilityMethods.verifyfieldmandatory(this.instanceName, 2000, PM.exclamationmark, "Verify that if Instance Name/IP Address  Name is empty an exclamation mark should appear on right side");
+			utilityMethods.verifyFieldInputs(this.instanceName);
+			this.instanceName.clear();
 			this.instanceName.sendKeys("localhost:1433");
 			this.instanceName.sendKeys(Keys.ENTER);
+			utilityMethods.visible(this.databaseName, "Create Microsoft SQL Server Data Source:Verify that Database Name Dropdown Text Box is visible on the Landing Page.");
+			utilityMethods.clickable(this.databaseName, "Verify that Database Name Dropdown Text Box is editable. ");
+			//utilityMethods.verifyfieldmandatory(this.databaseName, 2000, PM.exclamationmark, "Verify that if the Data Source  Name is empty an exclamation mark should appear on right side");
+			utilityMethods.verifyFieldInputs(this.databaseName);
+			this.databaseName.clear();
 			this.databaseName.sendKeys("ai_analysis");
 			this.databaseName.sendKeys(Keys.ENTER);
+			utilityMethods.visible(this.Connect, "Create Microsoft SQL Server Data Source:Verify that Connect Button is visible.");
+			utilityMethods.clickable(this.Connect, "Verify that Connect Button is clickable. ");
 			this.Connect.click();
 			Thread.sleep(2000);
 			this.ChooseTableName.sendKeys("Automation1_Dental01");
 			this.ChooseTableName.sendKeys(Keys.ENTER);
+			test = report.createTest("Verify the save button works ");
 			this.SaveDataSoures.click();
+			test.log(Status.PASS, "The save button works ");
 			utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
 			PM.OKButtonSelectaProjectWondow.click();
 			Thread.sleep(2000);
@@ -583,42 +777,105 @@ public class DataSourceModel extends Configuration {
 		}
 	}
 
-	public void CreateCSVDS(String DSName, String DSPath) throws InterruptedException {
+	public void CreateCSVDS(String DSName, String DSPath) throws Exception {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		PM.GetStarted.click();
-		this.DataRepository.click();
-		test = report.createTest("Verify the user is able to access the manage data sources screen");
-		this.ManageDataSources.click();
-		test.log(Status.PASS, "the manage data sources screen is being shown");
+		utilityMethods.visible(this.DataRepository, "Side Pane: Verify that Data Repository dropdown is visible in the side pane");
+		utilityMethods.clickable(this.DataRepository, "Side Pane: Verify that Data Repository dropdown is clickable ");
+		utilityMethods.clicked_Single(this.DataRepository, 0, this.ManageDataSources, "Side Pane:Verify that clicking on the Data Repository displays a list of its sub-modules in the dropdown ");
+		utilityMethods.visible(this.ManageDataSources, "Side Pane: Verify that Manage Data Sources Button is present in Data Repository dropdown ");
+		utilityMethods.clickable(this.ManageDataSources, "Side Pane: Verify that Manage Data Sources Button is clickable ");
+		utilityMethods.clicked_Single(this.ManageDataSources, 0, this.SearchTabDataSource, "Side Pane: Verify that clicking on Manage Data Sources Button navigates to 'Manage Data Sources' screen");
 		Thread.sleep(2000);
+		utilityMethods.visible(this.SearchTabDataSource, "Verify that Search Text Field is visible on the Data source screen. ");
+		utilityMethods.clickable(this.SearchTabDataSource, "Verify that Search Text Field is clickable and editable on the Data source screen.");
 		this.SearchTabDataSource.click();
-		test = report.createTest("Verify the create  CSV file data source widnow opens clicking on CSV File button");
+		utilityMethods.visible(this.CSV, "Verify that CSV File Button is visible");
+		utilityMethods.clickable(this.CSV, "Verify that CSV File Button is clickable and the user can click.");
+		utilityMethods.clicked_Single(this.CSV, 1000, PM.PublicOption, "Verify that CSV File Button opens 'Create CSV File Data Source' screen upon clicking.");
+		utilityMethods.verifyRadioButtonPrivatePublicVisible(RadioButtonList);
+		utilityMethods.verifyRadioButtonPrivatePublicClickable(RadioButtonList);
+		utilityMethods.verifyRadioButtonSelection(RadioButtonList, SelectRadioButton);
+		utilityMethods.visible(this.config, "Verify that Config Button is visible.");
+		utilityMethods.clicked_Single(this.config, 1000, this.processrowsForMetadata, "Verify that Config Button upon clicking expands and displays further fields.");
+		utilityMethods.visible(this.processrowsForMetadata, "Verify that Process Rows for Metadata Prediction Text Field is visible. ");
+		utilityMethods.clickable(this.processrowsForMetadata, "Verify that Process Rows for Metadata Prediction Text Field is clickable and editable.");
+		utilityMethods.verifyfieldmandatory(this.processrowsForMetadata, 2000, PM.exclamationmark, "Verify that Process Rows for Metadata Prediction Text Field is highlighted red upon leaving it empty. ");
+		utilityMethods.visible(this.skipRowsFromTop, "Verify thatS kip Rows from Top Text Field is visible. ");
+		utilityMethods.clickable(this.skipRowsFromTop, "Verify that Skip Rows from Top Text Field is clickable and editable.");
+		utilityMethods.verifyfieldmandatory(this.skipRowsFromTop, 2000, PM.exclamationmark, "Verify that Skip Rows from Top Text Field is highlighted red upon leaving it empty.");
+		utilityMethods.visible(this.columnSeparator, "Verify that Column Separator Dropdown is visible. ");
+		utilityMethods.clickable(this.columnSeparator, "Verify that Column Separator Dropdown is clickable and editable.");
+		utilityMethods.verifyfieldmandatory(this.columnSeparator, 2000, PM.exclamationmark, "Verify that Column Separator Dropdown cannot be left empty. ");
+		utilityMethods.visible(this.lineSeparator, "Verify that Line Separator Dropdown is visible. ");
+		utilityMethods.clickable(this.lineSeparator, "Verify that Line Separator Dropdown is clickable and editable.");
+		utilityMethods.verifyfieldmandatory(this.lineSeparator, 2000, PM.exclamationmark, "Verify that Line Separator Dropdown cannot be left empty");
+		utilityMethods.visible(this.quoteCharacter, "Verify that Column Quote Char Dropdown is visible. ");
+		utilityMethods.clickable(this.quoteCharacter, "Verify that Column Quote Char Dropdown is clickable and editable.");
+		utilityMethods.verifyfieldmandatory(this.quoteCharacter, 2000, PM.exclamationmark, "Verify that Column Quote Char Dropdown cannot be left empty. ");
+		utilityMethods.visible(this.MarkFirstRowasHeader, "Verify that Mark First Row as Header Check Box is visible.");
+		utilityMethods.clickable(this.MarkFirstRowasHeader, "Verify that Mark First Row as Header Check Box is clickable");
+		utilityMethods.visible(this.TrimSpacesaroundText, "Verify that Trim Spaces around Text Check Box is visible. ");
+		utilityMethods.clickable(this.TrimSpacesaroundText, "Verify that Trim Spaces around Text Check Box is clickable");
+		this.config.click();
+		utilityMethods.visible(this.DrillDownDetails, "Verify that Drill Down Details Dropdown is visible.");
+		utilityMethods.clickable(this.DrillDownDetails, "Verify that Drill Down Details Dropdown is clickable.");
+		utilityMethods.clicked_Single(this.DrillDownDetails, 1000, this.detailDataSourceId, "Verify that Drill Down Details Dropdown upon clicking expands and displays further fields");
+		utilityMethods.visible(this.detailDataSourceId, "Verify that Choose Detail Source Dropdown is visible");
+		utilityMethods.clickable(this.detailDataSourceId, "Verify that Choose Detail Source Dropdown is clickable and editable.");
+		utilityMethods.visible(this.choosedrilldownsourcecolumn, "Verify that Choose Drill Down Source Column Dropdown is  visible");
+		utilityMethods.clickable(this.choosedrilldownsourcecolumn, "Verify that Choose Drill Down Source Column Dropdown is clickable and editable.");
+		utilityMethods.visible(this.choosedrilldowndetailscolumn, "Verify that Choose Drill Down Detail Column Dropdown is visible");
+		utilityMethods.clickable(this.choosedrilldowndetailscolumn, "Verify that Choose Drill Down Detail Column Dropdown is clickable and editable.");
+		utilityMethods.visible(this.LockDataSourceandMakeitReadOnly, "Verify that Lock Data Source to Make it Read Only Check Box is visible. ");
+		utilityMethods.clickable(this.LockDataSourceandMakeitReadOnly, "Verify that Lock Data Source to Make it Read Only Check Box is clickable. ");
+		utilityMethods.visible(this.DistinctResults, "Verify that Distinct Results Check Box is visible");
+		utilityMethods.clickable(this.DistinctResults, "Verify that Distinct Results Check Box is clickable. ");
+		utilityMethods.visible(this.DistinctResults, "Verify that Mask for me Check Box is visible.");
+		utilityMethods.clickable(this.DistinctResults, "Verify that Mask for me Check Box is clickable. ");
+		utilityMethods.visible(this.DistinctResults, "Verify that Preview Data Button is visible");
+		utilityMethods.clickable(this.DistinctResults, "Verify that Preview Data Button is clickable.  ");
+		this.DrillDownDetails.click();
+		utilityMethods.visible(this.cancelbutton, "Create CSV File Data Source Window :Verify that Cancel Data Button is visible");
+		utilityMethods.clickable(this.cancelbutton, "Create CSV File Data Source Window :Verify that Cancel Button is clickable. ");
+		utilityMethods.clicked_Single(this.cancelbutton, 2000, this.CSV, "Verify that clicking the Cancel Button takes the user back to the 'Manage Data Sources' landing page. ");
 		this.CSV.click();
-		test.log(Status.PASS, " The create CSV file data source widnow by clicking on CSV File button is being shown");
-		test = report.createTest("Create New Project Window - Project visibility type.");
-		PM.PublicOption.click();
-		test.log(Status.PASS, "The public option is selected successfully");
-		test = report
-				.createTest("Verify the user is able to enter data source name on create  CSV file data source widnow");
-		this.DataSourceName.sendKeys(DSName);
-		test.log(Status.PASS, " The user is able to enter data source name on create  CSV file data source widnow");
-		test = report.createTest("Verify the user can upload CSV file");
-		this.UploadFileDataSource.click();
-		test.log(Status.PASS, " The the user can upload CSV file");
 		Thread.sleep(2000);
-		test = report.createTest("Verify the upload File button works on create  CSV file data source widnow");
+		test = report.createTest("Create CSV File Data Source Window- The user is able to select public visibility type.");
+		PM.PublicOption.click();
+		test.log(Status.PASS, "The user is able to select public visibility type.");
+		utilityMethods.visible(this.DataSourceName, "Create CSV File Data Source Window: Verify that Data Source Name Text Box is visible on the Landing Page");
+		utilityMethods.clickable(this.DataSourceName, "Create CSV File Data Source Window :Verify that Data Source Name Text Box is editable.");
+		utilityMethods.verifyfieldmandatory(this.DataSourceName, 2000, PM.exclamationmark, "Verify that if the Data Source  Name is empty an exclamation mark should appear on right side");
+		utilityMethods.verifyFieldInputs(this.DataSourceName);
+		this.DataSourceName.clear();
+		this.DataSourceName.sendKeys(DSName);
+		utilityMethods.visible(this.SelectFileDropDown, "Create CSV File Data Source Window : Verify that Select FIle Dropdown is visible.");
+		utilityMethods.clickable(this.SelectFileDropDown, "Create CSV File Data Source Window:Verify that Select FIle Dropdown is clickable.");
+		utilityMethods.visible(this.AdvanceButton, "Create CSV File Data Source Window : Verify that Advance Button is visible.");
+		utilityMethods.clickable(this.AdvanceButton, "Create CSV File Data Source Window :Verify that Advance Button is clickable.");
+		utilityMethods.visible(this.UploadFileDataSource, "Create CSV File Data Source Window :Verify that Upload File Button is visible in the list of sub modules displayed under Data Repository Bread Crumb.");
+		utilityMethods.clickable(this.UploadFileDataSource, "Create CSV File Data Source Window :Verify that Upload File Button is clickable.");
+		utilityMethods.visible(this.GeoMapping, "Create CSV File Data Source Window :Verify that Geo Mapping Check Box is visible.");
+		utilityMethods.clickable(this.GeoMapping, "Create CSV File Data Source Window :Verify that Geo Mapping Check Box  is clickable.");
+		utilityMethods.clicked_Single(this.UploadFileDataSource, 2000, this.SaveUploadFile, "Verify that Upload File Button navigates to Upload File Screen.");
+		Thread.sleep(2000);
+		//utilityMethods.visible(this.BrowseDataSourceFile, "Upload File Window :Verify that browse button is visible.");
+		utilityMethods.clickable(this.BrowseDataSourceFile, "Upload File Window:Verify thatbrowse button  is clickable.");
+		test = report.createTest("Verify the user is able to browse the file ");
 		String FilePathForDS = Paths.get(System.getProperty("user.dir") + "\\src\\datafiles\\" + DSPath)
 				.toAbsolutePath().toString();
 		this.BrowseDataSourceFile.sendKeys(FilePathForDS);
-		test.log(Status.PASS, " The upload File button works on create  CSV file data source widnow");
-		test = report.createTest("Verify the save button works on create  CSV file data source widnow");
-		this.SaveUploadFile.click();
-		test.log(Status.PASS, "The save button works on create  CSV file data source widnow");
-		Thread.sleep(2000);
-		test = report.createTest("Verify the cross button works on create  CSV file data source widnow");
-		this.CloseUploadDSWindow.click();
-		test.log(Status.PASS, "The cross button works on create  CSV file data source widnow");
-		Thread.sleep(2000);
+		test.log(Status.PASS, " The user is able to browse the file ");
+		utilityMethods.visible(this.SaveUploadFile, "Upload File Window :Verify that save button is visible.");
+		utilityMethods.clickable(this.SaveUploadFile, "Upload File Window:Verify that save button  is clickable.");
+		utilityMethods.clicked_Single(this.SaveUploadFile, 2000, this.CloseUploadDSWindow, "Upload File Window :Verify that save button is works.");
+		
+		utilityMethods.visible(this.CloseUploadDSWindow, "File Manager Window :Verify that close button is visible.");
+		utilityMethods.clickable(this.CloseUploadDSWindow, "File Manager Window:Verify that close button  is clickable.");
+		utilityMethods.clicked_Single(this.CloseUploadDSWindow, 2000, this.SaveDataSoures, "File Manager Window :Verify the close button works");
+		utilityMethods.visible(this.SaveDataSoures, "Create CSV File Data Source Window : Verify that save Button is visible.");
+		utilityMethods.clickable(this.SaveDataSoures, "Create CSV File Data Source Window : Verify that save Button is visible.");
 		test = report.createTest("Verify the save button works ");
 		this.SaveDataSoures.click();
 		test.log(Status.PASS, "The save button works ");
@@ -627,50 +884,110 @@ public class DataSourceModel extends Configuration {
 
 	}
 
-	public void CreateTextFileDS(String DSName, String DSPath) throws InterruptedException {
+	public void CreateTextFileDS(String DSName, String DSPath) throws Exception {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		PM.GetStarted.click();
-		this.DataRepository.click();
-		test = report.createTest("Verify the user is able to access the manage data sources screen");
-		this.ManageDataSources.click();
-		test.log(Status.PASS, "the manage data sources screen is being shown");
+		utilityMethods.visible(this.DataRepository, "Side Pane: Verify that Data Repository dropdown is visible in the side pane");
+		utilityMethods.clickable(this.DataRepository, "Side Pane: Verify that Data Repository dropdown is clickable ");
+		utilityMethods.clicked_Single(this.DataRepository, 0, this.ManageDataSources, "Side Pane:Verify that clicking on the Data Repository displays a list of its sub-modules in the dropdown ");
+		utilityMethods.visible(this.ManageDataSources, "Side Pane: Verify that Manage Data Sources Button is present in Data Repository dropdown ");
+		utilityMethods.clickable(this.ManageDataSources, "Side Pane: Verify that Manage Data Sources Button is clickable ");
+		utilityMethods.clicked_Single(this.ManageDataSources, 0, this.SearchTabDataSource, "Side Pane: Verify that clicking on Manage Data Sources Button navigates to 'Manage Data Sources' screen");
 		Thread.sleep(2000);
+		utilityMethods.visible(this.SearchTabDataSource, "Verify that Search Text Field is visible on the Data source screen. ");
+		utilityMethods.clickable(this.SearchTabDataSource, "Verify that Search Text Field is clickable and editable on the Data source screen.");
 		this.SearchTabDataSource.click();
-		test = report.createTest("Verify the create  Text file data source widnow opens clicking on Text File button");
+		utilityMethods.visible(this.TextFile, "Verify that Text File Button is visible");
+		utilityMethods.clickable(this.TextFile, "Verify that Text File Button is clickable and the user can click.");
+		utilityMethods.clicked_Single(this.TextFile, 1000, PM.PublicOption, "Verify that Text File Button opens 'Create Text File Data Source' screen upon clicking.");
+		utilityMethods.verifyRadioButtonPrivatePublicVisible(RadioButtonList);
+		utilityMethods.verifyRadioButtonPrivatePublicClickable(RadioButtonList);
+		utilityMethods.verifyRadioButtonSelection(RadioButtonList, SelectRadioButton);
+		utilityMethods.visible(this.config, "Verify that Config Button is visible.");
+		utilityMethods.clicked_Single(this.config, 1000, this.processrowsForMetadata, "Verify that Config Button upon clicking expands and displays further fields.");
+		utilityMethods.visible(this.processrowsForMetadata, "Verify that Process Rows for Metadata Prediction Text Field is visible. ");
+		utilityMethods.clickable(this.processrowsForMetadata, "Verify that Process Rows for Metadata Prediction Text Field is clickable and editable.");
+		utilityMethods.verifyfieldmandatory(this.processrowsForMetadata, 2000, PM.exclamationmark, "Verify that Process Rows for Metadata Prediction Text Field is highlighted red upon leaving it empty. ");
+		utilityMethods.visible(this.skipRowsFromTop, "Verify thatS kip Rows from Top Text Field is visible. ");
+		utilityMethods.clickable(this.skipRowsFromTop, "Verify that Skip Rows from Top Text Field is clickable and editable.");
+		utilityMethods.verifyfieldmandatory(this.skipRowsFromTop, 2000, PM.exclamationmark, "Verify that Skip Rows from Top Text Field is highlighted red upon leaving it empty.");
+		utilityMethods.visible(this.columnSeparator, "Verify that Column Separator Dropdown is visible. ");
+		utilityMethods.clickable(this.columnSeparator, "Verify that Column Separator Dropdown is clickable and editable.");
+		utilityMethods.verifyfieldmandatory(this.columnSeparator, 2000, PM.exclamationmark, "Verify that Column Separator Dropdown cannot be left empty. ");
+		utilityMethods.visible(this.lineSeparator, "Verify that Line Separator Dropdown is visible. ");
+		utilityMethods.clickable(this.lineSeparator, "Verify that Line Separator Dropdown is clickable and editable.");
+		utilityMethods.verifyfieldmandatory(this.lineSeparator, 2000, PM.exclamationmark, "Verify that Line Separator Dropdown cannot be left empty");
+		utilityMethods.visible(this.quoteCharacter, "Verify that Column Quote Char Dropdown is visible. ");
+		utilityMethods.clickable(this.quoteCharacter, "Verify that Column Quote Char Dropdown is clickable and editable.");
+		utilityMethods.verifyfieldmandatory(this.quoteCharacter, 2000, PM.exclamationmark, "Verify that Column Quote Char Dropdown cannot be left empty. ");
+		utilityMethods.visible(this.MarkFirstRowasHeader, "Verify that Mark First Row as Header Check Box is visible.");
+		utilityMethods.clickable(this.MarkFirstRowasHeader, "Verify that Mark First Row as Header Check Box is clickable");
+		utilityMethods.visible(this.TrimSpacesaroundText, "Verify that Trim Spaces around Text Check Box is visible. ");
+		utilityMethods.clickable(this.TrimSpacesaroundText, "Verify that Trim Spaces around Text Check Box is clickable");
+		this.config.click();
+		utilityMethods.visible(this.DrillDownDetails, "Verify that Drill Down Details Dropdown is visible.");
+		utilityMethods.clickable(this.DrillDownDetails, "Verify that Drill Down Details Dropdown is clickable.");
+		utilityMethods.clicked_Single(this.DrillDownDetails, 1000, this.detailDataSourceId, "Verify that Drill Down Details Dropdown upon clicking expands and displays further fields");
+		utilityMethods.visible(this.detailDataSourceId, "Verify that Choose Detail Source Dropdown is visible");
+		utilityMethods.clickable(this.detailDataSourceId, "Verify that Choose Detail Source Dropdown is clickable and editable.");
+		utilityMethods.visible(this.choosedrilldownsourcecolumn, "Verify that Choose Drill Down Source Column Dropdown is  visible");
+		utilityMethods.clickable(this.choosedrilldownsourcecolumn, "Verify that Choose Drill Down Source Column Dropdown is clickable and editable.");
+		utilityMethods.visible(this.choosedrilldowndetailscolumn, "Verify that Choose Drill Down Detail Column Dropdown is visible");
+		utilityMethods.clickable(this.choosedrilldowndetailscolumn, "Verify that Choose Drill Down Detail Column Dropdown is clickable and editable.");
+		utilityMethods.visible(this.LockDataSourceandMakeitReadOnly, "Verify that Lock Data Source to Make it Read Only Check Box is visible. ");
+		utilityMethods.clickable(this.LockDataSourceandMakeitReadOnly, "Verify that Lock Data Source to Make it Read Only Check Box is clickable. ");
+		utilityMethods.visible(this.DistinctResults, "Verify that Distinct Results Check Box is visible");
+		utilityMethods.clickable(this.DistinctResults, "Verify that Distinct Results Check Box is clickable. ");
+		utilityMethods.visible(this.DistinctResults, "Verify that Mask for me Check Box is visible.");
+		utilityMethods.clickable(this.DistinctResults, "Verify that Mask for me Check Box is clickable. ");
+		utilityMethods.visible(this.DistinctResults, "Verify that Preview Data Button is visible");
+		utilityMethods.clickable(this.DistinctResults, "Verify that Preview Data Button is clickable.  ");
+		this.DrillDownDetails.click();
+		utilityMethods.visible(this.cancelbutton, "Create Text File Data Source Window :Verify that Cancel Data Button is visible");
+		utilityMethods.clickable(this.cancelbutton, "Create Text File Data Source Window :Verify that Cancel Button is clickable. ");
+		utilityMethods.clicked_Single(this.cancelbutton, 2000, this.TextFile, "Verify that clicking the Cancel Button takes the user back to the 'Manage Data Sources' landing page. ");
 		this.TextFile.click();
-		test.log(Status.PASS, " The create text file data source widnow by clicking on text File button is being shown");
-		test = report.createTest("Create New Project Window - Project visibility type.");
+		Thread.sleep(2000);
+		test = report.createTest("Create CSV File Data Source Window- The user is able to select public visibility type.");
 		PM.PublicOption.click();
-		test.log(Status.PASS, "The public option is selected successfully");
-		test = report
-				.createTest("Verify the user is able to enter data source name on create  text file data source widnow");
+		test.log(Status.PASS, "The user is able to select public visibility type.");
+		utilityMethods.visible(this.DataSourceName, "Create Text File Data Source Window: Verify that Data Source Name Text Box is visible on the Landing Page");
+		utilityMethods.clickable(this.DataSourceName, "Create Text File Data Source Window :Verify that Data Source Name Text Box is editable.");
+		utilityMethods.verifyfieldmandatory(this.DataSourceName, 2000, PM.exclamationmark, "Verify that if the Data Source  Name is empty an exclamation mark should appear on right side");
+		utilityMethods.verifyFieldInputs(this.DataSourceName);
+		this.DataSourceName.clear();
 		this.DataSourceName.sendKeys(DSName);
-		test.log(Status.PASS, " The user is able to enter data source name on create  text file data source widnow");
-		test = report.createTest("Verify the user can upload text file");
-		this.UploadFileDataSource.click();
-		test.log(Status.PASS, " The the user can upload text file");
+		utilityMethods.visible(this.SelectFileDropDown, "Create Text File Data Source Window : Verify that Select FIle Dropdown is visible.");
+		utilityMethods.clickable(this.SelectFileDropDown, "Create Text File Data Source Window:Verify that Select FIle Dropdown is clickable.");
+		utilityMethods.visible(this.AdvanceButton, "Create Text File Data Source Window : Verify that Advance Button is visible.");
+		utilityMethods.clickable(this.AdvanceButton, "Create Text File Data Source Window :Verify that Advance Button is clickable.");
+		utilityMethods.visible(this.UploadFileDataSource, "Create Text File Data Source Window :Verify that Upload File Button is visible in the list of sub modules displayed under Data Repository Bread Crumb.");
+		utilityMethods.clickable(this.UploadFileDataSource, "Create Text File Data Source Window :Verify that Upload File Button is clickable.");
+		utilityMethods.visible(this.GeoMapping, "Create Text File Data Source Window :Verify that Geo Mapping Check Box is visible.");
+		utilityMethods.clickable(this.GeoMapping, "Create Text File Data Source Window :Verify that Geo Mapping Check Box  is clickable.");
+		utilityMethods.clicked_Single(this.UploadFileDataSource, 2000, this.SaveUploadFile, "Verify that Upload File Button navigates to Upload File Screen.");
 		Thread.sleep(2000);
-		test = report.createTest("Verify the upload File button works on create  text file data source widnow");
+		//utilityMethods.visible(this.BrowseDataSourceFile, "Upload File Window :Verify that browse button is visible.");
+		utilityMethods.clickable(this.BrowseDataSourceFile, "Upload File Window:Verify thatbrowse button  is clickable.");
+		test = report.createTest("Verify the user is able to browse the file ");
 		String FilePathForDS = Paths.get(System.getProperty("user.dir") + "\\src\\datafiles\\" + DSPath)
-		.toAbsolutePath().toString();
+				.toAbsolutePath().toString();
 		this.BrowseDataSourceFile.sendKeys(FilePathForDS);
-		test.log(Status.PASS, " The upload File button works on create  text file data source widnow");
-		test = report.createTest("Verify the save button works on create  text file data source widnow");
-		this.SaveUploadFile.click();
-		test.log(Status.PASS, "The save button works on create  text file data source widnow");
-		Thread.sleep(2000);
-		test = report.createTest("Verify the cross button works on create  text file data source widnow");
-		this.CloseUploadDSWindow.click();
-		test.log(Status.PASS, "The cross button works on create  text file data source widnow");
-		Thread.sleep(2000);
+		test.log(Status.PASS, " The user is able to browse the file ");
+		utilityMethods.visible(this.SaveUploadFile, "Upload File Window :Verify that save button is visible.");
+		utilityMethods.clickable(this.SaveUploadFile, "Upload File Window:Verify that save button  is clickable.");
+		utilityMethods.clicked_Single(this.SaveUploadFile, 2000, this.CloseUploadDSWindow, "Upload File Window :Verify that save button is works.");
+		
+		utilityMethods.visible(this.CloseUploadDSWindow, "File Manager Window :Verify that close button is visible.");
+		utilityMethods.clickable(this.CloseUploadDSWindow, "File Manager Window:Verify that close button  is clickable.");
+		utilityMethods.clicked_Single(this.CloseUploadDSWindow, 2000, this.SaveDataSoures, "File Manager Window :Verify the close button works");
+		utilityMethods.visible(this.SaveDataSoures, "Create Text File Data Source Window : Verify that save Button is visible.");
+		utilityMethods.clickable(this.SaveDataSoures, "Create Text File Data Source Window : Verify that save Button is visible.");
 		test = report.createTest("Verify the save button works ");
 		this.SaveDataSoures.click();
 		test.log(Status.PASS, "The save button works ");
 		utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
 		PM.OKButtonSelectaProjectWondow.click();
-		
-		
-
 	}
 
 }

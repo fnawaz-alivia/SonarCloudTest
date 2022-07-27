@@ -1049,7 +1049,7 @@ if (PM.SaveButton.isEnabled()) {
 	
 
 	@Test(groups = {"regressiontest"}, priority = 10)
-	public void FWA_Project_010() throws InterruptedException {
+	public void FWA_Project_010() throws Exception {
 		Configuration.BConfiguration();
 
 		Configuration.LoginApplication();
@@ -1083,7 +1083,7 @@ if (PM.SaveButton.isEnabled()) {
 		driver.close();
 	}
 	@Test(groups = {"regressiontest"}, priority = 11,dependsOnMethods = { "FWA_Project_010" })
-	public void FWA_Project_011() throws InterruptedException {
+	public void FWA_Project_011() throws Exception {
 		Configuration.BConfiguration();
 
 		Configuration.LoginApplication();

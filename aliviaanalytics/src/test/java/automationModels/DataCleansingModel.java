@@ -336,9 +336,25 @@ public class DataCleansingModel extends Configuration {
 						+ "'+'" + 1 + "']//tr//td[8]"));
 		utilityMethods.SetTextwithActionClass(Value, "0");
 		test.log(Status.PASS, "The user is able to set the value");
-		test = report.createTest("Verify the dataclean execution button works ");
+		
+		test = report.createTest("Verify that Execute Button is present on the Data Cleansing screen");
+		if (this.DataCleanExecuteButton.isDisplayed()) {
+			test.log(Status.PASS, "The Execute Button is present on the Data Cleansing screen");
+
+		} else {
+			test.log(Status.FAIL, "The Execute Button is not present on the Data Cleansing screen");
+		}
+		test = report.createTest("Verify that Execute Button is clickable");
+		if (this.DataCleanExecuteButton.isEnabled()) {
+			test.log(Status.PASS, "The Execute Button is clickable on the Data Cleansing screen");
+
+		} else {
+			test.log(Status.FAIL, "The Execute Button is not clickable on the Data Cleansing screen");
+		}
+		
+		test = report.createTest("Verify that clicking on the Execute Button the selected columns are displayed in the Cleansing Results grid");
 		this.DataCleanExecuteButton.click();
-		test.log(Status.PASS, "The dataclean execution button works");
+		test.log(Status.PASS, "clicking on the Execute Button the selected columns are displayed in the Cleansing Results grid");
 		Thread.sleep(2000);
 	}
 
@@ -347,11 +363,70 @@ public class DataCleansingModel extends Configuration {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		utilityMethods.waitForVisibility(this.DataCleanExportButton);
+		test = report.createTest("Verify that Export Data Dropdown is visible on Data Cleansing screen");
+		if (this.DataCleanExportButton.isDisplayed()) {
+			test.log(Status.PASS, "The Export Data Dropdown is visible on Data Cleansing screen");
+
+		} else {
+			test.log(Status.FAIL, "The Export Data Dropdown is not visible on Data Cleansing screen");
+		}
+		test = report.createTest("Verify that Export Data Dropdown is clickable");
+		if (this.DataCleanExportButton.isEnabled()) {
+			test.log(Status.PASS, "The Export Data Dropdown is clickable");
+
+		} else {
+			test.log(Status.FAIL, "The Export Data Dropdown is clickable");
+		}
+		test = report.createTest("Verify that clicking on Export Data Dropdown a list of options is visible in Dropdown menu");
+		
 		this.DataCleanExportButton.click();
 		Thread.sleep(1000);
+		if (DSM.ExportDataToCSV.isDisplayed()) {
+			test.log(Status.PASS, "clicking on Export Data Dropdown a list of options is visible in Dropdown menu");
+
+		} else {
+			test.log(Status.FAIL, "clicking on Export Data Dropdown a list of options is not visible in Dropdown menu");
+		}
+		test = report.createTest("Verify that Export to CSV Button is visible in the Export Data Dropdown");
+		if (DSM.ExportDataToCSV.isDisplayed()) {
+			test.log(Status.PASS, "The Export to CSV Button is visible in the Export Data Dropdown");
+
+		} else {
+			test.log(Status.FAIL, "The Export to CSV Button is not visible in the Export Data Dropdown");
+		}
+		test = report.createTest("Verify that Export to CSV Button is clickable");
+		if (DSM.ExportDataToCSV.isEnabled()) {
+			test.log(Status.PASS, "The Export to CSV Button is clickable");
+
+		} else {
+			test.log(Status.FAIL, "The Export to CSV Button is not clickable");
+		}
+		test = report.createTest("Verify that clicking on Export to CSV button 'Export to CSV' pop-up appears");
+	
 		DSM.ExportDataToCSV.click();
+		
+		if (this.ExportDataCleansingFileName.isDisplayed()) {
+			test.log(Status.PASS, "clicking on Export to CSV button 'Export to CSV' pop-up appears");
+
+		} else {
+			test.log(Status.FAIL, "clicking on Export to CSV button 'Export to CSV' pop-up does not appear");
+		}
 		this.ExportDataCleansingFileName.sendKeys(fileName);
 		utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
+		test = report.createTest("Verify that ok button is visible on Export to CSV screen");
+		if (PM.OKButtonSelectaProjectWondow.isDisplayed()) {
+			test.log(Status.PASS, "The ok button is visible on Export to CSV screen");
+
+		} else {
+			test.log(Status.FAIL, "The ok button is not visible on Export to CSV screen");
+		}
+		test = report.createTest("Verify that ok button is clickable on Export to CSV screen");
+		if (PM.OKButtonSelectaProjectWondow.isEnabled()) {
+			test.log(Status.PASS, "The ok button is clickable on Export to CSV screen");
+
+		} else {
+			test.log(Status.FAIL, "The ok button is not clickable on Export to CSV screen");
+		}
 		PM.OKButtonSelectaProjectWondow.click();
 		Thread.sleep(2000);
 		test.log(Status.PASS, "The user is able to export Cleansing Filter results data into CSV ");
@@ -362,11 +437,74 @@ public class DataCleansingModel extends Configuration {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		utilityMethods.waitForVisibility(this.DataCleanExportButton);
+		test = report.createTest("Verify that Export Data Dropdown is visible on Data Cleansing screen");
+		if (this.DataCleanExportButton.isDisplayed()) {
+			test.log(Status.PASS, "The Export Data Dropdown is visible on Data Cleansing screen");
+
+		} else {
+			test.log(Status.FAIL, "The Export Data Dropdown is not visible on Data Cleansing screen");
+		}
+		test = report.createTest("Verify that Export Data Dropdown is clickable");
+		if (this.DataCleanExportButton.isEnabled()) {
+			test.log(Status.PASS, "The Export Data Dropdown is clickable");
+
+		} else {
+			test.log(Status.FAIL, "The Export Data Dropdown is clickable");
+		}
+		test = report.createTest("Verify that clicking on Export Data Dropdown a list of options is visible in Dropdown menu");
+		
 		this.DataCleanExportButton.click();
 		Thread.sleep(1000);
+		if (DSM.ExportDataToExcel.isDisplayed()) {
+			test.log(Status.PASS, "clicking on Export Data Dropdown a list of options is visible in Dropdown menu");
+
+		} else {
+			test.log(Status.FAIL, "clicking on Export Data Dropdown a list of options is not visible in Dropdown menu");
+		}
+		test = report.createTest("Verify that Export to excel Button is visible in the Export Data Dropdown");
+		if (DSM.ExportDataToExcel.isDisplayed()) {
+			test.log(Status.PASS, "The Export to excel Button is visible in the Export Data Dropdown");
+
+		} else {
+			test.log(Status.FAIL, "The Export to excel Button is not visible in the Export Data Dropdown");
+		}
+		test = report.createTest("Verify that Export to excel Button is clickable");
+		if (DSM.ExportDataToExcel.isEnabled()) {
+			test.log(Status.PASS, "The Export to excel Button is clickable");
+
+		} else {
+			test.log(Status.FAIL, "The Export to excel Button is not clickable");
+		}
+		
+		
+		test = report.createTest("Verify that clicking on Export to excel button 'Export to excel' pop-up appears");
+		
 		DSM.ExportDataToExcel.click();
+		
+		if (this.ExportDataCleansingFileName.isDisplayed()) {
+			test.log(Status.PASS, "clicking on Export to excel button 'Export to excel' pop-up appears");
+
+		} else {
+			test.log(Status.FAIL, "clicking on Export to excel button 'Export to excel' pop-up does not appear");
+		}
+		
+	
 		this.ExportDataCleansingFileName.sendKeys(fileName);
 		utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
+		test = report.createTest("Verify that ok button is visible on Export to excel screen");
+		if (PM.OKButtonSelectaProjectWondow.isDisplayed()) {
+			test.log(Status.PASS, "The ok button is visible on Export to excel screen");
+
+		} else {
+			test.log(Status.FAIL, "The ok button is not visible on Export to excel screen");
+		}
+		test = report.createTest("Verify that ok button is clickable on Export to excel screen");
+		if (PM.OKButtonSelectaProjectWondow.isEnabled()) {
+			test.log(Status.PASS, "The ok button is clickable on Export to excel screen");
+
+		} else {
+			test.log(Status.FAIL, "The ok button is not clickable on Export to excel screen");
+		}
 		PM.OKButtonSelectaProjectWondow.click();
 		Thread.sleep(2000);
 		test.log(Status.PASS, "The user is able to export Cleansing Filter results data into Excel ");

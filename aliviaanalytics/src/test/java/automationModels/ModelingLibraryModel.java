@@ -59,6 +59,20 @@ public class ModelingLibraryModel extends Configuration {
 			test.log(Status.FAIL, " clicking on Modeling Library Button doesn't navigate to Modeling Library screen");
 		}
 		
+		test = report.createTest("Verify that Search Text Field is visible on the Modeling Library screen. ");
+		if (this.SearchTabModelingLibrary.isDisplayed()) {
+			test.log(Status.PASS, " The Search Text Field is visible on the Modeling Library screen.");
+		} else {
+			test.log(Status.FAIL, " The Search Text Field is not visible on the Modeling Library screen.");
+		}
+		test = report.createTest("Verify that Search Text Field is clickable and editable on the Modeling Library screen. ");
+		if (this.SearchTabModelingLibrary.isEnabled()) {
+			test.log(Status.PASS, "Search Text Field is clickable and editable on the Modeling Library screen");
+		} else {
+			test.log(Status.FAIL, "Search Text Field is not clickable and editable on the Modeling Library screen");
+		}
+		
+		
 		this.SearchTabModelingLibrary.click();
 		
 	}

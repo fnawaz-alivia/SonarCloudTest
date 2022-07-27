@@ -4,15 +4,15 @@
   <test thread-count="5" name="First Test(failed)" verbose="10">
     <groups>
       <run>
-        <include name="regression1"/>
+        <include name="regression2"/>
       </run>
     </groups>
     <classes>
       <class name="automationCases.DataSource">
         <methods>
           <include name="startTest"/>
+          <include name="FWA_DataSource_006"/>
           <include name="endTest"/>
-          <include name="FWA_DataSource_004"/>
         </methods>
       </class> <!-- automationCases.DataSource -->
     </classes>

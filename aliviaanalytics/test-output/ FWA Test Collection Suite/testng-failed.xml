@@ -4,17 +4,17 @@
   <test thread-count="5" name="First Test(failed)" verbose="10">
     <groups>
       <run>
-        <include name="regression1"/>
+        <include name="regression"/>
       </run>
     </groups>
     <classes>
-      <class name="automationCases.DataSource">
+      <class name="automationCases.DataCleansing">
         <methods>
           <include name="startTest"/>
           <include name="endTest"/>
-          <include name="FWA_DataSource_004"/>
+          <include name="FWA_DataCleansing_008"/>
         </methods>
-      </class> <!-- automationCases.DataSource -->
+      </class> <!-- automationCases.DataCleansing -->
     </classes>
   </test> <!-- First Test(failed) -->
 </suite> <!-- Failed suite [ FWA Test Collection Suite] -->

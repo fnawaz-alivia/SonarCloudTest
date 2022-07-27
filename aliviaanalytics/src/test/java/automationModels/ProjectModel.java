@@ -264,7 +264,7 @@ public class ProjectModel extends Configuration
 
 	public WebElement ReloadProjects;
 	
-	@FindBy(how = How.XPATH, using = "//*[(text() = 'Get Started' or . = 'Get Started')]")
+	@FindBy(how = How.XPATH, using = "//table[(text() = 'Get Started' or . = 'Get Started')]")
 
 	public WebElement GetStarted;
 	

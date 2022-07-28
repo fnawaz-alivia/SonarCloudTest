@@ -4,6 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
+
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import automationModels.ModelingLibraryModel;
 import automationModels.ModelingModel;
 import automationModels.ProjectModel;
@@ -11,7 +15,8 @@ import automationUtils.utilityMethods;
 import configuration.Configuration;
 
 public class Models extends Configuration {	
-		@Test(groups = { "RegressionTest" }, priority = 1)
+	public static ExtentTest test;
+		@Test(groups = { "regression11" }, priority = 1)
 		public void FWA_Model_001() throws InterruptedException {
 			Configuration.BConfiguration();
 			Configuration.LoginApplication();
@@ -22,26 +27,28 @@ public class Models extends Configuration {
 			MLM.LandingOnPageModlingLibrary();
 			MLM.GetIndexOfModel("R Operator");
 			System.out.println(MLM.index);
+			test = report.createTest("Verify that the user is able to execute already existing Model");
 			driver.findElement(By.xpath("//div[contains(@class, 'analysis-modelingLibrary-mainGrid-49')]//child::table['"+MLM.index+"'+'"+1+"']//tr//td[3]//div[1]//div[1]")).click();
+			test.log(Status.PASS, " The user is able to execute already existing Model");
 			WebElement ModelExecutionStatus = driver.findElement(By.xpath("//div[contains(@class,'analysis-modelingLibrary-mainGrid-49')]//child::table['"+MLM.index+"'+'"+1+"']//tr//td[4]//div"));	
 			String ExecutionStatus = ModelExecutionStatus.getText();
 			System.out.println(ExecutionStatus);
-			
-			while (ExecutionStatus.equals("Running"))
+			test = report.createTest("Verify that the user is able to execute already existing Model and Model result is completed");
+			while (ModelExecutionStatus.getText().equals("Running"))
 					{
 			Thread.sleep(2000);
 			}
 			System.out.println(ModelExecutionStatus.getText());
 			
 			if (ExecutionStatus.equals("Complete")){
-				System.out.println("passed");
+				test.log(Status.PASS, " The user is able to execute already existing Model and Model result is completed");
 				}
 
 				 else if (ExecutionStatus.equals("Error"))  
 					 {
-					 System.out.println("failed");
+					 test.log(Status.FAIL, " The user is able to execute already existing Model but  Model result is in error status");
 				}
-
+			driver.close();
 	}
 		
 		@Test(groups = { "smoke","regression" },  priority = 2,retryAnalyzer = listeners.RetryAnalyzer.class)

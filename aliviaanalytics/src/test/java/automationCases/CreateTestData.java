@@ -15,7 +15,7 @@ public class CreateTestData extends Configuration  {
 	
 	
 	@BeforeSuite(alwaysRun = true)
-	public void FWA_CreateTestData_001() throws InterruptedException {
+	public void FWA_CreateTestData_001() throws Exception {
 		
 		
 		Configuration.BConfiguration();

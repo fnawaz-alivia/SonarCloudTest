@@ -21,7 +21,7 @@ public class DataSource extends Configuration {
 	public static ExtentTest test;
 
 	@Test(groups = { "smoke", "regression" }, priority = 1, retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_DataSource_001() throws InterruptedException {
+	public void FWA_DataSource_001() throws Exception {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
@@ -31,10 +31,10 @@ public class DataSource extends Configuration {
 		String DSName = RandomStringUtils.randomAlphabetic(10);
 		DSM.CreateCSVDS(DSName, "Medical Transactions.csv");
 		test = report.createTest("Verify the user is able to Create the DataSource with CSV File");
-
+	
 		DSM.LoadDataSoucre(DSName);
 		test.log(Status.PASS, "The DataSource is created with CSV file successfully");
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		DSM.ExportDataIntoCSV();
 		DSM.ExportDataIntoExcel();
 		DSM.EditDSAndVerifyUpdateName("Updated");
@@ -45,7 +45,7 @@ public class DataSource extends Configuration {
 	}
 
 	@Test(groups = { "regression" }, priority = 2, retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_DataSource_002() throws InterruptedException {
+	public void FWA_DataSource_002() throws Exception {
 		Configuration.BConfiguration();
 
 		Configuration.LoginApplication();
@@ -70,7 +70,7 @@ public class DataSource extends Configuration {
 	}
 
 	@Test(groups = { "regression" }, priority = 3, retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_DataSource_003() throws InterruptedException {
+	public void FWA_DataSource_003() throws Exception {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
@@ -91,7 +91,7 @@ public class DataSource extends Configuration {
 	}
 
 	@Test(groups = { "regression" }, priority = 3, retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_DataSource_004() throws InterruptedException {
+	public void FWA_DataSource_004() throws Exception {
 		Configuration.BConfiguration();
 
 		Configuration.LoginApplication();
@@ -278,7 +278,7 @@ public class DataSource extends Configuration {
 	}
 
 	@Test(groups = { "regression" }, priority = 2, retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_DataSource_005() throws InterruptedException {
+	public void FWA_DataSource_005() throws Exception {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
@@ -434,7 +434,7 @@ public class DataSource extends Configuration {
 		int foldercount= DSM.CountDataSources("AutoCreatedFolder");
 		System.out.println("foldercount in data source tree after delete"+foldercount);
 		test = report.createTest("Verify that deleted folder is removed from data source list ");
-		if (foldercount=='0') {
+		if (foldercount==0) {
 			test.log(Status.PASS, "The deleted folder is removed from data source list ");
 
 		} else {
@@ -443,7 +443,7 @@ public class DataSource extends Configuration {
 		driver.close();
 	}
 
-	@Test(groups = { "RegressionTest5" }, priority = 3)
+	@Test(groups = { "regression" }, priority = 3, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_DataSource_006() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -460,7 +460,7 @@ public class DataSource extends Configuration {
 		DSM.EditDSAndVerifyUpdateName("UpdatedSQLDS");
 		DSM.LoadDataSoucre("UpdatedSQLDS");
 		DSM.DeleteDataSoucre("UpdatedSQLDS");
-
+        driver.close();
 	}
 
 }

@@ -184,12 +184,45 @@ public class ModelingModel  extends Configuration{
 		this.DrawNodesList.get(2).click();
 		this.InputOutputNodesList.get(1).click();
 		test.log(Status.PASS, " The user is able to draw the connections between datasource, algorithm and output node ");
-		test = report.createTest("Verify the Model is saved by clicking on save button.");
+		
+		test = report.createTest("Verify that the save button is present on modeling screen");
+		if (this.SaveModel.isDisplayed()) {
+			test.log(Status.PASS, " The save button is present on modeling screen");
+		} else {
+			test.log(Status.FAIL, " The save button is not present on modeling screen");
+		}
+		test = report.createTest("Verify that the save button is clickable on modeling screen");
+		if (this.SaveModel.isEnabled()) {
+			test.log(Status.PASS, " The save button is clickable on modeling screen");
+		} else {
+			test.log(Status.FAIL, "The save button is not clickable on modeling screen");
+		}
+		
+		
+		
+		test = report.createTest("Verify that by clicking on save button on modeling screen 'Save Analysis Model AS'pop up opens" );
 		this.SaveModel.click();
-		test.log(Status.PASS, " The Model is saved by clicking on save button.");
+		if (CM.InputName.isDisplayed()) {
+			test.log(Status.PASS, "by clicking on save button on modeling screen 'Save Analysis Model AS'pop up opens");
+		} else {
+			test.log(Status.FAIL, "by clicking on save button on modeling screen 'Save Analysis Model AS'pop up does not open");
+		}
 		test = report.createTest("Save Analysis Model As - Verify Model name is editable.");
 		CM.InputName.sendKeys(modelName);
 		test.log(Status.PASS, " The Model name is editable");
+		
+		test = report.createTest("Save Analysis Model As -Verify that the ok button is present");
+		if (CM.OKButton.isDisplayed()) {
+			test.log(Status.PASS, " Save Analysis Model As - the ok button is present");
+		} else {
+			test.log(Status.FAIL, " Save Analysis Model As - the ok button is not present");
+		}
+		test = report.createTest("Save Analysis Model As -Verify that the ok button is clickable");
+		if (CM.OKButton.isEnabled()) {
+			test.log(Status.PASS, " Save Analysis Model As -the ok button is clickable");
+		} else {
+			test.log(Status.FAIL, "Save Analysis Model As -the ok button is not clickable");
+		}
 		CM.OKButton.click();
 		utilityMethods.waitForVisibility(CM.OKButton);
 		CM.OKButton.click();	

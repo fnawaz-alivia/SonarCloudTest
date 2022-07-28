@@ -24,7 +24,7 @@ public class DataCleansingModel extends Configuration {
 
 	public static ExtentTest test;
 
-	@FindBy(how = How.XPATH, using = "//*[(text() = 'Data Cleansing' or . = 'Data Cleansing')]")
+	@FindBy(how = How.XPATH, using = "//table[(text() = 'Data Cleansing' or . = 'Data Cleansing')]")
 
 	public WebElement DataCleansing;
 
@@ -1832,42 +1832,23 @@ public class DataCleansingModel extends Configuration {
 	public void verifyRemoveButtonNotRemoveUnSelectedFilter_DC() throws Exception {
 		verifySelectDataSourceDropdownButton_DCScreen();
 		verifySelectDataSourceDropdownList_DCScreen();
-		test = report.createTest("Verify that Remove button do nothing when none filter is selected");
-		RemoveButton.click();
-		Thread.sleep(500);
-		if (Size_PCD.size() == 0) {
-			test.log(Status.PASS, "Removes button didn't delete any filter.");
-		} else {
-			test.log(Status.FAIL, "Removes button delete the filter.");
-		}
+		
+		utilityMethods.list_NotVisible(this.RemoveButton, 500, Size_PCD,
+				"Verify that Remove button do nothing when none filter is selected");
 	}
 
 	public void verifyResetButtonVisible_DC() throws Exception {
-		test = report.createTest("Verify that Reset Button is visible in Please Confirm Dialog");
-		if (ResetButton.isDisplayed()) {
-			test.log(Status.PASS, "The No Button is visible");
-		} else {
-			test.log(Status.FAIL, "The No Button is not visible");
-		}
+		utilityMethods.visible(this.ResetButton, 
+				"Verify that Reset Button is visible in 'Please Confirm Dialog' ");
 	}
 
 	public void verifyResetButtonClickable_DC() throws Exception {
-		test = report.createTest("Verify that Reset Button is clickable in Please Confirm Dialog");
-		if (ResetButton.isEnabled()) {
-			test.log(Status.PASS, "The No Button is clickable");
-		} else {
-			test.log(Status.FAIL, "The No Button is not clickable");
-		}
+		utilityMethods.clickable(this.ResetButton,
+				"Verify that Reset Button is clickable in 'Please Confirm Dialog' ");
 	}
 
 	public void ResetAll_DC() throws Exception {
-		test = report.createTest("Verify that Reset All Button reset Data Cleansing Screen");
-		ResetButton.click();
-		Thread.sleep(500);
-		if (DataSourceTables.size() == 0 && BreadCrumbs.size() == 0) {
-			test.log(Status.PASS, "The Reset All Button Reset the Data Cleansing Screen");
-		} else {
-			test.log(Status.FAIL, "The Reset All Button didn't Reset the Data Cleansing Screen");
-		}
+		utilityMethods.list_NotVisible(this.ResetButton, 500, DataSourceTables, "Verify that Reset All Button reset Data Cleansing Screen");
+		utilityMethods.list_NotVisible(this.ResetButton, 500, BreadCrumbs, "Verify that Reset All Button reset BreadCrumbs");
 	}
 }

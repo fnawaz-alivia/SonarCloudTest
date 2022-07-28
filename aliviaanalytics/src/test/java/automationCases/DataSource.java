@@ -31,6 +31,7 @@ public class DataSource extends Configuration {
 		String DSName = RandomStringUtils.randomAlphabetic(10);
 		DSM.CreateCSVDS(DSName, "Medical Transactions.csv");
 		test = report.createTest("Verify the user is able to Create the DataSource with CSV File");
+	
 		DSM.LoadDataSoucre(DSName);
 		test.log(Status.PASS, "The DataSource is created with CSV file successfully");
 		Thread.sleep(3000);

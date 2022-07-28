@@ -33,7 +33,7 @@ public class Configuration {
 	static String password;
 	public static String test1username;
 	public static String test1password;
-
+	public static String instanceName;
 	public static void BConfiguration() {
 
 		try {
@@ -51,6 +51,9 @@ public class Configuration {
 			System.out.println(test1username);
 			test1password = (String) jsonObject.get("test1password");
 			System.out.println(test1password);
+			instanceName = (String) jsonObject.get("instanceName");
+			System.out.println(instanceName);
+			
 //	  System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\datafiles\\chromedriver.exe");
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();

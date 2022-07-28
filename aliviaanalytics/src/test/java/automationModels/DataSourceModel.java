@@ -750,7 +750,8 @@ public class DataSourceModel extends Configuration {
 			//utilityMethods.verifyfieldmandatory(this.instanceName, 2000, PM.exclamationmark, "Verify that if Instance Name/IP Address  Name is empty an exclamation mark should appear on right side");
 			utilityMethods.verifyFieldInputs(this.instanceName);
 			this.instanceName.clear();
-			this.instanceName.sendKeys("localhost:1433");
+			System.out.println(Configuration.instanceName);
+			this.instanceName.sendKeys(Configuration.instanceName);
 			this.instanceName.sendKeys(Keys.ENTER);
 			utilityMethods.visible(this.databaseName, "Create Microsoft SQL Server Data Source:Verify that Database Name Dropdown Text Box is visible on the Landing Page.");
 			utilityMethods.clickable(this.databaseName, "Verify that Database Name Dropdown Text Box is editable. ");

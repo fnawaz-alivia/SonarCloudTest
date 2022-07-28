@@ -1049,7 +1049,7 @@ if (PM.SaveButton.isEnabled()) {
 	
 
 	@Test(groups = {"regressiontest"}, priority = 10)
-	public void FWA_Project_010() throws Exception {
+	public void FWA_Project_010() throws Exception, Error {
 		Configuration.BConfiguration();
 
 		Configuration.LoginApplication();

@@ -4,6 +4,7 @@ package automationUtils;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -32,6 +33,13 @@ public class utilityMethods extends Configuration {
 
 	public static void WaitforElementNotVisible(WebElement element) throws Error {
 		new WebDriverWait(driver, 120).until(ExpectedConditions.invisibilityOf(element));
+	}
+	
+	public static void moveToElement(WebElement element) throws Error {
+		Actions builder = new Actions(driver);
+
+		Action dragAndDrop = builder.moveToElement(element).build();
+		dragAndDrop.perform();
 	}
 
 	public static void verifyFieldInputs(WebElement element) throws Exception {

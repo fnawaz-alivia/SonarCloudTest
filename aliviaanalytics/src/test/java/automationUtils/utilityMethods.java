@@ -325,6 +325,15 @@ public class utilityMethods extends Configuration {
 			}
 	    }
 	    
+	    public static void disable(WebElement element,String testTitle) {
+	        test = report.createTest(testTitle);
+	        if (!element.isEnabled()) {
+	            test.log(Status.PASS, "The element is disable");
+	        } else {
+	            test.log(Status.FAIL, "The element is not disable");
+	        }
+	    }
+	    
 	    
 	    
 	    

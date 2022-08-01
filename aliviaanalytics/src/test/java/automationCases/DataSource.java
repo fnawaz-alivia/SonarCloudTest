@@ -277,7 +277,7 @@ public class DataSource extends Configuration {
 
 	}
 
-	@Test(groups = { "regression" }, priority = 2, retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = { "regression1" }, priority = 2, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_DataSource_005() throws Exception {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -290,30 +290,32 @@ public class DataSource extends Configuration {
 		DSM.ManageDataSources.click();
 		utilityMethods.waitForVisibility(DSM.SearchTabDataSource);
 		DSM.SearchTabDataSource.click();
-		test = report.createTest(
-				"Data source Tree: Verify that create new folder button is visible ");
-
-		if (DSM.CreateFolder.isDisplayed()) {
-			test.log(Status.PASS, "The create folder button is visible");
-		} else {
-			test.log(Status.FAIL, "The create folder button is not visible");
-		}
-		test = report.createTest(
-				"Data source Tree: Verify that create new folder button is clickable ");
-
-		if (DSM.CreateFolder.isEnabled()) {
-			test.log(Status.PASS, "The create folder button is clickable");
-		} else {
-			test.log(Status.FAIL, "The create folder button is not clickable");
-		}
+		utilityMethods.visible(DSM.CreateFolder, "Data source Tree: Verify that create new folder button is visible ");
+		utilityMethods.clickable(DSM.CreateFolder,"Data source Tree: Verify that create new folder button is clickable ");
 		
-		test = report.createTest("Verify that the user is able to create the folder in data source tree");
-		DSM.CreateFolder.click();
-		test.log(Status.PASS, "The user is able to create the folder in data source tree");
-		PM.InputFolderName.sendKeys("AutoCreatedFolder");
+		utilityMethods.clicked_Single(DSM.CreateFolder, 1000, PM.InputFolderName, "Verify that create folder h=button works");
+		utilityMethods.visible(PM.InputFolderName, "Verify that Folder Name Text Field is visible on the Landing Page. ");
+		utilityMethods.clickable(PM.InputFolderName,"Verify that Folder Name Text Field is editable. ");
+		utilityMethods.verifyFieldInputs(PM.InputFolderName);
+		utilityMethods.visible(PM.InputFolderDescription, "Verify that Folder Description  Text Field is visible on the Landing Page. ");
+		utilityMethods.clickable(PM.InputFolderDescription,"Verify that Folder Description  Text Field is editable. ");
+		utilityMethods.verifyFieldInputs(PM.InputFolderDescription);
+		utilityMethods.verifyfieldmandatory(PM.InputFolderName, 0,PM.exclamationmark, "Verify that Folder Name Text Field shows a red exclamation mark to the right when it is left empty.");
+		utilityMethods.visible(PM.SaveButton, "Verify that Save Button is visible on the landing page. ");
+		utilityMethods.visible(DSM.saveButtonDisable, "Verify that Save Button is Not clickable by default.");
+		utilityMethods.visible(DSM.cancelbuttonNewFolderScreen, "Verify that Cancel Button is visible on the landing page.");
+		utilityMethods.clickable(DSM.cancelbuttonNewFolderScreen,"Verify that Cancel Button is clickable. ");
+		PM.InputFolderName.sendKeys("AutoCreatedFolder");	
+		utilityMethods.verifyRadioButtonPrivatePublicVisible(DSM.RadioButtonList);
+		utilityMethods.verifyRadioButtonPrivatePublicClickable(DSM.RadioButtonList);
+		utilityMethods.verifyRadioButtonSelection(DSM.RadioButtonList, DSM.SelectRadioButton);
 		test = report.createTest("Create New folder Window - folder visibility type.");
 		PM.PublicOption.click();
 		test.log(Status.PASS, "The public option is selected successfully");
+		utilityMethods.clickable(PM.SaveButton,"Verify that Save Button becomes Clickable Only when a folder is named and visibility is set.");
+		
+		
+		
 		test = report.createTest("Verify the save button works ");
 		PM.SaveButton.click();
 		test.log(Status.PASS, "The save button works ");

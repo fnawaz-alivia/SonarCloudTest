@@ -277,7 +277,7 @@ public class DataSource extends Configuration {
 
 	}
 
-	@Test(groups = { "regression1" }, priority = 2, retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = { "regression" }, priority = 2, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_DataSource_005() throws Exception {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();

@@ -67,7 +67,7 @@ public class Configuration {
 			driver.manage().window().setSize(d);
 			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
-			driver.manage().timeouts().setScriptTimeout(5, TimeUnit.SECONDS);
+			driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
 			driver.get(url);
 
 		} catch (FileNotFoundException e) {

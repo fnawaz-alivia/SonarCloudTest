@@ -20,7 +20,7 @@ public class QueryBuilderModel extends Configuration{
 	public static ExtentTest test;
 	String RuleGroupName = RandomStringUtils.randomAlphabetic(10);
 	String RuleName = RandomStringUtils.randomAlphabetic(10);
-	@FindBy(how = How.XPATH, using = "//*[(text() = 'Query Builder' or . = 'Query Builder')]")
+	@FindBy(how = How.XPATH, using = "//table[(text() = 'Query Builder' or . = 'Query Builder')]")
 
 	public WebElement QueryBuilder;
 	

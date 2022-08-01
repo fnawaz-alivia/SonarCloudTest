@@ -9,7 +9,7 @@
 			</run>
 		</groups>
 		<classes>
-		<class name="automationCases.DataCleansing">
+		<class name="automationCases.DataSource">
 		</class>
 		</classes>
 	</test>

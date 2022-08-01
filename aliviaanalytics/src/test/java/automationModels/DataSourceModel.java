@@ -34,6 +34,9 @@ public class DataSourceModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-resizable')]//a[3]//span[text()='Cancel']")
 
 	public WebElement cancelbutton;
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-resizable')]//span[text()='Cancel']")
+
+	public WebElement cancelbuttonNewFolderScreen;
 
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and (text() = 'Connect' or . = 'Connect')]")
 
@@ -42,6 +45,10 @@ public class DataSourceModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @type = 'text' and @name = 'tableName' and @placeholder = 'Select Table ...']")
 
 	public WebElement ChooseTableName;
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-default-resizable')]//a[contains(@class,'btn-save') and contains(@class,'x-btn-disabled')]")
+
+	public WebElement saveButtonDisable;
+
 
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @type = 'text' and @name = 'databaseName']")
 
@@ -87,6 +94,22 @@ public class DataSourceModel extends Configuration {
 
 	public WebElement TrimSpacesaroundText;
 
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-default-resizable')]//*[text()='Username:']/following::input[1]")
+
+	public WebElement input_Username_SQL_SEVER;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-default-resizable')]//*[text()='Password:']/following::input[1]")
+
+	public WebElement input_Password_SQL_SERVER;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'radio-') and (text() = 'Database Authentication' or . = 'Database Authentication')]")
+
+	public WebElement DatabaseAuthentication;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'wauthcheckid-') and (text() = 'Windows Authentication [tomcatServiceUser] ?' or . = 'Windows Authentication [tomcatServiceUser] ?')]")
+
+	public WebElement WindowsAuthentication ;
+	
 	@FindBy(how = How.XPATH, using = "//*[contains(@class, 'dataRepo-manageDatasources-dataDetailView-deleteButton-012')]")
 
 	public WebElement DeleteLoadedDS;
@@ -835,9 +858,30 @@ public class DataSourceModel extends Configuration {
 			this.databaseName.clear();
 			this.databaseName.sendKeys("ai_analysis");
 			this.databaseName.sendKeys(Keys.ENTER);
+			utilityMethods.visible(this.WindowsAuthentication,
+					"Create Microsoft SQL Server Data Source:Verify that Windows Authentication Radio Button is visible. ");
+			utilityMethods.clickable(this.WindowsAuthentication,
+					"Create Microsoft SQL Server Data Source :Verify that Windows Authentication Radio Button is clickable.");
+			utilityMethods.visible(this.DatabaseAuthentication,
+					"Create Microsoft SQL Server Data Source:Verify that Database Authentication Radio Button is visible.");
+			utilityMethods.clickable(this.DatabaseAuthentication,
+					"Create Microsoft SQL Server Data Source :Verify that Database Authentication Radio Button is clickable.");
+			utilityMethods.disable(this.input_Username_SQL_SEVER, "Verify that Username Text Field is disabled when Windows Authentication is selected.");
+			utilityMethods.disable(this.input_Password_SQL_SERVER, "Verify that password  Field is disabled when Windows Authentication is selected.");
+			this.DatabaseAuthentication.click();
+			utilityMethods.clickable(this.input_Username_SQL_SEVER,
+					"Verify that Username Text Field is only editable when Database Authentication is selected.");
+			utilityMethods.clickable(this.input_Password_SQL_SERVER,
+					"Verify that password Field is only editable when Database Authentication is selected.");
 			utilityMethods.visible(this.Connect,
 					"Create Microsoft SQL Server Data Source:Verify that Connect Button is visible.");
 			utilityMethods.clickable(this.Connect, "Verify that Connect Button is clickable. ");
+			
+			 utilityMethods.verifyfieldmandatory(this.input_Username_SQL_SEVER, 2000,
+						PM.exclamationmark, "Verify that Username Text Field shows a red exclamation mark to the right when it is left empty.");
+			 utilityMethods.verifyfieldmandatory(this.input_Password_SQL_SERVER, 2000,
+						PM.exclamationmark, "Verify that Password Text Field shows a red exclamation mark to the right when it is left empty.");
+			this.WindowsAuthentication.click();
 			this.Connect.click();
 			Thread.sleep(2000);
 			this.ChooseTableName.sendKeys("Automation1_Dental01");

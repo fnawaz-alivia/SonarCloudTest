@@ -259,7 +259,7 @@ public class DataCleansingModel extends Configuration {
     
 	
 
-	public void LandingOnDataCleansingPage() {
+	public void LandingOnDataCleansingPage() throws InterruptedException {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		DataSourceModel DS = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		PM.GetStarted.click();
@@ -287,9 +287,10 @@ public class DataCleansingModel extends Configuration {
 		} else {
 			test.log(Status.FAIL, "clicking on Data Cleansing Button doesn't  navigate to 'Data Cleansing' screen");
 		}
-		utilityMethods.waitForVisibility(DataCleansing);
+		utilityMethods.waitForVisibility(this.SelectDSForDataCleansing);
 		// By Clicking on this button SideBar will be remove
-		this.DataCleansing.click();
+		this.SelectDSForDataCleansing.click();
+		Thread.sleep(2000);
 	}
 
 	public void SelectDSForDataCleansing() throws Exception {

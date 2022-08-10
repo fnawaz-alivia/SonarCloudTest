@@ -680,11 +680,10 @@ public class RuleLibraryModel extends Configuration {
 
 	public void verifyResultButton_RLScreen() {
 		this.ExpandAll.click();
-		utilityMethods.time(100);
-		
-		utilityMethods.visible(this.CollapseAll,
+		utilityMethods.time(500);
+		utilityMethods.visible(this.ResultsButton,
 				"Verify that Results Button is visible in 'Rule Library' screen");
-		utilityMethods.clickable(this.CollapseAll,
+		utilityMethods.clickable(this.ResultsButton,
 				"Verify that Results Button is clickable in 'Rule Library' creen");
 		utilityMethods.clicked_elementVisible(this.ResultsButton, 500, this.DashBoardBreadcrumb,
 				"Verify that DashBoard screen opens when click on Results Button in 'Rule Library' screen");

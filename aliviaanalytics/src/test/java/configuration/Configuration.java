@@ -57,7 +57,7 @@ public class Configuration {
 			options.setCapability("ACCEPT_INSECURE_CERTS", true);
 			options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 			options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-			//options.addArguments("--headless");
+			options.addArguments("--headless");
 			driver = new ChromeDriver(options);
 			Dimension d = new Dimension(1360, 978);
 			// Resize the current window to the given dimension

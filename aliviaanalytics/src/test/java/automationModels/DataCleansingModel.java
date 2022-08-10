@@ -51,6 +51,7 @@ public class DataCleansingModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[@class='x-container x-box-item x-window-item x-container-default x-box-layout-ct']//child::input")
 
 	public WebElement ExportDataCleansingFileName;
+	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class, 'dataRepo-dataClean-mainGridTable-grid-039')]//child::table//tr//td[3]//div")
 
 	public List<WebElement> ColumnsOnSelectedDS;
@@ -897,7 +898,7 @@ public class DataCleansingModel extends Configuration {
 				"Verify that Select Data Source Dropdown List is clickable in 'Data Cleansing' screen");
 	}
 	public void verifySelectDataSourceDropdownList_DCScreen() {
-		utilityMethods.clicked_elementInput(this.SelectDataSourceMedical,500,this.SelectDataSourceInput,"attribute",
+		utilityMethods.clicked_dropdownInput(this.SelectDataSourceMedical,500,this.SelectDataSourceInput,"attribute",
 				"Verify that Data Source is selected from the List and visible in Data Source Field in 'Data Cleansing' screen");
 	}
 	public void verifySelectedDataSourceTableVisible_DCScreen() {
@@ -998,7 +999,7 @@ public class DataCleansingModel extends Configuration {
 		utilityMethods.senKeys_Input(this.SearchFieldColumnScreen, 200, "includeChar",
 				"Verify that Search field inputs alphabets, numeric and special character's in 'Column Screen'");
 	}
-
+ 
 	public void verifySearchField_CScreen() throws Exception {
 		String sendData = "ADR";
 		ArrayList<String> list = new ArrayList<>();
@@ -1219,7 +1220,7 @@ public class DataCleansingModel extends Configuration {
 		WebElement selectedFunction = FunctionsListCalculatedColumnScreen.get(randomNumber);
 		selectedFunction.click();
 		
-		utilityMethods.clicked_elementInput(selectedFunction, 500,this.PreviewSectionContentCalculatedColumnScreen, "text", 
+		utilityMethods.clicked_dropdownInput(selectedFunction, 500,this.PreviewSectionContentCalculatedColumnScreen, "text", 
 				"Verify that Preview Section is displaying functions detail in 'Calculated Column' Screen");
 	}
 

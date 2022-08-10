@@ -20,9 +20,15 @@ public class QueryBuilderModel extends Configuration{
 	public static ExtentTest test;
 	String RuleGroupName = RandomStringUtils.randomAlphabetic(10);
 	String RuleName = RandomStringUtils.randomAlphabetic(10);
+	
+	
 	@FindBy(how = How.XPATH, using = "//table[(text() = 'Query Builder' or . = 'Query Builder')]")
 
 	public WebElement QueryBuilder;
+	
+	@FindBy(how = How.XPATH, using = "//a[(text() = 'Query Builder' or . = 'Query Builder')]")
+
+	public WebElement QueryBuilderBreadCrumb;
 	
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and (text() = 'Join' or . = 'Join')]")
 
@@ -108,6 +114,53 @@ public class QueryBuilderModel extends Configuration{
 
 	public List<WebElement> SelectedDSColumnsList;
 	
+	@FindBy(how = How.XPATH, using = "//*[(text() = 'Save As New Rule' or . = 'Save As New Rule')]")
+
+	public WebElement SaveAsNewRule;
+
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-default-resizable')]//*[@type = 'text' and @name = 'name']")
+
+	WebElement RuleNameInput;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-default-resizable')]//*[text()='Save']")
+
+	WebElement RuleSaveButton;	
+	
+	@FindBy(how = How.XPATH, using = "//*[(text() = 'Create New Rule Group' or . = 'Create New Rule Group')]")
+
+	WebElement CreateNewRuleGroup;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'create-rule-group')]//*[@type = 'text' and @name = 'name']")
+
+	WebElement RuleGroupNameInput;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'create-rule-group')]//*[text()='Save']")
+
+	WebElement RuleGroupSaveButton;	
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo') and @type = 'text' and @name = 'groupId']")
+ 
+	WebElement RuleGroupId;
+	
+	@FindBy(how = How.XPATH, using = "//*[(text() = 'OK' or . = 'OK')]")
+
+	WebElement OKConfigureRule;
+	
+	@FindBy(how = How.XPATH, using = "//a[contains(@class, 'dataRepository-queryBuilder-tBar-resetAll-btn-73')]")
+
+	WebElement ResetButtonQB;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'checkbox-') and (text() = 'Enable Rule Chaining' or . = 'Enable Rule Chaining')]")
+
+	WebElement EnableRuleChaining;
+	
+
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @type = 'text' and starts-with(@name, 'combo-') and @placeholder = 'Choose Rule Group ...']")
+
+	WebElement ChooseRuleGroup;
+	
+	
+	
 	
 	public void LandingOnQueryBuilderPage() throws InterruptedException {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
@@ -191,57 +244,57 @@ public class QueryBuilderModel extends Configuration{
 		test = report.createTest("Verify the rule is saved by clicking on save button.");
 		new Actions(driver).moveToElement(this.QBSaveButton).moveByOffset(20, 5).click().perform();
 		Thread.sleep(2000);
-		RLM.SaveAsNewRule.click();
+		SaveAsNewRule.click();
 		Thread.sleep(2000);
 		test.log(Status.PASS, "The rule is saved by clicking on save button.");
-		utilityMethods.waitForVisibility(RLM.RuleName.get(0));
+		utilityMethods.waitForVisibility(RuleNameInput);
 		test = report.createTest("Save As Rule Window -Verify The Rule name is editable");
-		RLM.RuleName.get(0).sendKeys(RuleName);
+		RuleNameInput.sendKeys(RuleName);
 		System.out.println("RuleName"+RuleName);
 		test.log(Status.PASS, "The Rule name is editable");
 		test = report.createTest("Verify the Create New group Button works");
 		Thread.sleep(2000);
-		RLM.CreateNewRuleGroup.click();
+		CreateNewRuleGroup.click();
 		test.log(Status.PASS, "The Create New group Button works");
 		test = report.createTest("Save As Rule Window - Create New Rule Group - Verify Rule group name is editable.");
-		RLM.RuleName.get(1).sendKeys(RuleGroupName);
+		RuleGroupNameInput.sendKeys(RuleGroupName);
 		System.out.println("RuleGroup"+RuleGroupName);
 		test.log(Status.PASS, "The Rule group name is editable.");
 		Thread.sleep(2000);
 		test = report.createTest("Save As Rule Window - Create New Rule Group - Verify that the save option saves the details of rule group.");
-		RLM.SaveButton.get(4).click();
+		RuleGroupSaveButton.click();
 		test.log(Status.PASS, "The save option saves the details of rule group");
 		test = report.createTest("Verify the user is able to select the rule Group while creating rule ");
-		RLM.RuleGroupId.click();
-		utilityMethods.SetTextwithActionClass(RLM.RuleGroupId, RuleGroupName);
+		RuleGroupId.click();
+		utilityMethods.SetTextwithActionClass(RuleGroupId, RuleGroupName);
 		Thread.sleep(2000);
-		RLM.RuleGroupId.clear();
+		RuleGroupId.clear();
 		Thread.sleep(2000);
-		RLM.RuleGroupId.sendKeys(RuleGroupName);
+		RuleGroupId.sendKeys(RuleGroupName);
 		Thread.sleep(2000);
 		System.out.println("RuleGroup"+RuleGroupName);
-		RLM.RuleGroupId.sendKeys(Keys.ENTER);
+		RuleGroupId.sendKeys(Keys.ENTER);
 		test.log(Status.PASS, "The user is able to select the rule Group while creating rule");
 		Thread.sleep(2000);
-		RLM.RuleGroupSaveButton.click();
-		utilityMethods.waitForVisibility(RLM.OKConfigureRule);
-		RLM.OKConfigureRule.click();
+		RuleSaveButton.click();
+		utilityMethods.waitForVisibility(OKConfigureRule);
+		OKConfigureRule.click();
 		Thread.sleep(5000);
 		test = report.createTest("Verify that reset button clear every detail in QB work space.");
-		RLM.ResetButtonQB.click();
+		ResetButtonQB.click();
 		test.log(Status.PASS, "The reset button clear every detail in QB work space");
 	}
 	
 	public void  CreateRuleChaining() throws InterruptedException {
 		RuleLibraryModel RLM = PageFactory.initElements(driver, automationModels.RuleLibraryModel.class);
 		test = report.createTest("Verify that enabling rule chaining adds another filter data source to the chain.");
-		RLM.EnableRuleChaining.click();
+		EnableRuleChaining.click();
 		test.log(Status.PASS, "Another filter data source adds to the chain by enabling rule chaining");
 		test = report.createTest("Verify that enabling rule chaining also enables selecting rule group.");
-		RLM.ChooseRuleGroup.click();
+		ChooseRuleGroup.click();
 		test.log(Status.PASS, "The enabling rule chaining also enables selecting rule group");
 		test = report.createTest("Verify that rule groups are listed in the Choose Rule Group drop down.");
-		RLM.ChooseRuleGroup.sendKeys(RuleGroupName);
+		ChooseRuleGroup.sendKeys(RuleGroupName);
 		System.out.println(RuleGroupName);
 		test.log(Status.PASS, "The rule groups are listed in the Choose Rule Group drop down.");
 		this.SelectDataSourceTab.click();

@@ -1,15 +1,14 @@
 package automationUtils;
 
-import java.io.Serial;
+
 import java.util.ArrayList;
 
 import java.util.List;
-import java.util.Random;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -51,6 +50,14 @@ public class utilityMethods extends Configuration {
 		}
     }
 	
+
+	public static void moveToElement(WebElement element) throws Error {
+		Actions builder = new Actions(driver);
+
+		Action dragAndDrop = builder.moveToElement(element).build();
+		dragAndDrop.perform();
+	}
+
 	public static String Columns(List<WebElement> elements) {
 		ArrayList<String> list = new ArrayList<>();
 		for (WebElement ele : elements) {
@@ -335,8 +342,8 @@ public class utilityMethods extends Configuration {
 		}
 	}
 	
-
 	public static void verifyFieldInputs(WebElement element) {
+
 		String sendData_Str = "NewColumn";
 		String sendData_Int = "12";
 		String sendData_Char = "'!@_ #$)/(+='";
@@ -448,6 +455,7 @@ public class utilityMethods extends Configuration {
 				test.log(Status.FAIL, "hovering on the Question mark dosn't display "+data);
 	    	 }
 	    }
+
 	    
 
 }

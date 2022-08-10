@@ -1,5 +1,6 @@
 package configuration;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class Configuration {
 	static String password;
 	public static String test1username;
 	public static String test1password;
-
+	public static String instanceName;
 	public static void BConfiguration() {
 
 		try {
@@ -51,6 +52,9 @@ public class Configuration {
 			System.out.println(test1username);
 			test1password = (String) jsonObject.get("test1password");
 			System.out.println(test1password);
+			instanceName = (String) jsonObject.get("instanceName");
+			System.out.println(instanceName);
+			
 //	  System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\datafiles\\chromedriver.exe");
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
@@ -105,7 +109,15 @@ public class Configuration {
 	@BeforeSuite(alwaysRun = true)
 	public static void startTest() {
 		report = new ExtentReports();
+		String PATH = "./Reports";
+		File directory = new File(PATH);
+		    if (! directory.exists()){
+		        directory.mkdir();
+		        // If you require it to make the entire directory path including parents,
+		        // use directory.mkdirs(); here instead.
+		    }
 		ExtentHtmlReporter reporter = new ExtentHtmlReporter("./Reports/FWA.html");
+		
 		report.attachReporter(reporter);
 	}
 

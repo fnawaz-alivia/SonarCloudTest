@@ -4,11 +4,13 @@
 	<test name="First Test">
 		<groups>
 			<run>
-				<include name="regression" />
+
+				<include name="regression1" />
 			</run>
 		</groups>
 		<classes>
-			<class name="automationCases.RuleLibrary" />
+		<class name="automationCases.DataSource">
+		</class>
 		</classes>
 	</test>
 </suite>

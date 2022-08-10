@@ -196,6 +196,7 @@ public class Projects extends Configuration {
 				.get(System.getProperty("user.dir") + "\\src\\datafiles\\project-2022-01-11 15.45.54.alivia")
 				.toAbsolutePath().toString();
 		PM.BrowseFileForProject.sendKeys(FilePathForImportProject);
+		Thread.sleep(2000);
 		test.log(Status.PASS, "The User is able browseFile to import");
 		PM.ImportFileForProject.click();
 		Thread.sleep(2000);
@@ -1049,7 +1050,7 @@ if (PM.SaveButton.isEnabled()) {
 	
 
 	@Test(groups = {"regressiontest"}, priority = 10)
-	public void FWA_Project_010() throws Exception {
+	public void FWA_Project_010() throws Exception, Error {
 		Configuration.BConfiguration();
 
 		Configuration.LoginApplication();
@@ -1177,7 +1178,7 @@ if (PM.SaveButton.isEnabled()) {
 		driver.close();
 	
 	}
-	@AfterSuite(alwaysRun = true)
+	//@AfterSuite(alwaysRun = true)
 	public void FWA_Project_013() throws InterruptedException {
 		Configuration.BConfiguration();
 

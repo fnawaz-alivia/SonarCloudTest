@@ -209,7 +209,7 @@ public class DataSourceModel extends Configuration {
 
 	public WebElement SelectFileDropDown;
 
-	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'checkbox-') and (text() = 'Geo Mapping' or . = 'Geo Mapping')]")
+	@FindBy(how = How.XPATH, using = "//input[@type='checkbox']/following::label[text()='Geo Mapping']")
 
 	public WebElement GeoMapping;
 
@@ -224,6 +224,18 @@ public class DataSourceModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[(text() = 'Text File' or . = 'Text File')]")
 
 	public WebElement TextFile;
+	
+	@FindBy(how = How.XPATH, using = "//*[text()='Advanced Metadata Options']/following::span[text()='Save']")
+
+	public WebElement SaveAdvancedMetadataOptions;
+	
+	@FindBy(how = How.XPATH, using = "//*[text()='Advanced Metadata Options']/following::span[text()='Cancel']")
+
+	public WebElement CancelAdvancedMetadataOptions;
+	
+	@FindBy(how = How.XPATH, using = "//*[text()='Failed']/following::span[text()='OK']")
+
+	public WebElement okFailed;
 
 	@FindBy(how = How.XPATH, using = "//*[@class = 'x-btn icon-focus-cls x-unselectable x-box-item x-btn-default-small' and @data-qtip = 'Edit selected data source']")
 
@@ -291,6 +303,8 @@ public class DataSourceModel extends Configuration {
 	}
 
 	public void LoadDataSoucre(String DSName) throws InterruptedException {
+		DataCleansingModel DCM = PageFactory.initElements(driver, automationModels.DataCleansingModel.class);
+
 		utilityMethods.waitForVisibility(this.SearchTabDataSource);
 		this.SearchTabDataSource.click();
 		this.SearchTabDataSource.clear();
@@ -317,9 +331,24 @@ public class DataSourceModel extends Configuration {
 			}
 		}
 
-		test.log(Status.PASS, "The user is able to open the newly created data source");
+		try {
 
+			Thread.sleep(2000);
+			if (DCM.OkButton.isDisplayed() == true) {
+
+				System.out.println("Data cannot be loaded");
+				test.log(Status.FAIL, "The user is not able to open the newly created data source");
+				DCM.OkButton.click();
+				driver.close();
+			}
+			else {
+				test.log(Status.PASS, "The user is able to open the newly created data source");
+			}
+		} catch (Exception e) {
+			
+		}
 	}
+	
 
 	public void RightClickOnDS(String DSName) {
 
@@ -410,7 +439,15 @@ public class DataSourceModel extends Configuration {
 		test = report.createTest("Verfiy that user is able to enter the datasouce name  in  data source name field");
 		this.DataSourceName.sendKeys(DSName);
 		System.out.println(this.DataSourceName.getText());
-
+		utilityMethods.trycatch(this.AdvanceButton, this.SaveAdvancedMetadataOptions, this.okFailed,2000, "Edit  Data Source Window:Verify that Advanced Metadata OptionsScreen opens clicking on advance button");
+		
+		this.CancelAdvancedMetadataOptions.click();
+		Thread.sleep(1000);
+		this.GeoMapping.click();
+		utilityMethods.trycatch(this.GeoMapping, this.SaveAdvancedMetadataOptions, this.okFailed,2000, "Edit  Data Source Window:Verify that Advanced Metadata OptionsScreen opens clicking on geomap check box ");
+		this.CancelAdvancedMetadataOptions.click();
+		Thread.sleep(2000);
+		this.GeoMapping.click();
 		test = report.createTest("Verify that save button is visible on update data source screen");
 		if (this.SaveDataSoures.isDisplayed()) {
 			test.log(Status.PASS, "The save button is visible  on update data source screen");
@@ -699,14 +736,12 @@ public class DataSourceModel extends Configuration {
 				"Create Microsoft Excel  Data Source Window: Verify that Advance Button is visible.");
 		utilityMethods.clickable(this.AdvanceButton,
 				"Create Microsoft Excel  Data Source Window:Verify that Advance Button is clickable.");
+		utilityMethods.trycatch(this.AdvanceButton, this.SaveAdvancedMetadataOptions, this.okFailed,2000, "Create Microsoft Excel  Data Source Window:Verify that Advanced Metadata OptionsScreen opens clicking on advance button");
+		Thread.sleep(10000);
 		utilityMethods.visible(this.UploadFileDataSource,
 				"Create Microsoft Excel  Data Source Window:Verify that Upload File Button is visible in the list of sub modules displayed under Data Repository Bread Crumb.");
 		utilityMethods.clickable(this.UploadFileDataSource,
 				"Create Microsoft Excel  Data Source Window:Verify that Upload File Button is clickable.");
-		utilityMethods.visible(this.GeoMapping,
-				"Create Microsoft Excel  Data Source Window:Verify that Geo Mapping Check Box is visible.");
-		utilityMethods.clickable(this.GeoMapping,
-				"Create Microsoft Excel  Data Source Window :Verify that Geo Mapping Check Box  is clickable.");
 		utilityMethods.clicked_Single(this.UploadFileDataSource, 2000, this.SaveUploadFile,
 				"Verify that Upload File Button navigates to Upload File Screen.");
 		Thread.sleep(2000);
@@ -729,6 +764,12 @@ public class DataSourceModel extends Configuration {
 				"File Manager Window:Verify that close button  is clickable.");
 		utilityMethods.clicked_Single(this.CloseUploadDSWindow, 2000, this.SaveDataSoures,
 				"File Manager Window :Verify the close button works");
+		utilityMethods.visible(this.GeoMapping,
+				"Create Microsoft Excel  Data Source Window:Verify that Geo Mapping Check Box is visible.");
+		utilityMethods.clickable(this.GeoMapping,
+				"Create Microsoft Excel  Data Source Window :Verify that Geo Mapping Check Box  is clickable.");
+		utilityMethods.trycatch(this.GeoMapping, this.SaveAdvancedMetadataOptions, this.okFailed,2000, "Create Microsoft Excel  Data Source Window:Verify that Advanced Metadata OptionsScreen opens clicking on geomap check box ");
+		this.CancelAdvancedMetadataOptions.click();
 		utilityMethods.visible(this.SaveDataSoures,
 				"Create Microsoft Excel  Data Source Window : Verify that save Button is visible.");
 		utilityMethods.clickable(this.SaveDataSoures,
@@ -827,10 +868,15 @@ public class DataSourceModel extends Configuration {
 					"Create Microsoft SQL Server Data Source: Verify that Advance Button is visible.");
 			utilityMethods.clickable(this.AdvanceButton,
 					"Create Microsoft SQL Server Data Source :Verify that Advance Button is clickable.");
+			utilityMethods.trycatch(this.AdvanceButton, this.SaveAdvancedMetadataOptions, this.okFailed,2000, "Create Microsoft SQL Server Data Source Window:Verify that Advanced Metadata OptionsScreen opens clicking on advance button");
+			Thread.sleep(1000);
+			this.CancelAdvancedMetadataOptions.click();
 			utilityMethods.visible(this.GeoMapping,
 					"Create Microsoft SQL Server Data Source Window :Verify that Geo Mapping Check Box is visible.");
 			utilityMethods.clickable(this.GeoMapping,
 					"Create Microsoft SQL Server Data Source Window :Verify that Geo Mapping Check Box  is clickable.");
+			utilityMethods.trycatch(this.GeoMapping, this.SaveAdvancedMetadataOptions, this.okFailed,2000, "Create Microsoft SQL Server Data Source Window:Verify that Advanced Metadata OptionsScreen opens clicking on geomap check box ");
+			this.CancelAdvancedMetadataOptions.click();
 			utilityMethods.visible(this.SaveDataSoures,
 					"Create CSV File Data Source Window : Verify that save Button is visible.");
 			utilityMethods.clickable(this.SaveDataSoures,
@@ -886,6 +932,7 @@ public class DataSourceModel extends Configuration {
 			Thread.sleep(2000);
 			this.ChooseTableName.sendKeys("Automation1_Dental01");
 			this.ChooseTableName.sendKeys(Keys.ENTER);
+			
 			test = report.createTest("Verify the save button works ");
 			this.SaveDataSoures.click();
 			test.log(Status.PASS, "The save button works ");
@@ -1015,6 +1062,8 @@ public class DataSourceModel extends Configuration {
 				"Create CSV File Data Source Window : Verify that Advance Button is visible.");
 		utilityMethods.clickable(this.AdvanceButton,
 				"Create CSV File Data Source Window :Verify that Advance Button is clickable.");
+		utilityMethods.trycatch(this.AdvanceButton, this.SaveAdvancedMetadataOptions, this.okFailed,2000, "Create CSV File Data Source Window :Verify that Advanced Metadata OptionsScreen opens clicking on advance button");
+		Thread.sleep(10000);
 		utilityMethods.visible(this.UploadFileDataSource,
 				"Create CSV File Data Source Window :Verify that Upload File Button is visible in the list of sub modules displayed under Data Repository Bread Crumb.");
 		utilityMethods.clickable(this.UploadFileDataSource,
@@ -1045,6 +1094,8 @@ public class DataSourceModel extends Configuration {
 				"File Manager Window:Verify that close button  is clickable.");
 		utilityMethods.clicked_Single(this.CloseUploadDSWindow, 2000, this.SaveDataSoures,
 				"File Manager Window :Verify the close button works");
+		utilityMethods.trycatch(this.GeoMapping, this.SaveAdvancedMetadataOptions, this.okFailed,2000, "Create CSV File Data Source Window :Verify that Advanced Metadata OptionsScreen opens clicking on geomap check box ");
+		this.CancelAdvancedMetadataOptions.click();
 		utilityMethods.visible(this.SaveDataSoures,
 				"Create CSV File Data Source Window : Verify that save Button is visible.");
 		utilityMethods.clickable(this.SaveDataSoures,
@@ -1174,6 +1225,8 @@ public class DataSourceModel extends Configuration {
 				"Create Text File Data Source Window : Verify that Advance Button is visible.");
 		utilityMethods.clickable(this.AdvanceButton,
 				"Create Text File Data Source Window :Verify that Advance Button is clickable.");
+		utilityMethods.trycatch(this.AdvanceButton, this.SaveAdvancedMetadataOptions, this.okFailed,2000, "Create Text File Data Source Window:Verify that Advanced Metadata OptionsScreen opens clicking on advance button");
+		Thread.sleep(10000);
 		utilityMethods.visible(this.UploadFileDataSource,
 				"Create Text File Data Source Window :Verify that Upload File Button is visible in the list of sub modules displayed under Data Repository Bread Crumb.");
 		utilityMethods.clickable(this.UploadFileDataSource,
@@ -1204,6 +1257,8 @@ public class DataSourceModel extends Configuration {
 				"File Manager Window:Verify that close button  is clickable.");
 		utilityMethods.clicked_Single(this.CloseUploadDSWindow, 2000, this.SaveDataSoures,
 				"File Manager Window :Verify the close button works");
+		utilityMethods.trycatch(this.GeoMapping, this.SaveAdvancedMetadataOptions, this.okFailed,2000, "Create Text File Data Source Window:Verify that Advanced Metadata OptionsScreen opens clicking on geomap check box ");
+		this.CancelAdvancedMetadataOptions.click();
 		utilityMethods.visible(this.SaveDataSoures,
 				"Create Text File Data Source Window : Verify that save Button is visible.");
 		utilityMethods.clickable(this.SaveDataSoures,

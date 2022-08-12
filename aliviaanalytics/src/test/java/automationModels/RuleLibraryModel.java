@@ -8,9 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-
-import com.aventstack.extentreports.Status;
-
 import automationUtils.utilityMethods;
 import configuration.Configuration;
 
@@ -27,10 +24,6 @@ public class RuleLibraryModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'center_pane_main')]//div[contains(@class,'singlePanelRuleLib')]//input")
 
 	WebElement SearchRuleInput;
-
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'center_pane_main')]//div[contains(@class,'singlePanelRuleLib')]//input[@placeholder='Search Rule ...']")
-
-	WebElement SearchRuleInputPlaceHolder;
 
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'center_pane_main')]//div[contains(@class,'singlePanelRuleLib')]//div[contains(@class,'x-form-clear-trigger')]")
 
@@ -338,15 +331,16 @@ public class RuleLibraryModel extends Configuration {
 				"Verify that Search Rule Field is clickable in 'Rule Library' screen");
 		utilityMethods.senKeys_Input(this.SearchRuleInput, 500, "includeChar",
 				"Verify that Search Rule Field inputs alphabets,numbers and special characters in 'Rule Library' screen");
-		utilityMethods.validateSearch(this.SearchRuleInput,this.CreatedRuleList, this.SearchInput);
+		utilityMethods.validateSearchList(this.SearchRuleInput,this.CreatedRuleList, this.SearchInput,
+				"Verify that Search Rule field show the relevant result when type anything on it in 'Rule Library' screen");
 	}
 
 	public void verifySearchCrossButton_RLScreen() {
 		utilityMethods.visible(this.SearchRuleInputCrossButton,
 				"Verify that Cross Button is present in Serach Field in 'Rule Library' screen");
-		utilityMethods.clicked_fieldInput(this.SearchRuleInput, "Test", 100, this.SearchRuleInputCrossButton,
+		utilityMethods.verifyCrossButton(this.SearchRuleInput, 100, this.SearchRuleInputCrossButton,
 				"Verify that Cross Button clears the text in the 'Search Rule Field' in 'Rule Library' screen");
-		utilityMethods.visible(this.SearchRuleInputPlaceHolder,
+		utilityMethods.validateSearchPlaceholder(this.SearchRuleInput, "Search Rule ...", 
 				"Verify that Text Field present 'Search Rule' text by default in Search Rule Field in 'Rule Library' screen");
 	}
 

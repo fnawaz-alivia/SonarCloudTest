@@ -44,7 +44,19 @@ public class QueryBuilder extends Configuration {
 		QBM.LandingOnQueryBuilderPage();
 		QBM.CreateInnerJoin();
 	}
+	@Test(groups = { "smoke" ,"regression1"}, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
+	public void FWA_QueryBuilder_003() throws InterruptedException {
+		Configuration.BConfiguration();
+		Configuration.LoginApplication();
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		QueryBuilderModel QBM = PageFactory.initElements(driver, automationModels.QueryBuilderModel.class);
+		utilityMethods.waitForVisibility(PM.LoadedProjectText);
+		Thread.sleep(8000); 
+		
+		QBM.LandingOnQueryBuilderPage();
+		QBM.verifySaveQueryFilterPanel();
 	
+	}
 	
 	
 }

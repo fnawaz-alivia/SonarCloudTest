@@ -9,7 +9,7 @@
 			</run>
 		</groups>
 		<classes>
-		<class name="automationCases.DataSource">
+		<class name="automationCases.QueryBuilder">
 		</class>
 		</classes>
 	</test>

@@ -2,7 +2,6 @@ package automationModels;
 
 import java.util.List;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -17,9 +16,10 @@ import automationUtils.utilityMethods;
 import configuration.Configuration;
 
 public class QueryBuilderModel extends Configuration{
+	
 	public static ExtentTest test;
-	String RuleGroupName = RandomStringUtils.randomAlphabetic(10);
-	String RuleName = RandomStringUtils.randomAlphabetic(10);
+	String RuleGroupName = utilityMethods.randomString(10);
+	String RuleName = utilityMethods.randomString(10);
 	
 	
 	@FindBy(how = How.XPATH, using = "//table[(text() = 'Query Builder' or . = 'Query Builder')]")
@@ -162,36 +162,94 @@ public class QueryBuilderModel extends Configuration{
 	
 	
 	
-	public void LandingOnQueryBuilderPage() throws InterruptedException {
+	public void LandingOnQueryBuilderPage()  {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		PM.GetStarted.click();
 		DSM.DataRepository.click();
-		Thread.sleep(2000);
-		test = report.createTest("Side Pane:Verify that Query Builder Button is present in Data Repository dropdown");
-		if (this.QueryBuilder.isDisplayed()) {
-			test.log(Status.PASS, "The Query Builder Button is present in Data Repository dropdown");
-		} else {
-			test.log(Status.FAIL, "The Query Builder Button is not present in Data Repository dropdown");
-		}
+		utilityMethods.time(2000);
+		utilityMethods.visible(this.QueryBuilder, 
+				"Side Pane:Verify that Query Builder Button is present in Data Repository dropdown");
+		utilityMethods.clickable(this.QueryBuilder,
+				"Side Pane: Verify that Quey Builder Button is clickable");
+		utilityMethods.clicked_elementVisible(this.QueryBuilder, 2000, this.SelectDataSourceTab,
+				"Side Pane: Verify that clicking on Query Builder Button navigates to 'Query Builder' screen");
+		utilityMethods.time(2000);
+		this.SelectDataSourceTab.click();
 		
-		test = report.createTest("Side Pane: Verify that Quey Builder Button is clickable");
-		if (this.QueryBuilder.isEnabled()) {
-			test.log(Status.PASS, "The Query Builder Button is clickable");
-		} else {
-			test.log(Status.FAIL, "The Query Builder Button is not clickable");
-		}
-		test = report.createTest("Side Pane: Verify that clicking on Query Builder Button navigates to 'Query Builder' screen");
-		this.QueryBuilder.click();
-		Thread.sleep(2000);
-		if (this.SelectDataSourceTab.isEnabled()) {
-			test.log(Status.PASS, "clicking on Query Builder Button navigates to 'Query Builder' screen");
-		} else {
-			test.log(Status.FAIL, "clicking on Query Builder Button doesn't  navigate to 'Query Builder' screen");
-		}
-			
 	
-	
+	}
+	public void verifySaveQueryFilterPanel() {
+		
+		DataCleansingModel DCM = PageFactory.initElements(driver, automationModels.DataCleansingModel.class);
+		
+		utilityMethods.visible(DCM.SearchFieldSidePanel,
+				"Side Pane: Verify that Saved Query Filters Search Text Field is present on 'Query Builder' screen");
+		utilityMethods.clickable(DCM.SearchFieldSidePanel,
+				"Side Pane: Verify that Saved Query Filters Search Text Field is clickable on 'Query Builder' screen");
+		utilityMethods.senKeys_Input(DCM.SearchFieldSidePanel, 100, "includeChar",
+				"Side Pane: Verify that Saved Query Filters Search Text Field lets users input alphabets, numbers and special characters on 'Query Builder' screen");
+		utilityMethods.validateSearchList(DCM.SearchFieldSidePanel, DCM.TreeListSidePanel,utilityMethods.randomString(1),
+				"Side Pane: Verify that users can search saved rules using the Search Text Field.");
+		utilityMethods.visible(DCM.SearchFieldCrossButtonSidePanel, 
+				"Side Pane: Verify that cross button is present in Search Text Field on 'Query Builder' screen");
+		utilityMethods.verifyCrossButton(DCM.SearchFieldSidePanel, 100, DCM.SearchFieldCrossButtonSidePanel, 
+				"Side Pane: Verify that cross button clears the text in Search Text Field on 'Query Builder' screen");
+		utilityMethods.validateSearchPlaceholder(DCM.SearchFieldSidePanel, "Search",
+				"Side Pane: Verify that Search text present by default in Search Text Field on 'Query Builder' screen");
+		utilityMethods.visible(DCM.CreateFolderButtonSidePanel, 
+				"Side Pane: Verify that Create New Folder Button is present on 'Query Builder' screen");
+		utilityMethods.clickable(DCM.CreateFolderButtonSidePanel, 
+				"Side Pane: Verify that Create New Folder Button is clickable on 'Query Builder' screen");
+		utilityMethods.list_Visible(DCM.CreateFolderButtonSidePanel, 100, DCM.CreateNewFolderScreen,
+				"Side Pane: Verify that 'Create New Folder' popup appears when click on Create New Folder button on 'Query Builder' screen");
+		utilityMethods.visible(DCM.CreateNewFolderTextField,
+				"Create New Folder: Verify that 'Folder Name' Text Field is present on 'Query Builder' screen");
+		utilityMethods.clickable(DCM.CreateNewFolderTextField,
+				"Create New Folder: Verify that 'Folder Name' Text Field is clickable on 'Query Builder' screen");
+		utilityMethods.senKeys_Input(DCM.CreateNewFolderTextField,100,"includeChar",
+				"Create New Folder: Verify that 'Folder Name' Text Field allow user to input alpahbets, numeric and special characters on 'Query Builder' screen");
+		utilityMethods.verifyCropSpacesForSidePanel(DCM.CreateNewFolderTextField, DCM.SaveButton, DCM.CreateNewFolderScreen, DCM.SearchFieldSidePanel, DCM.CreatedFolderListSidePanel, " CropSpaceBT",
+				"Create New Folder: Verify that 'Folder Name' Text Field doesn't save invalid data when click on it on 'Query Builder' screen");
+		utilityMethods.visible(DCM.RefreshButtonSidePanel, 
+				"Side Pane: Verify that Refresh button is present on 'Query Builder' screen");
+		utilityMethods.clickable(DCM.RefreshButtonSidePanel, 
+				"Side Pane: Verify that Refresh button is clickable on 'Query Builder' screen");
+		utilityMethods.list_Visible(DCM.RefreshButtonSidePanel, 0, DCM.RefreshButtonLoadingSidePanel, 
+				"Side Pane: Verify that Refresh button reload the filter list when click it on 'Query Builder' screen");
+		utilityMethods.visible(DCM.ExpandAllButtonSidePanel, 
+				"Side Pane: Verify that Expand All button is present on 'Query Builder' screen");
+		utilityMethods.clickable(DCM.ExpandAllButtonSidePanel, 
+				"Side Pane: Verify that Expand All button is clickable on 'Query Builder' screen");
+		utilityMethods.clicked_elementVisible(DCM.ExpandAllButtonSidePanel, 200, DCM.CollapseAllButtonSidePanel, 
+				"Side Pane: Verify that Expand All button converts to Collapse All button when click it on 'Query Builder' screen");
+		
+		// Need to add Test Case for List Collapse //
+		
+		utilityMethods.visible(DCM.CollapseAllButtonSidePanel, 
+				"Side Pane: Verify that Collapse All button is present on 'Query Builder' screen");
+		utilityMethods.clickable(DCM.CollapseAllButtonSidePanel, 
+				"Side Pane: Verify that Collapse All button is clickable on 'Query Builder' screen");
+		utilityMethods.clicked_elementVisible(DCM.CollapseAllButtonSidePanel, 200, DCM.ExpandAllButtonSidePanel, 
+				"Side Pane: Verify that Collapse All button converts to Expand All button when click it on 'Query Builder' screen");
+		
+		// Need to add Test Case for List Expand //
+		
+		utilityMethods.visible(DCM.CollapsePanelButtonSidePanel,
+				"Side Pane: Verify that Collapse Panel button is present on 'Query Builder' screen");
+		utilityMethods.clickable(DCM.CollapsePanelButtonSidePanel,
+				"Side Pane: Verify that Collapse Panel button is clickable on 'Query Builder' screen");
+		utilityMethods.clicked_elementVisible(DCM.CollapsePanelButtonSidePanel, 500, DCM.ExpandPanelButtonSidePanel, 
+				"Side Pane: Verify that Collapse Panel button converts into Expand Panel button when click it on 'Query Builder' screen");
+		
+		utilityMethods.visible(DCM.ExpandPanelButtonSidePanel,
+				"Side Pane: Verify that Expand Panel button is present on 'Query Builder' screen");
+		utilityMethods.clickable(DCM.ExpandPanelButtonSidePanel,
+				"Side Pane: Verify that Expand Panel button is clickable on 'Query Builder' screen");
+		utilityMethods.clicked_elementVisible(DCM.ExpandPanelButtonSidePanel, 500, DCM.CollapsePanelButtonSidePanel, 
+				"Side Pane: Verify that Expand Panel button converts into Collapse Panel button when click it on 'Query Builder' screen");
+		
+		
 	}
 	
 	public int CountQB() throws InterruptedException {
@@ -230,7 +288,7 @@ public class QueryBuilderModel extends Configuration{
 	}
 	
 	public void  CreateNewRuleAndGroup() throws InterruptedException {
-		RuleLibraryModel RLM = PageFactory.initElements(driver, automationModels.RuleLibraryModel.class);
+		
 		utilityMethods.waitForVisibility(this.SelectDataSourceTab);
 		this.SelectDataSourceTab.click();
 		this.SelectDataSourceTab.sendKeys("Automation1 - Dental01");
@@ -286,7 +344,7 @@ public class QueryBuilderModel extends Configuration{
 	}
 	
 	public void  CreateRuleChaining() throws InterruptedException {
-		RuleLibraryModel RLM = PageFactory.initElements(driver, automationModels.RuleLibraryModel.class);
+		
 		test = report.createTest("Verify that enabling rule chaining adds another filter data source to the chain.");
 		EnableRuleChaining.click();
 		test.log(Status.PASS, "Another filter data source adds to the chain by enabling rule chaining");

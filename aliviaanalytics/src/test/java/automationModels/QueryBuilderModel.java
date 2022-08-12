@@ -182,7 +182,6 @@ public class QueryBuilderModel extends Configuration{
 	public void verifySaveQueryFilterPanel() {
 		
 		DataCleansingModel DCM = PageFactory.initElements(driver, automationModels.DataCleansingModel.class);
-		
 		utilityMethods.visible(DCM.SearchFieldSidePanel,
 				"Side Pane: Verify that Saved Query Filters Search Text Field is present on 'Query Builder' screen");
 		utilityMethods.clickable(DCM.SearchFieldSidePanel,

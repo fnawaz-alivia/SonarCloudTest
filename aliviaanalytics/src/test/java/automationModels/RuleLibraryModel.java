@@ -628,6 +628,7 @@ public class RuleLibraryModel extends Configuration {
 			this.RemoveButton.click();
 			utilityMethods.time(500);
 			this.YesButton.click();
+			utilityMethods.time(500);
 		}
 		
 		
@@ -674,7 +675,7 @@ public class RuleLibraryModel extends Configuration {
 
 	public void verifyResultButton_RLScreen() {
 		this.ExpandAll.click();
-		utilityMethods.time(500);
+		utilityMethods.time(1000);
 		utilityMethods.visible(this.ResultsButton,
 				"Verify that Results Button is visible in 'Rule Library' screen");
 		utilityMethods.clickable(this.ResultsButton,
@@ -714,7 +715,7 @@ public class RuleLibraryModel extends Configuration {
 		this.ConfigureButton.click();
 		utilityMethods.time(100);
 		
-		utilityMethods.cropSpaces_Input(this.RuleNameInputCR, "CropSpaceBT ", this.SaveButtonCR, this.CreatedRuleName, 
+		utilityMethods.cropSpaces_Input(this.RuleNameInputCR, "CropSpaceAT ", this.SaveButtonCR, this.CreatedRuleName, 
 				"Verify that Rule Name Text crop Spaces Before the text when click on save button in 'Rule Library' screen");
 		
 		utilityMethods.time(100);
@@ -906,10 +907,10 @@ public class RuleLibraryModel extends Configuration {
 				"Verify that warning screen close when click on No button on 'Configure Rule' popup in 'Rule Library' screen");
 		utilityMethods.time(100);
 		this.RemoveButton.click();
-		utilityMethods.time(200);
+		utilityMethods.time(500);
 		utilityMethods.visible(this.YesButton,
 				"Verify that Yes Button is present on 'Warning' popup in 'Rule Library' screen");
-		utilityMethods.clickable(this.NoButton,
+		utilityMethods.clickable(this.YesButton,
 				"Verify that Yes Button is clickable on 'Warning' popup in 'Rule Library' screen");
 		int size1 = this.CreatedRuleList.size(); 
 		utilityMethods.list_NotVisible(this.YesButton, 500, this.WarningScreen, 

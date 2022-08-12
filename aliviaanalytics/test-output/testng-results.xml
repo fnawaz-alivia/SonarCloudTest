@@ -1,31 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="2" total="3" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-08-12T15:01:25 PKT" name=" FWA Test Collection Suite" finished-at="2022-08-12T15:02:23 PKT" duration-ms="58156">
+  <suite started-at="2022-08-12T16:06:33 PKT" name=" FWA Test Collection Suite" finished-at="2022-08-12T16:15:57 PKT" duration-ms="563507">
     <groups>
-      <group name="regression1">
-        <method signature="QueryBuilder.FWA_QueryBuilder_003()[pri:1, instance:automationCases.QueryBuilder@15c43bd9]" name="FWA_QueryBuilder_003" class="automationCases.QueryBuilder"/>
-      </group> <!-- regression1 -->
+      <group name="regression">
+        <method signature="RuleLibrary.FWA_RuleLibrary_001()[pri:1, instance:automationCases.RuleLibrary@3d74bf60]" name="FWA_RuleLibrary_001" class="automationCases.RuleLibrary"/>
+        <method signature="RuleLibrary.FWA_RuleLibrary_002()[pri:2, instance:automationCases.RuleLibrary@3d74bf60]" name="FWA_RuleLibrary_002" class="automationCases.RuleLibrary"/>
+        <method signature="RuleLibrary.FWA_RuleLibrary_003()[pri:3, instance:automationCases.RuleLibrary@3d74bf60]" name="FWA_RuleLibrary_003" class="automationCases.RuleLibrary"/>
+        <method signature="RuleLibrary.FWA_RuleLibrary_004()[pri:4, instance:automationCases.RuleLibrary@3d74bf60]" name="FWA_RuleLibrary_004" class="automationCases.RuleLibrary"/>
+        <method signature="RuleLibrary.FWA_RuleLibrary_005()[pri:4, instance:automationCases.RuleLibrary@3d74bf60]" name="FWA_RuleLibrary_005" class="automationCases.RuleLibrary"/>
+      </group> <!-- regression -->
       <group name="smoke">
-        <method signature="QueryBuilder.FWA_QueryBuilder_003()[pri:1, instance:automationCases.QueryBuilder@15c43bd9]" name="FWA_QueryBuilder_003" class="automationCases.QueryBuilder"/>
+        <method signature="RuleLibrary.FWA_RuleLibrary_001()[pri:1, instance:automationCases.RuleLibrary@3d74bf60]" name="FWA_RuleLibrary_001" class="automationCases.RuleLibrary"/>
+        <method signature="RuleLibrary.FWA_RuleLibrary_002()[pri:2, instance:automationCases.RuleLibrary@3d74bf60]" name="FWA_RuleLibrary_002" class="automationCases.RuleLibrary"/>
+        <method signature="RuleLibrary.FWA_RuleLibrary_003()[pri:3, instance:automationCases.RuleLibrary@3d74bf60]" name="FWA_RuleLibrary_003" class="automationCases.RuleLibrary"/>
+        <method signature="RuleLibrary.FWA_RuleLibrary_004()[pri:4, instance:automationCases.RuleLibrary@3d74bf60]" name="FWA_RuleLibrary_004" class="automationCases.RuleLibrary"/>
+        <method signature="RuleLibrary.FWA_RuleLibrary_005()[pri:4, instance:automationCases.RuleLibrary@3d74bf60]" name="FWA_RuleLibrary_005" class="automationCases.RuleLibrary"/>
       </group> <!-- smoke -->
     </groups>
-    <test started-at="2022-08-12T15:01:25 PKT" name="First Test" finished-at="2022-08-12T15:02:23 PKT" duration-ms="58156">
-      <class name="automationCases.QueryBuilder">
-        <test-method is-config="true" signature="startTest()[pri:0, instance:automationCases.QueryBuilder@15c43bd9]" started-at="2022-08-12T15:01:25 PKT" name="startTest" finished-at="2022-08-12T15:01:25 PKT" duration-ms="171" status="PASS">
+    <test started-at="2022-08-12T16:06:33 PKT" name="First Test" finished-at="2022-08-12T16:15:57 PKT" duration-ms="563507">
+      <class name="automationCases.RuleLibrary">
+        <test-method is-config="true" signature="startTest()[pri:0, instance:automationCases.RuleLibrary@3d74bf60]" started-at="2022-08-12T16:06:33 PKT" name="startTest" finished-at="2022-08-12T16:06:33 PKT" duration-ms="220" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startTest -->
-        <test-method signature="FWA_QueryBuilder_003()[pri:1, instance:automationCases.QueryBuilder@15c43bd9]" started-at="2022-08-12T15:01:25 PKT" name="FWA_QueryBuilder_003" finished-at="2022-08-12T15:02:23 PKT" duration-ms="58120" status="PASS">
+        <test-method signature="FWA_RuleLibrary_001()[pri:1, instance:automationCases.RuleLibrary@3d74bf60]" started-at="2022-08-12T16:06:33 PKT" name="FWA_RuleLibrary_001" finished-at="2022-08-12T16:09:14 PKT" duration-ms="160828" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- FWA_QueryBuilder_003 -->
-        <test-method is-config="true" signature="endTest()[pri:0, instance:automationCases.QueryBuilder@15c43bd9]" started-at="2022-08-12T15:02:23 PKT" name="endTest" finished-at="2022-08-12T15:02:24 PKT" duration-ms="909" status="PASS">
+        </test-method> <!-- FWA_RuleLibrary_001 -->
+        <test-method signature="FWA_RuleLibrary_002()[pri:2, instance:automationCases.RuleLibrary@3d74bf60]" started-at="2022-08-12T16:09:14 PKT" name="FWA_RuleLibrary_002" finished-at="2022-08-12T16:11:15 PKT" duration-ms="120967" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_RuleLibrary_002 -->
+        <test-method signature="FWA_RuleLibrary_003()[pri:3, instance:automationCases.RuleLibrary@3d74bf60]" started-at="2022-08-12T16:11:15 PKT" name="FWA_RuleLibrary_003" finished-at="2022-08-12T16:13:13 PKT" duration-ms="118332" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_RuleLibrary_003 -->
+        <test-method signature="FWA_RuleLibrary_004()[pri:4, instance:automationCases.RuleLibrary@3d74bf60]" started-at="2022-08-12T16:13:13 PKT" name="FWA_RuleLibrary_004" finished-at="2022-08-12T16:14:48 PKT" duration-ms="94210" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_RuleLibrary_004 -->
+        <test-method signature="FWA_RuleLibrary_005()[pri:4, instance:automationCases.RuleLibrary@3d74bf60]" started-at="2022-08-12T16:14:48 PKT" name="FWA_RuleLibrary_005" finished-at="2022-08-12T16:15:57 PKT" duration-ms="69112" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FWA_RuleLibrary_005 -->
+        <test-method is-config="true" signature="endTest()[pri:0, instance:automationCases.RuleLibrary@3d74bf60]" started-at="2022-08-12T16:15:57 PKT" name="endTest" finished-at="2022-08-12T16:15:57 PKT" duration-ms="595" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endTest -->
-      </class> <!-- automationCases.QueryBuilder -->
+      </class> <!-- automationCases.RuleLibrary -->
     </test> <!-- First Test -->
   </suite> <!--  FWA Test Collection Suite -->
 </testng-results>

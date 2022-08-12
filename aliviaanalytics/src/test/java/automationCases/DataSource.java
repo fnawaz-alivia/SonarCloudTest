@@ -447,6 +447,7 @@ public class DataSource extends Configuration {
 
 	@Test(groups = { "regression" }, priority = 3, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_DataSource_006() throws InterruptedException {
+		try {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
@@ -463,6 +464,10 @@ public class DataSource extends Configuration {
 		DSM.LoadDataSoucre("UpdatedSQLDS");
 		DSM.DeleteDataSoucre("UpdatedSQLDS");
         driver.close();
+		}
+		catch (Exception e) {
+			
+		}	
 	}
 
 }

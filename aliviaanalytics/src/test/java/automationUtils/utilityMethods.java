@@ -514,5 +514,29 @@ public class utilityMethods extends Configuration {
 			test.log(Status.FAIL, "hovering on the Question mark dosn't display " + data);
 		}
 	}
-
+	    
+    public static void trycatch(WebElement element,WebElement element1,WebElement element2,int time,String testTitle) {
+ 
+    	try {
+            test = report.createTest(testTitle);
+	        element.click();
+	        try {
+	            Thread.sleep(time);
+	        } catch (InterruptedException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	        if (element1.isDisplayed()) {
+	            test.log(Status.PASS, "The element is visible");
+	        } else {
+	            test.log(Status.FAIL, "The element is not visible");
+	        }
+			}
+			
+			catch (Exception e) {
+				 test = report.createTest(testTitle);
+				 element2.click();
+				  test.log(Status.FAIL, "The element is not visible");
+			}
+    }
 }

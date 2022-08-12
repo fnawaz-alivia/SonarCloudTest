@@ -10,7 +10,7 @@ import configuration.Configuration;
 
 public class RuleLibrary extends Configuration {
 
-	@Test(groups = { "smoke", "regression" }, priority = 1/* ,retryAnalyzer = listeners.RetryAnalyzer.class */)
+	@Test(groups = { "smoke", "regression" }, priority = 1 ,retryAnalyzer = listeners.RetryAnalyzer.class )
 	public void FWA_RuleLibrary_001() throws InterruptedException {
 
 		Configuration.BConfiguration();
@@ -47,7 +47,7 @@ public class RuleLibrary extends Configuration {
 		driver.close();
 	}
 
-	@Test(groups = { "smoke", "regression" }, priority = 2/* ,retryAnalyzer = listeners.RetryAnalyzer.class */)
+	@Test(groups = { "smoke", "regression" }, priority = 2,retryAnalyzer = listeners.RetryAnalyzer.class )
 	public void FWA_RuleLibrary_002() throws InterruptedException {
 
 		Configuration.BConfiguration();
@@ -73,7 +73,7 @@ public class RuleLibrary extends Configuration {
 		driver.close();
 	}
 
-	@Test(groups = { "smoke", "regression" }, priority = 3/* ,retryAnalyzer = listeners.RetryAnalyzer.class */)
+	@Test(groups = { "smoke", "regression" }, priority = 3,retryAnalyzer = listeners.RetryAnalyzer.class )
 	public void FWA_RuleLibrary_003() throws InterruptedException {
 
 		Configuration.BConfiguration();
@@ -100,7 +100,7 @@ public class RuleLibrary extends Configuration {
 		
 		driver.close();
 	}
-	@Test(groups = { "smoke", "regression" }, priority = 4/* ,retryAnalyzer = listeners.RetryAnalyzer.class */)
+	@Test(groups = { "smoke", "regression" }, priority = 4,retryAnalyzer = listeners.RetryAnalyzer.class )
 	public void FWA_RuleLibrary_004() throws InterruptedException {
 
 		Configuration.BConfiguration();
@@ -119,7 +119,7 @@ public class RuleLibrary extends Configuration {
 		driver.close();
 
 	}
-	@Test(groups = { "smoke", "regression" }, priority = 4/* ,retryAnalyzer = listeners.RetryAnalyzer.class */)
+	@Test(groups = { "smoke", "regression" }, priority = 4,retryAnalyzer = listeners.RetryAnalyzer.class )
 	public void FWA_RuleLibrary_005() throws InterruptedException {
 
 		Configuration.BConfiguration();

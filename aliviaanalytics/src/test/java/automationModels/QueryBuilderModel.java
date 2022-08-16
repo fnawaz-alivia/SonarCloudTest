@@ -2,7 +2,6 @@ package automationModels;
 
 import java.util.List;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -17,12 +16,19 @@ import automationUtils.utilityMethods;
 import configuration.Configuration;
 
 public class QueryBuilderModel extends Configuration{
+	
 	public static ExtentTest test;
-	String RuleGroupName = RandomStringUtils.randomAlphabetic(10);
-	String RuleName = RandomStringUtils.randomAlphabetic(10);
+	String RuleGroupName = utilityMethods.randomString(10);
+	String RuleName = utilityMethods.randomString(10);
+	
+	
 	@FindBy(how = How.XPATH, using = "//table[(text() = 'Query Builder' or . = 'Query Builder')]")
 
 	public WebElement QueryBuilder;
+	
+	@FindBy(how = How.XPATH, using = "//a[(text() = 'Query Builder' or . = 'Query Builder')]")
+
+	public WebElement QueryBuilderBreadCrumb;
 	
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and (text() = 'Join' or . = 'Join')]")
 
@@ -108,37 +114,141 @@ public class QueryBuilderModel extends Configuration{
 
 	public List<WebElement> SelectedDSColumnsList;
 	
+	@FindBy(how = How.XPATH, using = "//*[(text() = 'Save As New Rule' or . = 'Save As New Rule')]")
+
+	public WebElement SaveAsNewRule;
+
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-default-resizable')]//*[@type = 'text' and @name = 'name']")
+
+	WebElement RuleNameInput;
 	
-	public void LandingOnQueryBuilderPage() throws InterruptedException {
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-default-resizable')]//*[text()='Save']")
+
+	WebElement RuleSaveButton;	
+	
+	@FindBy(how = How.XPATH, using = "//*[(text() = 'Create New Rule Group' or . = 'Create New Rule Group')]")
+
+	WebElement CreateNewRuleGroup;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'create-rule-group')]//*[@type = 'text' and @name = 'name']")
+
+	WebElement RuleGroupNameInput;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'create-rule-group')]//*[text()='Save']")
+
+	WebElement RuleGroupSaveButton;	
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo') and @type = 'text' and @name = 'groupId']")
+ 
+	WebElement RuleGroupId;
+	
+	@FindBy(how = How.XPATH, using = "//*[(text() = 'OK' or . = 'OK')]")
+
+	WebElement OKConfigureRule;
+	
+	@FindBy(how = How.XPATH, using = "//a[contains(@class, 'dataRepository-queryBuilder-tBar-resetAll-btn-73')]")
+
+	WebElement ResetButtonQB;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'checkbox-') and (text() = 'Enable Rule Chaining' or . = 'Enable Rule Chaining')]")
+
+	WebElement EnableRuleChaining;
+	
+
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @type = 'text' and starts-with(@name, 'combo-') and @placeholder = 'Choose Rule Group ...']")
+
+	WebElement ChooseRuleGroup;
+	
+	
+	
+	
+	public void LandingOnQueryBuilderPage()  {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		PM.GetStarted.click();
 		DSM.DataRepository.click();
-		Thread.sleep(2000);
-		test = report.createTest("Side Pane:Verify that Query Builder Button is present in Data Repository dropdown");
-		if (this.QueryBuilder.isDisplayed()) {
-			test.log(Status.PASS, "The Query Builder Button is present in Data Repository dropdown");
-		} else {
-			test.log(Status.FAIL, "The Query Builder Button is not present in Data Repository dropdown");
-		}
+		utilityMethods.time(2000);
+		utilityMethods.visible(this.QueryBuilder, 
+				"Side Pane:Verify that Query Builder Button is present in Data Repository dropdown");
+		utilityMethods.clickable(this.QueryBuilder,
+				"Side Pane: Verify that Quey Builder Button is clickable");
+		utilityMethods.clicked_elementVisible(this.QueryBuilder, 2000, this.SelectDataSourceTab,
+				"Side Pane: Verify that clicking on Query Builder Button navigates to 'Query Builder' screen");
+		utilityMethods.time(2000);
+		this.SelectDataSourceTab.click();
 		
-		test = report.createTest("Side Pane: Verify that Quey Builder Button is clickable");
-		if (this.QueryBuilder.isEnabled()) {
-			test.log(Status.PASS, "The Query Builder Button is clickable");
-		} else {
-			test.log(Status.FAIL, "The Query Builder Button is not clickable");
-		}
-		test = report.createTest("Side Pane: Verify that clicking on Query Builder Button navigates to 'Query Builder' screen");
-		this.QueryBuilder.click();
-		Thread.sleep(2000);
-		if (this.SelectDataSourceTab.isEnabled()) {
-			test.log(Status.PASS, "clicking on Query Builder Button navigates to 'Query Builder' screen");
-		} else {
-			test.log(Status.FAIL, "clicking on Query Builder Button doesn't  navigate to 'Query Builder' screen");
-		}
-			
 	
-	
+	}
+	public void verifySaveQueryFilterPanel() {
+		
+		DataCleansingModel DCM = PageFactory.initElements(driver, automationModels.DataCleansingModel.class);
+		utilityMethods.visible(DCM.SearchFieldSidePanel,
+				"Side Pane: Verify that Saved Query Filters Search Text Field is present on 'Query Builder' screen");
+		utilityMethods.clickable(DCM.SearchFieldSidePanel,
+				"Side Pane: Verify that Saved Query Filters Search Text Field is clickable on 'Query Builder' screen");
+		utilityMethods.senKeys_Input(DCM.SearchFieldSidePanel, 100, "includeChar",
+				"Side Pane: Verify that Saved Query Filters Search Text Field lets users input alphabets, numbers and special characters on 'Query Builder' screen");
+		utilityMethods.validateSearchList(DCM.SearchFieldSidePanel, DCM.TreeListSidePanel,utilityMethods.randomString(1),
+				"Side Pane: Verify that users can search saved rules using the Search Text Field.");
+		utilityMethods.visible(DCM.SearchFieldCrossButtonSidePanel, 
+				"Side Pane: Verify that cross button is present in Search Text Field on 'Query Builder' screen");
+		utilityMethods.verifyCrossButton(DCM.SearchFieldSidePanel, 100, DCM.SearchFieldCrossButtonSidePanel, 
+				"Side Pane: Verify that cross button clears the text in Search Text Field on 'Query Builder' screen");
+		utilityMethods.validateSearchPlaceholder(DCM.SearchFieldSidePanel, "Search",
+				"Side Pane: Verify that Search text present by default in Search Text Field on 'Query Builder' screen");
+		utilityMethods.visible(DCM.CreateFolderButtonSidePanel, 
+				"Side Pane: Verify that Create New Folder Button is present on 'Query Builder' screen");
+		utilityMethods.clickable(DCM.CreateFolderButtonSidePanel, 
+				"Side Pane: Verify that Create New Folder Button is clickable on 'Query Builder' screen");
+		utilityMethods.list_Visible(DCM.CreateFolderButtonSidePanel, 100, DCM.CreateNewFolderScreen,
+				"Side Pane: Verify that 'Create New Folder' popup appears when click on Create New Folder button on 'Query Builder' screen");
+		utilityMethods.visible(DCM.CreateNewFolderTextField,
+				"Create New Folder: Verify that 'Folder Name' Text Field is present on 'Query Builder' screen");
+		utilityMethods.clickable(DCM.CreateNewFolderTextField,
+				"Create New Folder: Verify that 'Folder Name' Text Field is clickable on 'Query Builder' screen");
+		utilityMethods.senKeys_Input(DCM.CreateNewFolderTextField,100,"includeChar",
+				"Create New Folder: Verify that 'Folder Name' Text Field allow user to input alpahbets, numeric and special characters on 'Query Builder' screen");
+		utilityMethods.verifyCropSpacesForSidePanel(DCM.CreateNewFolderTextField, DCM.SaveButton, DCM.CreateNewFolderScreen, DCM.SearchFieldSidePanel, DCM.CreatedFolderListSidePanel, " CropSpaceBT",
+				"Create New Folder: Verify that 'Folder Name' Text Field doesn't save invalid data when click on it on 'Query Builder' screen");
+		utilityMethods.visible(DCM.RefreshButtonSidePanel, 
+				"Side Pane: Verify that Refresh button is present on 'Query Builder' screen");
+		utilityMethods.clickable(DCM.RefreshButtonSidePanel, 
+				"Side Pane: Verify that Refresh button is clickable on 'Query Builder' screen");
+		utilityMethods.list_Visible(DCM.RefreshButtonSidePanel, 0, DCM.RefreshButtonLoadingSidePanel, 
+				"Side Pane: Verify that Refresh button reload the filter list when click it on 'Query Builder' screen");
+		utilityMethods.visible(DCM.ExpandAllButtonSidePanel, 
+				"Side Pane: Verify that Expand All button is present on 'Query Builder' screen");
+		utilityMethods.clickable(DCM.ExpandAllButtonSidePanel, 
+				"Side Pane: Verify that Expand All button is clickable on 'Query Builder' screen");
+		utilityMethods.clicked_elementVisible(DCM.ExpandAllButtonSidePanel, 200, DCM.CollapseAllButtonSidePanel, 
+				"Side Pane: Verify that Expand All button converts to Collapse All button when click it on 'Query Builder' screen");
+		
+		// Need to add Test Case for List Collapse //
+		
+		utilityMethods.visible(DCM.CollapseAllButtonSidePanel, 
+				"Side Pane: Verify that Collapse All button is present on 'Query Builder' screen");
+		utilityMethods.clickable(DCM.CollapseAllButtonSidePanel, 
+				"Side Pane: Verify that Collapse All button is clickable on 'Query Builder' screen");
+		utilityMethods.clicked_elementVisible(DCM.CollapseAllButtonSidePanel, 200, DCM.ExpandAllButtonSidePanel, 
+				"Side Pane: Verify that Collapse All button converts to Expand All button when click it on 'Query Builder' screen");
+		
+		// Need to add Test Case for List Expand //
+		
+		utilityMethods.visible(DCM.CollapsePanelButtonSidePanel,
+				"Side Pane: Verify that Collapse Panel button is present on 'Query Builder' screen");
+		utilityMethods.clickable(DCM.CollapsePanelButtonSidePanel,
+				"Side Pane: Verify that Collapse Panel button is clickable on 'Query Builder' screen");
+		utilityMethods.clicked_elementVisible(DCM.CollapsePanelButtonSidePanel, 500, DCM.ExpandPanelButtonSidePanel, 
+				"Side Pane: Verify that Collapse Panel button converts into Expand Panel button when click it on 'Query Builder' screen");
+		
+		utilityMethods.visible(DCM.ExpandPanelButtonSidePanel,
+				"Side Pane: Verify that Expand Panel button is present on 'Query Builder' screen");
+		utilityMethods.clickable(DCM.ExpandPanelButtonSidePanel,
+				"Side Pane: Verify that Expand Panel button is clickable on 'Query Builder' screen");
+		utilityMethods.clicked_elementVisible(DCM.ExpandPanelButtonSidePanel, 500, DCM.CollapsePanelButtonSidePanel, 
+				"Side Pane: Verify that Expand Panel button converts into Collapse Panel button when click it on 'Query Builder' screen");
+		
+		
 	}
 	
 	public int CountQB() throws InterruptedException {
@@ -177,7 +287,7 @@ public class QueryBuilderModel extends Configuration{
 	}
 	
 	public void  CreateNewRuleAndGroup() throws InterruptedException {
-		RuleLibraryModel RLM = PageFactory.initElements(driver, automationModels.RuleLibraryModel.class);
+		
 		utilityMethods.waitForVisibility(this.SelectDataSourceTab);
 		this.SelectDataSourceTab.click();
 		this.SelectDataSourceTab.sendKeys("Automation1 - Dental01");
@@ -191,57 +301,57 @@ public class QueryBuilderModel extends Configuration{
 		test = report.createTest("Verify the rule is saved by clicking on save button.");
 		new Actions(driver).moveToElement(this.QBSaveButton).moveByOffset(20, 5).click().perform();
 		Thread.sleep(2000);
-		RLM.SaveAsNewRule.click();
+		SaveAsNewRule.click();
 		Thread.sleep(2000);
 		test.log(Status.PASS, "The rule is saved by clicking on save button.");
-		utilityMethods.waitForVisibility(RLM.RuleName.get(0));
+		utilityMethods.waitForVisibility(RuleNameInput);
 		test = report.createTest("Save As Rule Window -Verify The Rule name is editable");
-		RLM.RuleName.get(0).sendKeys(RuleName);
+		RuleNameInput.sendKeys(RuleName);
 		System.out.println("RuleName"+RuleName);
 		test.log(Status.PASS, "The Rule name is editable");
 		test = report.createTest("Verify the Create New group Button works");
 		Thread.sleep(2000);
-		RLM.CreateNewRuleGroup.click();
+		CreateNewRuleGroup.click();
 		test.log(Status.PASS, "The Create New group Button works");
 		test = report.createTest("Save As Rule Window - Create New Rule Group - Verify Rule group name is editable.");
-		RLM.RuleName.get(1).sendKeys(RuleGroupName);
+		RuleGroupNameInput.sendKeys(RuleGroupName);
 		System.out.println("RuleGroup"+RuleGroupName);
 		test.log(Status.PASS, "The Rule group name is editable.");
 		Thread.sleep(2000);
 		test = report.createTest("Save As Rule Window - Create New Rule Group - Verify that the save option saves the details of rule group.");
-		RLM.SaveButton.get(4).click();
+		RuleGroupSaveButton.click();
 		test.log(Status.PASS, "The save option saves the details of rule group");
 		test = report.createTest("Verify the user is able to select the rule Group while creating rule ");
-		RLM.RuleGroupId.click();
-		utilityMethods.SetTextwithActionClass(RLM.RuleGroupId, RuleGroupName);
+		RuleGroupId.click();
+		utilityMethods.SetTextwithActionClass(RuleGroupId, RuleGroupName);
 		Thread.sleep(2000);
-		RLM.RuleGroupId.clear();
+		RuleGroupId.clear();
 		Thread.sleep(2000);
-		RLM.RuleGroupId.sendKeys(RuleGroupName);
+		RuleGroupId.sendKeys(RuleGroupName);
 		Thread.sleep(2000);
 		System.out.println("RuleGroup"+RuleGroupName);
-		RLM.RuleGroupId.sendKeys(Keys.ENTER);
+		RuleGroupId.sendKeys(Keys.ENTER);
 		test.log(Status.PASS, "The user is able to select the rule Group while creating rule");
 		Thread.sleep(2000);
-		RLM.RuleGroupSaveButton.click();
-		utilityMethods.waitForVisibility(RLM.OKConfigureRule);
-		RLM.OKConfigureRule.click();
+		RuleSaveButton.click();
+		utilityMethods.waitForVisibility(OKConfigureRule);
+		OKConfigureRule.click();
 		Thread.sleep(5000);
 		test = report.createTest("Verify that reset button clear every detail in QB work space.");
-		RLM.ResetButtonQB.click();
+		ResetButtonQB.click();
 		test.log(Status.PASS, "The reset button clear every detail in QB work space");
 	}
 	
 	public void  CreateRuleChaining() throws InterruptedException {
-		RuleLibraryModel RLM = PageFactory.initElements(driver, automationModels.RuleLibraryModel.class);
+		
 		test = report.createTest("Verify that enabling rule chaining adds another filter data source to the chain.");
-		RLM.EnableRuleChaining.click();
+		EnableRuleChaining.click();
 		test.log(Status.PASS, "Another filter data source adds to the chain by enabling rule chaining");
 		test = report.createTest("Verify that enabling rule chaining also enables selecting rule group.");
-		RLM.ChooseRuleGroup.click();
+		ChooseRuleGroup.click();
 		test.log(Status.PASS, "The enabling rule chaining also enables selecting rule group");
 		test = report.createTest("Verify that rule groups are listed in the Choose Rule Group drop down.");
-		RLM.ChooseRuleGroup.sendKeys(RuleGroupName);
+		ChooseRuleGroup.sendKeys(RuleGroupName);
 		System.out.println(RuleGroupName);
 		test.log(Status.PASS, "The rule groups are listed in the Choose Rule Group drop down.");
 		this.SelectDataSourceTab.click();

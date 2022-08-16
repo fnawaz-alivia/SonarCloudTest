@@ -51,6 +51,7 @@ public class DataCleansingModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[@class='x-container x-box-item x-window-item x-container-default x-box-layout-ct']//child::input")
 
 	public WebElement ExportDataCleansingFileName;
+	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class, 'dataRepo-dataClean-mainGridTable-grid-039')]//child::table//tr//td[3]//div")
 
 	public List<WebElement> ColumnsOnSelectedDS;
@@ -59,53 +60,72 @@ public class DataCleansingModel extends Configuration {
 
 	// Start Create Folder XPath's
 
-	@FindBy(how = How.XPATH, using = "//*[contains(@id,'folder-dc-createFolderButton-btnIconEl')]")
+	@FindBy(how = How.XPATH, using = "//div[@class='x-panel x-fit-item x-panel-default']/div/div/div[contains(@class,'x-panel-resizable')]//div[contains(@class,'search')]//input")
 
-	WebElement CreateFolderButton;
+	WebElement SearchFieldSidePanel;
+
+	@FindBy(how = How.XPATH, using = "//div[@class='x-panel x-fit-item x-panel-default']/div/div/div[contains(@class,'x-panel-resizable')]//div[contains(@class,'clear')]")
+
+	WebElement SearchFieldCrossButtonSidePanel;
+	
+	@FindBy(how = How.XPATH, using = "//div[@class='x-panel x-fit-item x-panel-default']/div/div/div[contains(@class,'x-panel-resizable')]/div[2]/div[2]//a[contains(@id,'folder')]")
+
+	WebElement CreateFolderButtonSidePanel;
 
 	@FindBy(how = How.XPATH, using = "//div[text()='Create New Folder']")
 
-	WebElement CreateNewFolderHeading;
+	List<WebElement> CreateNewFolderScreen;
 
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-default-resizable')]//div[contains(@class,'x-tool-close')]")
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-resizable')]//div[2]//input[@type='text']")
 
-	WebElement CreateFolderCloseButton;
+	WebElement CreateNewFolderTextField;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-resizable')]//textarea")
 
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-resizable')]/div/div/div/div/div/div[2]//input")
+	WebElement CreateNewFolderTextArea;
+	
+	
+	@FindBy(how = How.XPATH, using = "//div[@class='x-panel x-fit-item x-panel-default']/div/div/div[contains(@class,'x-panel-resizable')]//table//div[contains(@class,'folder')]/following::span[1]")
 
-	WebElement CreateFolderTextField;
+	List<WebElement> CreatedFolderListSidePanel;
+	
+	@FindBy(how = How.XPATH, using = "//div[@class='x-panel x-fit-item x-panel-default']/div/div/div[contains(@class,'x-panel-resizable')]//table//span[@class='x-tree-node-text ']")
 
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-resizable')]")
-
-	List<WebElement> InnerScreen;
+	List<WebElement> TreeListSidePanel;
+	
+	
 
 	// End
 
 	// Start Refresh XPath's
 
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'left-sidebar-saved-filter')]/div[2]/div[2]//a[2]/span")
+	@FindBy(how = How.XPATH, using = "//div[@class='x-panel x-fit-item x-panel-default']/div/div/div[contains(@class,'x-panel-resizable')]/div[2]/div[2]//a[contains(@data-qtip,'Refresh')]")
 
-	WebElement RefreshButton;
+	WebElement RefreshButtonSidePanel;
+	
+	@FindBy(how = How.XPATH, using = "//div[@class='x-panel x-fit-item x-panel-default']/div/div/div[contains(@class,'x-panel-resizable')]//div[contains(text(),'Filters ...')]")
+
+	List<WebElement> RefreshButtonLoadingSidePanel;
 
 	// End
 
 	// Start Expand and Collapse Button
 
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'left-sidebar-saved-filter')]/div[2]/div[2]//a[@data-qtip='Expand All']")
+	@FindBy(how = How.XPATH, using = "//div[@class='x-panel x-fit-item x-panel-default']/div/div/div[contains(@class,'x-panel-resizable')]/div[2]/div[2]//a[contains(@data-qtip,'Expand All')]")
 
-	WebElement ExpandAllButton;
+	WebElement ExpandAllButtonSidePanel;
 
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'left-sidebar-saved-filter')]/div[2]/div[2]//a[@data-qtip='Collapse All']")
+	@FindBy(how = How.XPATH, using = "//div[@class='x-panel x-fit-item x-panel-default']/div/div/div[contains(@class,'x-panel-resizable')]/div[2]/div[2]//a[contains(@data-qtip,'Collapse All')]")
 
-	WebElement CollapseAllButton;
+	WebElement CollapseAllButtonSidePanel;
 
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'left-sidebar-saved-filter')]/div[1]//div[@aria-label='Collapse panel']")
+	@FindBy(how = How.XPATH, using = "//div[@class='x-panel x-fit-item x-panel-default']/div/div/div[contains(@class,'x-panel-resizable')]/div[1]//div[contains(@class,'collapse')]")
 
-	WebElement CollapsePanelButton;
+	WebElement CollapsePanelButtonSidePanel;
 
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-region-collapsed-placeholder')]//div[@aria-label='Expand panel']")
+	@FindBy(how = How.XPATH, using = "//div[@class='x-panel x-fit-item x-panel-default']/div/div/div[contains(@class,'vertical')]/div[1]//div[contains(@class,'expand')]")
 
-	WebElement ExpandPanelButton;
+	WebElement ExpandPanelButtonSidePanel;
 
 	// End
 
@@ -151,6 +171,8 @@ public class DataCleansingModel extends Configuration {
 	
 	
 
+	// Generic Button
+	
 	@FindBy(how = How.XPATH, using = "//span[text()='Yes']")
 
 	WebElement YesButton;
@@ -162,6 +184,14 @@ public class DataCleansingModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//span[text()='Cancel']")
 
 	WebElement CancelButton;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()='Save']")
+
+	WebElement SaveButton;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-default-resizable')]//div[contains(@class,'x-tool-close')]")
+
+	WebElement CrossButton;
 
 	// End
 
@@ -190,6 +220,10 @@ public class DataCleansingModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//span[text()='Save As']")
 
 	WebElement SaveAsButton;
+	
+	@FindBy(how = How.XPATH, using = "//div[text()='Create New Filter']")
+
+	List<WebElement> CreateNewFilterScreen;
 
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'dataCleansingPanel')]/div/div//a[5]/span")
 
@@ -455,9 +489,7 @@ public class DataCleansingModel extends Configuration {
 
 	List<WebElement> SelectedRadioButtonCNFilter;
 
-	@FindBy(how = How.XPATH, using = "//span[text()='Save']")
 
-	WebElement SaveButton;
 
 	// Helper Function //
 	public String InnerColumn(List<WebElement> elements) {
@@ -491,7 +523,6 @@ public class DataCleansingModel extends Configuration {
 	}
 
 	public void LandingOnDataCleansingPage() throws Exception {
-
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		DataSourceModel DS = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		PM.GetStarted.click();
@@ -519,12 +550,8 @@ public class DataCleansingModel extends Configuration {
 		} else {
 			test.log(Status.FAIL, "clicking on Data Cleansing Button doesn't  navigate to 'Data Cleansing' screen");
 		}
-
-		utilityMethods.waitForVisibility(this.SelectDSForDataCleansing);
-		// By Clicking on this button SideBar will be remove
+		Thread.sleep(500);
 		this.SelectDSForDataCleansing.click();
-		Thread.sleep(2000);
-
 	}
 
 	public void SelectDSForDataCleansing() throws Exception {
@@ -751,17 +778,17 @@ public class DataCleansingModel extends Configuration {
 	// Start Create Folder
 
 	public void verifyCreateNewFolderButtonVisible_DCScreen()  {
-		utilityMethods.visible(this.CreateFolderButton,
+		utilityMethods.visible(this.CreateFolderButtonSidePanel,
 				"Verify that Create New Folder Button is present in 'Data Cleansing' screen");
 	}
 
 	public void verifyCreateNewFolderButtonClickable_DCScreen()  {
-		utilityMethods.clickable(this.CreateFolderButton,
+		utilityMethods.clickable(this.CreateFolderButtonSidePanel,
 				"Verify that Create New Folder Button is clickable in 'Data Cleansing' screen");
 	}
 
 	public void verifyCreateNewFolderScreenVisible()  {
-		utilityMethods.clicked_elementVisible(this.CreateFolderButton,500,this.CreateNewFolderHeading,
+		utilityMethods.list_Visible(this.CreateFolderButtonSidePanel,500,this.CreateNewFolderScreen,
 				"Verify that Create New Folder Screen is visible after clicking on Create New Folder Button in 'Data Cleansing' screen");
 	}
 
@@ -776,7 +803,7 @@ public class DataCleansingModel extends Configuration {
 	}
 
 	public void verifyCancelButton_CNFolder() throws InterruptedException {
-		utilityMethods.list_NotVisible(this.CancelButton, 500, this.InnerScreen,
+		utilityMethods.list_NotVisible(this.CancelButton, 500, this.CreateNewFolderScreen,
 				"Verify that Create New Folder screen close when click on Cancel Button in 'Create New Folder' screen");
 	}
 
@@ -784,12 +811,12 @@ public class DataCleansingModel extends Configuration {
 
 	// Start Refresh
 	public void verifyRefreshButtonIsVisible()  {
-		utilityMethods.visible(this.RefreshButton,
+		utilityMethods.visible(this.RefreshButtonSidePanel,
 				"Verify that Refresh Button is present in 'Data Cleansing' screen");
 	}
 
 	public void verifyRefreshButtonIsClickable()  {
-		utilityMethods.clickable(this.RefreshButton,
+		utilityMethods.clickable(this.RefreshButtonSidePanel,
 				"Verify that Refresh Button is clickable in 'Data Cleansing' screen");
 	}
 
@@ -804,12 +831,12 @@ public class DataCleansingModel extends Configuration {
 
 	// Start Expand All
 	public void verifyExpandAllButtonVisible_DCScreen()  {
-		utilityMethods.visible(this.ExpandAllButton,
+		utilityMethods.visible(this.ExpandAllButtonSidePanel,
 				"Verify that Expand All Button is present in 'Data Cleansing' screen");
 	}
 
 	public void verifyExpandAllButtonClickable_DCScreen()  {
-		utilityMethods.clickable(this.ExpandAllButton,
+		utilityMethods.clickable(this.ExpandAllButtonSidePanel,
 				"Verify that Expand All Button is clickable in 'Data Cleansing' screen");
 	}
 
@@ -818,19 +845,19 @@ public class DataCleansingModel extends Configuration {
 	}
 
 	public void verifyExpandAllButton_DCScreen()  {
-		utilityMethods.clicked_elementVisible(this.ExpandAllButton,500,this.CollapseAllButton,
+		utilityMethods.clicked_elementVisible(this.ExpandAllButtonSidePanel,500,this.CollapseAllButtonSidePanel,
 				"Verify that Expand All Button converts into Collapse All Button when click on it in 'Data Cleansing' screen");
 	}
 	// End Expand All
 
 	// Start Collapse All
 	public void verifyCollapseAllButtonvisible_DCScreen()  {
-		utilityMethods.visible(this.CollapseAllButton,
+		utilityMethods.visible(this.CollapseAllButtonSidePanel,
 				"Verify that Collapse All Button is present in 'Data Cleansing' screen");
 	}
 
 	public void verifyCollapseAllButtonClickable_DCScreen()  {
-		utilityMethods.clickable(this.CollapseAllButton,
+		utilityMethods.clickable(this.CollapseAllButtonSidePanel,
 				"Verify that Collapse All Button is clickable in 'Data Cleansing' screen");
 	}
 
@@ -839,41 +866,41 @@ public class DataCleansingModel extends Configuration {
 	}
 
 	public void verifyCollapseAllButton_DCScreen()  {
-		utilityMethods.clicked_elementVisible(this.CollapseAllButton,500,this.ExpandAllButton,
+		utilityMethods.clicked_elementVisible(this.CollapseAllButtonSidePanel,500,this.ExpandAllButtonSidePanel,
 				"Verify that Collapse All Button converts into Expand All Button when click on it in 'Data Cleansing' screen");
 	}
 	// End Collapse All
 
 	// Start Collapse Panel
 	public void verifyCollapsePanelButtonVisible_DCScreen()  {
-		utilityMethods.visible(this.CollapsePanelButton,
+		utilityMethods.visible(this.CollapsePanelButtonSidePanel,
 				"Verify that Collapse Panel Button is present in 'Data Cleansing' screen");
 	}
 
 	public void verifyCollapsePanelButtonClickable_DCScreen()  {
-		utilityMethods.clickable(this.CollapsePanelButton,
+		utilityMethods.clickable(this.CollapsePanelButtonSidePanel,
 				"Verify that Collapse Panel Button is clickable in 'Data Cleansing' screen");
 	}
 
 	public void verifyCollapsePanel_DCScreen()  {
-		utilityMethods.clicked_elementVisible(this.CollapsePanelButton,500,ExpandPanelButton,
+		utilityMethods.clicked_elementVisible(this.CollapsePanelButtonSidePanel,500,ExpandPanelButtonSidePanel,
 				"Verify that Collapse Panel Button converts into Expand Panel Button when click on it in 'Data Cleansing' screen");
 	}
 	// End Collapse Panel
 
 	// Start Expand Panel
 	public void verifyExpandPanelButtonVisible_DCScreen() throws Exception {
-		utilityMethods.visible(this.ExpandPanelButton,
+		utilityMethods.visible(this.ExpandPanelButtonSidePanel,
 				"Verify that Expand Panel Button is present in 'Data Cleansing' screen");
 	}
 
 	public void verifyExpandPanelButtonClickable_DCScreen() throws Exception {
-		utilityMethods.clickable(this.ExpandPanelButton,
+		utilityMethods.clickable(this.ExpandPanelButtonSidePanel,
 				"Verify that Expand Panel Button is clickable in 'Data Cleansing' screen");
 	}
 
 	public void verifyExpandPanel_DCScreen() throws Exception {
-		utilityMethods.clicked_elementVisible(this.ExpandPanelButton,500,CollapsePanelButton,
+		utilityMethods.clicked_elementVisible(this.ExpandPanelButtonSidePanel,500,CollapsePanelButtonSidePanel,
 				"Verify that Collapse Panel Button converts into Expand Panel Button when click on it in 'Data Cleansing' screen");
 	}
 	// End Expand Panel
@@ -902,7 +929,7 @@ public class DataCleansingModel extends Configuration {
 				"Verify that Select Data Source Dropdown List is clickable in 'Data Cleansing' screen");
 	}
 	public void verifySelectDataSourceDropdownList_DCScreen() {
-		utilityMethods.clicked_elementInput(this.SelectDataSourceMedical,500,this.SelectDataSourceInput,"attribute",
+		utilityMethods.clicked_dropdownInput(this.SelectDataSourceMedical,500,this.SelectDataSourceInput,"attribute",
 				"Verify that Data Source is selected from the List and visible in Data Source Field in 'Data Cleansing' screen");
 	}
 	public void verifySelectedDataSourceTableVisible_DCScreen() {
@@ -1003,7 +1030,7 @@ public class DataCleansingModel extends Configuration {
 		utilityMethods.senKeys_Input(this.SearchFieldColumnScreen, 200, "includeChar",
 				"Verify that Search field inputs alphabets, numeric and special character's in 'Column Screen'");
 	}
-
+ 
 	public void verifySearchField_CScreen() throws Exception {
 		String sendData = "ADR";
 		ArrayList<String> list = new ArrayList<>();
@@ -1224,7 +1251,7 @@ public class DataCleansingModel extends Configuration {
 		WebElement selectedFunction = FunctionsListCalculatedColumnScreen.get(randomNumber);
 		selectedFunction.click();
 		
-		utilityMethods.clicked_elementInput(selectedFunction, 500,this.PreviewSectionContentCalculatedColumnScreen, "text", 
+		utilityMethods.clicked_dropdownInput(selectedFunction, 500,this.PreviewSectionContentCalculatedColumnScreen, "text", 
 				"Verify that Preview Section is displaying functions detail in 'Calculated Column' Screen");
 	}
 
@@ -1704,7 +1731,7 @@ public class DataCleansingModel extends Configuration {
 				"Verify that Create New Filter Screen close, When click on Cancel Button in 'Create New Filter' screen");
 		this.CancelButton.click();
 		Thread.sleep(500);
-		if (this.InnerScreen.size() == 0) {
+		if (this.CreateNewFilterScreen.size() == 0) {
 			test.log(Status.PASS, "The Create New Filter Screen closed");
 		} else {
 			test.log(Status.FAIL, "The Create New Filter Screen not closed");
@@ -1847,7 +1874,7 @@ public class DataCleansingModel extends Configuration {
 		this.SaveButton.click();
 		Thread.sleep(500);
 		OkButton.click();
-		if (this.InnerScreen.size() == 0 && CreatedFilter_DC.isDisplayed()) {
+		if (this.CreateNewFilterScreen.size() == 0 && CreatedFilter_DC.isDisplayed()) {
 			test.log(Status.PASS, "The New Filter Created");
 		} else {
 			test.log(Status.FAIL, "The New Filter Not Created");

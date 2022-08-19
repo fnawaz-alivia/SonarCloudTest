@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
+import automationUtils.utilityMethods;
 import configuration.Configuration;
 
 public class RankingModel extends Configuration {
@@ -31,14 +32,73 @@ public WebElement SearchTabforDS;
 public WebElement ShowColumnsButton;
 
 
+@FindBy(how = How.XPATH, using = "//div[not(contains(@class,'x-hidden-offsets')) and contains(@class,'cls') ]//div[contains(@class,'singlePanel')]/div/div[1]//div[contains(@class,'collapse-left')]")
+
+public WebElement collapseleftpane;
+
+
+@FindBy(how = How.XPATH, using = "//div[not(contains(@class,'x-hidden-offsets')) and contains(@class,'cls') ]//div[contains(@class,'singlePanel')]/following::div[1]/div[contains(@class,'x-layout-split-left')]")
+
+public WebElement expandleftpane;
+
+
+
+
+@FindBy(how = How.XPATH, using = "//div[not(contains(@class,'x-hidden-offsets')) and contains(@class,'cls') ]//div[contains(@class,'singlePanel')]/div[2]//div[@role='tablist']/div/div[1]//div[contains(@class,'collapse-top')]")
+
+public WebElement collapseDataSourcepanel;
+
+
+
+@FindBy(how = How.XPATH, using = "//div[not(contains(@class,'x-hidden-offsets')) and contains(@class,'cls') ]//div[contains(@class,'singlePanel')]/div[2]//div[@role='tablist']/div/div[1]//div[contains(@class,'expand-bottom')]")
+
+public WebElement expandDataSourcepanel;
+
+
+@FindBy(how = How.XPATH, using = "//div[not(contains(@class,'x-hidden-offsets')) and contains(@class,'cls') ]//div[contains(@class,'singlePanel')]/div[2]//div[@role='tablist']/div/div[2]//div[contains(@class,'collapse-top')]")
+
+public WebElement collapseSavedRankspanel;
+
+
+
+@FindBy(how = How.XPATH, using = "//div[not(contains(@class,'x-hidden-offsets')) and contains(@class,'cls') ]//div[contains(@class,'singlePanel')]/div[2]//div[@role='tablist']/div/div[2]//div[contains(@class,'expand-bottom')]")
+
+public WebElement expandSavedRankspanel;
+
+
+
+@FindBy(how = How.XPATH, using = "//div[not(contains(@class,'x-hidden-offsets')) and contains(@class,'cls') ]//div[contains(@class,'singlePanel')]/div[2]//div[contains(@class,'x-tree-lines ')]//div[contains(@class,'collapse-top')]")
+
+public WebElement collapsevaluespanel;
+
+
+
+@FindBy(how = How.XPATH, using = "//div[not(contains(@class,'x-hidden-offsets')) and contains(@class,'cls') ]//div[contains(@class,'singlePanel')]/div[2]//div[contains(@class,'x-tree-lines ')]//div[contains(@class,'expand-bottom')]")
+
+public WebElement expandvaluespanel;
+
+
+
+
 @FindBy(how = How.XPATH, using = "//div[contains(@class,'x-column-header-checkbox')]")
 
 public WebElement CheckBOXShowColumnsWindow;
 
+@FindBy(how = How.XPATH, using = "//div[not(contains(@class,'x-hidden-offsets')) and contains(@class,'cls') ]//div[contains(@class,'singlePanel')]/div[2]//div[@role='tablist']//a[1]")
+
+public WebElement SortDatasource;
+
+@FindBy(how = How.XPATH, using = "//div[not(contains(@class,'x-hidden-offsets')) and contains(@class,'cls') ]//div[contains(@class,'singlePanel')]/div[2]//div[@role='tablist']//a[2]")
+
+public WebElement Refreshdatasources;
+
+@FindBy(how = How.XPATH, using = "//div[not(contains(@class,'x-hidden-offsets')) and contains(@class,'cls') ]//div[contains(@class,'singlePanel')]/div[2]//div[@role='tablist']//div[contains(@class,'dataSourcesGrid')]//input/following::div[1]")
+
+public WebElement crosssearchtextdatasource;
+
 @FindBy(how = How.XPATH, using = "//div[contains(@class, 'analysis-ranking-columns-71')]//child::input")
 
 public WebElement SearchTabOnShowColumnsWindow;
-
 
 
 @FindBy(how = How.XPATH, using = "//*[@class = 'header' and @transform= 'translate(265,0)']")
@@ -97,13 +157,21 @@ public void LandingOnPageRanking() throws InterruptedException {
 	} else {
 		test.log(Status.FAIL, " clicking on Ranking Button doesn't navigate to Ranking screen");
 	}
-	
+	this.ShowValues.click();
 }
 
 public void LoadDataSourceForRank() throws InterruptedException {
 
 	this.ShowValues.click();
 	this.SearchTabforDS.click();
+	utilityMethods.validateSearchPlaceholder(this.SearchTabforDS, "Search ...", "Verify that Search Text Field is visible in the side panel in Data Sources section");
+	utilityMethods.visible(this.crosssearchtextdatasource,
+			"Verify that a cross is visible to the right in the Search Text Field");
+	utilityMethods.verifyCrossButton(this.SearchTabforDS, 1000, this.crosssearchtextdatasource, "Verify that clicking the cross removes any text from the Search Text Field");
+	utilityMethods.visible(this.SearchTabforDS,
+			"Verify that Search Text Field is visible in the side panel in Data Sources section");
+	utilityMethods.clickable(this.SearchTabforDS,
+			"Verify that Search Text Field is clickable in the side panel in Data Sources section");
 	test = report.createTest("Verify Search tab works for datasources on ranking page");
 	this.SearchTabforDS.sendKeys("Medical Transactions");
 	test.log(Status.PASS, "Search tab works for datasources on ranking page");

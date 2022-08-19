@@ -539,4 +539,6 @@ public class utilityMethods extends Configuration {
 				  test.log(Status.FAIL, "The element is not visible");
 			}
     }
+    
+    
 }

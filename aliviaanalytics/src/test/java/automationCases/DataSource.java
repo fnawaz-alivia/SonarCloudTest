@@ -14,6 +14,7 @@ import com.aventstack.extentreports.Status;
 
 import automationModels.DataSourceModel;
 import automationModels.ProjectModel;
+import automationModels.QueryBuilderModel;
 import automationUtils.utilityMethods;
 import configuration.Configuration;
 

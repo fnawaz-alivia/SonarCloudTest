@@ -23,4 +23,19 @@ public class Scheduler extends Configuration{
 		driver.close();
 		
 	}
+	
+	@Test(groups = {"smoke","regression1"}, priority = 1)
+	public void FWA_Scheduler_002() throws InterruptedException {
+		
+		Configuration.BConfiguration();
+		Configuration.LoginApplication();
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		SchedulerModel SM = PageFactory.initElements(driver, automationModels.SchedulerModel.class);
+		utilityMethods.waitForVisibility(PM.GetStarted);
+		Thread.sleep(8000);
+		SM.LandingOnSchedulerPage();
+		SM.CreateProcessforInitiative();
+		driver.close();
+		
+	}
 }

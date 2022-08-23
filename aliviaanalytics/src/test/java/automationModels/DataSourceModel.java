@@ -782,160 +782,31 @@ public class DataSourceModel extends Configuration {
 
 	}
 
-	public void CreateMSSQLServerDS(String DSName) throws InterruptedException {
+	public void CreateMSSQLServerDSwithouTest(String DSName,String dbName, String tableName) throws InterruptedException {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		PM.GetStarted.click();
 		try {
-			utilityMethods.visible(this.DataRepository,
-					"Side Pane: Verify that Data Repository dropdown is visible in the side pane");
-			utilityMethods.clickable(this.DataRepository,
-					"Side Pane: Verify that Data Repository dropdown is clickable ");
-			utilityMethods.clicked_Single(this.DataRepository, 0, this.ManageDataSources,
-					"Side Pane:Verify that clicking on the Data Repository displays a list of its sub-modules in the dropdown ");
-			utilityMethods.visible(this.ManageDataSources,
-					"Side Pane: Verify that Manage Data Sources Button is present in Data Repository dropdown ");
-			utilityMethods.clickable(this.ManageDataSources,
-					"Side Pane: Verify that Manage Data Sources Button is clickable ");
-			utilityMethods.clicked_Single(this.ManageDataSources, 0, this.SearchTabDataSource,
-					"Side Pane: Verify that clicking on Manage Data Sources Button navigates to 'Manage Data Sources' screen");
+			this.DataRepository.click();
+			this.ManageDataSources.click();
 			Thread.sleep(2000);
-			utilityMethods.visible(this.SearchTabDataSource,
-					"Verify that Search Text Field is visible on the Data source screen. ");
-			utilityMethods.clickable(this.SearchTabDataSource,
-					"Verify that Search Text Field is clickable and editable on the Data source screen.");
 			this.SearchTabDataSource.click();
-			utilityMethods.visible(this.MicrosoftSQLServer,
-					"Verify that Create Microsoft SQL Server  Button is visible");
-			utilityMethods.clickable(this.MicrosoftSQLServer,
-					"Verify that Create Microsoft SQL Server  Button is clickable and the user can click.");
-			utilityMethods.clicked_Single(this.MicrosoftSQLServer, 1000, PM.PublicOption,
-					"Verify that Create Microsoft SQL Server Button opens 'Create Microsoft SQL Server Data Source' screen upon clicking.");
-			utilityMethods.verifyRadioButtonPrivatePublicVisible(RadioButtonList);
-			utilityMethods.verifyRadioButtonPrivatePublicClickable(RadioButtonList);
-			// utilityMethods.verifyRadioButtonSelection(RadioButtonList,
-			// SelectRadioButton);
-			utilityMethods.visible(this.DrillDownDetails, "Verify that Drill Down Details Dropdown is visible.");
-			utilityMethods.clickable(this.DrillDownDetails, "Verify that Drill Down Details Dropdown is clickable.");
-			utilityMethods.clicked_Single(this.DrillDownDetails, 1000, this.detailDataSourceId,
-					"Verify that Drill Down Details Dropdown upon clicking expands and displays further fields");
-
-			Thread.sleep(2000);
-			utilityMethods.moveToElement(this.DistinctResults);
-			utilityMethods.visible(this.detailDataSourceId, "Verify that Choose Detail Source Dropdown is visible");
-			utilityMethods.clickable(this.detailDataSourceId,
-					"Verify that Choose Detail Source Dropdown is clickable and editable.");
-			  utilityMethods.visible(this.choosedrilldownsourcecolumn,
-			  "Verify that Choose Drill Down Source Column Dropdown is  visible");
-			  utilityMethods.clickable(this.choosedrilldownsourcecolumn,
-			  "Verify that Choose Drill Down Source Column Dropdown is clickable and editable."
-			  ); utilityMethods.visible(this.choosedrilldowndetailscolumn,
-			  "Verify that Choose Drill Down Detail Column Dropdown is visible");
-			  utilityMethods.clickable(this.choosedrilldowndetailscolumn,
-			  "Verify that Choose Drill Down Detail Column Dropdown is clickable and editable."
-			  );	 
-			utilityMethods.visible(this.LockDataSourceandMakeitReadOnly,
-					"Verify that Lock Data Source to Make it Read Only Check Box is visible. ");
-			utilityMethods.clickable(this.LockDataSourceandMakeitReadOnly,
-					"Verify that Lock Data Source to Make it Read Only Check Box is clickable. ");
-			utilityMethods.visible(this.DistinctResults, "Verify that Distinct Results Check Box is visible");
-			utilityMethods.clickable(this.DistinctResults, "Verify that Distinct Results Check Box is clickable. ");
-			utilityMethods.visible(this.DistinctResults, "Verify that Mask for me Check Box is visible.");
-			utilityMethods.clickable(this.maskforme, "Verify that Mask for me Check Box is clickable.maskforme");
-			this.DrillDownDetails.click();
-			utilityMethods.moveToElement(this.DataSourceName);
-			utilityMethods.visible(this.cancelbutton,
-					"Create Microsoft SQL Server Data Source Window :Verify that Cancel Data Button is visible");
-			utilityMethods.clickable(this.cancelbutton,
-					"Create Microsoft SQL Server Data Source Window :Verify that Cancel Button is clickable. ");
-			utilityMethods.clicked_Single(this.cancelbutton, 2000, this.MicrosoftSQLServer,
-					"Verify that clicking the Cancel Button takes the user back to the 'Manage Data Sources' landing page. ");
 			this.MicrosoftSQLServer.click();
 			Thread.sleep(2000);
-			test = report.createTest(
-					"Create Microsoft SQL Server Data Source Window- The user is able to select public visibility type.");
 			PM.PublicOption.click();
-			test.log(Status.PASS, "The user is able to select public visibility type.");
-			utilityMethods.visible(this.DataSourceName,
-					"Create Microsoft SQL Server Data Source Window: Verify that Data Source Name Text Box is visible on the Landing Page");
-			utilityMethods.clickable(this.DataSourceName,
-					"Create Microsoft SQL Server Data Source Window :Verify that Data Source Name Text Box is editable.");
-			utilityMethods.verifyfieldmandatory(this.DataSourceName, 2000, PM.exclamationmark,
-					"Verify that if the Data Source  Name is empty an exclamation mark should appear on right side");
-			utilityMethods.verifyFieldInputs(this.DataSourceName);
 			this.DataSourceName.clear();
 			this.DataSourceName.sendKeys(DSName);
-			utilityMethods.visible(this.AdvanceButton,
-					"Create Microsoft SQL Server Data Source: Verify that Advance Button is visible.");
-			utilityMethods.clickable(this.AdvanceButton,
-					"Create Microsoft SQL Server Data Source :Verify that Advance Button is clickable.");
-			utilityMethods.trycatch(this.AdvanceButton, this.SaveAdvancedMetadataOptions, this.okFailed,2000, "Create Microsoft SQL Server Data Source Window:Verify that Advanced Metadata OptionsScreen opens clicking on advance button");
-			Thread.sleep(1000);
-			this.CancelAdvancedMetadataOptions.click();
-			utilityMethods.visible(this.GeoMapping,
-					"Create Microsoft SQL Server Data Source Window :Verify that Geo Mapping Check Box is visible.");
-			utilityMethods.clickable(this.GeoMapping,
-					"Create Microsoft SQL Server Data Source Window :Verify that Geo Mapping Check Box  is clickable.");
-			utilityMethods.trycatch(this.GeoMapping, this.SaveAdvancedMetadataOptions, this.okFailed,2000, "Create Microsoft SQL Server Data Source Window:Verify that Advanced Metadata OptionsScreen opens clicking on geomap check box ");
-			this.CancelAdvancedMetadataOptions.click();
-			utilityMethods.visible(this.SaveDataSoures,
-					"Create CSV File Data Source Window : Verify that save Button is visible.");
-			utilityMethods.clickable(this.SaveDataSoures,
-					"Create CSV File Data Source Window : Verify that save Button is visible.");
-			Thread.sleep(2000);
-			utilityMethods.visible(this.instanceName,
-					"Create Microsoft SQL Server Data Source:Verify that Instance Name/IP Address Dropdown Text Box is visible on the Landing Page. ");
-			utilityMethods.clickable(this.instanceName,
-					"Create Microsoft SQL Server Data Source :Verify that Instance Name/IP Address Dropdown Text Box is  clickable.");
-			// utilityMethods.verifyfieldmandatory(this.instanceName, 2000,
-			// PM.exclamationmark, "Verify that if Instance Name/IP Address Name is empty an
-			// exclamation mark should appear on right side");
-			utilityMethods.verifyFieldInputs(this.instanceName);
 			this.instanceName.clear();
 			System.out.println(Configuration.instanceName);
 			this.instanceName.sendKeys(Configuration.instanceName);
 			this.instanceName.sendKeys(Keys.ENTER);
-			utilityMethods.visible(this.databaseName,
-					"Create Microsoft SQL Server Data Source:Verify that Database Name Dropdown Text Box is visible on the Landing Page.");
-			utilityMethods.clickable(this.databaseName, "Verify that Database Name Dropdown Text Box is editable. ");
-			// utilityMethods.verifyfieldmandatory(this.databaseName, 2000,
-			// PM.exclamationmark, "Verify that if the Data Source Name is empty an
-			// exclamation mark should appear on right side");
-			utilityMethods.verifyFieldInputs(this.databaseName);
 			this.databaseName.clear();
-			this.databaseName.sendKeys("ai_analysis");
+			this.databaseName.sendKeys(dbName);
 			this.databaseName.sendKeys(Keys.ENTER);
-			utilityMethods.visible(this.WindowsAuthentication,
-					"Create Microsoft SQL Server Data Source:Verify that Windows Authentication Radio Button is visible. ");
-			utilityMethods.clickable(this.WindowsAuthentication,
-					"Create Microsoft SQL Server Data Source :Verify that Windows Authentication Radio Button is clickable.");
-			utilityMethods.visible(this.DatabaseAuthentication,
-					"Create Microsoft SQL Server Data Source:Verify that Database Authentication Radio Button is visible.");
-			utilityMethods.clickable(this.DatabaseAuthentication,
-					"Create Microsoft SQL Server Data Source :Verify that Database Authentication Radio Button is clickable.");
-			utilityMethods.disable(this.input_Username_SQL_SEVER, "Verify that Username Text Field is disabled when Windows Authentication is selected.");
-			utilityMethods.disable(this.input_Password_SQL_SERVER, "Verify that password  Field is disabled when Windows Authentication is selected.");
-			this.DatabaseAuthentication.click();
-			utilityMethods.clickable(this.input_Username_SQL_SEVER,
-					"Verify that Username Text Field is only editable when Database Authentication is selected.");
-			utilityMethods.clickable(this.input_Password_SQL_SERVER,
-					"Verify that password Field is only editable when Database Authentication is selected.");
-			utilityMethods.visible(this.Connect,
-					"Create Microsoft SQL Server Data Source:Verify that Connect Button is visible.");
-			utilityMethods.clickable(this.Connect, "Verify that Connect Button is clickable. ");
-			
-			 utilityMethods.verifyfieldmandatory(this.input_Username_SQL_SEVER, 2000,
-						PM.exclamationmark, "Verify that Username Text Field shows a red exclamation mark to the right when it is left empty.");
-			 utilityMethods.verifyfieldmandatory(this.input_Password_SQL_SERVER, 2000,
-						PM.exclamationmark, "Verify that Password Text Field shows a red exclamation mark to the right when it is left empty.");
-			this.WindowsAuthentication.click();
 			this.Connect.click();
 			Thread.sleep(2000);
-			this.ChooseTableName.sendKeys("Automation1_Dental01");
+			this.ChooseTableName.sendKeys(tableName);
 			this.ChooseTableName.sendKeys(Keys.ENTER);
-			
-			test = report.createTest("Verify the save button works ");
 			this.SaveDataSoures.click();
-			test.log(Status.PASS, "The save button works ");
 			utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
 			PM.OKButtonSelectaProjectWondow.click();
 			Thread.sleep(2000);
@@ -1269,5 +1140,169 @@ public class DataSourceModel extends Configuration {
 		utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
 		PM.OKButtonSelectaProjectWondow.click();
 	}
+	
+	public void CreateMSSQLServerDS(String DSName) throws InterruptedException {
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		PM.GetStarted.click();
+		try {
+			utilityMethods.visible(this.DataRepository,
+					"Side Pane: Verify that Data Repository dropdown is visible in the side pane");
+			utilityMethods.clickable(this.DataRepository,
+					"Side Pane: Verify that Data Repository dropdown is clickable ");
+			utilityMethods.clicked_Single(this.DataRepository, 0, this.ManageDataSources,
+					"Side Pane:Verify that clicking on the Data Repository displays a list of its sub-modules in the dropdown ");
+			utilityMethods.visible(this.ManageDataSources,
+					"Side Pane: Verify that Manage Data Sources Button is present in Data Repository dropdown ");
+			utilityMethods.clickable(this.ManageDataSources,
+					"Side Pane: Verify that Manage Data Sources Button is clickable ");
+			utilityMethods.clicked_Single(this.ManageDataSources, 0, this.SearchTabDataSource,
+					"Side Pane: Verify that clicking on Manage Data Sources Button navigates to 'Manage Data Sources' screen");
+			Thread.sleep(2000);
+			utilityMethods.visible(this.SearchTabDataSource,
+					"Verify that Search Text Field is visible on the Data source screen. ");
+			utilityMethods.clickable(this.SearchTabDataSource,
+					"Verify that Search Text Field is clickable and editable on the Data source screen.");
+			this.SearchTabDataSource.click();
+			utilityMethods.visible(this.MicrosoftSQLServer,
+					"Verify that Create Microsoft SQL Server  Button is visible");
+			utilityMethods.clickable(this.MicrosoftSQLServer,
+					"Verify that Create Microsoft SQL Server  Button is clickable and the user can click.");
+			utilityMethods.clicked_Single(this.MicrosoftSQLServer, 1000, PM.PublicOption,
+					"Verify that Create Microsoft SQL Server Button opens 'Create Microsoft SQL Server Data Source' screen upon clicking.");
+			utilityMethods.verifyRadioButtonPrivatePublicVisible(RadioButtonList);
+			utilityMethods.verifyRadioButtonPrivatePublicClickable(RadioButtonList);
+			// utilityMethods.verifyRadioButtonSelection(RadioButtonList,
+			// SelectRadioButton);
+			utilityMethods.visible(this.DrillDownDetails, "Verify that Drill Down Details Dropdown is visible.");
+			utilityMethods.clickable(this.DrillDownDetails, "Verify that Drill Down Details Dropdown is clickable.");
+			utilityMethods.clicked_Single(this.DrillDownDetails, 1000, this.detailDataSourceId,
+					"Verify that Drill Down Details Dropdown upon clicking expands and displays further fields");
+
+			Thread.sleep(2000);
+			utilityMethods.moveToElement(this.DistinctResults);
+			utilityMethods.visible(this.detailDataSourceId, "Verify that Choose Detail Source Dropdown is visible");
+			utilityMethods.clickable(this.detailDataSourceId,
+					"Verify that Choose Detail Source Dropdown is clickable and editable.");
+			  utilityMethods.visible(this.choosedrilldownsourcecolumn,
+			  "Verify that Choose Drill Down Source Column Dropdown is  visible");
+			  utilityMethods.clickable(this.choosedrilldownsourcecolumn,
+			  "Verify that Choose Drill Down Source Column Dropdown is clickable and editable."
+			  ); utilityMethods.visible(this.choosedrilldowndetailscolumn,
+			  "Verify that Choose Drill Down Detail Column Dropdown is visible");
+			  utilityMethods.clickable(this.choosedrilldowndetailscolumn,
+			  "Verify that Choose Drill Down Detail Column Dropdown is clickable and editable."
+			  );	 
+			utilityMethods.visible(this.LockDataSourceandMakeitReadOnly,
+					"Verify that Lock Data Source to Make it Read Only Check Box is visible. ");
+			utilityMethods.clickable(this.LockDataSourceandMakeitReadOnly,
+					"Verify that Lock Data Source to Make it Read Only Check Box is clickable. ");
+			utilityMethods.visible(this.DistinctResults, "Verify that Distinct Results Check Box is visible");
+			utilityMethods.clickable(this.DistinctResults, "Verify that Distinct Results Check Box is clickable. ");
+			utilityMethods.visible(this.DistinctResults, "Verify that Mask for me Check Box is visible.");
+			utilityMethods.clickable(this.maskforme, "Verify that Mask for me Check Box is clickable.maskforme");
+			this.DrillDownDetails.click();
+			utilityMethods.moveToElement(this.DataSourceName);
+			utilityMethods.visible(this.cancelbutton,
+					"Create Microsoft SQL Server Data Source Window :Verify that Cancel Data Button is visible");
+			utilityMethods.clickable(this.cancelbutton,
+					"Create Microsoft SQL Server Data Source Window :Verify that Cancel Button is clickable. ");
+			utilityMethods.clicked_Single(this.cancelbutton, 2000, this.MicrosoftSQLServer,
+					"Verify that clicking the Cancel Button takes the user back to the 'Manage Data Sources' landing page. ");
+			this.MicrosoftSQLServer.click();
+			Thread.sleep(2000);
+			test = report.createTest(
+					"Create Microsoft SQL Server Data Source Window- The user is able to select public visibility type.");
+			PM.PublicOption.click();
+			test.log(Status.PASS, "The user is able to select public visibility type.");
+			utilityMethods.visible(this.DataSourceName,
+					"Create Microsoft SQL Server Data Source Window: Verify that Data Source Name Text Box is visible on the Landing Page");
+			utilityMethods.clickable(this.DataSourceName,
+					"Create Microsoft SQL Server Data Source Window :Verify that Data Source Name Text Box is editable.");
+			utilityMethods.verifyfieldmandatory(this.DataSourceName, 2000, PM.exclamationmark,
+					"Verify that if the Data Source  Name is empty an exclamation mark should appear on right side");
+			utilityMethods.verifyFieldInputs(this.DataSourceName);
+			this.DataSourceName.clear();
+			this.DataSourceName.sendKeys(DSName);
+			utilityMethods.visible(this.AdvanceButton,
+					"Create Microsoft SQL Server Data Source: Verify that Advance Button is visible.");
+			utilityMethods.clickable(this.AdvanceButton,
+					"Create Microsoft SQL Server Data Source :Verify that Advance Button is clickable.");
+			utilityMethods.trycatch(this.AdvanceButton, this.SaveAdvancedMetadataOptions, this.okFailed,2000, "Create Microsoft SQL Server Data Source Window:Verify that Advanced Metadata OptionsScreen opens clicking on advance button");
+			Thread.sleep(1000);
+			this.CancelAdvancedMetadataOptions.click();
+			utilityMethods.visible(this.GeoMapping,
+					"Create Microsoft SQL Server Data Source Window :Verify that Geo Mapping Check Box is visible.");
+			utilityMethods.clickable(this.GeoMapping,
+					"Create Microsoft SQL Server Data Source Window :Verify that Geo Mapping Check Box  is clickable.");
+			utilityMethods.trycatch(this.GeoMapping, this.SaveAdvancedMetadataOptions, this.okFailed,2000, "Create Microsoft SQL Server Data Source Window:Verify that Advanced Metadata OptionsScreen opens clicking on geomap check box ");
+			this.CancelAdvancedMetadataOptions.click();
+			utilityMethods.visible(this.SaveDataSoures,
+					"Create CSV File Data Source Window : Verify that save Button is visible.");
+			utilityMethods.clickable(this.SaveDataSoures,
+					"Create CSV File Data Source Window : Verify that save Button is visible.");
+			Thread.sleep(2000);
+			utilityMethods.visible(this.instanceName,
+					"Create Microsoft SQL Server Data Source:Verify that Instance Name/IP Address Dropdown Text Box is visible on the Landing Page. ");
+			utilityMethods.clickable(this.instanceName,
+					"Create Microsoft SQL Server Data Source :Verify that Instance Name/IP Address Dropdown Text Box is  clickable.");
+			// utilityMethods.verifyfieldmandatory(this.instanceName, 2000,
+			// PM.exclamationmark, "Verify that if Instance Name/IP Address Name is empty an
+			// exclamation mark should appear on right side");
+			utilityMethods.verifyFieldInputs(this.instanceName);
+			this.instanceName.clear();
+			System.out.println(Configuration.instanceName);
+			this.instanceName.sendKeys(Configuration.instanceName);
+			this.instanceName.sendKeys(Keys.ENTER);
+			utilityMethods.visible(this.databaseName,
+					"Create Microsoft SQL Server Data Source:Verify that Database Name Dropdown Text Box is visible on the Landing Page.");
+			utilityMethods.clickable(this.databaseName, "Verify that Database Name Dropdown Text Box is editable. ");
+			// utilityMethods.verifyfieldmandatory(this.databaseName, 2000,
+			// PM.exclamationmark, "Verify that if the Data Source Name is empty an
+			// exclamation mark should appear on right side");
+			utilityMethods.verifyFieldInputs(this.databaseName);
+			this.databaseName.clear();
+			this.databaseName.sendKeys("ai_analysis");
+			this.databaseName.sendKeys(Keys.ENTER);
+			utilityMethods.visible(this.WindowsAuthentication,
+					"Create Microsoft SQL Server Data Source:Verify that Windows Authentication Radio Button is visible. ");
+			utilityMethods.clickable(this.WindowsAuthentication,
+					"Create Microsoft SQL Server Data Source :Verify that Windows Authentication Radio Button is clickable.");
+			utilityMethods.visible(this.DatabaseAuthentication,
+					"Create Microsoft SQL Server Data Source:Verify that Database Authentication Radio Button is visible.");
+			utilityMethods.clickable(this.DatabaseAuthentication,
+					"Create Microsoft SQL Server Data Source :Verify that Database Authentication Radio Button is clickable.");
+			utilityMethods.disable(this.input_Username_SQL_SEVER, "Verify that Username Text Field is disabled when Windows Authentication is selected.");
+			utilityMethods.disable(this.input_Password_SQL_SERVER, "Verify that password  Field is disabled when Windows Authentication is selected.");
+			this.DatabaseAuthentication.click();
+			utilityMethods.clickable(this.input_Username_SQL_SEVER,
+					"Verify that Username Text Field is only editable when Database Authentication is selected.");
+			utilityMethods.clickable(this.input_Password_SQL_SERVER,
+					"Verify that password Field is only editable when Database Authentication is selected.");
+			utilityMethods.visible(this.Connect,
+					"Create Microsoft SQL Server Data Source:Verify that Connect Button is visible.");
+			utilityMethods.clickable(this.Connect, "Verify that Connect Button is clickable. ");
+			
+			 utilityMethods.verifyfieldmandatory(this.input_Username_SQL_SEVER, 2000,
+						PM.exclamationmark, "Verify that Username Text Field shows a red exclamation mark to the right when it is left empty.");
+			 utilityMethods.verifyfieldmandatory(this.input_Password_SQL_SERVER, 2000,
+						PM.exclamationmark, "Verify that Password Text Field shows a red exclamation mark to the right when it is left empty.");
+			this.WindowsAuthentication.click();
+			this.Connect.click();
+			Thread.sleep(2000);
+			this.ChooseTableName.sendKeys("Automation1_Dental01");
+			this.ChooseTableName.sendKeys(Keys.ENTER);
+			
+			test = report.createTest("Verify the save button works ");
+			this.SaveDataSoures.click();
+			test.log(Status.PASS, "The save button works ");
+			utilityMethods.waitForVisibility(PM.OKButtonSelectaProjectWondow);
+			PM.OKButtonSelectaProjectWondow.click();
+			Thread.sleep(2000);
+
+		} catch (Exception e) {
+			this.CloseDialog.click();
+		}
+	}
+
 
 }

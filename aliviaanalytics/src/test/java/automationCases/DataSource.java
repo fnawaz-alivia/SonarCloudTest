@@ -14,6 +14,7 @@ import com.aventstack.extentreports.Status;
 
 import automationModels.DataSourceModel;
 import automationModels.ProjectModel;
+import automationModels.QueryBuilderModel;
 import automationUtils.utilityMethods;
 import configuration.Configuration;
 
@@ -463,6 +464,31 @@ public class DataSource extends Configuration {
 		DSM.EditDSAndVerifyUpdateName("UpdatedSQLDS");
 		DSM.LoadDataSoucre("UpdatedSQLDS");
 		DSM.DeleteDataSoucre("UpdatedSQLDS");
+        driver.close();
+		}
+		catch (Exception e) {
+			
+		}	
+	}
+	@Test(groups = { "regression1" }, priority = 3, retryAnalyzer = listeners.RetryAnalyzer.class)
+	public void FWA_DataSource_007() throws InterruptedException {
+		try {
+		Configuration.BConfiguration();
+		Configuration.LoginApplication();
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
+		utilityMethods.waitForVisibility(PM.LoadedProjectText);
+		Thread.sleep(2000);
+		String randomint = RandomStringUtils.randomNumeric(3);
+		String  DSName ="Fake Dental Claims_"+randomint;
+		System.out.println(DSName);
+		DSM.CreateMSSQLServerDSwithouTest(DSName,"FakeDataDemo_Dev","ALIV_DentalClaimAll");
+		DSM.LoadDataSoucre(DSName);
+		String randomint1 = RandomStringUtils.randomNumeric(3);
+		String  DSName1 ="Fake Risk Scores_"+randomint1;
+		System.out.println(DSName1);
+		DSM.CreateMSSQLServerDSwithouTest(DSName1,"FakeDataDemo_Dev","ALIV_DentalClaimAll_Provider_RiskScore");
+		DSM.LoadDataSoucre(DSName1);
         driver.close();
 		}
 		catch (Exception e) {

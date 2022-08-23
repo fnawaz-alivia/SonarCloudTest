@@ -8,13 +8,15 @@
       </run>
     </groups>
     <classes>
-      <class name="automationCases.Scheduler">
+      <class name="automationCases.CreateInitiative">
         <methods>
-          <include name="FWA_Scheduler_002"/>
+          <include name="FWA_CreateInitiative_002"/>
           <include name="startTest"/>
+          <include name="FWA_CreateInitiative_004"/>
           <include name="endTest"/>
+          <include name="FWA_CreateInitiative_003"/>
         </methods>
-      </class> <!-- automationCases.Scheduler -->
+      </class> <!-- automationCases.CreateInitiative -->
     </classes>
   </test> <!-- First Test(failed) -->
 </suite> <!-- Failed suite [ FWA Test Collection Suite] -->

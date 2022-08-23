@@ -552,11 +552,11 @@ public class QueryBuilderModel extends Configuration{
 
 	}	
 	
-public void  CreateNewRuleAndGroupForInitiative() throws InterruptedException {
+public void  CreateNewRuleAndGroupForInitiative(String DSName, String DSName1, String OutputDSName ,String OutputDSName1, String RuleGroupName) throws InterruptedException {
 		
 		utilityMethods.waitForVisibility(this.SelectDataSourceTab);
 		this.SelectDataSourceTab.click();
-		this.SelectDataSourceTab.sendKeys("Automation1 - Dental01");
+		this.SelectDataSourceTab.sendKeys(DSName);
 		this.SelectDataSourceTab.sendKeys(Keys.ENTER);
 		Thread.sleep(3000);
 		this.SelectAllColumnsOfDS.click();
@@ -580,20 +580,21 @@ public void  CreateNewRuleAndGroupForInitiative() throws InterruptedException {
 		CreateNewRuleGroup.click();
 		test.log(Status.PASS, "The Create New group Button works");
 		test = report.createTest("Save As Rule Window - Create New Rule Group - Verify Rule group name is editable.");
-		String NewRuleGroupName = "Fake_Dental_RuleGroup"+randomint;
-		RuleGroupNameInput.sendKeys(NewRuleGroupName);
-		System.out.println("RuleGroup"+NewRuleGroupName);
+		RuleGroupNameInput.sendKeys(RuleGroupName);
 		test.log(Status.PASS, "The Rule group name is editable.");
 		Thread.sleep(2000);
 		test = report.createTest("Save As Rule Window - Create New Rule Group - Verify that the save option saves the details of rule group.");
 		RuleGroupSaveButton.click();
 		test.log(Status.PASS, "The save option saves the details of rule group");
 		test = report.createTest("Verify the user is able to select the rule Group while creating rule ");
-		RuleGroupId.click();
+		  RuleGroupId.click();
+	        utilityMethods.SetTextwithActionClass(RuleGroupId, RuleGroupName);
+	        Thread.sleep(2000);
+	        RuleGroupId.clear();
+	        Thread.sleep(2000);
+	        RuleGroupId.sendKeys(RuleGroupName);
 		Thread.sleep(2000);
-		RuleGroupId.sendKeys(NewRuleGroupName);
-		Thread.sleep(2000);
-		System.out.println("RuleGroup"+NewRuleGroupName);
+		System.out.println("RuleGroup"+RuleGroupName);
 		RuleGroupId.sendKeys(Keys.ENTER);
 		test.log(Status.PASS, "The user is able to select the rule Group while creating rule");
 		Thread.sleep(2000);
@@ -601,9 +602,7 @@ public void  CreateNewRuleAndGroupForInitiative() throws InterruptedException {
 		this.Forcererunchainedruletoproducefreshresults.click();
 		this.MaintainAllExecutionResults.click();
 		this.SaveResultintofollowingDataSource.click();
-		String DSName = "Output_Fake_"+randomint+"_Claims";
-		System.out.println(DSName);
-		this.outputdataSourceName.sendKeys(DSName);
+		this.outputdataSourceName.sendKeys(OutputDSName);
 		RuleSaveButton.click();
 		utilityMethods.waitForVisibility(OKConfigureRule);
 		OKConfigureRule.click();
@@ -613,7 +612,7 @@ public void  CreateNewRuleAndGroupForInitiative() throws InterruptedException {
 		test.log(Status.PASS, "The reset button clear every detail in QB work space");
 		utilityMethods.waitForVisibility(this.SelectDataSourceTab);
 		this.SelectDataSourceTab.click();
-		this.SelectDataSourceTab.sendKeys("Automation1 - Dental01");
+		this.SelectDataSourceTab.sendKeys(DSName1);
 		this.SelectDataSourceTab.sendKeys(Keys.ENTER);
 		Thread.sleep(3000);
 		this.SelectAllColumnsOfDS.click();
@@ -634,9 +633,12 @@ public void  CreateNewRuleAndGroupForInitiative() throws InterruptedException {
 		test = report.createTest("Verify the Create New group Button works");
 		Thread.sleep(2000);
 		RuleGroupId.click();
-		RuleGroupId.sendKeys(NewRuleGroupName);
-		Thread.sleep(2000);
-		System.out.println("RuleGroup"+NewRuleGroupName);
+        utilityMethods.SetTextwithActionClass(RuleGroupId, RuleGroupName);
+        Thread.sleep(2000);
+        RuleGroupId.clear();
+       
+        RuleGroupId.sendKeys(RuleGroupName);
+		System.out.println("RuleGroup"+RuleGroupName);
 		RuleGroupId.sendKeys(Keys.ENTER);
 		test.log(Status.PASS, "The user is able to select the rule Group while creating rule");
 		Thread.sleep(2000);
@@ -644,9 +646,7 @@ public void  CreateNewRuleAndGroupForInitiative() throws InterruptedException {
 		this.Forcererunchainedruletoproducefreshresults.click();
 		this.MaintainAllExecutionResults.click();
 		this.SaveResultintofollowingDataSource.click();
-		String DSName1 = "Output_Fake_"+randomint+"_Risk Scores";
-		System.out.println(DSName1);
-		this.outputdataSourceName.sendKeys(DSName1);
+		this.outputdataSourceName.sendKeys(OutputDSName1);
 		RuleSaveButton.click();
 		utilityMethods.waitForVisibility(OKConfigureRule);
 		OKConfigureRule.click();

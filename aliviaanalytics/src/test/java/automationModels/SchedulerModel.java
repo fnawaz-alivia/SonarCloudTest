@@ -160,7 +160,7 @@ public class SchedulerModel extends Configuration{
 			test.log(Status.FAIL, "There is an issue in execution of proces");
 		}
 	}
-		public void CreateProcessforInitiative() throws InterruptedException {
+		public void CreateProcessforInitiative(String RuleGroupName) throws InterruptedException {
 			QueryBuilderModel QBM = PageFactory.initElements(driver, automationModels.QueryBuilderModel.class);
 			new Actions(driver).moveToElement(this.Scheduler).moveByOffset(150, 0).click().perform();
 			this.Process.click();
@@ -172,7 +172,7 @@ public class SchedulerModel extends Configuration{
 			this.ChooseTaskType.click();	
 			this.Li_RuleGroup.click();
 			this.ChooseTaskItem.click();
-			this.ChooseTaskItem.sendKeys("Fake_Dental_RuleGroup");
+			this.ChooseTaskItem.sendKeys(RuleGroupName);
 			this.ChooseTaskItem.sendKeys(Keys.ENTER);
 			this.AddtoList.click();
 			Thread.sleep(2000);

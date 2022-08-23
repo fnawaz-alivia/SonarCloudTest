@@ -3,6 +3,7 @@ package automationModels;
 import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -36,6 +37,10 @@ public class DashboardModel extends Configuration{
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'menuitem') and (text() = 'Delete' or . = 'Delete')]")
 
 	public WebElement RightDeleteOption;
+	
+	@FindBy(how = How.XPATH, using = "//span[contains(@class,'fa-tasks')]")
+
+	public WebElement createbutton;
 	
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'menuitem') and (text() = 'Rename' or . = 'Rename')]")
 
@@ -73,7 +78,14 @@ public class DashboardModel extends Configuration{
 
 	public WebElement Apply;
 	
+
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'menuitem-') and (text() = 'Add Data Source Item' or . = 'Add Data Source Item')]")
+
+	public WebElement AddDataSourceItem;
 	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'menuitem-') and (text() = 'Create Initiative' or . = 'Create Initiative')]")
+
+	public WebElement CreateInitiative;
 	@FindBy(how = How.XPATH, using = "//a[contains(@class, 'x-btn dashboard-panecenter-tBar-clearAll-btn-75')]")
 
 	public WebElement ClearAllDashboard;
@@ -451,6 +463,73 @@ public void ReNameDashboard() throws InterruptedException {
 			}
 
 	}
+	public void LoadDashboard(String DBName) {
+
+		for (WebElement el : DashboardList) {
+
+			if (el.getText().equals(DBName)) {
+				  new Actions(driver).doubleClick(el).perform();
+
+			        break;
+			    }
+			}
+
+	}
 	
+public void CreateDashboardForInitiative(String OutputDSName,String OutputDSName1 ) throws InterruptedException {
+		
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		QueryBuilderModel QBM = PageFactory.initElements(driver, automationModels.QueryBuilderModel.class);
+		PM.GetStarted.click();
+		
+		this.Dashboard.click();
+		Thread.sleep(2000);
+		this.LoadDashboardItemsButton.click();
+
+		this.AddDataSourceItem.click();
+
+		this.SearchTabOnAddDashboardItemWidow.click();
+
+		this.SearchTabOnAddDashboardItemWidow.sendKeys(OutputDSName);
+
+		Thread.sleep(2000);
+
+		this.DragItemDropOnDashboardCanvas(OutputDSName);
+		
+		this.SearchTabOnAddDashboardItemWidow.click();
+		this.SearchTabOnAddDashboardItemWidow.clear();
+		this.SearchTabOnAddDashboardItemWidow.sendKeys(OutputDSName1);
+
+		Thread.sleep(2000);
+
+		this.DragItemDropOnDashboardCanvas(OutputDSName1);
+		
+	    new Actions(driver).moveToElement(this.saveButton).moveByOffset(-10, 0).click().perform();	
+	    
+		this.InputNameDashboard.sendKeys(DBNameValue);	
+		System.out.println(DBNameValue);
+		utilityMethods.waitForVisibility(QBM.OkButtonQB);
+		QBM.OkButtonQB.click();
+		utilityMethods.waitForVisibility(QBM.OkButtonQB);
+		QBM.OkButtonQB.click();
+	
+		this.SearchTabDashboard.click();
+		Thread.sleep(1000);
+	
+		this.SearchTabDashboard.sendKeys(DBNameValue);
+		Thread.sleep(2000);
+
+		System.out.println(this.DashboardList.size());
+		this.LoadDashboard(DBNameValue);
+		Thread.sleep(2000);
+		driver.manage().window().maximize();
+		Thread.sleep(2000);
+		this.createbutton.click();
+		this.CreateInitiative.click();
+		Dimension d = new Dimension(1360, 978);
+		// Resize the current window to the given dimension
+		driver.manage().window().setSize(d);
+		
+	}
 
 }

@@ -840,6 +840,7 @@ public class utilityMethods extends Configuration {
 			} else {
 				test.log(Status.FAIL, "The element is not visible");
 			}
+
 		}
 
 		catch (Exception e) {
@@ -847,5 +848,5 @@ public class utilityMethods extends Configuration {
 			element2.click();
 			test.log(Status.FAIL, "The element is not visible");
 		}
-	}
+    }
 }

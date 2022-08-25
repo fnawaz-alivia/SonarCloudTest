@@ -2,6 +2,7 @@ package automationModels;
 
 import java.util.List;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -99,7 +100,11 @@ public class QueryBuilderModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and @class = 'x-btn-wrap x-btn-wrap-default-small x-btn-arrow x-btn-arrow-right' and (text() = ' ' or . = ' ')]")
 
 	public WebElement AddDataSourceButton;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-resizable')]//span[@class='x-column-header-checkbox']")
 
+	public WebElement SelectAllColumnsOfDS;
+	
 	@FindBy(how = How.XPATH, using = "//a[contains(@class, 'dataRepo-querybuilder-aggrEditor-dataSourceMainPane-exportButton-044')]")
 
 	public WebElement ExportQBButton;
@@ -694,12 +699,6 @@ public class QueryBuilderModel extends Configuration {
 
 	WebElement Join;
 	
-	
-
-	@FindBy(how = How.XPATH, using = "//div[@id='qb-main-pane-bodyWrap']//span[contains(@class,'fa-broom')]")
-
-	WebElement Reset;
-	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'queryBuilderToolBar')]/div/div/div[1]")
 
 	WebElement EnableRuleChainingDiv;
@@ -760,6 +759,26 @@ public class QueryBuilderModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[(text() = 'OK' or . = 'OK')]")
 
 	WebElement OKConfigureRule;
+	
+	@FindBy(how = How.XPATH, using = "//*[(text() = 'Advanced Options' or . = 'Advanced Options')]")
+
+	WebElement AdvancedOptions;
+	
+	@FindBy(how = How.XPATH, using = "//*[(text() = 'Force re-run chained rule to produce fresh results' or . = 'Force re-run chained rule to produce fresh results')]")
+
+	WebElement Forcererunchainedruletoproducefreshresults;
+	
+	@FindBy(how = How.XPATH, using = "//*[(text() = 'Maintain All Execution Results' or . = 'Maintain All Execution Results')]")
+
+	WebElement MaintainAllExecutionResults;
+	
+	@FindBy(how = How.XPATH, using = "//*[(text() = 'Save Result into following Data Source' or . = 'Save Result into following Data Source')]")
+
+	WebElement SaveResultintofollowingDataSource;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @type = 'text' and @name = 'dataSourceName']")
+
+	WebElement outputdataSourceName;
 
 	@FindBy(how = How.XPATH, using = "//a[contains(@class, 'dataRepository-queryBuilder-tBar-resetAll-btn-73')]")
 
@@ -1646,7 +1665,7 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that Alias Text Field lets users input alphabets, numbers and special characters.");
 		
 		// Reset Everything before selecting data source
-		this.Reset.click();
+		this.ResetButtonQB.click();
 		utilityMethods.time(500);
 		// Select Data Source Dropdown
 		
@@ -1731,15 +1750,10 @@ public class QueryBuilderModel extends Configuration {
 		utilityMethods.verifyItemAdded(this.QueryBuilderPaneList, this.AddRule, 
 				"Verify that clicking Add Rule adds a record for Data Source selection.");
 		
-		utilityMethods.click(this.Reset);
+		utilityMethods.click(this.ResetButtonQB);
 		utilityMethods.list_Visible(this.QueryBuilderPaneAddDropdown, 500, this.DisabledAddRule, 
 				"Verify that the Add Rule option becomes unclickable when Enable Rule Chaining is unchecked. ");
-		
-		
-		
-		
-		
-		
+
 	}
 	public void verifyJoin() {
 		utilityMethods.visible(this.Join, 
@@ -2018,6 +2032,109 @@ public class QueryBuilderModel extends Configuration {
 		Thread.sleep(2000);
 		test.log(Status.PASS, "Export Query Filter results data into Excel works");
 
+	}	
+	
+public void  CreateNewRuleAndGroupForInitiative(String DSName, String DSName1, String OutputDSName ,String OutputDSName1, String RuleGroupName) throws InterruptedException {
+		
+		utilityMethods.waitForVisibility(this.SelectDataSourceTab);
+		this.SelectDataSourceTab.click();
+		this.SelectDataSourceTab.sendKeys(DSName);
+		this.SelectDataSourceTab.sendKeys(Keys.ENTER);
+		Thread.sleep(3000);
+		this.SelectAllColumnsOfDS.click();
+		this.AggrBuilderUtilityokButton.click();
+		Thread.sleep(2000);
+		test = report.createTest("Verify the rule is saved by clicking on save button.");
+		new Actions(driver).moveToElement(this.QBSaveButton).moveByOffset(20, 5).click().perform();
+		Thread.sleep(2000);
+		SaveAsNewRule.click();
+		Thread.sleep(2000);
+		test.log(Status.PASS, "The rule is saved by clicking on save button.");
+		utilityMethods.waitForVisibility(RuleNameInput);
+		test = report.createTest("Save As Rule Window -Verify The Rule name is editable");
+		String randomint = RandomStringUtils.randomNumeric(3);
+		String NewRuleName = "Output_Fake_Claims_Rule"+randomint;
+		RuleNameInput.sendKeys(NewRuleName);
+		System.out.println("RuleName"+NewRuleName);
+		test.log(Status.PASS, "The Rule name is editable");
+		test = report.createTest("Verify the Create New group Button works");
+		Thread.sleep(2000);
+		CreateNewRuleGroup.click();
+		test.log(Status.PASS, "The Create New group Button works");
+		test = report.createTest("Save As Rule Window - Create New Rule Group - Verify Rule group name is editable.");
+		RuleGroupNameInput.sendKeys(RuleGroupName);
+		test.log(Status.PASS, "The Rule group name is editable.");
+		Thread.sleep(2000);
+		test = report.createTest("Save As Rule Window - Create New Rule Group - Verify that the save option saves the details of rule group.");
+		RuleGroupSaveButton.click();
+		test.log(Status.PASS, "The save option saves the details of rule group");
+		test = report.createTest("Verify the user is able to select the rule Group while creating rule ");
+		  RuleGroupId.click();
+	        utilityMethods.SetTextwithActionClass(RuleGroupId, RuleGroupName);
+	        Thread.sleep(2000);
+	        RuleGroupId.clear();
+	        Thread.sleep(2000);
+	        RuleGroupId.sendKeys(RuleGroupName);
+		Thread.sleep(2000);
+		System.out.println("RuleGroup"+RuleGroupName);
+		RuleGroupId.sendKeys(Keys.ENTER);
+		test.log(Status.PASS, "The user is able to select the rule Group while creating rule");
+		Thread.sleep(2000);
+		AdvancedOptions.click();
+		this.Forcererunchainedruletoproducefreshresults.click();
+		this.MaintainAllExecutionResults.click();
+		this.SaveResultintofollowingDataSource.click();
+		this.outputdataSourceName.sendKeys(OutputDSName);
+		RuleSaveButton.click();
+		utilityMethods.waitForVisibility(OKConfigureRule);
+		OKConfigureRule.click();
+		Thread.sleep(5000);
+		test = report.createTest("Verify that reset button clear every detail in QB work space.");
+		ResetButtonQB.click();
+		test.log(Status.PASS, "The reset button clear every detail in QB work space");
+		utilityMethods.waitForVisibility(this.SelectDataSourceTab);
+		this.SelectDataSourceTab.click();
+		this.SelectDataSourceTab.sendKeys(DSName1);
+		this.SelectDataSourceTab.sendKeys(Keys.ENTER);
+		Thread.sleep(3000);
+		this.SelectAllColumnsOfDS.click();
+		this.AggrBuilderUtilityokButton.click();
+		Thread.sleep(2000);
+		test = report.createTest("Verify the rule is saved by clicking on save button.");
+		new Actions(driver).moveToElement(this.QBSaveButton).moveByOffset(20, 5).click().perform();
+		Thread.sleep(2000);
+		SaveAsNewRule.click();
+		Thread.sleep(2000);
+		test.log(Status.PASS, "The rule is saved by clicking on save button.");
+		utilityMethods.waitForVisibility(RuleNameInput);
+		test = report.createTest("Save As Rule Window -Verify The Rule name is editable");
+		String NewRuleName1 = "Output_Fake_RiskScores_Rule"+randomint;
+		RuleNameInput.sendKeys(NewRuleName1);
+		System.out.println("RuleName"+NewRuleName1);
+		test.log(Status.PASS, "The Rule name is editable");
+		test = report.createTest("Verify the Create New group Button works");
+		Thread.sleep(2000);
+		RuleGroupId.click();
+        utilityMethods.SetTextwithActionClass(RuleGroupId, RuleGroupName);
+        Thread.sleep(2000);
+        RuleGroupId.clear();
+       
+        RuleGroupId.sendKeys(RuleGroupName);
+		System.out.println("RuleGroup"+RuleGroupName);
+		RuleGroupId.sendKeys(Keys.ENTER);
+		test.log(Status.PASS, "The user is able to select the rule Group while creating rule");
+		Thread.sleep(2000);
+		AdvancedOptions.click();
+		this.Forcererunchainedruletoproducefreshresults.click();
+		this.MaintainAllExecutionResults.click();
+		this.SaveResultintofollowingDataSource.click();
+		this.outputdataSourceName.sendKeys(OutputDSName1);
+		RuleSaveButton.click();
+		utilityMethods.waitForVisibility(OKConfigureRule);
+		OKConfigureRule.click();
+		Thread.sleep(5000);
+		test = report.createTest("Verify that reset button clear every detail in QB work space.");
+		ResetButtonQB.click();
 	}
 
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite configfailurepolicy="continue" name="Failed suite [ FWA Test Collection Suite]" guice-stage="DEVELOPMENT" verbose="10">
+  <test thread-count="5" name="First Test(failed)" verbose="10">
+    <groups>
+      <run>
+        <include name="regression1"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="automationCases.CreateInitiative">
+        <methods>
+          <include name="FWA_CreateInitiative_002"/>
+          <include name="startTest"/>
+          <include name="FWA_CreateInitiative_004"/>
+          <include name="endTest"/>
+          <include name="FWA_CreateInitiative_003"/>
+        </methods>
+      </class> <!-- automationCases.CreateInitiative -->
+    </classes>
+  </test> <!-- First Test(failed) -->
+</suite> <!-- Failed suite [ FWA Test Collection Suite] -->

@@ -45,6 +45,10 @@ public class SchedulerModel extends Configuration{
 
 	public WebElement Li_Model;
 	
+	@FindBy(how = How.XPATH, using = "//*[(text() = 'Rule Group' or . = 'Rule Group')]")
+
+	public WebElement Li_RuleGroup;
+	
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @type = 'text' and @placeholder = 'Choose Task Item ...']")
 
 	public WebElement ChooseTaskItem;
@@ -155,6 +159,49 @@ public class SchedulerModel extends Configuration{
 		else if (ele1.getText().equals("Error")) {
 			test.log(Status.FAIL, "There is an issue in execution of proces");
 		}
+	}
+		public void CreateProcessforInitiative(String RuleGroupName) throws InterruptedException {
+			QueryBuilderModel QBM = PageFactory.initElements(driver, automationModels.QueryBuilderModel.class);
+			new Actions(driver).moveToElement(this.Scheduler).moveByOffset(150, 0).click().perform();
+			this.Process.click();
+			Thread.sleep(2000);
+			String schdularname = RandomStringUtils.randomAlphabetic(10);
+
+			this.ProcessEditorEnterName.sendKeys(schdularname);
+			this.Tasks.click();	
+			this.ChooseTaskType.click();	
+			this.Li_RuleGroup.click();
+			this.ChooseTaskItem.click();
+			this.ChooseTaskItem.sendKeys(RuleGroupName);
+			this.ChooseTaskItem.sendKeys(Keys.ENTER);
+			this.AddtoList.click();
+			Thread.sleep(2000);
+			this.ProcessEditorSave.click();
+			Thread.sleep(2000);
+			this.LastExecutedOn.click();
+			WebElement ele = driver.findElement(By.xpath(("//div[contains(@class, 'processSchedulerleft')]//child::table['"+index+"'+'"+1+"']//tr//td[6]//div//img[2]")));
+			new Actions(driver).moveToElement(ele).click().perform();
+			Thread.sleep(5000);
+			this.ExecuteNow.click();
+			Thread.sleep(10000);
+			//utilityMethods.waitForVisibility(QBM.OkButtonQB);
+			//QBM.OkButtonQB.click();
+			this.LastExecutedOn.click();
+			
+			WebElement ele1 = driver.findElement(By.xpath(("//div[contains(@class, 'processSchedulerleft')]//child::table['"+index+"'+'"+1+"']//tr//td[5]//div")));
+			System.out.println(ele1.getText());
+			
+			while (ele1.getText().equals("Running")) {
+				Thread.sleep(2000);
+			}
+
+			System.out.println(ele1.getText());
+			if (ele1.getText().equals("Success")) {
+			
+			}
+			else if (ele1.getText().equals("Error")) {
+		
+			}
 		
 	}
 	

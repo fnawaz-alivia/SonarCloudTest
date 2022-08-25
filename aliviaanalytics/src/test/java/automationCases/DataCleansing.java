@@ -35,7 +35,11 @@ public class DataCleansing extends Configuration {
 		test.log(Status.PASS, "The user is able to select the Data Source for  Data Cleansing");
 		DCM.MissingFillWithValue();
 		String DCExportFileName = RandomStringUtils.randomAlphabetic(10);
+		
+		// This function will export data cleansing into CSV
 		DCM.ExportDataIntoCSV(DCExportFileName);
+		
+		// This function will export data cleansing into Excel
 		DCM.ExportDataIntoExcel(DCExportFileName);
 		driver.close();
 	}

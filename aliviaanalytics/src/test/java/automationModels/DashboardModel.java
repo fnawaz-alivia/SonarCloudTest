@@ -37,6 +37,9 @@ public class DashboardModel extends Configuration{
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'menuitem') and (text() = 'Delete' or . = 'Delete')]")
 
 	public WebElement RightDeleteOption;
+	@FindBy(how = How.XPATH, using = "//div[text()='Configure Subject']/following::span[text()='OK']")
+
+	public WebElement OKButtonConfigureSubject;
 	
 	@FindBy(how = How.XPATH, using = "//span[contains(@class,'fa-tasks')]")
 
@@ -73,6 +76,26 @@ public class DashboardModel extends Configuration{
 	@FindBy(how = How.XPATH, using = "//*[(text() = 'Average' or . = 'Average')]")
 
 	public WebElement Average;
+	
+	@FindBy(how = How.XPATH, using = "//input[@placeholder='Enter Name ... ']")
+
+	public WebElement InitiativeName;
+	
+	@FindBy(how = How.XPATH, using = "//input[@placeholder='Enter value']")
+
+	public WebElement SelectTopValue;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()='Save Initiative']")
+
+	public WebElement SaveInitiativeButton;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-text')]")
+
+	public WebElement InitiativeResultText;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-text')]/following::span[text()='OK']")
+
+	public WebElement OkButtonInitiativeResultText;
 	
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and (text() = 'Apply' or . = 'Apply')]")
 
@@ -476,7 +499,7 @@ public void ReNameDashboard() throws InterruptedException {
 
 	}
 	
-public void CreateDashboardForInitiative(String OutputDSName,String OutputDSName1 ) throws InterruptedException {
+public void CreateDashboardForInitiative(String OutputDSName,String OutputDSName1,String DashboardName, String InitiativeName , String SelectTop) throws InterruptedException {
 		
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		QueryBuilderModel QBM = PageFactory.initElements(driver, automationModels.QueryBuilderModel.class);
@@ -506,8 +529,8 @@ public void CreateDashboardForInitiative(String OutputDSName,String OutputDSName
 		
 	    new Actions(driver).moveToElement(this.saveButton).moveByOffset(-10, 0).click().perform();	
 	    
-		this.InputNameDashboard.sendKeys(DBNameValue);	
-		System.out.println(DBNameValue);
+		this.InputNameDashboard.sendKeys(DashboardName);	
+		System.out.println(DashboardName);
 		utilityMethods.waitForVisibility(QBM.OkButtonQB);
 		QBM.OkButtonQB.click();
 		utilityMethods.waitForVisibility(QBM.OkButtonQB);
@@ -516,19 +539,32 @@ public void CreateDashboardForInitiative(String OutputDSName,String OutputDSName
 		this.SearchTabDashboard.click();
 		Thread.sleep(1000);
 	
-		this.SearchTabDashboard.sendKeys(DBNameValue);
+		this.SearchTabDashboard.sendKeys(DashboardName);
 		Thread.sleep(2000);
 
 		System.out.println(this.DashboardList.size());
-		this.LoadDashboard(DBNameValue);
+		this.LoadDashboard(DashboardName);
 		Thread.sleep(2000);
-		driver.manage().window().maximize();
+		Dimension d1 = new Dimension(1560, 978);
+		driver.manage().window().setSize(d1);
 		Thread.sleep(2000);
 		this.createbutton.click();
 		this.CreateInitiative.click();
 		Dimension d = new Dimension(1360, 978);
 		// Resize the current window to the given dimension
 		driver.manage().window().setSize(d);
+		Thread.sleep(5000);
+		utilityMethods.waitForVisibility(this.OKButtonConfigureSubject);
+		this.OKButtonConfigureSubject.click();
+		Thread.sleep(2000);
+		this.InitiativeName.clear();
+		this.InitiativeName.sendKeys(InitiativeName);
+		this.SelectTopValue.sendKeys(SelectTop);
+		Thread.sleep(2000);
+		this.SaveInitiativeButton.click();
+		utilityMethods.waitForVisibility(this.InitiativeResultText);
+		System.out.println(this.InitiativeResultText.getText());
+		this.OkButtonInitiativeResultText.click();
 		
 	}
 

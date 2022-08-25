@@ -2084,10 +2084,11 @@ public void  CreateNewRuleAndGroupForInitiative(String DSName, String DSName1, S
 		test.log(Status.PASS, "The save option saves the details of rule group");
 		test = report.createTest("Verify the user is able to select the rule Group while creating rule ");
 		  RuleGroupId.click();
+		  Thread.sleep(3000);
 	        utilityMethods.SetTextwithActionClass(RuleGroupId, RuleGroupName);
-	        Thread.sleep(2000);
+	        Thread.sleep(3000);
 	        RuleGroupId.clear();
-	        Thread.sleep(2000);
+	        Thread.sleep(3000);
 	        RuleGroupId.sendKeys(RuleGroupName);
 		Thread.sleep(2000);
 		System.out.println("RuleGroup"+RuleGroupName);
@@ -2129,10 +2130,11 @@ public void  CreateNewRuleAndGroupForInitiative(String DSName, String DSName1, S
 		test = report.createTest("Verify the Create New group Button works");
 		Thread.sleep(2000);
 		RuleGroupId.click();
+		Thread.sleep(3000);
         utilityMethods.SetTextwithActionClass(RuleGroupId, RuleGroupName);
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         RuleGroupId.clear();
-       
+        Thread.sleep(3000);
         RuleGroupId.sendKeys(RuleGroupName);
 		System.out.println("RuleGroup"+RuleGroupName);
 		RuleGroupId.sendKeys(Keys.ENTER);

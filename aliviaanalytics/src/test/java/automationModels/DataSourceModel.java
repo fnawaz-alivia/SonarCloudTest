@@ -42,6 +42,8 @@ public class DataSourceModel extends Configuration {
 
 	public WebElement Connect;
 
+	
+	
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @type = 'text' and @name = 'tableName' and @placeholder = 'Select Table ...']")
 
 	public WebElement ChooseTableName;

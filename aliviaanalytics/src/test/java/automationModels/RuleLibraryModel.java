@@ -329,9 +329,9 @@ public class RuleLibraryModel extends Configuration {
 				"Verify that Search Rule Field is present in 'Rule Library' screen");
 		utilityMethods.clickable(this.SearchRuleInput,
 				"Verify that Search Rule Field is clickable in 'Rule Library' screen");
-		utilityMethods.senKeys_Input(this.SearchRuleInput, 500, "includeChar",
+		utilityMethods.sendKeys_Input(this.SearchRuleInput, 500, "includeChar",
 				"Verify that Search Rule Field inputs alphabets,numbers and special characters in 'Rule Library' screen");
-		utilityMethods.validateSearchList(this.SearchRuleInput,this.CreatedRuleList, this.SearchInput,
+		utilityMethods.validateSearch(this.SearchRuleInput,this.CreatedRuleList, this.SearchInput,
 				"Verify that Search Rule field show the relevant result when type anything on it in 'Rule Library' screen");
 	}
 
@@ -375,7 +375,7 @@ public class RuleLibraryModel extends Configuration {
 		utilityMethods.clickable(this.RuleGroupNameInput,
 				"Verify that Create New Rule Group Text Field is clickable in 'Create New Rule Group' screen");
 		
-		utilityMethods.senKeys_Input(this.RuleGroupNameInput, 100, "includeChar",
+		utilityMethods.sendKeys_Input(this.RuleGroupNameInput, 100, "includeChar",
 				"Verify that Create New Rule Group Text Field input alphabets, numeric and special characters in 'Create New Rule Group' screen");
 		
 		utilityMethods.verifyfieldmandatory(this.RuleGroupNameInput, 100, this.TextFieldMandatory,
@@ -424,7 +424,7 @@ public class RuleLibraryModel extends Configuration {
 		utilityMethods.clickable(this.GroupDescription,
 				"Verify that Group Description text area is clickable in 'Create New Rule Group' screen");
 		
-		utilityMethods.senKeys_Input(this.GroupDescription, 100, "includeChar",
+		utilityMethods.sendKeys_Input(this.GroupDescription, 100, "includeChar",
 				"Verify that Group description text area input alphabets, numeric and special character");
 	
 		utilityMethods.cropSpaces_Input(this.GroupDescription, " CropSpaceBT", this.SaveButtonEnable, this.CreatedRuleGroupDescription, 
@@ -435,7 +435,7 @@ public class RuleLibraryModel extends Configuration {
 		this.RuleGroupNameInput.sendKeys("New");
 		
 		utilityMethods.cropSpaces_Input(this.GroupDescription, "CropSpaceAT ", this.SaveButtonEnable,this.CreatedRuleGroupDescription,
-				"Verify that Rule Group Text Area Crop Spaces Before the text in 'Create New Rule Group' screen");
+				"Verify that Rule Group Text Area Crop Spaces After the text in 'Create New Rule Group' screen");
 		
 		this.CreateRuleGroupButton.click();
 		utilityMethods.time(100);
@@ -486,7 +486,7 @@ public class RuleLibraryModel extends Configuration {
 				"Verify that Rule Group Text Field is present in 'Update Rule Group' screen");
 		utilityMethods.clickable(this.RuleGroupNameInput,
 				"Verify that Rule Group Text Field is clickable in 'Update Rule Group' screen");
-		utilityMethods.senKeys_Input(this.RuleGroupNameInput, 100, "includeChar",
+		utilityMethods.sendKeys_Input(this.RuleGroupNameInput, 100, "includeChar",
 				"Verify that Rule Group Text Field input alphabets, numeric and special characters in 'Update Rule Group' screen");
 		utilityMethods.verifyfieldmandatory(this.RuleGroupNameInput, 100, this.TextFieldMandatory,
 				"Verify that Rule Group Text Field mandatory is present in 'Update Rule Group' screen");
@@ -533,7 +533,7 @@ public class RuleLibraryModel extends Configuration {
 				"Verify that Group Description text area is present in 'Update Rule Group' screen");
 		utilityMethods.clickable(this.GroupDescription,
 				"Verify that Group Description text area is clickable in 'Update Rule Group' screen");
-		utilityMethods.senKeys_Input(this.GroupDescription, 100, "includeChar",
+		utilityMethods.sendKeys_Input(this.GroupDescription, 100, "includeChar",
 				"Verify that Group description text area input alphabets, numeric and special character in 'Update Rule Group' screen");
 		this.RuleGroupNameInput.sendKeys("Updated");
 		
@@ -545,7 +545,7 @@ public class RuleLibraryModel extends Configuration {
 		utilityMethods.time(100);
 		
 		utilityMethods.cropSpaces_Input(this.GroupDescription, "CropSpaceAT ", this.SaveButtonEnable, this.CreatedRuleGroupDescription,
-				"Verify that Rule Group Text Area Crop Spaces Before the text in 'Update Rule Group' screen");
+				"Verify that Rule Group Text Area Crop Spaces After the text in 'Update Rule Group' screen");
 		
 		utilityMethods.time(100);
 		this.CreatedRuleGroupHeading.click();
@@ -594,7 +594,7 @@ public class RuleLibraryModel extends Configuration {
 				"Verify that No Button is visible in 'Update Rule Group' screen");
 		utilityMethods.clickable(this.NoButton,
 				"Verify that No Button is clickable in 'Update Rule Group' screen");
-		utilityMethods.list_Visible(this.NoButton, 500, this.WarningScreen,
+		utilityMethods.list_NotVisible(this.NoButton, 500, this.WarningScreen,
 				"Verify that No Button close the 'warning' screen");
 	}
 
@@ -604,15 +604,12 @@ public class RuleLibraryModel extends Configuration {
 		this.RemoveButton.click();
 		utilityMethods.time(100);
 		
-		utilityMethods.visible(this.YesButton, "Verify that Yes Button is visible in 'Update Rule Group' screen");
+		utilityMethods.visible(this.YesButton, 
+				"Verify that Yes Button is visible in 'Update Rule Group' screen");
 		utilityMethods.clickable(this.YesButton, 
 				"Verify that Yes Button is clickable in 'Update Rule Group' screen");
-		int beforeSize = utilityMethods.itemsSize(this.CreatedRuleGroupList);
-		utilityMethods.list_NotVisible(this.YesButton, 500, this.UpdateRuleGroupScreen,
-				"Verify that Yes Button close the 'Update Rule Group' screen");
-		int afterSize = utilityMethods.itemsSize(this.CreatedRuleGroupList);
-		utilityMethods.size_Match(beforeSize, afterSize,
-				"Verofy that Yes Button removes the Rule Group from the 'Rule Library' Screen");
+		utilityMethods.verifyItemRemove(this.YesButton, this.CreatedRuleGroupList,
+				"Verify that Yes Button removes the Rule Group from the 'Rule Library' Screen");
 
 	}
 
@@ -700,7 +697,7 @@ public class RuleLibraryModel extends Configuration {
 		utilityMethods.clickable(this.RuleNameInputCR,
 				"Verify that Results Button is clickable in 'Rule Library Screen");
 		
-		utilityMethods.senKeys_Input(this.RuleNameInputCR,100,"includeChar",
+		utilityMethods.sendKeys_Input(this.RuleNameInputCR,100,"includeChar",
 				"Verify that Results Button is clickable in 'Rule Library Screen");
 		
 		utilityMethods.verifyfieldmandatory(this.RuleNameInputCR, 100, this.TextFieldMandatory, 
@@ -716,7 +713,7 @@ public class RuleLibraryModel extends Configuration {
 		utilityMethods.time(100);
 		
 		utilityMethods.cropSpaces_Input(this.RuleNameInputCR, "CropSpaceAT ", this.SaveButtonCR, this.CreatedRuleName, 
-				"Verify that Rule Name Text crop Spaces Before the text when click on save button in 'Rule Library' screen");
+				"Verify that Rule Name Text crop Spaces After the text when click on save button in 'Rule Library' screen");
 		
 		utilityMethods.time(100);
 		this.OKButton.click();
@@ -747,7 +744,7 @@ public class RuleLibraryModel extends Configuration {
 				"Verify that Rule Group Dropdown is visible in 'Rule Library' screen");
 		utilityMethods.visible(this.RuleGroupFieldDisableCR, 
 				"Verify that Rule Group Dropdown Field is disable in 'Rule Library' screen");
-		utilityMethods.text_NotMatch(this.RuleGroupFieldDisableCR,"", 
+		utilityMethods.validateInputText_NotMatch(this.RuleGroupFieldDisableCR,"", 
 				"Verify that Selected Rule Group is present in Rule Group Field and it's not empty");
 	}
 	public void verifyRadioButton_CRScreen() {
@@ -825,7 +822,7 @@ public class RuleLibraryModel extends Configuration {
 				this.ExecutionOrderDecremenetButton_AO);
 		utilityMethods.verifyInput(this.ExecutionOrderTextField_AO, "1", 
 				"Verify that Execution Order Input field is typeable on 'Confogure Rule' popup in 'Rule Library' screen");
-		utilityMethods.text_Match(this.ExecutionOrderTextField_AO,"1", 
+		utilityMethods.validateInputText_Match(this.ExecutionOrderTextField_AO,"1", 
 				"Verify that Execution Order field has 1 value by default on 'Configure Rule' popup in 'Rule Library' screen.");
 		
 	}
@@ -845,14 +842,14 @@ public class RuleLibraryModel extends Configuration {
 				"Verify that Rule Description text area is present on 'Configure Rule' popup in 'Rule Library' screen.");
 		utilityMethods.clickable(this.RuleDescriptionTextArea, 
 				"Verify that Rule Description text area is clickable on 'Configure Rule in 'Advanced Options' screen.");
-		utilityMethods.senKeys_Input(this.RuleDescriptionTextArea, 100, "includeChar", 
+		utilityMethods.sendKeys_Input(this.RuleDescriptionTextArea, 100, "includeChar", 
 				"Verify that Rule Description Text Field lets users input alphabets, numbers and special characters on 'Configure Rule' popup in 'Rule Library' screen.");
 		utilityMethods.cropSpaces_TextArea(this.RuleDescriptionTextArea,this.SaveButtonCR,this.ConfigureButton,this.RuleDescriptionTextArea,
-				" CropSpaceBT");
+				" CropSpaceBT","Rule Group Text Area : Verify Spaces are croped before the text when click on save button on Rule Library.");
 		utilityMethods.cropSpaces_TextArea(this.RuleDescriptionTextArea,this.SaveButtonCR,this.ConfigureButton,this.RuleDescriptionTextArea,
-				"CropSpaceAT ");
+				"CropSpaceAT ","Rule Group Text Area : Verify Spaces are croped after the text when click on save button on Rule Library.");
 		utilityMethods.cropSpaces_TextArea(this.RuleDescriptionTextArea,this.SaveButtonCR,this.ConfigureButton,this.RuleDescriptionTextArea,
-				"  ");
+				"  ","Rule Group Text Area : Verify Spaces are croped if field is empty and click on save button with on Rule Library.");
 		
 	}
 	public void verifyEditRuleButton_CRScreen() {
@@ -912,13 +909,7 @@ public class RuleLibraryModel extends Configuration {
 				"Verify that Yes Button is present on 'Warning' popup in 'Rule Library' screen");
 		utilityMethods.clickable(this.YesButton,
 				"Verify that Yes Button is clickable on 'Warning' popup in 'Rule Library' screen");
-		int size1 = this.CreatedRuleList.size(); 
-		utilityMethods.list_NotVisible(this.YesButton, 500, this.WarningScreen, 
-				"Verify that Warning screen close when click on Yes button on 'Configure Rule' popup in 'Rule Library' screen");
-		this.OKButton.click();
-		utilityMethods.time(200);
-		int size2 = this.CreatedRuleList.size();
-		utilityMethods.size_Match(size1,size2,
+		utilityMethods.verifyItemRemove_OkButton(this.YesButton,this.CreatedRuleList,this.OKButton,
 				"Verify that Rule Group remove when click on Yes button on 'Configure Rule' popup in 'Rule Library' screen");
 		
 	}

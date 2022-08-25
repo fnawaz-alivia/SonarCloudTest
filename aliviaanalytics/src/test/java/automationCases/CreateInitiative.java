@@ -22,7 +22,10 @@ public class CreateInitiative extends Configuration{
 	String  DSName1 ="Fake Risk Scores_"+randomint;
 	String OutputDSName = "Output_Fake_"+randomint+"_Claims";
 	String OutputDSName1 = "Output_Fake_"+randomint+"_Risk Scores";
-	String RuleGroupName = "Fake_Dental_RuleGroup"+randomint;
+	String RuleGroupName = "Fake_Dental_RuleGroup_"+randomint;
+	String DashboardName ="Fake_Dental_Dashboard_"+randomint;
+	String InitiativeName ="Initiative_"+randomint;
+	String SelectTop = "10" ;
 	@Test(groups = { "regression1" }, priority = 1)
 	public void FWA_CreateInitiative_001() throws InterruptedException {
 		try {
@@ -33,10 +36,10 @@ public class CreateInitiative extends Configuration{
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(2000);
 		System.out.println(DSName);
-		DSM.CreateMSSQLServerDSwithouTest(DSName,"FakeDataDemo_Dev","ALIV_DentalClaimAll");
+		DSM.CreateMSSQLServerDSwithouTest(DSName,"FakeDataDemo_Dev","ALIV_EHCClaimAll_BigData");
 		DSM.LoadDataSoucre(DSName);
 		System.out.println(DSName1);
-		DSM.CreateMSSQLServerDSwithouTest(DSName1,"FakeDataDemo_Dev","ALIV_DentalClaimAll_Provider_RiskScore");
+		DSM.CreateMSSQLServerDSwithouTest(DSName1,"FakeDataDemo_Dev","ALIV_EHCClaimAll_BigData_Provider_RiskScore");
 		DSM.LoadDataSoucre(DSName1);
         driver.close();
 		}
@@ -66,11 +69,16 @@ public class CreateInitiative extends Configuration{
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		SchedulerModel SM = PageFactory.initElements(driver, automationModels.SchedulerModel.class);
 		utilityMethods.waitForVisibility(PM.GetStarted);
 		Thread.sleep(8000);
 		SM.LandingOnSchedulerPage();
 		SM.CreateProcessforInitiative(RuleGroupName);
+		int DSCount=DSM.CountDataSources(OutputDSName);
+		int DSCount1=DSM.CountDataSources(OutputDSName1);
+		System.out.println(DSCount);
+		System.out.println(DSCount1);
 		driver.close();
 		
 	}
@@ -86,7 +94,8 @@ public class CreateInitiative extends Configuration{
 		DashboardModel DM = PageFactory.initElements(driver, automationModels.DashboardModel.class);
 		utilityMethods.waitForVisibility(PM.GetStarted);
 		Thread.sleep(8000);
-		DM.CreateDashboardForInitiative(OutputDSName,OutputDSName1);	
+		DM.CreateDashboardForInitiative(OutputDSName,OutputDSName1,DashboardName,InitiativeName,SelectTop);
 		Thread.sleep(4000);
+		driver.close();
 }
 }

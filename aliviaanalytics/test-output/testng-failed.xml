@@ -14,7 +14,6 @@
           <include name="startTest"/>
           <include name="FWA_CreateInitiative_004"/>
           <include name="endTest"/>
-          <include name="FWA_CreateInitiative_003"/>
         </methods>
       </class> <!-- automationCases.CreateInitiative -->
     </classes>

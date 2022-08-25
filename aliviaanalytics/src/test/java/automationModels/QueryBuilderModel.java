@@ -149,7 +149,7 @@ public class QueryBuilderModel extends Configuration {
 	
 	@FindBy(how = How.XPATH, using = "//div[@id='aggregation-editor-aggreditor-pane-vbox-targetEl']/div")
 
-	List<WebElement> ExpressionColumnList;
+	List<WebElement> AggregationEditorList;
 	
 	@FindBy(how = How.XPATH, using = "//div[@id='aggregation-editor-aggreditor-pane-vbox-targetEl']//div[contains(@class,'x-form-cb-checked')]/div[1]/div/span")
 
@@ -983,7 +983,7 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that 'Expression Column' button is present on the Query Builder screen.");
 		utilityMethods.clickable(this.ExpressionColumn,
 				"Verify that 'Expression Column' button is clickable on the Query Builder screen.");
-		utilityMethods.list_Visible(this.ExpressionColumn, 500, this.ExpressionColumnList,
+		utilityMethods.list_Visible(this.ExpressionColumn, 500, this.AggregationEditorList,
 				"Verify that clicking Expression Column Button populates a Expression Column record in the Visual Query Builder on 'Query Builder' screen");
 		
 		// Output Check box 
@@ -1049,7 +1049,7 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that Remove Button is visible in the grid on the Query Builder screen.");
 		utilityMethods.clickable(this.RemoveButton, 
 				"Verify that Remove Button is clickable in the grid on the Query Builder screen.");
-		utilityMethods.list_NotVisible(this.RemoveButton, 500, this.ExpressionColumnList, 
+		utilityMethods.list_NotVisible(this.RemoveButton, 500, this.AggregationEditorList, 
 				"Verify that clicking Remove Button removes populated Expression Column record from the grid on Query Builder screen.");
 		
 		
@@ -1683,6 +1683,9 @@ public class QueryBuilderModel extends Configuration {
 	public void verifyEnableRuleChaining() {
 		DataCleansingModel DCM = PageFactory.initElements(driver, automationModels.DataCleansingModel.class);
 		
+		// Reset Everything Before this Case 
+		utilityMethods.click(this.ResetButtonQB);
+		
 		// Enable Rule Chaining Check Box
 		
 		utilityMethods.visible(this.EnableRuleChainingDiv, 
@@ -1751,15 +1754,26 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that clicking Add Rule adds a record for Data Source selection.");
 		
 		utilityMethods.click(this.ResetButtonQB);
+		
 		utilityMethods.list_Visible(this.QueryBuilderPaneAddDropdown, 500, this.DisabledAddRule, 
 				"Verify that the Add Rule option becomes unclickable when Enable Rule Chaining is unchecked. ");
 
 	}
 	public void verifyJoin() {
+		
+		// Reset Everything Before this Case 
+		utilityMethods.click(this.ResetButtonQB);
+		
+		// Join Button
 		utilityMethods.visible(this.Join, 
 				"Verify that Join Button is visible on the Query Builder screen. ");
 		utilityMethods.clickable(this.Join, 
 				"Verify that Join Button is clickable.");
+		utilityMethods.list_Visible(this.Join, 500, this.AggregationEditorList, 
+				"Verify that clicking Join Button populates relevant Output and Build Options fields in the grid. ");
+		
+		
+		
 	}
 	public int CountQB() throws InterruptedException {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);

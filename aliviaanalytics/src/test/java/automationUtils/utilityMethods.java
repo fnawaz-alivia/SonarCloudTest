@@ -35,7 +35,6 @@ public class utilityMethods extends Configuration {
 
 	public static void waitForVisibility(WebElement element) throws Error {
 		new WebDriverWait(driver, 120).until(ExpectedConditions.visibilityOf(element));
-		
 	}
 
 	public static void WaitforElementNotVisible(WebElement element) throws Error {

@@ -80,21 +80,59 @@ public class DataCleansingModel extends Configuration {
 
 	WebElement CreateNewFolderTextField;
 	
+	@FindBy(how = How.XPATH, using = "//div[contains(@data-errorqtip,'This field is required')]")
+
+	WebElement CreateNewFolderMandatoryCheck;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-resizable')]//div[contains(@class,'x-form-type-radio')]")
+
+	List<WebElement> CreateNewFolderRadioButton;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-resizable')]//div[contains(@class,'x-form-cb-checked')]")
+
+	List<WebElement> CreateNewFolderSelectedRadioButton;
+	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-resizable')]//textarea")
 
 	WebElement CreateNewFolderTextArea;
+	
+	@FindBy(how = How.XPATH, using = "//a[contains(@class,'btn-save') and contains(@class,'disable')]")
+
+	WebElement DisableSaveButtonCreateNewFolder;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-default-resizable')]//span[text()='Cancel']")
+
+	WebElement CancelButtonCreateNewFolder;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()='Ok']")
+
+	WebElement OkButton2;
+
+
+	
+	
 	
 	
 	@FindBy(how = How.XPATH, using = "//div[@class='x-panel x-fit-item x-panel-default']/div/div/div[contains(@class,'x-panel-resizable')]//table//div[contains(@class,'folder')]/following::span[1]")
 
 	List<WebElement> CreatedFolderListSidePanel;
 	
-	@FindBy(how = How.XPATH, using = "//div[@class='x-panel x-fit-item x-panel-default']/div/div/div[contains(@class,'x-panel-resizable')]//table//span[@class='x-tree-node-text ']")
+	@FindBy(how = How.XPATH, using = "//div[@class='x-panel x-fit-item x-panel-default']/div/div/div[contains(@class,'x-panel-resizable')]//table/tbody[1]/tr[@aria-level='3']//span[@class='x-tree-node-text ']")
+
+	List<WebElement> CreatedSubFolderSidePanel;	
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'menuitem') and (text() = 'Edit' or . = 'Edit')]")
+
+	WebElement EditButtonCreateNewFolder;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'menuitem') and (text() = 'Delete' or . = 'Delete')]")
+
+	WebElement DeleteButtonCreateNewFolder;
+	
+	@FindBy(how = How.XPATH, using = "//div[@class='x-panel x-fit-item x-panel-default']/div/div/div[contains(@class,'x-panel-resizable')]//table/tbody[1]/tr[@aria-level='2']//span[@class='x-tree-node-text ']")
 
 	List<WebElement> TreeListSidePanel;
 	
-	
-
 	// End
 
 	// Start Refresh XPath's
@@ -396,7 +434,8 @@ public class DataCleansingModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//span[text()='OK']")
 
 	WebElement OkButton;
-
+	
+	
 	// End
 
 	// Start Calculated Column
@@ -477,13 +516,8 @@ public class DataCleansingModel extends Configuration {
 
 	WebElement TextFieldCNFilter;
 
-	@FindBy(how = How.XPATH, using = "//div[contains(@data-errorqtip,'This field is required')]")
 
-	WebElement TextFieldMandatoryCNFilter;
 
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-resizable')]//div[contains(@class,'x-form-type-radio')]")
-
-	List<WebElement> RadioButtonsListCNFilter;
 
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-resizable')]//div[contains(@class,'x-form-item-body')]//div[contains(@class,'x-form-cb-checked')]")
 
@@ -629,7 +663,6 @@ public class DataCleansingModel extends Configuration {
 		test = report.createTest("Verify that Export Data Dropdown is visible on Data Cleansing screen");
 		if (this.DataCleanExportButton.isDisplayed()) {
 			test.log(Status.PASS, "The Export Data Dropdown is visible on Data Cleansing screen");
-
 		} else {
 			test.log(Status.FAIL, "The Export Data Dropdown is not visible on Data Cleansing screen");
 		}
@@ -1027,7 +1060,7 @@ public class DataCleansingModel extends Configuration {
 	}
 
 	public void verifySearchFieldInputs_CScreen() {
-		utilityMethods.senKeys_Input(this.SearchFieldColumnScreen, 200, "includeChar",
+		utilityMethods.sendKeys_Input(this.SearchFieldColumnScreen, 200, "includeChar",
 				"Verify that Search field inputs alphabets, numeric and special character's in 'Column Screen'");
 	}
  
@@ -1196,7 +1229,7 @@ public class DataCleansingModel extends Configuration {
 	}
 
 	public void verifyColumnNameField_CCScreen() throws Exception {
-		utilityMethods.senKeys_Input(this.NewColumnFieldCalculatedColumnScreen, 500, "excludeChar",
+		utilityMethods.sendKeys_Input(this.NewColumnFieldCalculatedColumnScreen, 500, "excludeChar",
 				"Verify that Columns Text Field input numeric and alphabet only in 'Calculated Column' Screen ");
 	}
 
@@ -1206,7 +1239,7 @@ public class DataCleansingModel extends Configuration {
 	}
 
 	public void verifyFunctionsSearchInputs_CCScreen() throws Exception {
-		utilityMethods.senKeys_Input(this.SearchFunctionsFieldCalculatedColumnScreen, 500, "includeChar",
+		utilityMethods.sendKeys_Input(this.SearchFunctionsFieldCalculatedColumnScreen, 500, "includeChar",
 				"Verify that Functions Text Field input numeric, characters and alphabet in 'Calculated Column' Screen ");
 
 	}
@@ -1450,6 +1483,7 @@ public class DataCleansingModel extends Configuration {
 	public void verifySortAscending_DSTable() throws InterruptedException {
 		test = report.createTest(
 				"Verify that Column's are Sorting in Ascending order when click on Sort Ascending button in 'Data Source Table' ");
+		
 		String[] beforeSorting = DataSourceTablesFunc().split(",");
 		SortAscendingButtonColumnDropdownDatSourceTable.click();
 		Thread.sleep(500);
@@ -1812,7 +1846,7 @@ public class DataCleansingModel extends Configuration {
 		test = report
 				.createTest("Verify that Create New Filter Text Field is mandatory in 'Create New Filter' Screen ");
 		TextFieldCNFilter.clear();
-		if (TextFieldMandatoryCNFilter.isDisplayed()) {
+		if (CreateNewFolderMandatoryCheck.isDisplayed()) {
 			test.log(Status.PASS, "Filter Name Text field is mandatory");
 		} else {
 			test.log(Status.FAIL, "Filter Name Text field is not mandatory");
@@ -1822,7 +1856,7 @@ public class DataCleansingModel extends Configuration {
 
 	public void verifyRadioButtonVisible_CNFilter() {
 		test = report.createTest("Verify that Radio Button is visible in 'Create New Filter' Screen ");
-		for (WebElement radionbtn : RadioButtonsListCNFilter) {
+		for (WebElement radionbtn : CreateNewFolderRadioButton) {
 			if (radionbtn.isDisplayed()) {
 				test.log(Status.PASS, radionbtn.getText() + " Radio Button is visible");
 			} else {
@@ -1833,7 +1867,7 @@ public class DataCleansingModel extends Configuration {
 
 	public void verifyRadioButtonSelection_CNFilter() throws Exception {
 		test = report.createTest("Verify that Radio Button is clickable  in 'Create New Filter' Screen ");
-		for (WebElement radionbtn : RadioButtonsListCNFilter) {
+		for (WebElement radionbtn : CreateNewFolderRadioButton) {
 			radionbtn.click();
 			if (SelectedRadioButtonCNFilter.size() == 1) {
 				test.log(Status.PASS,
@@ -1870,7 +1904,7 @@ public class DataCleansingModel extends Configuration {
 				.createTest("Verify that New Filter is created when click on Ok button 'Create New Filter' screen");
 		TextFieldCNFilter.clear();
 		TextFieldCNFilter.sendKeys(sendData_Str);
-		RadioButtonsListCNFilter.get(0).click();
+		CreateNewFolderRadioButton.get(0).click();
 		this.SaveButton.click();
 		Thread.sleep(500);
 		OkButton.click();

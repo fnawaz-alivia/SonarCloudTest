@@ -44,7 +44,7 @@ public class QueryBuilder extends Configuration {
 		QBM.LandingOnQueryBuilderPage();
 		QBM.CreateInnerJoin();
 	}
-	@Test(groups = { "smoke" ,"regression1"}, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = { "smoke" ,"regression1"}, priority = 1)
 	public void FWA_QueryBuilder_003() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -55,6 +55,11 @@ public class QueryBuilder extends Configuration {
 		
 		QBM.LandingOnQueryBuilderPage();
 		QBM.verifySaveQueryFilterPanel();
+		QBM.verifyAdvanceDropdown();
+		QBM.verifyMultipleColumns();
+		QBM.verifyRowFilter();
+		QBM.verifyQBMainPane();
+		QBM.verifyEnableRuleChaining();
 	
 	}
 	

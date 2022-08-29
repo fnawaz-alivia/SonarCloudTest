@@ -960,8 +960,7 @@ if (PM.SaveButton.isEnabled()) {
 		test = report.createTest("Verify the user is able to logout");
 		SM.LogoutButton.click();
 		test.log(Status.PASS, "The user is able to logout");
-		LM.LoginFormFill(Configuration.test1username, Configuration.test1password);
-		LM.loginbutton.click();
+		LM.LoginUser(Configuration.test1username, Configuration.test1password);
 		PM.NoProjectClickOk();
 		PM.LoadAutomationProject("Training-Automation");
 		test = report.createTest("Verify the datasoucres shows in shared project");
@@ -1062,8 +1061,7 @@ if (PM.SaveButton.isEnabled()) {
 		Thread.sleep(2000);
 		SM.MenuButton.click();
 		SM.LogoutButton.click();
-		LM.LoginFormFill(Configuration.test1username, Configuration.test1password);
-		LM.loginbutton.click();
+		LM.LoginUser(Configuration.test1username, Configuration.test1password);
 		PM.NoProjectClickOk();
 		PM.CreateNewProject("ProjectAddGit");
 		DSM.CreateMicrosoftExcelDS(excldatasourcename, "Automation1 - Dental01.xlsx");
@@ -1097,8 +1095,7 @@ if (PM.SaveButton.isEnabled()) {
 		Thread.sleep(2000);
 		SM.MenuButton.click();
 		SM.LogoutButton.click();
-		LM.LoginFormFill("Test2@gmail.com", "Selenium@2022");
-		LM.loginbutton.click();
+		LM.LoginUser("Test2@gmail.com", "Selenium@2022");
 		PM.NoProjectClickOk();
 		PM.ImportFromGitButton.click();
 		Thread.sleep(2000);
@@ -1150,8 +1147,7 @@ if (PM.SaveButton.isEnabled()) {
 		SM.MenuButton.click();
 		SM.LogoutButton.click();
 		Thread.sleep(2000);	
-		LM.LoginFormFill(Configuration.test1username, Configuration.test1password);
-		LM.loginbutton.click();
+		LM.LoginUser(Configuration.test1username, Configuration.test1password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(2000);
 		int CountDSBeforePulled=DSM.CountDataSources(excldatasourcename);

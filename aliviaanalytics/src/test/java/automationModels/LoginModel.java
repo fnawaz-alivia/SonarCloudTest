@@ -20,9 +20,12 @@ public class LoginModel {
 	
 @Test
 
-public void LoginFormFill(String uname, String pw) {
+public void LoginUser(String uname, String pw) {
+	username.clear();
 	username.sendKeys(uname);
+	password.clear();
 	password.sendKeys(pw);
+	loginbutton.click();
 
 }
 }

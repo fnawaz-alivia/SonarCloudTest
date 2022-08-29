@@ -4,11 +4,11 @@
 	<test name="First Test">
 		<groups>
 			<run>
-				<include name="regression1" />
+				<include name="regression2" />
 			</run>
 		</groups>
 		<classes>
-		<class name="automationCases.CreateInitiative">
+		<class name="automationCases.Security">
 		</class>
 		</classes>
 	</test>

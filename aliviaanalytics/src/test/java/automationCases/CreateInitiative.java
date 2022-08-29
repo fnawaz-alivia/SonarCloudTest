@@ -37,10 +37,10 @@ public class CreateInitiative extends Configuration{
 		Thread.sleep(2000);
 		System.out.println(DSName);
 		DSM.CreateMSSQLServerDSwithouTest(DSName,"FakeDataDemo_Dev","ALIV_EHCClaimAll_BigData");
-		DSM.LoadDataSoucre(DSName);
+		//DSM.LoadDataSoucre(DSName);
 		System.out.println(DSName1);
 		DSM.CreateMSSQLServerDSwithouTest(DSName1,"FakeDataDemo_Dev","ALIV_EHCClaimAll_BigData_Provider_RiskScore");
-		DSM.LoadDataSoucre(DSName1);
+		//DSM.LoadDataSoucre(DSName1);
         driver.close();
 		}
 		catch (Exception e) {

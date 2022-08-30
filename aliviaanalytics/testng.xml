@@ -8,7 +8,7 @@
 			</run>
 		</groups>
 		<classes>
-		<class name="automationCases.CreateInitiative">
+		<class name="automationCases.QueryBuilder">
 		</class>
 		</classes>
 	</test>

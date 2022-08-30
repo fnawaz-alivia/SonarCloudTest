@@ -42,6 +42,9 @@ public WebElement collapseleftpane;
 public WebElement expandleftpane;
 
 
+@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-panel-body center_pane')]/div[not(contains(@class,'x-hidden-offsets'))]//div[contains(@class,'dashboard-filters')]//div[contains(@class,'dataSourcesGrid-54')]")
+
+public WebElement Pane1SideBar;
 
 
 @FindBy(how = How.XPATH, using = "//div[not(contains(@class,'x-hidden-offsets')) and contains(@class,'cls') ]//div[contains(@class,'singlePanel')]/div[2]//div[@role='tablist']/div/div[1]//div[contains(@class,'collapse-top')]")
@@ -130,6 +133,57 @@ public List<WebElement> ColumnsListOnCombinedColumnWindow;
 
 public List<WebElement> SeachtabInputOnCombinedColumnWindow;
 
+@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-panel description-valueanalysis-ranking-leftGrid-descriptorsValuesGrid-67')]//a//span[text()='Expand All']")
+
+public WebElement ExpandAllButton;
+
+@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-panel description-valueanalysis-ranking-leftGrid-descriptorsValuesGrid-67')]//a//span[text()='Collapse All']")
+
+public WebElement CollapseAllButton;
+
+@FindBy(how = How.XPATH, using = "//div[contains(@class,' dimensionFolderIcon')]/parent::div/div[1]")
+
+public WebElement DescriptorsExpandButton;
+
+@FindBy(how = How.XPATH, using = "//div[contains(@class,' measureFolderIcon')]/parent::div/div[1]")
+
+public WebElement ValueExpandButton;
+
+@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-panel description-valueanalysis-ranking-leftGrid-descriptorsValuesGrid-67')]//tr[@class='x-grid-tree-node-leaf  x-grid-row']")
+
+public List<WebElement> ExpndAllListDescriptors;
+
+@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-noborder-trl')]//a[contains(@class,'sort-focus-cls')]")
+
+public WebElement SortButton;
+
+@FindBy(how = How.XPATH, using = "//div[@role='menu' and @aria-expanded='true']//a")
+
+public List<WebElement> SortDropdownList;
+
+@FindBy(how = How.XPATH, using = "//div[@role='menu' and @aria-expanded='true']//a//span[text()='Sort by Name']")
+
+public WebElement SortByName;
+
+@FindBy(how = How.XPATH, using = "//div[@role='menu' and @aria-expanded='true']//a//span[text()='Sort by Date Created']")
+
+public WebElement SortByDateCreated;
+
+@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-noborder-trl')]//a[@data-qtip='Refresh Data Sources List']")
+
+public WebElement RefreshButton;
+
+@FindBy(how = How.XPATH, using = "//div[not(contains(@class,'x-hidden-offsets')) and contains(@class,'cls') ]//div[contains(@class,'singlePanel')]/div[2]//div[@role='tablist']//div[contains(@class,'dataSourcesGrid')]//input/parent::div[1]")
+
+public WebElement SearchDiv;
+
+@FindBy(how = How.XPATH, using = "//div[not(contains(@class,'x-hidden-offsets')) and contains(@class,'cls') ]//div[contains(@class,'singlePanel')]/div[2]//div[@role='tablist']//div[contains(@class,'dataSourcesGrid')]//input")
+
+public WebElement SearchInput;
+
+
+
+
 
 public void LandingOnPageRanking() throws InterruptedException {
 	ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
@@ -164,7 +218,8 @@ public void LoadDataSourceForRank() throws InterruptedException {
 
 	this.ShowValues.click();
 	this.SearchTabforDS.click();
-	utilityMethods.validateSearchPlaceholder(this.SearchTabforDS, "Search ...", "Verify that Search Text Field is visible in the side panel in Data Sources section");
+	utilityMethods.validateSearchPlaceholder(this.SearchTabforDS, "Search ...", 
+			"Verify that Search Text Field is visible in the side panel in Data Sources section");
 	utilityMethods.visible(this.crosssearchtextdatasource,
 			"Verify that a cross is visible to the right in the Search Text Field");
 	utilityMethods.verifyCrossButton(this.SearchTabforDS, 1000, this.crosssearchtextdatasource, "Verify that clicking the cross removes any text from the Search Text Field");

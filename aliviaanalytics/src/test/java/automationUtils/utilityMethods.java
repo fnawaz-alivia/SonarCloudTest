@@ -93,7 +93,7 @@ public class utilityMethods extends Configuration {
 			test.log(Status.FAIL, "The element is not clickable");
 		}
 	}
-
+	
 	public static void disable(WebElement element, String testTitle) {
 		test = report.createTest(testTitle);
 		if (!element.isEnabled()) {
@@ -186,6 +186,20 @@ public class utilityMethods extends Configuration {
 		time(500);
 		if (!element3.getAttribute("textContent").equals(sendData)) {
 			test.log(Status.PASS, "The information is saved with valid data");
+		} else {
+			test.log(Status.FAIL, "The information is saved with invalid data.");
+		}
+	}
+	public static void validateInputSpaces(WebElement el1,String senData,WebElement el2,List<WebElement> screen,String testTitle) {
+		test = report.createTest(testTitle);
+		el1.clear();
+		el1.sendKeys(senData);
+		el2.click();
+		time(1000);
+		el2.click();
+		time(1000);
+		if (screen.size()==0) {
+			test.log(Status.PASS, "The information is not saved with invalid data");
 		} else {
 			test.log(Status.FAIL, "The information is saved with invalid data.");
 		}
@@ -339,6 +353,11 @@ public class utilityMethods extends Configuration {
 		int i = rand.nextInt(eList.size());
 		String getText = eList.get(i).getText();
 		time(500);
+		if(eList.get(i).isEnabled()) {
+			test.log(Status.PASS, "The selected item from the list is clickable.");
+		}else {
+			test.log(Status.FAIL, "The selected item from the list is not clickable.");
+		}
 		eList.get(i).click();
 		time(500);
 		String getValue = e2.getAttribute("value");
@@ -348,19 +367,27 @@ public class utilityMethods extends Configuration {
 		else {
 			test.log(Status.FAIL, "The Selected value from the dropdown is not presenting in the field.");
 		}
-		
 	}
 	public static void validateSearchPlaceholder(WebElement element, String data, String testTitle) {
 		test = report.createTest(testTitle);
 		element.clear();
 		String getPlaceholder = element.getAttribute("placeholder");
 		time(300);
-		if (getPlaceholder.equals(data)) {
+		if (getPlaceholder.equals(data) ) {
 			test.log(Status.PASS, "This Search field conatins " + getPlaceholder + " by default.");
 		} else {
 			test.log(Status.FAIL, "This Search field doesn't conatins " + getPlaceholder + " by default.");
 		}
-
+	}
+	public static void validateSearchValue(WebElement element, String data, String testTitle) {
+		test = report.createTest(testTitle);
+		String getValue = element.getAttribute("value");
+		time(300);
+		if (getValue.equals(data)) {
+			test.log(Status.PASS, "This Search field conatins " + getValue + " by default.");
+		} else {
+			test.log(Status.FAIL, "This Search field doesn't conatins " + getValue + " by default.");
+		}
 	}
 
 	public static void validateSearchList_SidePanel(WebElement element, List<WebElement> elementList,
@@ -411,10 +438,10 @@ public class utilityMethods extends Configuration {
 			test.log(Status.PASS, "No element found against the typed word '" + data + "' in the list.");
 		}
 	}
-	public static void validateElementText_Match(WebElement element, String data, String testTitle) {
+	public static void validateText_Match(WebElement element, String data, String testTitle) {
 		test = report.createTest(testTitle);
 		String getInputValue = element.getText();
-		if (getInputValue.equals(data)) {
+		if (getInputValue.contains(data)) {
 			test.log(Status.PASS, "The field is containing " + getInputValue);
 		} else {
 			test.log(Status.FAIL, "The field is not containing " + getInputValue);
@@ -464,6 +491,32 @@ public class utilityMethods extends Configuration {
 			test.log(Status.PASS, "The arrow button is clicked and item is switched from it's position.");
 		}else {
 			test.log(Status.FAIL, "The arrow button is clicked but item is not switched from it's position.");
+		}
+	}
+	public static void verifyDragDropByOffsets(WebElement sourceEl,int x,int y,List<WebElement> canvasItems,String testTitle) {
+		test = report.createTest(testTitle);
+		int beforeSize = canvasItems.size();
+		Actions builder = new Actions(driver);
+		builder.clickAndHold(sourceEl).moveByOffset(x, y).release().build().perform();
+		time(1000);
+		int afterSize = canvasItems.size();
+		if(afterSize>beforeSize) {
+			test.log(Status.PASS, "The selected item drag and drop successfully.");
+		}else {
+			test.log(Status.PASS, "The selected item not drag and drop successfully.");	
+		}
+	}
+	public static void verifyDragDropByLocation(WebElement sourceEl,WebElement destinationEl,List<WebElement> canvasItems,String testTitle) {
+		test = report.createTest(testTitle);
+		int beforeSize = canvasItems.size();
+		Actions builder = new Actions(driver);
+		builder.dragAndDrop(sourceEl,destinationEl).release().build().perform();
+		time(1000);
+		int afterSize = canvasItems.size();
+		if(afterSize>beforeSize) {
+			test.log(Status.PASS, "The selected item drag and drop successfully.");
+		}else {
+			test.log(Status.PASS, "The selected item not drag and drop successfully.");	
 		}
 	}
 
@@ -536,6 +589,21 @@ public class utilityMethods extends Configuration {
 	public static void verifyItemRemove(WebElement removeButton,List<WebElement> itemList, String testTitle) {
 		test = report.createTest(testTitle);
 		int beforeSize = itemList.size();
+		removeButton.click();
+		time(1000);
+		int afterSize = itemList.size();
+		if (afterSize<beforeSize) {
+			test.log(Status.PASS, "The element remove form the list");
+		} else {
+			test.log(Status.FAIL, "The element is not remove from the list");
+		}
+	}
+	
+	public static void verifyItemRemoveOnSelection(WebElement removeButton,List<WebElement> itemList, String testTitle) {
+		test = report.createTest(testTitle);
+		int beforeSize = itemList.size();
+		itemList.get(0).click();
+		time(1000);
 		removeButton.click();
 		time(1000);
 		int afterSize = itemList.size();

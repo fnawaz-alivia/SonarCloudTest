@@ -56,10 +56,6 @@ public class QueryBuilderModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @type = 'text' and @name = 'datasource-combobox' and @placeholder = 'Select Data Source ...']")
 
 	public List<WebElement> SelectDataSourceList;
-	
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-boundlist-default-resizable')]//ul[@aria-hidden='true']/li")
-
-	public List<WebElement> DataSourceList;
 
 	@FindBy(how = How.XPATH, using = "//a[contains(@class, 'dataRepo-queryBuilder-AggrBuilderUtility-okButton-018')]")
 
@@ -136,10 +132,6 @@ public class QueryBuilderModel extends Configuration {
 
 	WebElement AdvancedDropdownButton;
 	
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'query-builder-advanced-menu')]//span[contains(@class,'x-menu-item-text')]")
-
-	List<WebElement> AdvancedDropdownList;
-	
 	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'query-builder-advanced-menu')]//div[contains(@class,'x-box-target')]/div[2]//span")
 
@@ -150,6 +142,19 @@ public class QueryBuilderModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//div[@id='aggregation-editor-aggreditor-pane-vbox-targetEl']/div")
 
 	List<WebElement> AggregationEditorList;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-boundlist-floating')]//ul[@aria-hidden='false']/li")
+
+	List<WebElement> DropdownListLi;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-boundlist-floating')]//ul[@aria-hidden='false']/div[not(contains(@style,'font'))]")
+
+	List<WebElement> DropdownListDiv;
+	
+	@FindBy(how = How.XPATH, using = "//div[@role='menu' and @aria-expanded='true']//a")
+
+	List<WebElement> DropdownListA;
+	
 	
 	@FindBy(how = How.XPATH, using = "//div[@id='aggregation-editor-aggreditor-pane-vbox-targetEl']//div[contains(@class,'x-form-cb-checked')]/div[1]/div/span")
 
@@ -166,10 +171,6 @@ public class QueryBuilderModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//div[@id='aggregation-editor-aggreditor-pane-vbox-targetEl']//input[@value='SELECT']/following::div[1]")
 
 	WebElement BuildOptionDropdown;
-	
-	@FindBy(how = How.XPATH, using = "//ul[@class='x-list-plain']/li[not(contains(@class,'selected'))]")
-
-	List<WebElement> BuildOptionDropdownList;
 	
 	@FindBy(how = How.XPATH, using = "//div[@id='aggregation-editor-aggreditor-pane-vbox-targetEl']//input[@placeholder='Select Expression Column ...']")
 
@@ -288,11 +289,7 @@ public class QueryBuilderModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-closable x-noborder-trbl')]/div[2]/div/div[2]//div[@aria-owns]/div/div/div[2]//input/following::div[1]")
 
 	WebElement ConditionDropdown;
-	
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-boundlist-floating')]//ul[@aria-hidden='false']/li")
-
-	List<WebElement> ConditionDropdownList;
-	
+		
 	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-closable x-noborder-trbl')]/div[2]//table[1]//td[3]/div")
 
@@ -306,9 +303,7 @@ public class QueryBuilderModel extends Configuration {
 
 	WebElement ExpressionElement1Dropdown;	
 	
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-boundlist-floating')]//ul[@aria-hidden='false']/div")
-
-	List<WebElement> ExpressionElement1DropdownList;
+	
 	
 	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-closable x-noborder-trbl')]/div[2]//table[1]//td[4]/div")
@@ -322,10 +317,7 @@ public class QueryBuilderModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-closable x-noborder-trbl')]/div[2]/div/div[2]//div[@aria-owns]/div/div/div[4]//input/following::div[1]")
 
 	WebElement OperatorDropdown;	
-	
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-boundlist-floating')]//ul[@aria-hidden='false']/li")
 
-	List<WebElement> OperatorList;
 	
 	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-closable x-noborder-trbl')]/div[2]//table[1]//td[5]/div")
@@ -339,10 +331,7 @@ public class QueryBuilderModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-closable x-noborder-trbl')]/div[2]/div/div[2]//div[@aria-owns]/div/div/div[5]//input/following::div[1]")
 
 	WebElement ExpressionElement2Dropdown;	
-	
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-boundlist-floating')]//ul[@aria-hidden='false']/div")
 
-	List<WebElement> ExpressionElement2DropdownList;
 	
 	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-closable x-noborder-trbl')]/div[2]//table[1]//td[6]/div")
@@ -404,6 +393,11 @@ public class QueryBuilderModel extends Configuration {
 
 	List<WebElement> WritingQueryScreen;
 	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'queryViewTextarea')]/div/div[2]/div/div/label")
+
+	WebElement Errors;
+	
+	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'query-builder-advanced-menu')]//div[contains(@class,'x-box-target')]/div[6]//span[text()='Visual Query Builder']")
 
 	WebElement VisualQuery;
@@ -434,9 +428,6 @@ public class QueryBuilderModel extends Configuration {
 
 	WebElement SelectTableCrossButton;	
 
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-boundlist-floating')]//ul[@aria-hidden='false']/li")
-
-	List<WebElement> SelectTableDropdownList;
 	
 	// Data Source 
 	
@@ -483,12 +474,6 @@ public class QueryBuilderModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-body-default-resizable')]//span[text()='Column Name']/following::div[1]")
 
 	WebElement ColumnNameDropdown;
-	
-	
-	
-	@FindBy(how = How.XPATH, using = "//div[@role='menu' and @aria-expanded='true']//a")
-
-	List<WebElement> DropdownList;
 	
 	@FindBy(how = How.XPATH, using = "//div[@role='menu' and @aria-expanded='true']//a//span[text()='Sort Ascending']")
 
@@ -663,7 +648,7 @@ public class QueryBuilderModel extends Configuration {
 
 	WebElement DataSourceDropdown;
 	
-	@FindBy(how = How.XPATH, using = "//input[@name='datasource-combobox']")
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,' x-form-item-no-label') and not(contains(@class,'x-form-dirty'))]//input[@name='datasource-combobox']")
 
 	WebElement DataSourceInput;
 	
@@ -698,6 +683,44 @@ public class QueryBuilderModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//span[text()='Join']")
 
 	WebElement Join;
+	
+	@FindBy(how = How.XPATH, using = "//div[@id='aggregation-editor-aggreditor-pane-vbox-targetEl']/div/div/div/div[2]//input/following::div[1]")
+
+	WebElement JoinDropdown;
+	
+	@FindBy(how = How.XPATH, using = "//div[@id='aggregation-editor-aggreditor-pane-vbox-targetEl']/div/div/div/div[2]//input")
+
+	WebElement JoinInput;
+	
+	@FindBy(how = How.XPATH, using = "//img[contains(@src,'inner')]")
+
+	WebElement InnerJoinIcon;
+	
+	@FindBy(how = How.XPATH, using = "//div[@id='aggregation-editor-aggreditor-pane-vbox-targetEl']/div/div/div/div[3]/div[1]/div/div[1]//input/following::div[1]")
+
+	WebElement JoinColumn1Dropdown;
+	
+	@FindBy(how = How.XPATH, using = "//div[@id='aggregation-editor-aggreditor-pane-vbox-targetEl']/div/div/div/div[3]/div[1]/div/div[1]//input")
+
+	WebElement JoinColumn1Input;
+	
+	@FindBy(how = How.XPATH, using = "//div[@id='aggregation-editor-aggreditor-pane-vbox-targetEl']/div/div/div/div[3]/div[1]/div/div[2]//input/following::div[1]")
+
+	WebElement ChooseOperatorDropdown;
+	
+	@FindBy(how = How.XPATH, using = "//div[@id='aggregation-editor-aggreditor-pane-vbox-targetEl']/div/div/div/div[3]/div[1]/div/div[2]//input")
+
+	WebElement ChooseOperatorInput;
+	
+	@FindBy(how = How.XPATH, using = "//div[@id='aggregation-editor-aggreditor-pane-vbox-targetEl']/div/div/div/div[3]/div[1]/div/div[3]//input/following::div[1]")
+
+	WebElement JoinColumn2Dropdown;
+	
+	@FindBy(how = How.XPATH, using = "//div[@id='aggregation-editor-aggreditor-pane-vbox-targetEl']/div/div/div/div[3]/div[1]/div/div[3]//input")
+
+	WebElement JoinColumn2Input;
+	
+	
 	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'queryBuilderToolBar')]/div/div/div[1]")
 
@@ -800,14 +823,14 @@ public class QueryBuilderModel extends Configuration {
 		utilityMethods.time(2000);
 		utilityMethods.visible(this.QueryBuilder,
 				"Side Pane:Verify that Query Builder Button is present in Data Repository dropdown");
-		utilityMethods.clickable(this.QueryBuilder, "Side Pane: Verify that Quey Builder Button is clickable");
+		utilityMethods.clickable(this.QueryBuilder, 
+				"Side Pane: Verify that Quey Builder Button is clickable");
 		utilityMethods.clicked_elementVisible(this.QueryBuilder, 2000, this.SelectDataSourceTab,
 				"Side Pane: Verify that clicking on Query Builder Button navigates to 'Query Builder' screen");
 		utilityMethods.time(2000);
 		this.SelectDataSourceTab.click();
 
 	}
-
 	public void verifySaveQueryFilterPanel() {
 
 		DataCleansingModel DCM = PageFactory.initElements(driver, automationModels.DataCleansingModel.class);
@@ -974,7 +997,7 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that 'Advanced Dropdown' button is present on the Query Builder screen.");
 		utilityMethods.clickable(this.AdvancedDropdownButton,
 				"Verify that 'Advanced Dropdown' button is clickable on the Query Builder screen.");
-		utilityMethods.list_Visible(this.AdvancedDropdownButton, 500, this.AdvancedDropdownList,
+		utilityMethods.list_Visible(this.AdvancedDropdownButton, 500, this.DropdownListA,
 				"Verify that clicking 'Advanced Dropdown' shows Two kinds of Expressions and Two kinds of Queries on the 'Query Builder' screen");
 		
 		
@@ -1001,11 +1024,11 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that Build Options Dropdown is present in the grid on the Query Builder screen.");
 		utilityMethods.clickable(this.BuildOptionDropdown, 
 				"Verify that Build Options Dropdown is clickable in the grid on the Query Builder screen.");
-		utilityMethods.list_Visible(this.BuildOptionDropdown, 500, this.BuildOptionDropdownList, 
+		utilityMethods.list_Visible(this.BuildOptionDropdown, 500, this.DropdownListLi, 
 				"Verify that clicking on the down arrow on the right of Build Options Dropdown expands the dropdown to display available Build Options on the Query Builder screen.");
-		utilityMethods.verifySizeMatch(this.BuildOptionDropdownList, 7, 
+		utilityMethods.verifySizeMatch(this.DropdownListLi, 7, 
 				"Verify that there are currently Seven Build Options to choose from on 'Query Builder' screen.");
-		utilityMethods.verifyDropdownOptionSelected(this.BuildOptionDropdownList, this.BuildOptionInput, 
+		utilityMethods.verifyDropdownOptionSelected(this.DropdownListLi, this.BuildOptionInput, 
 				"Verify that clicking on any Build Option, selects it. ");
 		
 		// Select Expression Column Text Field
@@ -1055,15 +1078,10 @@ public class QueryBuilderModel extends Configuration {
 		
 		// Select Data Source Before 
 		
-		this.SelectDataSourceTab.click();
-		this.SelectDataSourceTab.sendKeys("Medical Transactions");
-		this.SelectDataSourceTab.sendKeys(Keys.ENTER);
-		utilityMethods.time(1000);
-		this.SelectedDSColumnsList.get(3).click();
-		this.SelectedDSColumnsList.get(4).click();
-		this.SelectedDSColumnsList.get(5).click();
-		this.AggrBuilderUtilityokButton.click();
-		utilityMethods.time(1000);
+		utilityMethods.verifyQueryBuilderCreated(this.DataSourceInput,"Medical Transactions",this.SelectedDSColumnsList,
+				this.MultipleColumnsScreen,this.AggrBuilderUtilityokButton,
+				"Verify that upon selecting a data source its name appears in Select Data Source text box.");
+
 		
 		
 		// DUPLICATE CASE to open advance dropdown to select logical expression button...
@@ -1133,7 +1151,7 @@ public class QueryBuilderModel extends Configuration {
 		utilityMethods.verifyItemAdded(this.ExpressionNameList, DCM.OkButton, 
 				"Verify that clicking OK Button saves an expression on the Expresson Name screen.");
 		
-		utilityMethods.validateElementText_Match(this.StatusText, "Expression saved successfully.",
+		utilityMethods.validateText_Match(this.StatusText, "Expression saved successfully.",
 				"Verify that a 'Expression saved successfully' message is displayed on the Status screen.");
 
 		utilityMethods.visible(DCM.OkButton, 
@@ -1214,13 +1232,13 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that Condition Type Dropdown is visible in the grid upon adding a row.");
 		utilityMethods.clickable(this.ConditionDropdown, 
 				"Verify that Condition Type Dropdown is clickable in the grid upon adding a row.");
-		utilityMethods.list_Visible(this.ConditionDropdown, 500, this.ConditionDropdownList, 
+		utilityMethods.list_Visible(this.ConditionDropdown, 500, this.DropdownListLi, 
 				"Verify that clicking on the down arrow on the right of Condition Type Dropdown expands the dropdown to display available Condition Type Dropdown Options.");
-		utilityMethods.verifySizeMatch(this.ConditionDropdownList, 12, 
+		utilityMethods.verifySizeMatch(this.DropdownListLi, 12, 
 				"Verify that there are currently Twelve Condition Type Dropdown Options to choose from. ");
-		utilityMethods.verifyDropdownOptionSelected(this.ConditionDropdownList, this.ConditionInput, 
+		utilityMethods.verifyDropdownOptionSelected(this.DropdownListLi, this.ConditionInput, 
 				"Verify that clicking on any Condition Type Option, selects it. ");
-		utilityMethods.validateSearch(this.ConditionInput, this.ConditionDropdownList, "IF", 
+		utilityMethods.validateSearch(this.ConditionInput, this.DropdownListLi, "IF", 
 				"Verify that valid Condition Type Dropdown Options are searched and displayed related to the inputs in Condition Type Dropdown.");
 		
 		// Expression Element 1 Dropdown
@@ -1229,13 +1247,13 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that Expression Element 1 Dropdown is visible in the grid upon adding a row.");
 		utilityMethods.clickable(this.ExpressionElement1Dropdown, 
 				"Verify that Expression Element 1 Dropdown is clickable in the grid upon adding a row");
-		utilityMethods.list_Visible(this.ExpressionElement1Dropdown, 500, this.ExpressionElement1DropdownList, 
+		utilityMethods.list_Visible(this.ExpressionElement1Dropdown, 500, this.DropdownListDiv, 
 				"Verify that clicking on the down arrow on the right of Expression Element 1 Dropdown expands the dropdown to display available Expression Element 1 Options.");
-		utilityMethods.verifySizeMatch(this.ExpressionElement1DropdownList, 2, 
+		utilityMethods.verifySizeMatch(this.DropdownListDiv, 2, 
 				"Verify that there are currently Two Expression Element 1 Dropdown Options to choose from. ");
-		utilityMethods.verifyDropdownOptionSelected(this.ExpressionElement1DropdownList, this.ExpressionElement1Input, 
+		utilityMethods.verifyDropdownOptionSelected(this.DropdownListDiv, this.ExpressionElement1Input, 
 				"Verify that clicking on any Expression Element 1 Option, selects it. ");
-		utilityMethods.validateSearch(this.ExpressionElement1Input, this.ExpressionElement1DropdownList, "DS_0.ADR_MAIL_CITY_DSP", 
+		utilityMethods.validateSearch(this.ExpressionElement1Input, this.DropdownListDiv, "DS_0.ADR_MAIL_CITY_DSP", 
 				"Verify that valid Expression Element 1 Dropdown Options are searched and displayed related to the inputs in Expression Element 1 Dropdown.");
 		
 		// Operator Dropdown
@@ -1244,13 +1262,13 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that Operator Dropdown is visible in the grid upon adding a row.");
 		utilityMethods.clickable(this.OperatorDropdown, 
 				"Verify that Operator Dropdown is clickable in the grid upon adding a row.");
-		utilityMethods.list_Visible(this.OperatorDropdown, 500, this.OperatorList, 
+		utilityMethods.list_Visible(this.OperatorDropdown, 500, this.DropdownListLi, 
 				"Verify that clicking on the down arrow on the right of Operator Dropdown expands the dropdown to display available Operator Dropdown Options.");
-		utilityMethods.verifySizeMatch(this.OperatorList, 14, 
+		utilityMethods.verifySizeMatch(this.DropdownListLi, 14, 
 				"Verify that there are currently Two Expression Element 1 Dropdown Options to choose from. ");
-		utilityMethods.verifyDropdownOptionSelected(this.OperatorList, this.OperatorInput, 
+		utilityMethods.verifyDropdownOptionSelected(this.DropdownListLi, this.OperatorInput, 
 				"Verify that clicking on any Operator Dropdown Option, selects it.  ");
-		utilityMethods.validateSearch(this.OperatorInput, this.OperatorList, "EQUAL TO", 
+		utilityMethods.validateSearch(this.OperatorInput, this.DropdownListLi, "EQUAL TO", 
 				"Verify that valid Operator Dropdown Options are searched and displayed related to the inputs in Operator Dropdown.");
 		
 		// Expression Element 2 Dropdown
@@ -1259,13 +1277,13 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that Expression Element 2 Dropdown is visible in the grid upon adding a row.");
 		utilityMethods.clickable(this.ExpressionElement2Dropdown, 
 				"Verify that Expression Element 2 Dropdown is clickable in the grid upon adding a row");
-		utilityMethods.list_Visible(this.ExpressionElement2Dropdown, 500, this.ExpressionElement2DropdownList, 
+		utilityMethods.list_Visible(this.ExpressionElement2Dropdown, 500, this.DropdownListDiv, 
 				"Verify that clicking on the down arrow on the right of Expression Element 2 Dropdown expands the dropdown to display available Expression Element 2 Options.");
-		utilityMethods.verifySizeMatch(this.ExpressionElement2DropdownList, 2, 
+		utilityMethods.verifySizeMatch(this.DropdownListDiv, 2, 
 				"Verify that there are currently Two Expression Element 2 Dropdown Options to choose from. ");
-		utilityMethods.verifyDropdownOptionSelected(this.ExpressionElement2DropdownList, this.ExpressionElement2Input, 
+		utilityMethods.verifyDropdownOptionSelected(this.DropdownListDiv, this.ExpressionElement2Input, 
 				"Verify that clicking on any Expression Element 2 Option, selects it. ");
-		utilityMethods.validateSearch(this.ExpressionElement2Input, this.ExpressionElement2DropdownList, "DS_0.ADR_MAIL_CITY_DSP", 
+		utilityMethods.validateSearch(this.ExpressionElement2Input, this.DropdownListDiv, "DS_0.ADR_MAIL_CITY_DSP", 
 				"Verify that valid Expression Element 2 Dropdown Options are searched and displayed related to the inputs in Expression Element 2 Dropdown.");
 		
 		// Alias Text Field
@@ -1366,7 +1384,7 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that Select Table Dropdown is visible on the 'Add Multiple Columns' screen. ");
 		utilityMethods.clickable(this.SelectTableDropdown, 
 				"Verify that Select Table Dropdown is clickable on the 'Add Multiple Columns' screen. ");
-		utilityMethods.list_Visible(this.SelectTableDropdown, 500, this.SelectTableDropdownList, 
+		utilityMethods.list_Visible(this.SelectTableDropdown, 500, this.DropdownListLi, 
 				"Verify that clicking the dropdown arrow expands and displays the list of uploaded data sources. ");
 		utilityMethods.validateSearchPlaceholder(this.SelectTableInput, "Select Table ...", 
 				"Verify that Select Table Dropdown Field displays a 'Select Table …' message by default. ");
@@ -1411,7 +1429,7 @@ public class QueryBuilderModel extends Configuration {
 		
 		utilityMethods.verifyItemVisibleOnHover(this.FunctionHeading, this.FunctionDropdown, 
 				"Verify that Function Column Dropdown is visible by clicking on arrow button that is present on the right. ");
-		utilityMethods.list_Visible(this.FunctionDropdown, 500, this.DropdownList, 
+		utilityMethods.list_Visible(this.FunctionDropdown, 500, this.DropdownListA, 
 				"Verify that Function Dropdown List is visible in the Function Column Dropdown.");
 		
 		utilityMethods.visible(this.SortAscending, 
@@ -1445,7 +1463,7 @@ public class QueryBuilderModel extends Configuration {
 		utilityMethods.verifyItemVisibleOnHover(this.TypeHeading, this.TypeDropdown, 
 				"Verify that Type Column Dropdown is visible by clicking on arrow button that is present on the right. ");
 		
-		utilityMethods.list_Visible(this.TypeDropdown, 500, this.DropdownList, 
+		utilityMethods.list_Visible(this.TypeDropdown, 500, this.DropdownListA, 
 				"Verify that Type Dropdown List is visible in the Type Column Dropdown.");
 		
 		utilityMethods.visible(this.SortAscending, 
@@ -1478,7 +1496,7 @@ public class QueryBuilderModel extends Configuration {
 		utilityMethods.verifyItemVisibleOnHover(this.ColumnNameHeading, this.ColumnNameDropdown, 
 				"Verify that Column Name Column Dropdown is visible by clicking on arrow button that is present on the right. ");
 		
-		utilityMethods.list_Visible(this.ColumnNameDropdown, 500, this.DropdownList, 
+		utilityMethods.list_Visible(this.ColumnNameDropdown, 500, this.DropdownListA, 
 				"Verify that Column Name Dropdown List is visible in the Column Name Dropdown.");
 		
 		utilityMethods.visible(this.SortAscending, 
@@ -1647,9 +1665,9 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that Select Data Column Text Field lets users input alphabets, numbers and special characters. ");
 		utilityMethods.visible(this.SelectTimeIntervalEnableDiv, 
 				"Verify that Select Time Interval Dropdown only becomes editable when the Aggregate on Time Period Check Box is checked.");
-		utilityMethods.list_Visible(this.SelectTimeIntervalDropdown, 500, this.SelectTableDropdownList, 
+		utilityMethods.list_Visible(this.SelectTimeIntervalDropdown, 500, this.DropdownListLi, 
 				"Verify that clicking on the Select Time Interval Dropdown expands the dropdown to display available Time Interval Options.");
-		utilityMethods.verifySizeMatch(this.SelectTableDropdownList, 5, 
+		utilityMethods.verifySizeMatch(this.DropdownListA, 5, 
 				"Verify that there are Five Time Interval Options to choose from. ");
 		
 	}
@@ -1673,7 +1691,7 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that Select Data Source Dropdown is visible on Query Builder screen.");
 		utilityMethods.clickable(this.DataSourceDropdown, 
 				"Verify that Select Data Source Dropdown has down arrow button which is clickable.");		
-		utilityMethods.list_Visible(this.DataSourceDropdown, 500,this.SelectTableDropdownList,
+		utilityMethods.list_Visible(this.DataSourceDropdown, 500,this.DropdownListLi,
 				"Verify that clicking on the arrow a list of available data sources is displayed in a dropdown.");
 		utilityMethods.verifyQueryBuilderCreated(this.DataSourceInput,"Medical",this.SelectedDSColumnsList,
 				this.MultipleColumnsScreen,this.AggrBuilderUtilityokButton,
@@ -1707,7 +1725,7 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that checking Enable Rule Chaining Check Box enables rule chaining.");
 		utilityMethods.clickable(this.SelectRuleGroupDropdown,
 				"Verify that checking Enable Rule Chaining Check Box makes the Select Rule Group editable.");
-		utilityMethods.list_Visible(this.SelectRuleGroupDropdown, 500, this.SelectTableDropdownList, 
+		utilityMethods.list_Visible(this.SelectRuleGroupDropdown, 500, this.DropdownListLi, 
 				"Verify that clicking the Select Rule Group Dropdown arrow expands the dropdown to display existing rule groups.");
 		
 		// Delete Button
@@ -1727,9 +1745,9 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that Add Dropdown is visible in the record in the Query Builder screen.");
 		utilityMethods.clickable(this.QueryBuilderPaneAddDropdown, 
 				"Verify that Add Dropdown is clickable.");
-		utilityMethods.list_Visible(this.QueryBuilderPaneAddDropdown, 500, this.DropdownList, 
+		utilityMethods.list_Visible(this.QueryBuilderPaneAddDropdown, 500, this.DropdownListA, 
 				"Verify that clicking Add Dropdown expands the dropdown to display the dropdown options.");
-		utilityMethods.verifySizeMatch(this.DropdownList, 2, 
+		utilityMethods.verifySizeMatch(this.DropdownListA, 2, 
 				"Verify that there are Two Add Dropdown Options to choose from: Add Data Source and Add Rule.");
 		
 		// Add Data Sorce Button
@@ -1764,6 +1782,23 @@ public class QueryBuilderModel extends Configuration {
 		// Reset Everything Before this Case 
 		utilityMethods.click(this.ResetButtonQB);
 		
+		// Select Data Sources Before any Operation and now it required two data source for this case,
+		
+		// Medical Data Source
+		utilityMethods.verifyQueryBuilderCreated(this.DataSourceInput,"Medical",this.SelectedDSColumnsList,
+				this.MultipleColumnsScreen,this.AggrBuilderUtilityokButton,
+				"Verify that upon selecting a data source its name appears in Select Data Source text box.");
+		
+		this.QueryBuilderPaneAddDropdown.click();
+		utilityMethods.time(1000);
+		this.AddDataSource.click();
+		utilityMethods.time(1000);
+		
+		utilityMethods.verifyQueryBuilderCreated(this.DataSourceInput,"Automation1",this.SelectedDSColumnsList,
+				this.MultipleColumnsScreen,this.AggrBuilderUtilityokButton,
+				"Verify that upon selecting a data source its name appears in Select Data Source text box.");
+		
+		
 		// Join Button
 		utilityMethods.visible(this.Join, 
 				"Verify that Join Button is visible on the Query Builder screen. ");
@@ -1772,7 +1807,78 @@ public class QueryBuilderModel extends Configuration {
 		utilityMethods.list_Visible(this.Join, 500, this.AggregationEditorList, 
 				"Verify that clicking Join Button populates relevant Output and Build Options fields in the grid. ");
 		
+		utilityMethods.validateText_Match(this.Errors, "Joins are not configured for Sources", 
+				"Query Builder:Verify that a 'Joins are not configured for Sources error shows up when a column is added directly from the Data Source onto the grid.");
 		
+		// Join Type Dropdown
+		utilityMethods.visible(this.JoinDropdown, 
+				"Query Builder:Verify that Join Type Dropdown is visible in the output column in the grid when Join Button is clicked.");
+		utilityMethods.clickable(this.JoinDropdown, 
+				"Query Builder:Verify that Join Type Dropdown is clickable.");
+		utilityMethods.list_Visible(this.JoinDropdown, 500, this.DropdownListLi, 
+				"Query Builder:Verify that clicking the Join Type Dropdown expands the dropdown to display all the available Join Types.");
+		utilityMethods.verifySizeMatch(this.DropdownListLi, 14, 
+				"Query Builder:Verify that there are 14 types of Joins available.");
+		utilityMethods.verifyDropdownOptionSelected(this.DropdownListLi, this.JoinInput, 
+				"Query Builder:Verify that joins list are clickable and clicking on any joins in the dropdown selects it. ");
+		
+		
+		
+		// Join Column 1 Dropdown
+		
+		utilityMethods.visible(this.JoinColumn1Dropdown, 
+				"Query Builder:Verify that Join Column 1 Dropdown is visible in the build options column in the grid when Join Button is clicked. ");
+		utilityMethods.clickable(this.JoinColumn1Dropdown, 
+				"Query Builder:Verify that Join Column 1 Dropdown is clickable.");
+		utilityMethods.validateSearchPlaceholder(this.JoinColumn1Input, "Join Column 1", 
+				"Query Builder:Verify that by default Join Column 1 Dropdown displays 'Join Column 1'. ");
+
+
+		utilityMethods.list_Visible(this.JoinColumn1Dropdown, 500, this.DropdownListDiv, 
+				"Query Builder:Verify that Join Column 1 Dropdown only expands to show columns when a Data Source is selected.");
+		utilityMethods.verifyDropdownOptionSelected(this.DropdownListDiv, this.JoinColumn1Input, 
+				"Query Builder: Verify that join Column 1 list are clickable and clicking on any column in the dropdown selects it.");
+		
+		
+		// Matching Condition Dropdown
+		
+		utilityMethods.visible(this.ChooseOperatorDropdown, 
+				"Query Builder:Verify that Choose Operator Dropdown is visible in the build options column in the grid on the Query Builder screen.");
+		utilityMethods.clickable(this.ChooseOperatorInput, 
+				"Query Builder:Verify that Choose Operator Dropdown is clickable.");
+		utilityMethods.validateInputText_Match(this.ChooseOperatorInput, "equal to", 
+				"Query Builder:Verify that by default Choose Operator Dropdown displays 'Eqaul To'.  ");
+		utilityMethods.list_Visible(this.ChooseOperatorDropdown, 500, this.DropdownListLi, 
+				"Query Builder:Verify that clicking on the Choose Operator Dropdown arrow expands the dropdown to display all the available conditions. ");
+		utilityMethods.verifySizeMatch(this.DropdownListLi, 14, 
+				"Query Builder:Verify that there are 14 types of Conditions available.");
+		utilityMethods.verifyDropdownOptionSelected(this.DropdownListLi, this.ChooseOperatorInput, 
+				"Query Builder:Verify that clicking on any Condition in the dropdown selects it. ");
+		
+		// Join Column 2 Dropdown
+		
+		utilityMethods.visible(this.JoinColumn2Dropdown, 
+				"Query Builder:Verify that Join Column 2 Dropdown is visible in the build options column in the grid when Join Button is clicked. ");
+		utilityMethods.clickable(this.JoinColumn2Dropdown, 
+				"Query Builder:Verify that Join Column 2 Dropdown is clickable.");
+		utilityMethods.validateSearchPlaceholder(this.JoinColumn2Input, "Join Column 2", 
+				"Query Builder:Verify that by default Join Column 2 Dropdown displays 'Join Column 2'. ");
+		utilityMethods.list_Visible(this.JoinColumn2Dropdown, 500, this.DropdownListDiv, 
+				"Query Builder:Verify that Join Column 2 Dropdown only expands to show columns when a Data Source is selected.");
+		utilityMethods.verifyDropdownOptionSelected(this.DropdownListDiv, this.JoinColumn2Input, 
+				"Query Builder: Verify that join Column 2 list are clickable and clicking on any column in the dropdown selects it.");
+		
+		// Validate Errors
+		
+		/*
+		 * utilityMethods.click(this.JoinDropdown);
+		 * utilityMethods.click(this.DropdownListLi.get(0));
+		 * utilityMethods.validateText_Match(this.Errors,
+		 * "Both Parameter Columns/Expressions required for selected Operator",
+		 * "Query Builder:Verify that leaving both columns 1 & 2 empty while having selected the right parenthesis from the dropdown gives a 'Both Parameter Columns/Expressions required for selected Operator' error. "
+		 * );
+		 * 
+		 */
 		
 	}
 	public int CountQB() throws InterruptedException {

@@ -112,6 +112,30 @@ public class SecurityModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and (text() = 'Organization' or . = 'Organization')]")
 
 	public WebElement Organization;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'menuitem') and (text() = 'Profile Picture' or . = 'Profile Picture')]")
+
+	public WebElement ProfilePicture;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@data-errorqtip,'Only Database Admin can access this database')]")
+
+	public WebElement WarrningMessageforDBAccess;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class, 'x-btn x-form-file-btn x-unselectable x-btn-default-small')]//child::input")
+
+	public WebElement UploadProfilePicture;
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button') and (text() = 'Done' or . = 'Done')]")
+
+	public WebElement DoneButton;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'menuitem') and (text() = 'Change Password' or . = 'Change Password')]")
+
+	public WebElement ChangePassword;
+	@FindBy(how = How.XPATH, using = "//*[@class = 'toolbar-mainOptionsMenuButton-029 ai-image-center sch-user-avatar']")
+
+	public WebElement VerifyProfilePicture;
+	
+	
 
 	@FindBy(how = How.XPATH, using = "//*[(text() = 'Admin Group' or . = 'Admin Group')]")
 
@@ -153,10 +177,10 @@ public class SecurityModel extends Configuration {
 	public void LandingOnAdminViewPage() throws InterruptedException {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		PM.GetStarted.click();
-		Actions actions = new Actions(driver);
-		actions.moveToElement(this.MenuButton).build().perform();
-		Thread.sleep(1000);
 		this.MenuButton.click();
+		Actions actions = new Actions(driver);
+		actions.moveToElement(this.ProfilePicture).build().perform();
+		Thread.sleep(1000);
 		this.AdminView.click();
 
 	}

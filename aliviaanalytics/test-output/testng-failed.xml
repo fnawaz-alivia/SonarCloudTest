@@ -8,13 +8,13 @@
       </run>
     </groups>
     <classes>
-      <class name="automationCases.Models">
+      <class name="automationCases.QueryBuilder">
         <methods>
           <include name="startTest"/>
-          <include name="FWA_Model_006"/>
           <include name="endTest"/>
+          <include name="FWA_QueryBuilder_003"/>
         </methods>
-      </class> <!-- automationCases.Models -->
+      </class> <!-- automationCases.QueryBuilder -->
     </classes>
   </test> <!-- First Test(failed) -->
 </suite> <!-- Failed suite [ FWA Test Collection Suite] -->

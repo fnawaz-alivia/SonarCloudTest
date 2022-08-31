@@ -1078,7 +1078,7 @@ public class QueryBuilderModel extends Configuration {
 		
 		// Select Data Source Before 
 		
-		utilityMethods.verifyQueryBuilderCreated(this.DataSourceInput,"Medical Transactions",this.SelectedDSColumnsList,
+		utilityMethods.QueryBuilderWithColumns(this.DataSourceInput,"Medical Transactions",this.SelectedDSColumnsList,
 				this.MultipleColumnsScreen,this.AggrBuilderUtilityokButton,
 				"Verify that upon selecting a data source its name appears in Select Data Source text box.");
 
@@ -1433,29 +1433,29 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that Function Dropdown List is visible in the Function Column Dropdown.");
 		
 		utilityMethods.visible(this.SortAscending, 
-				"Verify that Sort Ascending Button is visible in the Function Column Dropdown.");
+				"Function Column:Verify that Sort Ascending Button is visible in the Function Column Dropdown.");
 		utilityMethods.clickable(this.SortAscending, 
-				"Verify that Sort Ascending Button is clickable in the Function Column Dropdown.");
+				"Function Column:Verify that Sort Ascending Button is clickable in the Function Column Dropdown.");
 		utilityMethods.verifyListSorting(this.SortAscending, 500,this.SelectedDSColumnNameList, 
-				"Verify that clicking on Sort Ascending Button sorts the list of column names.");
+				"Function Column:Verify that clicking on Sort Ascending Button sorts the list of column names.");
 		
 		actions.moveToElement(FunctionHeading).build().perform();
 		utilityMethods.click(FunctionDropdown);
 		
 		utilityMethods.visible(this.SortDescending, 
-				"Verify that Sort Descending Button is visible in the Function Column Dropdown.");
+				"Function Column:Verify that Sort Descending Button is visible in the Function Column Dropdown.");
 		utilityMethods.clickable(this.SortDescending, 
-				"Verify that Sort Descending Button is clickable in the Function Column Dropdown.");
+				"Function Column:Verify that Sort Descending Button is clickable in the Function Column Dropdown.");
 		utilityMethods.verifyListSorting(this.SortDescending, 500,this.SelectedDSColumnNameList, 
-				"Verify that clicking on Sort Descending Button sorts the list of column names.");
+				"Function Column:Verify that clicking on Sort Descending Button sorts the list of column names.");
 		
 		actions.moveToElement(FunctionHeading).build().perform();
 		utilityMethods.click(FunctionDropdown);
 		
 		utilityMethods.list_Visible(this.ColumnsDropdown,500, this.ColumnsDropdownList, 
-				"Verify that Column Dropdown is visible by clicking on arrow button that is present on the right. ");
+				"Function Column:Verify that Column Dropdown is visible by clicking on arrow button that is present on the right. ");
 		utilityMethods.verifyColumnRemoveCheckbox(this.ColumnsDropdownList, this.HeaderColumnName, 
-				"Verify that checking Column Check Boxes adds columns and unchecking removes columns.");
+				"Function Column:Verify that checking Column Check Boxes adds columns and unchecking removes columns.");
 		
 		// Type Column Dropdown 
 		
@@ -1467,29 +1467,29 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that Type Dropdown List is visible in the Type Column Dropdown.");
 		
 		utilityMethods.visible(this.SortAscending, 
-				"Verify that Sort Ascending Button is visible in the Type Column Dropdown.");
+				"Type Column:Verify that Sort Ascending Button is visible in the Type Column Dropdown.");
 		utilityMethods.clickable(this.SortAscending, 
-				"Verify that Sort Ascending Button is clickable in the Type Column Dropdown.");
+				"Type Column:Verify that Sort Ascending Button is clickable in the Type Column Dropdown.");
 		utilityMethods.verifyListSorting(this.SortAscending, 500,this.SelectedDSColumnNameList, 
-				"Verify that clicking on Sort Ascending Button sorts the list of column names.");
+				"Type Column:Verify that clicking on Sort Ascending Button sorts the list of column names.");
 		
 		actions.moveToElement(TypeHeading).build().perform();
 		utilityMethods.click(TypeDropdown);
 		
 		utilityMethods.visible(this.SortDescending, 
-				"Verify that Sort Descending Button is visible in the Type Column Dropdown.");
+				"Type Column:Verify that Sort Descending Button is visible in the Type Column Dropdown.");
 		utilityMethods.clickable(this.SortDescending, 
-				"Verify that Sort Descending Button is clickable in the Type Column Dropdown.");
+				"Type Column:Verify that Sort Descending Button is clickable in the Type Column Dropdown.");
 		utilityMethods.verifyListSorting(this.SortDescending, 500,this.SelectedDSColumnNameList, 
-				"Verify that clicking on Sort Descending Button sorts the list of column names.");
+				"Type Column:Verify that clicking on Sort Descending Button sorts the list of column names.");
 		
 		actions.moveToElement(TypeHeading).build().perform();
 		utilityMethods.click(TypeDropdown);
 		
 		utilityMethods.list_Visible(this.ColumnsDropdown,500, this.ColumnsDropdownList, 
-				"Verify that Column Dropdown is visible by clicking on arrow button that is present on the right. ");
+				"Type Column:Verify that Column Dropdown is visible by clicking on arrow button that is present on the right. ");
 		utilityMethods.verifyColumnRemoveCheckbox(this.ColumnsDropdownList, this.HeaderColumnName, 
-				"Verify that checking Column Check Boxes adds columns and unchecking removes columns.");
+				"Type Column:Verify that checking Column Check Boxes adds columns and unchecking removes columns.");
 		
 		// Column Name Column Dropdown
 		
@@ -1500,29 +1500,29 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that Column Name Dropdown List is visible in the Column Name Dropdown.");
 		
 		utilityMethods.visible(this.SortAscending, 
-				"Verify that Sort Ascending Button is visible in the Column Name Dropdown.");
+				"Column Name:Verify that Sort Ascending Button is visible in the Column Name Dropdown.");
 		utilityMethods.clickable(this.SortAscending, 
-				"Verify that Sort Ascending Button is clickable in the Column Name Dropdown.");
+				"Column Name:Verify that Sort Ascending Button is clickable in the Column Name Dropdown.");
 		utilityMethods.verifyListSorting(this.SortAscending, 500,this.SelectedDSColumnNameList, 
-				"Verify that clicking on Sort Ascending Button sorts the list of column names.");
+				"Column Name:Verify that clicking on Sort Ascending Button sorts the list of column names.");
 		
 		actions.moveToElement(ColumnNameHeading).build().perform();
 		utilityMethods.click(ColumnNameDropdown);
 		
 		utilityMethods.visible(this.SortDescending, 
-				"Verify that Sort Descending Button is visible in the Column Name Dropdown.");
+				"Column Name:Verify that Sort Descending Button is visible in the Column Name Dropdown.");
 		utilityMethods.clickable(this.SortDescending, 
-				"Verify that Sort Descending Button is clickable in the Column Name Dropdown.");
+				"Column Name:Verify that Sort Descending Button is clickable in the Column Name Dropdown.");
 		utilityMethods.verifyListSorting(this.SortDescending, 500,this.SelectedDSColumnNameList, 
-				"Verify that clicking on Sort Descending Button sorts the list of column names.");
+				"Column Name:Verify that clicking on Sort Descending Button sorts the list of column names.");
 		
 		actions.moveToElement(ColumnNameHeading).build().perform();
 		utilityMethods.click(ColumnNameDropdown);
 		
 		utilityMethods.list_Visible(this.ColumnsDropdown,500, this.ColumnsDropdownList, 
-				"Verify that Column Dropdown is visible by clicking on arrow button that is present on the right. ");
+				"Column Name:Verify that Column Dropdown is visible by clicking on arrow button that is present on the right. ");
 		utilityMethods.verifyColumnRemoveCheckbox(this.ColumnsDropdownList, this.HeaderColumnName, 
-				"Verify that checking Column Check Boxes adds columns and unchecking removes columns.");
+				"Column Name:Verify that checking Column Check Boxes adds columns and unchecking removes columns.");
 		
 		// Aggregate Selected Columns Check Box
 		
@@ -1667,7 +1667,7 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that Select Time Interval Dropdown only becomes editable when the Aggregate on Time Period Check Box is checked.");
 		utilityMethods.list_Visible(this.SelectTimeIntervalDropdown, 500, this.DropdownListLi, 
 				"Verify that clicking on the Select Time Interval Dropdown expands the dropdown to display available Time Interval Options.");
-		utilityMethods.verifySizeMatch(this.DropdownListA, 5, 
+		utilityMethods.verifySizeMatch(this.DropdownListLi, 5, 
 				"Verify that there are Five Time Interval Options to choose from. ");
 		
 	}
@@ -1693,7 +1693,7 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that Select Data Source Dropdown has down arrow button which is clickable.");		
 		utilityMethods.list_Visible(this.DataSourceDropdown, 500,this.DropdownListLi,
 				"Verify that clicking on the arrow a list of available data sources is displayed in a dropdown.");
-		utilityMethods.verifyQueryBuilderCreated(this.DataSourceInput,"Medical",this.SelectedDSColumnsList,
+		utilityMethods.QueryBuilderWithColumns(this.DataSourceInput,"Medical",this.SelectedDSColumnsList,
 				this.MultipleColumnsScreen,this.AggrBuilderUtilityokButton,
 				"Verify that upon selecting a data source its name appears in Select Data Source text box.");
 
@@ -1785,7 +1785,7 @@ public class QueryBuilderModel extends Configuration {
 		// Select Data Sources Before any Operation and now it required two data source for this case,
 		
 		// Medical Data Source
-		utilityMethods.verifyQueryBuilderCreated(this.DataSourceInput,"Medical",this.SelectedDSColumnsList,
+		utilityMethods.QueryBuilderWithoutColumns(this.DataSourceInput,"Medical",
 				this.MultipleColumnsScreen,this.AggrBuilderUtilityokButton,
 				"Verify that upon selecting a data source its name appears in Select Data Source text box.");
 		
@@ -1794,7 +1794,7 @@ public class QueryBuilderModel extends Configuration {
 		this.AddDataSource.click();
 		utilityMethods.time(1000);
 		
-		utilityMethods.verifyQueryBuilderCreated(this.DataSourceInput,"Automation1",this.SelectedDSColumnsList,
+		utilityMethods.QueryBuilderWithoutColumns(this.DataSourceInput,"Automation1",
 				this.MultipleColumnsScreen,this.AggrBuilderUtilityokButton,
 				"Verify that upon selecting a data source its name appears in Select Data Source text box.");
 		

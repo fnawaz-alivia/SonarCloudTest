@@ -311,21 +311,30 @@ public class utilityMethods extends Configuration {
 	public static void sendKeys_Input(WebElement element, int time, String type, String testTitle) {
 		test = report.createTest(testTitle);
 
-		String sendStr_Int = "NewColumn12";
+		String sendStr = "NewColumn";
+		String sendInt = "12";
 		String sendChar = "'!@_ #$)/(+='";
 		time(500);
 		element.clear();
-		element.sendKeys(sendStr_Int + sendChar);
+		element.sendKeys(sendStr+sendInt+sendChar);
 		time(time);
 		String getInputValue = element.getAttribute("value");
 		if (type.equals("includeChar")) {
-			if (getInputValue.equals(sendStr_Int + sendChar)) {
+			if (getInputValue.equals(sendStr+sendInt+sendChar)) {
 				test.log(Status.PASS, "The field is containing valid value");
 			} else {
 				test.log(Status.FAIL, "The field is containing invalid value");
 			}
-		} else {
-			if (getInputValue.equals(sendStr_Int)) {
+		}
+		if(type.equals("onlyInt")) {
+			if (getInputValue.equals(sendInt)) {
+				test.log(Status.PASS, "The field is containing valid value");
+			} else {
+				test.log(Status.FAIL, "The field is containing invalid value");
+			}
+		}
+		else {
+			if (getInputValue.equals(sendStr+sendInt)) {
 				test.log(Status.PASS, "The field is containing valid value");
 			} else {
 				test.log(Status.FAIL, "The field is containing invalid value");
@@ -872,7 +881,7 @@ public class utilityMethods extends Configuration {
 		}
 
 	}
-	public static void verifyQueryBuilderCreated(WebElement input,String data,List<WebElement> Columns,List<WebElement> screen,WebElement ok,String testTitle) {
+	public static void QueryBuilderWithColumns(WebElement input,String data,List<WebElement> Columns,List<WebElement> screen,WebElement ok,String testTitle) {
 		test = report.createTest(testTitle);
 		time(1000);
 		input.click();
@@ -882,6 +891,21 @@ public class utilityMethods extends Configuration {
 		Columns.get(3).click();
 		Columns.get(4).click();
 		Columns.get(5).click();
+		ok.click();
+		time(500);
+		if(screen.size()==0) {
+			test.log(Status.PASS, "The Query Builder created.");
+		}else {
+			test.log(Status.PASS, "The Query Builder not created.");
+		}
+	}
+	public static void QueryBuilderWithoutColumns(WebElement input,String data,List<WebElement> screen,WebElement ok,String testTitle) {
+		test = report.createTest(testTitle);
+		time(1000);
+		input.click();
+		input.sendKeys(data);
+		input.sendKeys(Keys.ENTER);
+		time(1500);
 		ok.click();
 		time(500);
 		if(screen.size()==0) {

@@ -53,13 +53,13 @@ public class QueryBuilder extends Configuration {
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(8000); 
 		
-		QBM.LandingOnQueryBuilderPage();
-		QBM.verifySaveQueryFilterPanel();
-		QBM.verifyAdvanceDropdown();
-		QBM.verifyMultipleColumns();
-		QBM.verifyRowFilter();
-		QBM.verifyQBMainPane();
-		QBM.verifyEnableRuleChaining();
+		QBM.LandingOnQueryBuilderPage(); 
+		/* QBM.verifySaveQueryFilterPanel();
+		 * QBM.verifyAdvanceDropdown(); QBM.verifyMultipleColumns();
+		 * QBM.verifyRowFilter(); QBM.verifyQBMainPane();
+		 * QBM.verifyEnableRuleChaining();
+		 */
+		QBM.verifyJoin();
 	
 	}
 	

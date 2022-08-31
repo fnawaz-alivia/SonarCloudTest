@@ -18,7 +18,7 @@ import automationModels.LoginModel;
 import automationModels.ModelingLibraryModel;
 import automationModels.ProjectModel;
 import automationModels.QueryBuilderModel;
-import automationModels.SecurityModel;
+import automationModels.UserManagementModel;
 import automationUtils.utilityMethods;
 import configuration.Configuration;
 
@@ -857,7 +857,7 @@ if (PM.SaveButton.isEnabled()) {
 		Configuration.LoginApplication();	
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
-		SecurityModel SM = PageFactory.initElements(driver, automationModels.SecurityModel.class);
+		UserManagementModel SM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
 		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		ChartModel CM = PageFactory.initElements(driver, automationModels.ChartModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
@@ -1054,7 +1054,7 @@ if (PM.SaveButton.isEnabled()) {
 
 		Configuration.LoginApplication();
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
-		SecurityModel SM = PageFactory.initElements(driver, automationModels.SecurityModel.class);
+		UserManagementModel SM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
 		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
@@ -1087,7 +1087,7 @@ if (PM.SaveButton.isEnabled()) {
 
 		Configuration.LoginApplication();
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
-		SecurityModel SM = PageFactory.initElements(driver, automationModels.SecurityModel.class);
+		UserManagementModel SM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
 		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 
@@ -1138,7 +1138,7 @@ if (PM.SaveButton.isEnabled()) {
 
 		Configuration.LoginApplication();
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
-		SecurityModel SM = PageFactory.initElements(driver, automationModels.SecurityModel.class);
+		UserManagementModel SM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
 		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 

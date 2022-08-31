@@ -9,9 +9,13 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+
+import automationUtils.utilityMethods;
 import configuration.Configuration;
 
-public class SecurityModel extends Configuration {
+public class UserManagementModel extends Configuration {
+	
+	
 
 	@FindBy(how = How.XPATH, using = "//img[contains(@class, 'toolbar-mainOptionsMenuButton-029')]")
 
@@ -20,14 +24,8 @@ public class SecurityModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'menuitem') and (text() = 'Logout' or . = 'Logout')]")
 
 	public WebElement LogoutButton;
-
-	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'menuitem-') and (text() = 'Admin View' or . = 'Admin View')]")
-
-	public WebElement AdminView;
-
-	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and (text() = 'Users' or . = 'Users')]")
-
-	public WebElement Users;
+	
+	
 	
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield') and @type = 'password' and @name = 'oldpassword']")
 
@@ -45,34 +43,99 @@ public class SecurityModel extends Configuration {
 
 	public WebElement SubmitPassword;
 	
+	
 
-	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'firstName']")
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'menuitem-') and (text() = 'Admin View' or . = 'Admin View')]")
 
-	public WebElement firstName;
+	public WebElement AdminView;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class, 'x-panel-default-framed') and not(contains(@class,'x-hidden-offsets'))]")
 
-	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield') and @type = 'text' and @name = 'lastName']")
+	List<WebElement> UserScreen;
 
-	public WebElement lastName;
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and (text() = 'Users' or . = 'Users')]")
 
-	@FindBy(how = How.XPATH, using = "//*[@id = 'password-id-inputEl' and @type = 'password' and @name = 'password']")
+	public WebElement Users;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'userName']/parent::div")
 
-	public WebElement Password;
-
-	@FindBy(how = How.XPATH, using = "//*[@id = 'cpassword-id-inputEl' and @type = 'password' and @name = 'cpassword']")
-
-	public WebElement ConfirmPassword;
-
-	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @type = 'text' and @name = 'preferredLanguage']")
-
-	public WebElement preferredLanguage;
-
-	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'tagfield-') and @type = 'text' and @name = 'ugTags']")
-
-	public WebElement UsersGroups;
+	WebElement userNameEmailID_Div;
 
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'userName']")
 
-	public WebElement userNameEmailID;
+	WebElement userNameEmailID_Input;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'title']/parent::div")
+
+	WebElement title_Div;
+
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'title']")
+
+	WebElement title_Input;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'firstName']/parent::div")
+
+	WebElement firstName_Div;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'firstName']")
+
+	WebElement firstName_Input;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'lastName']/parent::div")
+
+	WebElement lastName_Div;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'lastName']")
+
+	WebElement lastName_Input;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'phoneNumber']/parent::div")
+
+	WebElement phoneNumber_Div;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'phoneNumber']")
+
+	WebElement phoneNumber_Input;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'externalID']/parent::div")
+
+	WebElement externalID_Div;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'externalID']")
+
+	WebElement externalID_input;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'password-') and @type = 'password' and @name = 'password']/parent::div")
+
+	WebElement password_Div;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'password-') and @type = 'password' and @name = 'password']")
+
+	WebElement password_input;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'cpassword-') and @type = 'password' and @name = 'cpassword']/parent::div")
+
+	WebElement cpassword_Div;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'cpassword-') and @type = 'password' and @name = 'cpassword']")
+
+	WebElement cpassword_input;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @type = 'text' and @name = 'preferredLanguage']/parent::div")
+
+	WebElement prefferedLanguage_Div;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @type = 'text' and @name = 'preferredLanguage']")
+
+	WebElement prefferedLanguage_input;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'tagfield-') and @type = 'text' and @name = 'ugTags']/parent::li")
+
+	WebElement userGroup_Div;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'tagfield-') and @type = 'text' and @name = 'ugTags']")
+
+	WebElement userGroup_Input;
 
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and (text() = 'Create' or . = 'Create')]")
 
@@ -174,17 +237,70 @@ public class SecurityModel extends Configuration {
 
 	public List<WebElement> DepartmentList;
 
-	public void LandingOnAdminViewPage() throws InterruptedException {
+	public void LandingOnAdminViewPage() {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		PM.GetStarted.click();
-		this.MenuButton.click();
+		utilityMethods.visible(this.MenuButton,
+				"Verify that Profile button is present on Get Started screen.");
 		Actions actions = new Actions(driver);
 		actions.moveToElement(this.ProfilePicture).build().perform();
-		Thread.sleep(1000);
-		this.AdminView.click();
-
+		utilityMethods.time(1000);
+		utilityMethods.list_Visible(this.AdminView, 500, this.UserScreen, 
+				"Verify that user navigate to the Admin view screen.");
 	}
-	
+	public void UserProfile() {
+		// User Name Email ID
+		utilityMethods.visible(this.userNameEmailID_Div, 
+				"Admin View:Verify that User Name Email ID field is present.");
+		utilityMethods.clickable(this.userNameEmailID_Input,
+				"Admin View:Verify that User Name Email ID field is clickable.");
+		utilityMethods.sendKeys_Input(this.userNameEmailID_Div, 500, "includeChar",
+				"Admin View:Verify that User Name Email ID field allow user input alphabets, characters and special character.");
+		// Title
+		utilityMethods.visible(this.title_Div, 
+				"Admin View:Verify that Title field is present.");
+		utilityMethods.clickable(this.userNameEmailID_Input,
+				"Admin View:Verify that Title field is clickable.");
+		utilityMethods.sendKeys_Input(this.userNameEmailID_Div, 500, "includeChar",
+				"Admin View:Verify that Title field allow user input alphabets, characters and special character.");
+		// First Name
+		utilityMethods.visible(this.firstName_Div, 
+				"Admin View:Verify that First Name field is present.");
+		utilityMethods.clickable(this.firstName_Input,
+				"Admin View:Verify that First Name field is clickable.");
+		utilityMethods.sendKeys_Input(this.firstName_Input, 500, "includeChar",
+				"Admin View:Verify that First Name field allow user input alphabets, characters and special character.");
+		// Last Name
+		utilityMethods.visible(this.lastName_Div, 
+				"Admin View:Verify that Last Name field is present.");
+		utilityMethods.clickable(this.lastName_Input,
+				"Admin View:Verify that Last Name field is clickable.");
+		utilityMethods.sendKeys_Input(this.lastName_Input, 500, "includeChar",
+				"Admin View:Verify that Last Name field allow user input alphabets, characters and special character.");
+		// Phone Number
+		utilityMethods.visible(this.phoneNumber_Div, 
+				"Admin View:Verify that Phone Number field is present.");
+		utilityMethods.clickable(this.phoneNumber_Input,
+				"Admin View:Verify that Phone Number field is clickable.");
+		utilityMethods.sendKeys_Input(this.phoneNumber_Input, 500, "onlyInt",
+				"Admin View:Verify that Phone Number field allow user input only integer");
+		// External ID
+		utilityMethods.visible(this.externalID_Div, 
+				"Admin View:Verify that External ID field is present.");
+		utilityMethods.clickable(this.externalID_input,
+				"Admin View:Verify that External ID field is clickable.");
+		utilityMethods.sendKeys_Input(this.externalID_input, 500, "includeChar",
+				"Admin View:Verify that External ID field allow user input alphabets, characters and special character.");
+		// Password
+		utilityMethods.visible(this.password_Div, 
+				"Admin View:Verify that Password field is present.");
+		utilityMethods.clickable(this.externalID_input,
+				"Admin View:Verify that Password field is clickable.");
+		utilityMethods.sendKeys_Input(this.externalID_input, 500, "includeChar",
+				"Admin View:Verify that Password field allow user input alphabets, characters and special character.");
+		
+		
+	}
 	public void ChangePasswordWindow() {
 		this.oldpassword.sendKeys("Alivia21!");
 		this.newpassword.sendKeys("Alivia2120!");
@@ -198,18 +314,18 @@ public class SecurityModel extends Configuration {
 
 		this.Users.click();
 		Thread.sleep(2000);
-		this.userNameEmailID.sendKeys(userName + "@gmail.com");
-		this.firstName.sendKeys(userName);
-		this.lastName.sendKeys("lastName");
-		this.Password.sendKeys("Alivia21!");
-		this.ConfirmPassword.sendKeys("Alivia21!");
-		this.preferredLanguage.click();
-		this.preferredLanguage.sendKeys(Keys.ENTER);
+		this.userNameEmailID_Input.sendKeys(userName + "@gmail.com");
+		this.firstName_Input.sendKeys(userName);
+		this.lastName_Input.sendKeys("lastName");
+		this.password_input.sendKeys("Alivia21!");
+		this.cpassword_input.sendKeys("Alivia21!");
+		this.prefferedLanguage_input.click();
+		this.prefferedLanguage_input.sendKeys(Keys.ENTER);
 		Actions action = new Actions(driver);
-		action.moveToElement(this.UsersGroups, 75, 0).click().build().perform();
+		action.moveToElement(this.userGroup_Input, 75, 0).click().build().perform();
 		Thread.sleep(2000);
 		this.li_AdminGroup.click();
-		this.userNameEmailID.click();
+		this.userNameEmailID_Input.click();
 		
 		if (UserLocked.equalsIgnoreCase("UserLocked")) {
 			this.UserLocked.click();

@@ -55,7 +55,7 @@ public class Configuration {
 			instanceName = (String) jsonObject.get("instanceName");
 			System.out.println(instanceName);
 			
-//	  System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\datafiles\\chromedriver.exe");
+     //	  System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\datafiles\\chromedriver.exe");
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.setCapability("ACCEPT_INSECURE_CERTS", true);

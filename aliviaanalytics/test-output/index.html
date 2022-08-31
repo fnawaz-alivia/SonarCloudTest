@@ -26,7 +26,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -40,7 +40,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-_FWA_Test_Collection_Suite" class="navigator-link">
-              <span class="suite-name border-failed"> FWA Test Collection Suite</span>
+              <span class="suite-name border-passed"> FWA Test Collection Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -51,7 +51,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-_FWA_Test_Collection_Suite" class="navigator-link ">
-                    <span>E:\SeleniumUpdatedProject\FWATestCases\aliviaanalytics\testng.xml</span>
+                    <span>C:\Users\MuhammadAlmasKhalid\eclipse-workspace\New\FWATestCases\aliviaanalytics\testng.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -93,35 +93,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">2 methods, 1 failed,  1 skipped,  </span>
+                    <span class="method-stats">1 method,   1 passed</span>
                   </li>
                   <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-_FWA_Test_Collection_Suite" class="hide-methods failed suite-_FWA_Test_Collection_Suite"> (hide)</a> <!-- hide-methods failed suite-_FWA_Test_Collection_Suite -->
-                      <a href="#" panel-name="suite-_FWA_Test_Collection_Suite" class="show-methods failed suite-_FWA_Test_Collection_Suite"> (show)</a> <!-- show-methods failed suite-_FWA_Test_Collection_Suite -->
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-_FWA_Test_Collection_Suite" class="hide-methods passed suite-_FWA_Test_Collection_Suite"> (hide)</a> <!-- hide-methods passed suite-_FWA_Test_Collection_Suite -->
+                      <a href="#" panel-name="suite-_FWA_Test_Collection_Suite" class="show-methods passed suite-_FWA_Test_Collection_Suite"> (show)</a> <!-- show-methods passed suite-_FWA_Test_Collection_Suite -->
                     </span>
-                    <div class="method-list-content failed suite-_FWA_Test_Collection_Suite">
+                    <div class="method-list-content passed suite-_FWA_Test_Collection_Suite">
                       <span>
-                        <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-_FWA_Test_Collection_Suite" title="automationCases.Security" class="method navigator-link" hash-for-method="FWA_Security_005">FWA_Security_005</a> <!-- method navigator-link -->
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-_FWA_Test_Collection_Suite" title="automationCases.QueryBuilder" class="method navigator-link" hash-for-method="FWA_QueryBuilder_003">FWA_QueryBuilder_003</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content failed suite-_FWA_Test_Collection_Suite -->
-                  </li>
-                  <li>
-                    <span class="method-list-title skipped">Retried methods</span>
-                    <span class="show-or-hide-methods skipped">
-                      <a href="#" panel-name="suite-_FWA_Test_Collection_Suite" class="hide-methods skipped suite-_FWA_Test_Collection_Suite"> (hide)</a> <!-- hide-methods skipped suite-_FWA_Test_Collection_Suite -->
-                      <a href="#" panel-name="suite-_FWA_Test_Collection_Suite" class="show-methods skipped suite-_FWA_Test_Collection_Suite"> (show)</a> <!-- show-methods skipped suite-_FWA_Test_Collection_Suite -->
-                    </span>
-                    <div class="method-list-content skipped suite-_FWA_Test_Collection_Suite">
-                      <span>
-                        <img src="skipped.png" width="3%"/>
-                        <a href="#" panel-name="suite-_FWA_Test_Collection_Suite" title="automationCases.Security" class="method navigator-link" hash-for-method="FWA_Security_005">FWA_Security_005</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                    </div> <!-- method-list-content skipped suite-_FWA_Test_Collection_Suite -->
+                    </div> <!-- method-list-content passed suite-_FWA_Test_Collection_Suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -133,161 +119,25 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-_FWA_Test_Collection_Suite" class="panel _FWA_Test_Collection_Suite">
-          <div class="suite-_FWA_Test_Collection_Suite-class-failed">
+          <div class="suite-_FWA_Test_Collection_Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">automationCases.Security</span>
+              <img src="passed.png"/>
+              <span class="class-name">automationCases.QueryBuilder</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="FWA_Security_005">
-                  </a> <!-- FWA_Security_005 -->
-                  <span class="method-name">FWA_Security_005</span>
-                  <div class="stack-trace">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=104.0.5112.102)
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;AAQAAPP01-VM&apos;, ip: &apos;10.64.4.25&apos;, os.name: &apos;Windows Server 2019&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.2&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 104.0.5112.102, chrome: {chromedriverVersion: 104.0.5112.79 (3cf3e8c8a07d..., userDataDir: C:\Users\fnawaz\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:59188}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 90abe7c9e0604b5728a65b92876a4451
-*** Element info: {Using=xpath, value=//table[(text() = &apos;Get Started&apos; or . = &apos;Get Started&apos;)]}
-	at jdk.internal.reflect.GeneratedConstructorAccessor14.newInstance(Unknown Source)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
-	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-	at jdk.proxy2/jdk.proxy2.$Proxy12.toString(Unknown Source)
-	at java.base/java.lang.String.valueOf(String.java:4215)
-	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173)
-	at org.openqa.selenium.support.ui.ExpectedConditions$10.toString(ExpectedConditions.java:305)
-	at java.base/java.lang.String.valueOf(String.java:4215)
-	at java.base/java.lang.StringBuilder.append(StringBuilder.java:173)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:268)
-	at automationUtils.utilityMethods.waitForVisibility(utilityMethods.java:37)
-	at configuration.Configuration.LoginApplication(Configuration.java:89)
-	at automationCases.Security.FWA_Security_005(Security.java:199)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-	at org.testng.internal.TestInvoker.retryFailed(TestInvoker.java:213)
-	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:58)
-	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:794)
-	at org.testng.TestRunner.run(TestRunner.java:596)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
-	at org.testng.TestNG.runSuites(TestNG.java:1063)
-	at org.testng.TestNG.run(TestNG.java:1031)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-
-</div> <!-- stack-trace -->
+                  <a name="FWA_QueryBuilder_003">
+                  </a> <!-- FWA_QueryBuilder_003 -->
+                  <span class="method-name">FWA_QueryBuilder_003</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-_FWA_Test_Collection_Suite-class-failed -->
-          <div class="suite-_FWA_Test_Collection_Suite-class-skipped">
-            <div class="main-panel-header rounded-window-top">
-              <img src="skipped.png"/>
-              <span class="class-name">automationCases.Security</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="FWA_Security_005">
-                  </a> <!-- FWA_Security_005 -->
-                  <span class="method-name">FWA_Security_005</span>
-                  <div class="stack-trace">org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;img class=&quot;toolbar-mainOptionsMenuButton-029 ai-image-center sch-user-avatar&quot; width=&quot;30&quot; height=&quot;30&quot; id=&quot;userImage&quot; src=&quot;images/userIcons/user.png&quot; onerror=&quot;this.src=&apos;images/userIcons/user.png&apos;&quot;&gt; is not clickable at point (1508, 21). Other element would receive the click: &lt;div role=&quot;presentation&quot; class=&quot;x-mask x-border-box&quot; style=&quot;height: 820px; width: 20015px; z-index: 19006; left: 0px; top: 0px;&quot; id=&quot;ext-element-288&quot;&gt;&lt;/div&gt;
-  (Session info: chrome=104.0.5112.102)
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;AAQAAPP01-VM&apos;, ip: &apos;10.64.4.25&apos;, os.name: &apos;Windows Server 2019&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.2&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 104.0.5112.102, chrome: {chromedriverVersion: 104.0.5112.79 (3cf3e8c8a07d..., userDataDir: C:\Users\fnawaz\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:59050}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 8a58c1fb5adf9b0da07b542f497d085d
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
-	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
-	at jdk.proxy2/jdk.proxy2.$Proxy12.click(Unknown Source)
-	at automationCases.Security.FWA_Security_005(Security.java:236)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:794)
-	at org.testng.TestRunner.run(TestRunner.java:596)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
-	at org.testng.TestNG.runSuites(TestNG.java:1063)
-	at org.testng.TestNG.run(TestNG.java:1031)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-_FWA_Test_Collection_Suite-class-skipped -->
+          </div> <!-- suite-_FWA_Test_Collection_Suite-class-passed -->
         </div> <!-- panel _FWA_Test_Collection_Suite -->
         <div panel-name="test-xml-_FWA_Test_Collection_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">E:\SeleniumUpdatedProject\FWATestCases\aliviaanalytics\testng.xml</span>
+            <span class="header-content">C:\Users\MuhammadAlmasKhalid\eclipse-workspace\New\FWATestCases\aliviaanalytics\testng.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -297,11 +147,11 @@ Session ID: 8a58c1fb5adf9b0da07b542f497d085d
   &lt;test thread-count=&quot;5&quot; name=&quot;First Test&quot; verbose=&quot;10&quot;&gt;
     &lt;groups&gt;
       &lt;run&gt;
-        &lt;include name=&quot;regression2&quot;/&gt;
+        &lt;include name=&quot;regression1&quot;/&gt;
       &lt;/run&gt;
     &lt;/groups&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;automationCases.Security&quot;/&gt;
+      &lt;class name=&quot;automationCases.QueryBuilder&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- First Test --&gt;
 &lt;/suite&gt; &lt;!--  FWA Test Collection Suite --&gt;
@@ -326,10 +176,10 @@ Session ID: 8a58c1fb5adf9b0da07b542f497d085d
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="test-group">
-              <span class="test-group-name">regression2</span>
+              <span class="test-group-name">regression1</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">FWA_Security_005</span>
+                <span class="method-in-group-name">FWA_QueryBuilder_003</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -337,7 +187,7 @@ Session ID: 8a58c1fb5adf9b0da07b542f497d085d
               <span class="test-group-name">smoke</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">FWA_Security_005</span>
+                <span class="method-in-group-name">FWA_QueryBuilder_003</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -357,20 +207,16 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(2);
+data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'FWA_Security_005')
-data.setCell(0, 2, 'automationCases.Security')
-data.setCell(0, 3, 122186);
-data.setCell(1, 0, 1)
-data.setCell(1, 1, 'FWA_Security_005')
-data.setCell(1, 2, 'automationCases.Security')
-data.setCell(1, 3, 84015);
+data.setCell(0, 1, 'FWA_QueryBuilder_003')
+data.setCell(0, 2, 'automationCases.QueryBuilder')
+data.setCell(0, 3, 91669);
 window.suiteTableData['_FWA_Test_Collection_Suite']= { tableData: data, tableDiv: 'times-div-_FWA_Test_Collection_Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 3 minutes</span>
+              <span class="suite-total-time">Total running time: 1 minutes</span>
               <div id="times-div-_FWA_Test_Collection_Suite">
               </div> <!-- times-div-_FWA_Test_Collection_Suite -->
             </div> <!-- times-div -->
@@ -385,23 +231,15 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-_FWA_Test_Collection_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">6 ignored methods</span>
+            <span class="header-content">2 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">automationCases.Security</span>
+              <span class="ignored-class-name">automationCases.QueryBuilder</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">FWA_Security_002</span>
+                <span class="ignored-method-name">FWA_QueryBuilder_002</span>
                 <br/>
-                <span class="ignored-method-name">FWA_Security_007</span>
-                <br/>
-                <span class="ignored-method-name">FWA_Security_004</span>
-                <br/>
-                <span class="ignored-method-name">FWA_Security_001</span>
-                <br/>
-                <span class="ignored-method-name">FWA_Security_006</span>
-                <br/>
-                <span class="ignored-method-name">FWA_Security_003</span>
+                <span class="ignored-method-name">FWA_QueryBuilder_001</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -413,24 +251,18 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">automationCases.Security</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">automationCases.QueryBuilder</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">startTest</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="test-method">
-                <span class="method-name">FWA_Security_005</span>
-                <span class="method-start">173 ms</span>
-              </div> <!-- test-method -->
-              <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">FWA_Security_005</span>
-                <span class="method-start">84193 ms</span>
+                <span class="method-name">FWA_QueryBuilder_003</span>
+                <span class="method-start">197 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-suite after">
                 <span class="method-name">endTest</span>
-                <span class="method-start">206407 ms</span>
+                <span class="method-start">91892 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

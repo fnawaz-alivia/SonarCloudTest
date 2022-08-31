@@ -2,7 +2,6 @@ package automationCases;
 
 import java.nio.file.Paths;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -14,48 +13,45 @@ import com.aventstack.extentreports.Status;
 import automationModels.DataSourceModel;
 import automationModels.LoginModel;
 import automationModels.ProjectModel;
-import automationModels.SecurityModel;
+import automationModels.UserManagementModel;
 import automationUtils.utilityMethods;
 import configuration.Configuration;
 
-public class Security extends Configuration {
+public class UserManagement extends Configuration {
 	public static ExtentTest test;
 	@Test(groups = {"smoke","regression"}, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_Security_001() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		SecurityModel SM = PageFactory.initElements(driver, automationModels.SecurityModel.class);
+		UserManagementModel UM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(8000);
-		test = report.createTest("Verify the user is able to access admin view page");
-		SM.LandingOnAdminViewPage();
-		Thread.sleep(4000);
-		test.log(Status.PASS, "The user is able to access admin view page");
-		String UserName = RandomStringUtils.randomAlphabetic(10);
+		UM.LandingOnAdminViewPage();
+		String UserName = utilityMethods.randomString(10);
 		test = report.createTest("Verify the user is able to create user");
-		SM.CreateUser(UserName, "", "", "", "");
+		UM.CreateUser(UserName, "", "", "", "");
 		test.log(Status.PASS, "The user is able to create and new user");
 		test = report.createTest("Verify the user is able to delete the user");
-		SM.RemoveUser(UserName);
+		UM.RemoveUser(UserName);
 		test.log(Status.PASS, "The user is able to delete the user");
 		test = report.createTest("Verify the user is able to access Divisions view page");
-		int DivsionListCount=SM.CountDivisionList();
+		int DivsionListCount=UM.CountDivisionList();
 		test.log(Status.PASS, "The user is able to access Divisions view page");
 		test = report.createTest("Verify the Divisions lsit count");
 		System.out.println(DivsionListCount);
 		test = report.createTest("Verify the user is able to access Organizations view page");
-		int OrganizationListCount=SM.CountOrganizationList();
+		int OrganizationListCount=UM.CountOrganizationList();
 		test.log(Status.PASS, "The user is able to access Organizations view page");
 		test = report.createTest("Verify the Organizations list count");
 		System.out.println(OrganizationListCount);
 		test = report.createTest("Verify the user is able to access Regions view page");
-		int RegionListCount=SM.CountRegionList();
+		int RegionListCount=UM.CountRegionList();
 		test.log(Status.PASS, "The user is able to access Regions view page");
 		test = report.createTest("Verify the Regions list count");
 		System.out.println(RegionListCount);
 		test = report.createTest("Verify the user is able to access Departments view page");
-		int DepartmentListCount=SM.CountDepartmentList();
+		int DepartmentListCount=UM.CountDepartmentList();
 		test.log(Status.PASS, "The user is able to access Departments view page");
 		test = report.createTest("Verify the Departments list count");
 		System.out.println(DepartmentListCount);
@@ -67,13 +63,13 @@ public class Security extends Configuration {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		SecurityModel SM = PageFactory.initElements(driver, automationModels.SecurityModel.class);
+		UserManagementModel SM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(8000);
 		SM.LandingOnAdminViewPage();
 		Thread.sleep(4000);
-		String UserName = RandomStringUtils.randomAlphabetic(10);
+		String UserName = utilityMethods.randomString(10);
 		SM.CreateUser(UserName, "UserLocked", "", "", "");
 		SM.LogoutUser();
 		Thread.sleep(3000);
@@ -108,13 +104,13 @@ public class Security extends Configuration {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		SecurityModel SM = PageFactory.initElements(driver, automationModels.SecurityModel.class);
+		UserManagementModel SM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(8000);
 		SM.LandingOnAdminViewPage();
 		Thread.sleep(4000);
-		String UserName = RandomStringUtils.randomAlphabetic(10);
+		String UserName = utilityMethods.randomString(10);
 		SM.CreateUser(UserName, "", "ForcePasswordChange", "", "");
 		SM.LogoutUser();
 		Thread.sleep(3000);
@@ -134,7 +130,7 @@ public class Security extends Configuration {
 			System.out.println("There is an issue with login scenario");
 		} 
 		SM.ChangePasswordWindow();
-		String ProjectName = RandomStringUtils.randomAlphabetic(10);
+		String ProjectName = utilityMethods.randomString(10);
 		PM.CreateNewProject(ProjectName);
 		Thread.sleep(2000);
 		SM.MenuButton.click();
@@ -153,13 +149,13 @@ public class Security extends Configuration {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		SecurityModel SM = PageFactory.initElements(driver, automationModels.SecurityModel.class);
+		UserManagementModel SM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(8000);
 		SM.LandingOnAdminViewPage();
 		Thread.sleep(4000);
-		String UserName = RandomStringUtils.randomAlphabetic(10);
+		String UserName = utilityMethods.randomString(10);
 		SM.CreateUser(UserName, "", "", "MakeSecurityAdmin", "");
 		SM.LogoutUser();
 		Thread.sleep(3000);
@@ -184,7 +180,7 @@ public class Security extends Configuration {
 			
 			System.out.println("All the projects are being shown to security user");
 		}
-		String ProjectName = RandomStringUtils.randomAlphabetic(10);
+		String ProjectName = utilityMethods.randomString(10);
 		PM.CreateNewProject(ProjectName);
 		Thread.sleep(2000);
 		SM.MenuButton.click();
@@ -204,14 +200,14 @@ public class Security extends Configuration {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		SecurityModel SM = PageFactory.initElements(driver, automationModels.SecurityModel.class);
+		UserManagementModel SM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
 		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(8000);
 		SM.LandingOnAdminViewPage();
 		Thread.sleep(4000);
-		String UserName = RandomStringUtils.randomAlphabetic(10);
+		String UserName = utilityMethods.randomString(10);
 		SM.CreateUser(UserName, "", "", "", "MakeDatabaseAdmin");
 		SM.LogoutUser();
 		Thread.sleep(3000);
@@ -230,7 +226,7 @@ public class Security extends Configuration {
 		catch (Exception e) {
 			System.out.println("Thereis an issue with login scenario");
 		} 
-		String ProjectName = RandomStringUtils.randomAlphabetic(10);
+		String ProjectName = utilityMethods.randomString(10);
 		PM.CreateNewProject(ProjectName);
 		Thread.sleep(2000);
 		PM.GetStarted.click();
@@ -269,13 +265,13 @@ public class Security extends Configuration {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		SecurityModel SM = PageFactory.initElements(driver, automationModels.SecurityModel.class);
+		UserManagementModel SM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(8000);
 		SM.LandingOnAdminViewPage();
 		Thread.sleep(4000);
-		String UserName = RandomStringUtils.randomAlphabetic(10);
+		String UserName = utilityMethods.randomString(10);
 		SM.CreateUser(UserName, "", "", "", "");
 		SM.LogoutUser();
 		Thread.sleep(3000);
@@ -294,7 +290,7 @@ public class Security extends Configuration {
 		catch (Exception e) {
 			System.out.println("Thereis an issue with user login scenario");
 		} 
-		String ProjectName = RandomStringUtils.randomAlphabetic(10);
+		String ProjectName = utilityMethods.randomString(10);
 		PM.CreateNewProject(ProjectName);
 		Thread.sleep(2000);
 		SM.MenuButton.click();

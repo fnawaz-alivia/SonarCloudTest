@@ -4,11 +4,12 @@
 	<test name="First Test">
 		<groups>
 			<run>
-				<include name="regression" />
+				<include name="regression1" />
 			</run>
 		</groups>
 		<classes>
-		<class name="automationCases.Security">
+		<class name="automationCases.QueryBuilder">
+
 		</class>
 		</classes>
 	</test>

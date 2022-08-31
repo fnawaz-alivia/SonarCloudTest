@@ -77,6 +77,10 @@ public class UserManagementModel extends Configuration {
 
 	WebElement firstName_Div;
 	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-default') and not(contains(@class,'x-hidden-offsets'))]//a//span[text()='Create']")
+
+	WebElement CreateModuleButton;
+	
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'firstName']")
 
 	WebElement firstName_Input;
@@ -129,6 +133,10 @@ public class UserManagementModel extends Configuration {
 
 	WebElement prefferedLanguage_input;
 	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-default') and not(contains(@class,'x-hidden-offsets'))]//a//span[text()='Cancel']")
+
+	WebElement Cancel;
+	
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'tagfield-') and @type = 'text' and @name = 'ugTags']/parent::li")
 
 	WebElement userGroup_Div;
@@ -140,6 +148,18 @@ public class UserManagementModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and (text() = 'Create' or . = 'Create')]")
 
 	public WebElement Create;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and (text() = 'Groups' or . = 'Groups')]")
+
+	public WebElement Groups;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield') and @type = 'text' and @name = 'name']")
+
+	public WebElement NameField;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield') and @type = 'text' and @name = 'description']")
+
+	public WebElement DescriptionField;
 
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and (text() = 'Remove' or . = 'Remove')]")
 
@@ -219,6 +239,10 @@ public class UserManagementModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button') and (text() = 'Department' or . = 'Department')]")
 
 	public WebElement Department;
+	
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo') and @type = 'text' and @name = 'combooption' and @placeholder = 'Choose item ...']")
+
+	public WebElement combooption;
 
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'admin-usersPane-grid-034')]//child::table//td[4]//div")
 
@@ -227,21 +251,32 @@ public class UserManagementModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//div[contains(@class, 'admin-divisionPane-grid-035')]//child::table//tr//td[2]")
 
 	public List<WebElement> DivisionList;
-	@FindBy(how = How.XPATH, using = "//div[contains(@class, 'admin-organizationPane-grid-037')]//child::table//tr//td[2]")
+	@FindBy(how = How.XPATH, using = "//div[@class='x-panel x-panel-default-framed x-fit-item']/div/div[2]/div[not(contains(@class,'x-hidden-offsets'))]//div[contains(@role,'grid')]//table//tr//td[2]")
 
-	public List<WebElement> OrganizationList;
+	public List<WebElement> ModuleList;
 	@FindBy(how = How.XPATH, using = "//div[contains(@class, 'admin-regionPane-grid-036')]//child::table//tr//td[2]")
 
 	public List<WebElement> RegionList;
 	@FindBy(how = How.XPATH, using = "//div[contains(@class, 'admin-departmentPane-grid-046')]//child::table//tr//td[2]")
 
 	public List<WebElement> DepartmentList;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-boundlist x-boundlist-floating x-layer x-boundlist-default x-border-box')]//child::li")
+
+	public List<WebElement> ComboOptionsList;
+	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class, 'admin-view-group-left-panel-078')]//child::table//tr//td[2]//div")
+
+	public List<WebElement> GroupsList;
+	
+	
 
 	public void LandingOnAdminViewPage() {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		PM.GetStarted.click();
 		utilityMethods.visible(this.MenuButton,
 				"Verify that Profile button is present on Get Started screen.");
+		this.MenuButton.click();
 		Actions actions = new Actions(driver);
 		actions.moveToElement(this.ProfilePicture).build().perform();
 		utilityMethods.time(1000);
@@ -341,19 +376,102 @@ public class UserManagementModel extends Configuration {
 		}
 		this.Create.click();
 	}
-
-	public void RemoveUser(String user) throws InterruptedException {
-		this.Users.click();
-		Thread.sleep(2000);
-		for (WebElement el : UsersList) {
-			if (el.getText().equals(user)) {
+	public void SelectComboOption(String Option) throws InterruptedException {
+		for (WebElement el : ComboOptionsList) {
+			if (el.getText().equals(Option)) {
 				el.click();
 				break;
 			}
 		}
+	}
+	
+	public void ValidationModule(String value,WebElement Module,String Option) throws InterruptedException {
+		utilityMethods.visible(Module, 
+				"Admin View:Verify that"+ Module+ "button is visible");
+		utilityMethods.clickable(Module, 
+				"Admin View:Verify that"+ Module+ "button is clickable");
+		utilityMethods.clickable(Module, 
+				"Admin View:Verify that"+ Module+ "button is clickable");
+		
+		Module.click();
+		Thread.sleep(2000);
+		int BeforeCreate=this.ModuleList.size();
+		System.out.println(BeforeCreate+ "BeforeCreate");
+		this.Create.click();
+		Thread.sleep(2000);
+		this.NameField.sendKeys(value);
+		this.DescriptionField.sendKeys(value);
+		this.combooption.click();
+		this.SelectComboOption(Option);
+		this.CreateModuleButton.click();
+		Thread.sleep(2000);
+	}
+	public boolean CreateModule(String value,WebElement Module,String Option) throws InterruptedException {
+		Module.click();
+		Thread.sleep(2000);
+		int BeforeCreate=this.ModuleList.size();
+		System.out.println(BeforeCreate+ "BeforeCreate");
+		this.Create.click();
+		Thread.sleep(2000);
+		this.NameField.sendKeys(value);
+		this.DescriptionField.sendKeys(value);
+		this.combooption.click();
+		this.SelectComboOption(Option);
+		this.CreateModuleButton.click();
+		Thread.sleep(2000);
+		int AfterCreate=this.ModuleList.size();
+		System.out.println(AfterCreate+ "AfterCreate");
+		if (AfterCreate>BeforeCreate) {
+			
+			return true; 
+		}
+		return false;
+	}
+	
+	public boolean CreateOrganization(String value) throws InterruptedException {
+		this.Organization.click();
+		Thread.sleep(2000);
+		int BeforeCreate=this.ModuleList.size();
+		System.out.println(BeforeCreate+ "BeforeCreate");
+		this.Create.click();
+		Thread.sleep(2000);
+		this.NameField.sendKeys(value);
+		this.DescriptionField.sendKeys(value);
+		this.CreateModuleButton.click();
+		int AfterCreate=this.ModuleList.size();
+		System.out.println(AfterCreate+ "AfterCreate");
+		if (AfterCreate>BeforeCreate) {
+			
+			return true; 
+		}
+		return false;
+	}
+	
+		
+	public boolean Remove(String value, WebElement Module,List<WebElement>  List) throws InterruptedException {
+		
+			Module.click();
+			Thread.sleep(2000);
+			int BeforeDelete=this.ModuleList.size();
+			System.out.println(BeforeDelete+ "BeforeDelete");
+			for (WebElement el : List) {
+				if (el.getText().equals(value)) {
+					el.click();
+					break;
+				}
+			}
 		this.Remove.click();
 		Thread.sleep(2000);
 		this.Yes.click();
+		Thread.sleep(2000);
+		int AfterDelete=this.ModuleList.size();
+		System.out.println(AfterDelete+ "AfterDelete");
+if (AfterDelete<BeforeDelete) {
+			
+			return true; 
+		}
+		return false;
+		
 	}
 	public void LogoutUser() throws InterruptedException {
 		Dimension d1 = new Dimension(1560, 978);
@@ -368,25 +486,31 @@ public class UserManagementModel extends Configuration {
 	public int CountDivisionList() throws InterruptedException {
 		this.Division.click();
 		Thread.sleep(2000);
-		return this.DivisionList.size();
+		return this.ModuleList.size();
 	}
 
 	public int CountOrganizationList() throws InterruptedException {
 		this.Organization.click();
 		Thread.sleep(2000);
-		return this.OrganizationList.size();
+		return this.ModuleList.size();
 	}
 
 	public int CountRegionList() throws InterruptedException {
 		this.Region.click();
 		Thread.sleep(2000);
-		return this.RegionList.size();
+		return this.ModuleList.size();
 	}
 
 	public int CountDepartmentList() throws InterruptedException {
 		this.Department.click();
 		Thread.sleep(2000);
-		return this.DepartmentList.size();
+		return this.ModuleList.size();
+	}
+	
+	public int CountGroupsList() throws InterruptedException {
+		this.Groups.click();
+		Thread.sleep(2000);
+		return this.ModuleList.size();
 	}
 
 }

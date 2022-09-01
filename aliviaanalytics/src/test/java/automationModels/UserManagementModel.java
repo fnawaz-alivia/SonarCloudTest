@@ -390,11 +390,8 @@ public class UserManagementModel extends Configuration {
 				"Admin View:Verify that"+ Module+ "button is visible");
 		utilityMethods.clickable(Module, 
 				"Admin View:Verify that"+ Module+ "button is clickable");
-		utilityMethods.clickable(Module, 
-				"Admin View:Verify that"+ Module+ "button is clickable");
+		utilityMethods.list_Visible(Module, 2000, ComboOptionsList, Option);
 		
-		Module.click();
-		Thread.sleep(2000);
 		int BeforeCreate=this.ModuleList.size();
 		System.out.println(BeforeCreate+ "BeforeCreate");
 		this.Create.click();

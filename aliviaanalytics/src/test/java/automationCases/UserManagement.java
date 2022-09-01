@@ -73,7 +73,6 @@ public class UserManagement extends Configuration {
 		SM.CreateUser(UserName, "UserLocked", "", "", "");
 		SM.LogoutUser();
 		Thread.sleep(3000);
-	
 		LM.LoginUser(UserName + "@gmail.com", "Alivia21!");
 		
 		try {
@@ -322,5 +321,17 @@ public class UserManagement extends Configuration {
 		SM.UserView.click();
 		PM.DeleteProject(ProjectName);
 		driver.close();
+	}
+	@Test(groups = {"smoke","regression2"}, priority = 1)
+	public void FWA_UserManagement_001() throws Exception {
+		Configuration.BConfiguration();
+		Configuration.LoginApplication();
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		UserManagementModel UM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
+		utilityMethods.waitForVisibility(PM.LoadedProjectText);
+		utilityMethods.time(8000);
+		UM.LandingOnAdminViewPage();
+		utilityMethods.time(1000);
+		UM.UserDetailFormValidation();
 	}
 }

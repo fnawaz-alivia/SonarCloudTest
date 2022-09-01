@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="2" total="3" passed="1" failed="0" skipped="0">
+<testng-results ignored="6" total="7" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-08-30T18:55:47 PKT" name=" FWA Test Collection Suite" finished-at="2022-08-30T18:57:19 PKT" duration-ms="91699">
+  <suite started-at="2022-09-01T12:54:41 PKT" name=" FWA Test Collection Suite" finished-at="2022-09-01T12:58:12 PKT" duration-ms="210472">
     <groups>
-      <group name="regression1">
-        <method signature="QueryBuilder.FWA_QueryBuilder_003()[pri:1, instance:automationCases.QueryBuilder@15c43bd9]" name="FWA_QueryBuilder_003" class="automationCases.QueryBuilder"/>
-      </group> <!-- regression1 -->
       <group name="smoke">
-        <method signature="QueryBuilder.FWA_QueryBuilder_003()[pri:1, instance:automationCases.QueryBuilder@15c43bd9]" name="FWA_QueryBuilder_003" class="automationCases.QueryBuilder"/>
+        <method signature="UserManagement.FWA_UserManagement_001()[pri:1, instance:automationCases.UserManagement@2145b572]" name="FWA_UserManagement_001" class="automationCases.UserManagement"/>
       </group> <!-- smoke -->
+      <group name="regression2">
+        <method signature="UserManagement.FWA_UserManagement_001()[pri:1, instance:automationCases.UserManagement@2145b572]" name="FWA_UserManagement_001" class="automationCases.UserManagement"/>
+      </group> <!-- regression2 -->
     </groups>
-    <test started-at="2022-08-30T18:55:47 PKT" name="First Test" finished-at="2022-08-30T18:57:19 PKT" duration-ms="91699">
-      <class name="automationCases.QueryBuilder">
-        <test-method is-config="true" signature="startTest()[pri:0, instance:automationCases.QueryBuilder@15c43bd9]" started-at="2022-08-30T18:55:47 PKT" name="startTest" finished-at="2022-08-30T18:55:47 PKT" duration-ms="171" status="PASS">
+    <test started-at="2022-09-01T12:54:41 PKT" name="First Test" finished-at="2022-09-01T12:58:12 PKT" duration-ms="210472">
+      <class name="automationCases.UserManagement">
+        <test-method is-config="true" signature="startTest()[pri:0, instance:automationCases.UserManagement@2145b572]" started-at="2022-09-01T12:54:41 PKT" name="startTest" finished-at="2022-09-01T12:54:41 PKT" duration-ms="222" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startTest -->
-        <test-method signature="FWA_QueryBuilder_003()[pri:1, instance:automationCases.QueryBuilder@15c43bd9]" started-at="2022-08-30T18:55:47 PKT" name="FWA_QueryBuilder_003" finished-at="2022-08-30T18:57:19 PKT" duration-ms="91669" status="PASS">
+        <test-method signature="FWA_UserManagement_001()[pri:1, instance:automationCases.UserManagement@2145b572]" started-at="2022-09-01T12:54:41 PKT" name="FWA_UserManagement_001" finished-at="2022-09-01T12:58:12 PKT" duration-ms="210416" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- FWA_QueryBuilder_003 -->
-        <test-method is-config="true" signature="endTest()[pri:0, instance:automationCases.QueryBuilder@15c43bd9]" started-at="2022-08-30T18:57:19 PKT" name="endTest" finished-at="2022-08-30T18:57:19 PKT" duration-ms="266" status="PASS">
+        </test-method> <!-- FWA_UserManagement_001 -->
+        <test-method is-config="true" signature="endTest()[pri:0, instance:automationCases.UserManagement@2145b572]" started-at="2022-09-01T12:58:12 PKT" name="endTest" finished-at="2022-09-01T12:58:12 PKT" duration-ms="665" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endTest -->
-      </class> <!-- automationCases.QueryBuilder -->
+      </class> <!-- automationCases.UserManagement -->
     </test> <!-- First Test -->
   </suite> <!--  FWA Test Collection Suite -->
 </testng-results>

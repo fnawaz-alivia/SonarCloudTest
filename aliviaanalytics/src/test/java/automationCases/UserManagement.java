@@ -2,9 +2,7 @@ package automationCases;
 
 import java.nio.file.Paths;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentTest;
@@ -20,7 +18,7 @@ import configuration.Configuration;
 public class UserManagement extends Configuration {
 	public static ExtentTest test;
 	@Test(groups = {"smoke","regression"}, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_Security_001() throws InterruptedException {	
+	public void FWA_UserManagement_001() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
@@ -33,7 +31,7 @@ public class UserManagement extends Configuration {
 		UM.CreateUser(UserName, "", "", "", "");
 		test.log(Status.PASS, "The user is able to create and new user");
 		test = report.createTest("Verify the user is able to delete the user");
-		UM.RemoveUser(UserName);
+		UM.Remove(UserName, UM.Users,UM.UsersList);
 		test.log(Status.PASS, "The user is able to delete the user");
 		test = report.createTest("Verify the user is able to access Divisions view page");
 		int DivsionListCount=UM.CountDivisionList();
@@ -59,33 +57,33 @@ public class UserManagement extends Configuration {
 		
 }
 	@Test(groups = {"smoke","regression"}, priority = 1)
-	public void FWA_Security_002() throws InterruptedException {	
+	public void FWA_UserManagement_002() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		UserManagementModel SM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
+		UserManagementModel UM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(8000);
-		SM.LandingOnAdminViewPage();
+		UM.LandingOnAdminViewPage();
 		Thread.sleep(4000);
 		String UserName = utilityMethods.randomString(10);
-		SM.CreateUser(UserName, "UserLocked", "", "", "");
-		SM.LogoutUser();
+		UM.CreateUser(UserName, "UserLocked", "", "", "");
+		UM.LogoutUser();
 		Thread.sleep(3000);
 		LM.LoginUser(UserName + "@gmail.com", "Alivia21!");
 		
 		try {
-		    SM.LoginFailuretext.isDisplayed();
+			UM.LoginFailuretext.isDisplayed();
 
-		   String ActualLoginFailureText = SM.LoginFailuretext.getText();
+		   String ActualLoginFailureText = UM.LoginFailuretext.getText();
 			System.out.println(ActualLoginFailureText);
 			String ExpectedLoginFailureText = "Account Locked for user";
 			if (ExpectedLoginFailureText.contains(ActualLoginFailureText));
 			
-		    if (SM.LoginFailuretext.isDisplayed() == true) {
+		    if (UM.LoginFailuretext.isDisplayed() == true) {
 		        System.out.println("Login failure window is being shown");
-		        SM.Okbutton.click();
+		        UM.Okbutton.click();
 		    }
 		}
 		catch (Exception e) {
@@ -93,81 +91,81 @@ public class UserManagement extends Configuration {
 		} 
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
-		SM.LandingOnAdminViewPage();
-		SM.RemoveUser(UserName);
+		UM.LandingOnAdminViewPage();
+		UM.Remove(UserName, UM.Users,UM.UsersList);
 		driver.close();
 	}
 	
 	@Test(groups = {"smoke","regression"}, priority = 1)
-	public void FWA_Security_003() throws InterruptedException {	
+	public void FWA_UserManagement_003() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		UserManagementModel SM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
+		UserManagementModel UM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(8000);
-		SM.LandingOnAdminViewPage();
+		UM.LandingOnAdminViewPage();
 		Thread.sleep(4000);
 		String UserName = utilityMethods.randomString(10);
-		SM.CreateUser(UserName, "", "ForcePasswordChange", "", "");
-		SM.LogoutUser();
+		UM.CreateUser(UserName, "", "ForcePasswordChange", "", "");
+		UM.LogoutUser();
 		Thread.sleep(3000);
 	
 		LM.LoginUser(UserName + "@gmail.com", "Alivia21!");
 		
 		try {
-		   String ActualLoginFailureText = SM.LoginFailuretext.getText();
+		   String ActualLoginFailureText = UM.LoginFailuretext.getText();
 			System.out.println(ActualLoginFailureText);
 			
-		    if (SM.LoginFailuretext.isDisplayed() == true) {
+		    if (UM.LoginFailuretext.isDisplayed() == true) {
 		        System.out.println("Login failure window is being shown");
-		        SM.Okbutton.click();
+		        UM.Okbutton.click();
 		    }
 		}
 		catch (Exception e) {
 			System.out.println("There is an issue with login scenario");
 		} 
-		SM.ChangePasswordWindow();
+		UM.ChangePasswordWindow();
 		String ProjectName = utilityMethods.randomString(10);
 		PM.CreateNewProject(ProjectName);
 		Thread.sleep(2000);
-		SM.MenuButton.click();
-		SM.LogoutButton.click();
+		UM.MenuButton.click();
+		UM.LogoutButton.click();
 		Thread.sleep(2000);
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
-		SM.LandingOnAdminViewPage();
-		SM.RemoveUser(UserName);
-		SM.UserView.click();
+		UM.LandingOnAdminViewPage();
+		UM.Remove(UserName, UM.Users,UM.UsersList);
+		UM.UserView.click();
 		PM.DeleteProject(ProjectName);
 		driver.close();
 	}
 	@Test(groups = {"smoke","regression"}, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
-	public void FWA_Security_004() throws InterruptedException {	
+	public void FWA_UserManagement_004() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		UserManagementModel SM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
+		UserManagementModel UM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(8000);
-		SM.LandingOnAdminViewPage();
+		UM.LandingOnAdminViewPage();
 		Thread.sleep(4000);
 		String UserName = utilityMethods.randomString(10);
-		SM.CreateUser(UserName, "", "", "MakeSecurityAdmin", "");
-		SM.LogoutUser();
+		UM.CreateUser(UserName, "", "", "MakeSecurityAdmin", "");
+		UM.LogoutUser();
 		Thread.sleep(3000);
 	
 		LM.LoginUser(UserName + "@gmail.com", "Alivia21!");
 		
 		try {
-		   String ActualLoginFailureText = SM.LoginFailuretext.getText();
+		   String ActualLoginFailureText = UM.LoginFailuretext.getText();
 			System.out.println(ActualLoginFailureText);
 			
-		    if (SM.LoginFailuretext.isDisplayed() == true) {
+		    if (UM.LoginFailuretext.isDisplayed() == true) {
 		        System.out.println("Login failure window is being shown");
-		        SM.Okbutton.click();
+		        UM.Okbutton.click();
 		    }
 		}
 		catch (Exception e) {
@@ -182,44 +180,44 @@ public class UserManagement extends Configuration {
 		String ProjectName = utilityMethods.randomString(10);
 		PM.CreateNewProject(ProjectName);
 		Thread.sleep(2000);
-		SM.MenuButton.click();
-		SM.LogoutButton.click();
+		UM.MenuButton.click();
+		UM.LogoutButton.click();
 		Thread.sleep(2000);
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
-		SM.LandingOnAdminViewPage();
-		SM.RemoveUser(UserName);
-		SM.UserView.click();
+		UM.LandingOnAdminViewPage();
+		UM.Remove(UserName, UM.Users,UM.UsersList);
+		UM.UserView.click();
 		PM.DeleteProject(ProjectName);
 		driver.close();
 	}
 	
 	@Test(groups = {"smoke","regression"}, priority = 1)
-	public void FWA_Security_005() throws InterruptedException {	
+	public void FWA_UserManagement_005() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		UserManagementModel SM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
+		UserManagementModel UM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
 		DataSourceModel DSM = PageFactory.initElements(driver, automationModels.DataSourceModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(8000);
-		SM.LandingOnAdminViewPage();
+		UM.LandingOnAdminViewPage();
 		Thread.sleep(4000);
 		String UserName = utilityMethods.randomString(10);
-		SM.CreateUser(UserName, "", "", "", "MakeDatabaseAdmin");
-		SM.LogoutUser();
+		UM.CreateUser(UserName, "", "", "", "MakeDatabaseAdmin");
+		UM.LogoutUser();
 		Thread.sleep(3000);
 	
 		LM.LoginUser(UserName + "@gmail.com", "Alivia21!");
 		
 		try {
-		   String ActualLoginFailureText = SM.LoginFailuretext.getText();
+		   String ActualLoginFailureText = UM.LoginFailuretext.getText();
 			System.out.println(ActualLoginFailureText);
 			
-		    if (SM.LoginFailuretext.isDisplayed() == true) {
+		    if (UM.LoginFailuretext.isDisplayed() == true) {
 		        System.out.println("Login failure window is being shown");
-		        SM.Okbutton.click();
+		        UM.Okbutton.click();
 		    }
 		}
 		catch (Exception e) {
@@ -237,7 +235,7 @@ public class UserManagement extends Configuration {
 		DSM.databaseName.clear();
 		DSM.databaseName.sendKeys("ai_analysis");
 		try {
-		if (SM.WarrningMessageforDBAccess.isDisplayed()) {
+		if (UM.WarrningMessageforDBAccess.isDisplayed()) {
 			
 			System.out.println("The DatabaseAdmin user is not able access this database");
 		}
@@ -247,43 +245,43 @@ public class UserManagement extends Configuration {
 		System.out.println("The DatabaseAdmin user is able access this database");
 	} 
 		DSM.cancelbutton.click();
-		SM.MenuButton.click();
-		SM.LogoutButton.click();
+		UM.MenuButton.click();
+		UM.LogoutButton.click();
 		Thread.sleep(2000);
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
-		SM.LandingOnAdminViewPage();
-		SM.RemoveUser(UserName);
-		SM.UserView.click();
+		UM.LandingOnAdminViewPage();
+		UM.Remove(UserName, UM.Users,UM.UsersList);
+		UM.UserView.click();
 		PM.DeleteProject(ProjectName);
 		driver.close();
 	}
 	
 	@Test(groups = {"smoke","regression"}, priority = 1)
-	public void FWA_Security_006() throws InterruptedException {	
+	public void FWA_UserManagement_006() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		UserManagementModel SM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
+		UserManagementModel UM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(8000);
-		SM.LandingOnAdminViewPage();
+		UM.LandingOnAdminViewPage();
 		Thread.sleep(4000);
 		String UserName = utilityMethods.randomString(10);
-		SM.CreateUser(UserName, "", "", "", "");
-		SM.LogoutUser();
+		UM.CreateUser(UserName, "", "", "", "");
+		UM.LogoutUser();
 		Thread.sleep(3000);
 	
 		LM.LoginUser(UserName + "@gmail.com", "Alivia21!");
 		
 		try {
-		   String ActualLoginFailureText = SM.LoginFailuretext.getText();
+		   String ActualLoginFailureText = UM.LoginFailuretext.getText();
 			System.out.println(ActualLoginFailureText);
 			
-		    if (SM.LoginFailuretext.isDisplayed() == true) {
+		    if (UM.LoginFailuretext.isDisplayed() == true) {
 		        System.out.println("Login failure window is being shown");
-		        SM.Okbutton.click();
+		        UM.Okbutton.click();
 		    }
 		}
 		catch (Exception e) {
@@ -292,46 +290,132 @@ public class UserManagement extends Configuration {
 		String ProjectName = utilityMethods.randomString(10);
 		PM.CreateNewProject(ProjectName);
 		Thread.sleep(2000);
-		SM.MenuButton.click();
-		SM.ProfilePicture.click();
+		UM.MenuButton.click();
+		UM.ProfilePicture.click();
 		String ImagePathForProfilePic = Paths.get(System.getProperty("user.dir") + "\\src\\datafiles\\profilepic.png")
 				.toAbsolutePath().toString();
-		SM.UploadProfilePicture.sendKeys(ImagePathForProfilePic);
+		UM.UploadProfilePicture.sendKeys(ImagePathForProfilePic);
 		Thread.sleep(2000);
-		SM.DoneButton.click();
+		UM.DoneButton.click();
 		Thread.sleep(2000);
-		if(SM.VerifyProfilePicture.isDisplayed()==true) {
+		if(UM.VerifyProfilePicture.isDisplayed()==true) {
 			System.out.println("The profile picture is uploaded successfully");
 		}
-		SM.MenuButton.click();
-		SM.ChangePassword.click();
+		UM.MenuButton.click();
+		UM.ChangePassword.click();
 		Thread.sleep(2000);
-		SM.ChangePasswordWindow();
-		SM.MenuButton.click();
-		SM.LogoutButton.click();
+		UM.ChangePasswordWindow();
+		UM.MenuButton.click();
+		UM.LogoutButton.click();
 		Thread.sleep(2000);
 		LM.LoginUser(UserName + "@gmail.com", "Alivia2120!");
 		Thread.sleep(10000);
-		SM.MenuButton.click();
-		SM.LogoutButton.click();
+		UM.MenuButton.click();
+		UM.LogoutButton.click();
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
-		SM.LandingOnAdminViewPage();
-		SM.RemoveUser(UserName);
-		SM.UserView.click();
+		UM.LandingOnAdminViewPage();
+		UM.Remove(UserName, UM.Users,UM.UsersList);
+		UM.UserView.click();
 		PM.DeleteProject(ProjectName);
 		driver.close();
 	}
 	@Test(groups = {"smoke","regression2"}, priority = 1)
-	public void FWA_UserManagement_001() throws Exception {
+	public void FWA_UserManagement_007() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		UserManagementModel UM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
-		utilityMethods.time(8000);
+		Thread.sleep(8000);
 		UM.LandingOnAdminViewPage();
-		utilityMethods.time(1000);
-		UM.UserDetailFormValidation();
+		
+		test = report.createTest("Verify the created group shows in groups list");
+		String GroupName = utilityMethods.randomString(10);
+		if(UM.CreateModule(GroupName, UM.Groups, "Admin's Department")==true) {
+			test.log(Status.PASS, "The created group is being shown in groups list");
+		}
+		else {
+			test.log(Status.FAIL, "The created group is not being shown in groups list");
+		}
+		test = report.createTest("Verify the deleted group removes from groups list");
+		if(UM.Remove(GroupName, UM.Groups, UM.GroupsList)==true) {
+			test.log(Status.PASS, "The deleted group is removed from groups list");
+		}
+		else {
+			test.log(Status.FAIL, "The deleted group is not removed from groups list");
+		}
+
+		driver.close();
+}
+	@Test(groups = {"smoke","regression"}, priority = 1)
+	public void FWA_UserManagement_008() throws InterruptedException {	
+		Configuration.BConfiguration();
+		Configuration.LoginApplication();
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		UserManagementModel UM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
+		utilityMethods.waitForVisibility(PM.LoadedProjectText);
+		Thread.sleep(8000);
+		UM.LandingOnAdminViewPage();	
+		String OrgName = utilityMethods.randomString(10);
+		if (UM.CreateOrganization(OrgName)==true) {
+			test.log(Status.PASS, "The deleted group is removed from groups list");
+		}
+		else {
+			test.log(Status.FAIL, "The deleted group is not removed from groups list");
+		}
+		String RegName = utilityMethods.randomString(10);
+		if (UM.CreateModule(RegName, UM.Region, OrgName)==true)
+		{
+			test.log(Status.PASS, "The deleted group is removed from groups list");
+		}
+		else {
+			test.log(Status.FAIL, "The deleted group is not removed from groups list");
+		}
+		String DivName = utilityMethods.randomString(10);
+		if (UM.CreateModule(DivName, UM.Division, RegName)==true)
+		{
+			test.log(Status.PASS, "The deleted group is removed from groups list");
+		}
+		else {
+			test.log(Status.FAIL, "The deleted group is not removed from groups list");
+		}
+		String DeptName = utilityMethods.randomString(10);
+		if (UM.CreateModule(DeptName, UM.Department, DivName)==true)
+		{
+			test.log(Status.PASS, "The deleted group is removed from groups list");
+		}
+		else {
+			test.log(Status.FAIL, "The deleted group is not removed from groups list");
+		}
+		if (UM.Remove(DeptName, UM.Department, UM.ModuleList)==true)
+		{
+			test.log(Status.PASS, "The deleted group is removed from groups list");
+		}
+		else {
+			test.log(Status.FAIL, "The deleted group is not removed from groups list");
+		}
+		if (UM.Remove(DivName, UM.Division, UM.ModuleList)==true)
+		{
+			test.log(Status.PASS, "The deleted group is removed from groups list");
+		}
+		else {
+			test.log(Status.FAIL, "The deleted group is not removed from groups list");
+		}
+		if (UM.Remove(RegName, UM.Region, UM.ModuleList)==true)
+		{
+			test.log(Status.PASS, "The deleted group is removed from groups list");
+		}
+		else {
+			test.log(Status.FAIL, "The deleted group is not removed from groups list");
+		}
+		if (UM.Remove(OrgName, UM.Organization, UM.ModuleList)==true)
+		{
+			test.log(Status.PASS, "The deleted group is removed from groups list");	
+		}
+		else {
+			test.log(Status.FAIL, "The deleted group is not removed from groups list");
+		}
+		driver.close();
 	}
 }

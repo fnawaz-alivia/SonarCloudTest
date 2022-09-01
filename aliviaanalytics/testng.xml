@@ -2,6 +2,15 @@
 <suite name=" FWA Test Collection Suite" verbose="10"
 	configfailurepolicy="continue">
 	<test name="First Test">
-	
+		<groups>
+			<run>
+				<include name="regression11" />
+			</run>
+		</groups>
+		<classes>
+		<class name="automationCases.UserManagement">
+
+		</class>
+		</classes>
 	</test>
 </suite>

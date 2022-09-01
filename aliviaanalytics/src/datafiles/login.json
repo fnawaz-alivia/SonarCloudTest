@@ -1,7 +1,7 @@
-{"url":"https://localhost/ai-web/Login.jsp",
+{"url":"http://localhost:8080/ai-web/Login.jsp",
 "username":"superuser@aliviaanalytics.com",
-"password":"alivia",
+"password":"Alivia@2023@",
 "test1username":"Test@gmail.com",
-"test1password":"Analytics@2022",
-"instanceName":"localdb.aliviaanalytics.com"
+"test1password":"Alivia21!",
+"instanceName":"localhost:1433"
 }

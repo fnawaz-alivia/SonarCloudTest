@@ -5,7 +5,6 @@ import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
 import automationUtils.utilityMethods;
@@ -27,14 +26,10 @@ public class LoginModel {
 	@FindBy(how = How.XPATH, using = "//*[@id = 'loginBtn-btnEl']")
 
 	public WebElement loginbutton;
-	
+
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-component x-window-text x-box-item x-component-default')]")
 
 	public WebElement LoginFailuretext;
-	
-	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and (text() = 'OK' or . = 'OK')]")
-
-	public WebElement Okbutton;
 	
 	@FindBy(how = How.XPATH, using = "//table[(text() = 'Get Started' or . = 'Get Started')]")
 
@@ -42,13 +37,21 @@ public class LoginModel {
 
 	@Test
 
-	public boolean LoginUser(String uname, String pw) {
+	public void LoginUser(String uname, String pw) {
 		username.clear();
 		username.sendKeys(uname);
 		password.clear();
 		password.sendKeys(pw);
 		loginbutton.click();
-		utilityMethods.time(1500);
+		
+	}
+	public boolean LoginUser2(String uname, String pw) {
+		username.clear();
+		username.sendKeys(uname);
+		password.clear();
+		password.sendKeys(pw);
+		loginbutton.click();
+		utilityMethods.time(1000);
 		if(GetStarted.isDisplayed()==true) {
 			return true;
 		}
@@ -64,5 +67,4 @@ public class LoginModel {
 		 * System.out.println("There is an issue with login scenario"); }
 		 */
 	}
-	
 }

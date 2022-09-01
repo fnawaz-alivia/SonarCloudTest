@@ -127,7 +127,7 @@ public class UserManagement extends Configuration {
 		
 		// Verify newly user (Force Password change) is able to login. 
 		test = report.createTest("Verify that newly created user is able to login.");
-		if(LM.LoginUser(UserName + "@gmail.com", "Alivia21!")==true) {
+		if(LM.LoginUser2(UserName + "@gmail.com", "Alivia21!")==true) {
 			test.log(Status.PASS, "Newly Created user Logged in.");
 		}else {
 			test.log(Status.FAIL, "Newly Created user is not Logged in.");

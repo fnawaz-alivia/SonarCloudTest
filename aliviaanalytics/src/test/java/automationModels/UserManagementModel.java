@@ -649,7 +649,6 @@ public class UserManagementModel extends Configuration {
 		utilityMethods.clicked_elementVisible(this.MakeDatabaseAdmin, 500, this.UnselectedMakeDatabaseAdmin,
 				"Admin View:Verify that Make DataBase Admin checkbox is unSelected when click selected one.");
 		
-		CreateUser(userName, "", "", "", "");
 
 	}
 

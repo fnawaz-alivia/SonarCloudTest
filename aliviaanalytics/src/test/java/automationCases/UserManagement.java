@@ -31,7 +31,7 @@ public class UserManagement extends Configuration {
 		UM.CreateUser(UserName, "", "", "", "");
 		test.log(Status.PASS, "The user is able to create and new user");
 		test = report.createTest("Verify the user is able to delete the user");
-		UM.Remove(UserName, UM.Users,UM.UsersList);
+		UM.Remove(UserName, "Users",UM.Users,UM.UsersList);
 		test.log(Status.PASS, "The user is able to delete the user");
 		test = report.createTest("Verify the user is able to access Divisions view page");
 		int DivsionListCount=UM.CountDivisionList();
@@ -92,7 +92,7 @@ public class UserManagement extends Configuration {
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		UM.LandingOnAdminViewPage();
-		UM.Remove(UserName, UM.Users,UM.UsersList);
+		UM.Remove(UserName,"Users" ,UM.Users,UM.UsersList);
 		driver.close();
 	}
 	
@@ -136,7 +136,7 @@ public class UserManagement extends Configuration {
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		UM.LandingOnAdminViewPage();
-		UM.Remove(UserName, UM.Users,UM.UsersList);
+		UM.Remove(UserName, "Users",UM.Users,UM.UsersList);
 		UM.UserView.click();
 		PM.DeleteProject(ProjectName);
 		driver.close();
@@ -186,7 +186,7 @@ public class UserManagement extends Configuration {
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		UM.LandingOnAdminViewPage();
-		UM.Remove(UserName, UM.Users,UM.UsersList);
+		UM.Remove(UserName,"Users" ,UM.Users,UM.UsersList);
 		UM.UserView.click();
 		PM.DeleteProject(ProjectName);
 		driver.close();
@@ -251,7 +251,7 @@ public class UserManagement extends Configuration {
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		UM.LandingOnAdminViewPage();
-		UM.Remove(UserName, UM.Users,UM.UsersList);
+		UM.Remove(UserName,"Users" ,UM.Users,UM.UsersList);
 		UM.UserView.click();
 		PM.DeleteProject(ProjectName);
 		driver.close();
@@ -315,12 +315,12 @@ public class UserManagement extends Configuration {
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		UM.LandingOnAdminViewPage();
-		UM.Remove(UserName, UM.Users,UM.UsersList);
+		UM.Remove(UserName,"Users" ,UM.Users,UM.UsersList);
 		UM.UserView.click();
 		PM.DeleteProject(ProjectName);
 		driver.close();
 	}
-	@Test(groups = {"smoke","regression2"}, priority = 1)
+	@Test(groups = {"smoke","regression"}, priority = 1)
 	public void FWA_UserManagement_007() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -339,7 +339,7 @@ public class UserManagement extends Configuration {
 			test.log(Status.FAIL, "The created group is not being shown in groups list");
 		}
 		test = report.createTest("Verify the deleted group removes from groups list");
-		if(UM.Remove(GroupName, UM.Groups, UM.GroupsList)==true) {
+		if(UM.Remove(GroupName,"groups" ,UM.Groups, UM.GroupsList)==true) {
 			test.log(Status.PASS, "The deleted group is removed from groups list");
 		}
 		else {
@@ -348,7 +348,7 @@ public class UserManagement extends Configuration {
 
 		driver.close();
 }
-	@Test(groups = {"smoke","regression"}, priority = 1)
+	@Test(groups = {"smoke","regression2"}, priority = 1)
 	public void FWA_UserManagement_008() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -357,64 +357,75 @@ public class UserManagement extends Configuration {
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(8000);
 		UM.LandingOnAdminViewPage();	
+		test = report.createTest("Verify the created organization shows in organizations list");
 		String OrgName = utilityMethods.randomString(10);
 		if (UM.CreateOrganization(OrgName)==true) {
-			test.log(Status.PASS, "The deleted group is removed from groups list");
+			test.log(Status.PASS, "The created organization is being shown in  organizations list");
 		}
 		else {
-			test.log(Status.FAIL, "The deleted group is not removed from groups list");
+			test.log(Status.FAIL, "The created organization is  not being shown in organizations list");
 		}
+		test = report.createTest("Verify the created Region shows in Regions list");
 		String RegName = utilityMethods.randomString(10);
+		UM.ValidationModule("Regions", UM.Region, OrgName);
 		if (UM.CreateModule(RegName, UM.Region, OrgName)==true)
 		{
-			test.log(Status.PASS, "The deleted group is removed from groups list");
+			test.log(Status.PASS, "The created Region is being shown in Regions list");
 		}
 		else {
-			test.log(Status.FAIL, "The deleted group is not removed from groups list");
+			test.log(Status.FAIL, "The created Region  is  not being shown in Regions list");
 		}
+		test = report.createTest("Verify the created Division shows in Divisions list");
 		String DivName = utilityMethods.randomString(10);
+		UM.ValidationModule("Divisions ", UM.Division, RegName);
 		if (UM.CreateModule(DivName, UM.Division, RegName)==true)
 		{
-			test.log(Status.PASS, "The deleted group is removed from groups list");
+			test.log(Status.PASS, "The created Division is being shown in Divisions list");
 		}
 		else {
-			test.log(Status.FAIL, "The deleted group is not removed from groups list");
+			test.log(Status.FAIL, "The created Division is  not being shown in Divisions list");
 		}
+		test = report.createTest("Verify the created Department shows in Departments list");
 		String DeptName = utilityMethods.randomString(10);
+		UM.ValidationModule("Departments ", UM.Department, DivName);
 		if (UM.CreateModule(DeptName, UM.Department, DivName)==true)
 		{
-			test.log(Status.PASS, "The deleted group is removed from groups list");
+			test.log(Status.PASS, "The created Department is being shown in Departments list");
 		}
 		else {
-			test.log(Status.FAIL, "The deleted group is not removed from groups list");
+			test.log(Status.FAIL, "The created Department is  not being shown in Departments list");
 		}
-		if (UM.Remove(DeptName, UM.Department, UM.ModuleList)==true)
+		test = report.createTest("Verify the deleted Department removes from Departments list");
+		if (UM.Remove(DeptName,"Department" ,UM.Department, UM.ModuleList)==true)
 		{
-			test.log(Status.PASS, "The deleted group is removed from groups list");
+			test.log(Status.PASS, "The deleted Department is removed from Departments list");
 		}
 		else {
-			test.log(Status.FAIL, "The deleted group is not removed from groups list");
+			test.log(Status.FAIL, "The deleted Department is not removed from Departments list");
 		}
-		if (UM.Remove(DivName, UM.Division, UM.ModuleList)==true)
+		test = report.createTest("Verify the deleted Division removes from Divisions list");
+		if (UM.Remove(DivName, "Division",UM.Division, UM.ModuleList)==true)
 		{
-			test.log(Status.PASS, "The deleted group is removed from groups list");
+			test.log(Status.PASS, "The deleted Division is removed from Divisions list");
 		}
 		else {
-			test.log(Status.FAIL, "The deleted group is not removed from groups list");
+			test.log(Status.FAIL, "The deleted Division is not removed from Divisions list");
 		}
-		if (UM.Remove(RegName, UM.Region, UM.ModuleList)==true)
+		test = report.createTest("Verify the deleted Region removes from n Regions list");
+		if (UM.Remove(RegName, "Region",UM.Region, UM.ModuleList)==true)
 		{
-			test.log(Status.PASS, "The deleted group is removed from groups list");
+			test.log(Status.PASS, "The deleted Region is removed from Regions list");
 		}
 		else {
-			test.log(Status.FAIL, "The deleted group is not removed from groups list");
+			test.log(Status.FAIL, "The deleted Region is not removed from Regions list");
 		}
-		if (UM.Remove(OrgName, UM.Organization, UM.ModuleList)==true)
+		test = report.createTest("Verify the deleted Organization removes from  Organizations list");
+		if (UM.Remove(OrgName,"Organization" ,UM.Organization, UM.ModuleList)==true)
 		{
-			test.log(Status.PASS, "The deleted group is removed from groups list");	
+			test.log(Status.PASS, "The deleted Organization is removed from Organizations list");	
 		}
 		else {
-			test.log(Status.FAIL, "The deleted group is not removed from groups list");
+			test.log(Status.FAIL, "The deleted Organization is not removed from Organizations list");
 		}
 		driver.close();
 	}

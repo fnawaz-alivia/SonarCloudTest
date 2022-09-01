@@ -2,9 +2,7 @@ package automationCases;
 
 import java.nio.file.Paths;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentTest;
@@ -73,7 +71,6 @@ public class UserManagement extends Configuration {
 		UM.CreateUser(UserName, "UserLocked", "", "", "");
 		UM.LogoutUser();
 		Thread.sleep(3000);
-	
 		LM.LoginUser(UserName + "@gmail.com", "Alivia21!");
 		
 		try {
@@ -420,5 +417,5 @@ public class UserManagement extends Configuration {
 			test.log(Status.FAIL, "The deleted group is not removed from groups list");
 		}
 		driver.close();
-}
+	}
 }

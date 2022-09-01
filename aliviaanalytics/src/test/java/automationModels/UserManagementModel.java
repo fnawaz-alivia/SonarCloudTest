@@ -26,10 +26,15 @@ public class UserManagementModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[text() = 'Logout' or . = 'Logout']")
 
 	public WebElement LogoutButton;
-	
+
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield') and @type = 'password' and @name = 'oldpassword']")
 
 	public WebElement oldPassword_Input;
+
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @class = 'x-form-error-msg x-form-invalid-icon x-form-invalid-icon-default' and (text() = 'This field is required' or . = 'This field is required')]")
+
+	public WebElement comboboxexclamationmark ;
+
 	
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield') and @type = 'password' and @name = 'oldpassword']")
 
@@ -334,6 +339,11 @@ public class UserManagementModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//span[starts-with(@id, 'button-') and (text() = 'Yes' or . = 'Yes')]")
 
 	public WebElement Yes;
+	
+
+	@FindBy(how = How.XPATH, using = "//span[starts-with(@id, 'button-') and (text() = 'No' or . = 'No')]")
+
+	public WebElement No;
 
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and (text() = 'Division' or . = 'Division')]")
 
@@ -724,6 +734,8 @@ public class UserManagementModel extends Configuration {
 		int BeforeCreate = this.ModuleList.size();
 		System.out.println(BeforeCreate + "BeforeCreate");
 
+
+
 		utilityMethods.visible(Create, 
 				"Admin View:Verify that create button is visible for " + ModuleValue);
 		utilityMethods.clickable(Create, 
@@ -750,6 +762,10 @@ public class UserManagementModel extends Configuration {
 				"Create " + ModuleValue + " Screen:verify that dropdown is visisble");
 		utilityMethods.clickable(combooption, 
 				"Create " + ModuleValue + " Screen:verify that dropdown is clickable");
+
+		
+		utilityMethods.verifyDropdownManadatory(combooption, 500, DescriptionField, this.comboboxexclamationmark, 
+				"Create "+ModuleValue+"Screen:verify that dropdown value is mandatory");
 		this.combooption.click();
 		this.SelectComboOption(Option);
 		utilityMethods.visible(combooption, 
@@ -788,45 +804,90 @@ public class UserManagementModel extends Configuration {
 	}
 
 	public boolean CreateOrganization(String value) throws InterruptedException {
-		this.Organization.click();
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		utilityMethods.visible(Organization, 
+				"Admin View:Verify that Organization button is visible");
+		utilityMethods.clickable(Organization, 
+				"Admin View:Verify thatbutton is clickable");
+		
+		utilityMethods.list_Visible(Organization, 2000, ModuleList, "Admin View:Verify that clicking by Organization list shows");
+		int BeforeCreate=this.ModuleList.size();
+		System.out.println(BeforeCreate+ "BeforeCreate");
 		Thread.sleep(2000);
-		int BeforeCreate = this.ModuleList.size();
-		System.out.println(BeforeCreate + "BeforeCreate");
-		this.Create.click();
-		Thread.sleep(2000);
+		utilityMethods.visible(Create, 
+				"Admin View:Verify that create button is visible for Organization");
+		utilityMethods.clickable(Create, 
+				"Admin View:Verify that create button is clickable for Organization");
+		utilityMethods.clicked_Single(Create, 2000, NameField, "verify that Create Organization screen shows clciking on create button");
+		utilityMethods.visible(NameField, 
+				"Create Organization Screen:verify that name filed is visisble");
+		utilityMethods.clickable(NameField, 
+				"Create Organization Screen:verify that name filed is clickable");
+		utilityMethods.verifyfieldmandatory(NameField, 500,PM.exclamationmark , "Create Organization Screen:verify that name filed is mandatory");
+		utilityMethods.verifyFieldInputs(NameField);
+	
+		utilityMethods.visible(DescriptionField, 
+				"Create Organization Screen:verify that description filed is visisble");
+		utilityMethods.clickable(DescriptionField, 
+				"Create Organization Screen:verify that description filed is clickable");
+		utilityMethods.verifyfieldmandatory(DescriptionField, 500,PM.exclamationmark , "Create Organization Screen:verify that name description is mandatory");
+		utilityMethods.verifyFieldInputs(DescriptionField);
+		utilityMethods.visible(Cancel, 
+				"Create Organization Screen:verify that cancel button visisble");
+		utilityMethods.clickable(Cancel, 
+				"Create Organization Screen:verify that cancel button clickable");
+		this.NameField.clear();
 		this.NameField.sendKeys(value);
+		this.DescriptionField.clear();
 		this.DescriptionField.sendKeys(value);
-		this.CreateModuleButton.click();
-		int AfterCreate = this.ModuleList.size();
-		System.out.println(AfterCreate + "AfterCreate");
-		if (AfterCreate > BeforeCreate) {
-
-			return true;
+		utilityMethods.visible(CreateModuleButton, 
+				"Create Organization Screen:verify that create button visisble");
+		utilityMethods.clickable(CreateModuleButton, 
+				"Create Organization Screen:verify that create button clickable");
+		utilityMethods.list_Visible(CreateModuleButton, 2000, ModuleList, "Create Organization Screen:verify that Organization list shows clicking create button");
+	
+		int AfterCreate=this.ModuleList.size();
+		System.out.println(AfterCreate+ "AfterCreate");
+		if (AfterCreate>BeforeCreate) {
+			
+			return true; 
 		}
 		return false;
 	}
 
-	public boolean Remove(String value, WebElement Module, List<WebElement> List) {
-
-		Module.click();
-		utilityMethods.time(2000);
-		int BeforeDelete = this.ModuleList.size();
-		System.out.println(BeforeDelete + "BeforeDelete");
-		for (WebElement el : List) {
-			if (el.getText().equals(value)) {
-				el.click();
-				break;
+	
+		
+	public boolean Remove(String value,String ModuleValue, WebElement Module,List<WebElement>  List) throws InterruptedException {
+		
+			Module.click();
+			Thread.sleep(2000);
+			int BeforeDelete=this.ModuleList.size();
+			System.out.println(BeforeDelete+ "BeforeDelete");
+			for (WebElement el : List) {
+				if (el.getText().equals(value)) {
+					el.click();
+					break;
+				}
 			}
-		}
-		this.Remove.click();
-		utilityMethods.time(2000);
-		this.Yes.click();
-		utilityMethods.time(2000);
-		int AfterDelete = this.ModuleList.size();
-		System.out.println(AfterDelete + "AfterDelete");
-		if (AfterDelete < BeforeDelete) {
-
-			return true;
+			utilityMethods.visible(Remove, 
+					"Admin View:Verify that remove button is visible for "+ ModuleValue);
+			utilityMethods.clickable(Remove, 
+					"Admin View:Verify that remove button is clickable for "+ ModuleValue);
+			utilityMethods.clicked_Single(Remove, 2000, Yes, "verify that confirmation window opens clicking remove button for"+ ModuleValue);
+			utilityMethods.visible(No, 
+					"confirmation window:Verify that NO button is visible for "+ ModuleValue);
+			utilityMethods.clickable(No, 
+					"confirmation window:Verify that NO button is clickable for "+ ModuleValue);
+			utilityMethods.visible(Yes, 
+					"confirmation window:Verify that NO button is visible for "+ ModuleValue);
+			utilityMethods.clickable(Yes, 
+					"confirmation window:Verify that NO button is clickable for "+ ModuleValue);
+			utilityMethods.list_Visible(Yes, 2000, this.ModuleList, "verify that "+ ModuleValue+" list shows clicking on yes button");
+			int AfterDelete=this.ModuleList.size();
+			System.out.println(AfterDelete+ "AfterDelete");
+			if (AfterDelete<BeforeDelete) {
+			
+			return true; 
 		}
 		return false;
 

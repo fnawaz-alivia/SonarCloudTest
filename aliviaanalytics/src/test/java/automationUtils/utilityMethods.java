@@ -326,7 +326,7 @@ public class utilityMethods extends Configuration {
 				test.log(Status.FAIL, "The field is containing invalid value");
 			}
 		}
-		if(type.equals("onlyInt")) {
+		else if(type.equals("onlyInt")) {
 			if (getInputValue.equals(sendInt)) {
 				test.log(Status.PASS, "The field is containing valid value");
 			} else {
@@ -376,6 +376,29 @@ public class utilityMethods extends Configuration {
 		else {
 			test.log(Status.FAIL, "The Selected value from the dropdown is not presenting in the field.");
 		}
+	}
+	public static void verifyDropdownOptionSelectedLi(List<WebElement> eList,WebElement e2,String testTitle) {
+		// Before run this function make sure dropdown list is visible...
+		test = report.createTest(testTitle);
+		Random rand = new Random();
+		int i = rand.nextInt(eList.size());
+		String getText = eList.get(i).getText();
+		time(500);
+		if(eList.get(i).isEnabled()) {
+			test.log(Status.PASS, "The selected item from the list is clickable.");
+		}else {
+			test.log(Status.FAIL, "The selected item from the list is not clickable.");
+		}
+		eList.get(i).click();
+		time(500);
+		String getValue = e2.getText();
+		if(getText.toLowerCase().equals(getValue.toLowerCase())) {
+			test.log(Status.PASS, "The Selected value from the dropdown is presenting in the field.");
+		}
+		else {
+			test.log(Status.FAIL, "The Selected value from the dropdown is not presenting in the field.");
+		}
+		
 	}
 	public static void validateSearchPlaceholder(WebElement element, String data, String testTitle) {
 		test = report.createTest(testTitle);
@@ -766,16 +789,11 @@ public class utilityMethods extends Configuration {
 		element.click();
 		element.sendKeys("ABCD");
 		element.clear();
-		try {
-			Thread.sleep(time);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		utilityMethods.time(time);
 		if (element2.isDisplayed()) {
-			test.log(Status.PASS, "if the field is empty an exclamation mark appears on right side");
+			test.log(Status.PASS, "Exclamtion marks appear on the right side of the field.");
 		} else {
-			test.log(Status.FAIL, "if the field is not empty an exclamation mark doesn't appear on right side");
+			test.log(Status.FAIL, "Exclamation marks doesn't appear on the right side  of the field.");
 		}
 		test = report.createTest(
 				"Verify that hovering on the exclamation mark should display 'This field is required' message");
@@ -785,6 +803,52 @@ public class utilityMethods extends Configuration {
 			test.log(Status.FAIL, "hovering on the exclamation mark dosn't display 'This field is required' message");
 		}
 	}
+	public static void verifyDropdownManadatory(WebElement element, int time, WebElement element2, WebElement element3,String testTitle) {
+		test = report.createTest(testTitle);
+		element.click();
+		utilityMethods.time(time);
+		element2.click();
+		if (element3.isDisplayed()) {
+			test.log(Status.PASS, "Exclamtion marks appear on the right side of the field.");
+		} else {
+			test.log(Status.FAIL, "Exclamation marks doesn't appear on the right side  of the field.");
+		}
+		test = report.createTest(
+				"Verify that hovering on the exclamation mark should display 'This field is required' message");
+		if (element3.getAttribute("data-errorqtip").contains("This field is required")) {
+			test.log(Status.PASS, "hovering on the exclamation mark displays 'This field is required' message");
+		} else {
+			test.log(Status.FAIL, "hovering on the exclamation mark dosn't display 'This field is required' message");
+		}
+		
+		
+	}
+	public static void verifyValidationFields(String type,WebElement input,String sendData,List<WebElement> error,String testTitle) {
+		test = report.createTest(testTitle);
+		if (type.equals("Valid_Info")) {
+			input.clear();
+			time(500);
+			input.sendKeys(sendData);
+			time(500);
+			if (error.size()==0) {
+				test.log(Status.PASS, "The Mandatory Check is not appear.");
+			} else {
+				test.log(Status.FAIL, "The Mandatory Check is appear.");
+			}
+			
+		}else {
+			input.clear();
+			time(500);
+			input.sendKeys(sendData);
+			time(500);
+			if (error.size()==1) {
+				test.log(Status.PASS, "The Mandatory Check is appear.");
+			} else {
+				test.log(Status.FAIL, "The Mandatory Check is not appear.");
+			}
+		}
+	}
+	
 
 	public static void verifytooltip(WebElement element, String data) {
 		test = report.createTest("Verify that Question mark appears on the right side of the options");

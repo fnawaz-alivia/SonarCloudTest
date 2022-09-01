@@ -74,14 +74,14 @@ public class UserManagement extends Configuration {
 		LM.LoginUser(UserName + "@gmail.com", "Alivia21!");
 		
 		try {
-			UM.LoginFailuretext.isDisplayed();
+			LM.LoginFailuretext.isDisplayed();
 
-		   String ActualLoginFailureText = UM.LoginFailuretext.getText();
+		   String ActualLoginFailureText = LM.LoginFailuretext.getText();
 			System.out.println(ActualLoginFailureText);
 			String ExpectedLoginFailureText = "Account Locked for user";
 			if (ExpectedLoginFailureText.contains(ActualLoginFailureText));
 			
-		    if (UM.LoginFailuretext.isDisplayed() == true) {
+		    if (LM.LoginFailuretext.isDisplayed() == true) {
 		        System.out.println("Login failure window is being shown");
 		        UM.Okbutton.click();
 		    }
@@ -96,7 +96,7 @@ public class UserManagement extends Configuration {
 		driver.close();
 	}
 	
-	@Test(groups = {"smoke","regression"}, priority = 1)
+	@Test(groups = {"smoke","regression11"}, priority = 1)
 	public void FWA_UserManagement_003() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -107,26 +107,80 @@ public class UserManagement extends Configuration {
 		Thread.sleep(8000);
 		UM.LandingOnAdminViewPage();
 		Thread.sleep(4000);
-		String UserName = utilityMethods.randomString(10);
-		UM.CreateUser(UserName, "", "ForcePasswordChange", "", "");
-		UM.LogoutUser();
-		Thread.sleep(3000);
-	
-		LM.LoginUser(UserName + "@gmail.com", "Alivia21!");
 		
-		try {
-		   String ActualLoginFailureText = UM.LoginFailuretext.getText();
-			System.out.println(ActualLoginFailureText);
-			
-		    if (UM.LoginFailuretext.isDisplayed() == true) {
-		        System.out.println("Login failure window is being shown");
-		        UM.Okbutton.click();
-		    }
+		// Verify super user is able to creating the new user.
+		test = report.createTest("Admin View:Verify the user is creating with Force Password Change option.");
+		String UserName = utilityMethods.randomString(10);
+		if(UM.CreateUser(UserName, "", "ForcePasswordChange", "", "")==true) {
+			test.log(Status.PASS, "The created user is being shown in user list.");
+		}else {
+			test.log(Status.FAIL, "The created user is not being shown in user list.");
 		}
-		catch (Exception e) {
-			System.out.println("There is an issue with login scenario");
-		} 
-		UM.ChangePasswordWindow();
+		
+		// Verify super user is able to logout.
+		test = report.createTest("Admin View:Verify the user is able to logout.");
+		if(UM.LogoutUser()==true) {
+			test.log(Status.PASS, "The user is logout");
+		}else {
+			test.log(Status.FAIL, "The user is not logout");
+		}
+		
+		// Verify newly user (Force Password change) is able to login. 
+		test = report.createTest("Verify that newly created user is able to login.");
+		if(LM.LoginUser(UserName + "@gmail.com", "Alivia21!")==true) {
+			test.log(Status.PASS, "Newly Created user Logged in.");
+		}else {
+			test.log(Status.FAIL, "Newly Created user is not Logged in.");
+		}
+		// Remove Project popup and verify change password screen visible
+		utilityMethods.list_Visible(UM.Okbutton, 500, UM.ChangePasswordScreen,
+				"Get Started:Verify that Change Password screen is present when newly user ('Force Password Change') is login.");
+		// Old Password Field
+		utilityMethods.visible(UM.oldPassword_Div, 
+				"Change Password:Verify that Old Password input field is visible.");
+		utilityMethods.clickable(UM.oldPassword_Input, 
+				"Change Password:Verify that Old Password input field is clickable.");
+		utilityMethods.sendKeys_Input(UM.oldPassword_Input, 500, "includeChar",
+				"Change Password:Verify that Old Password input field allow user to input alphabets,numerics and special character.");
+		utilityMethods.verifyfieldmandatory(UM.oldPassword_Input, 500, UM.oldPassword_Error,
+				"Change Password:Verify that Old Password input field show error tooltip if field is empty.");
+		
+		//New Password Field
+		utilityMethods.visible(UM.newPassword_Div, 
+				"Change Password:Verify that New Password input field is visible");
+		utilityMethods.clickable(UM.newPassword_Input, 
+				"Change Password:Verify that New Password input field is clickable");
+		utilityMethods.sendKeys_Input(UM.newPassword_Input, 500, "includeChar",
+				"Change Password:Verify that Old Password input field allow user to input alphabets,numerics and special character.");
+		utilityMethods.verifyfieldmandatory(UM.newPassword_Input, 500, UM.newPassword_Error,
+				"Change Password:Verify that New Password input field show error tooltip if field is empty.");
+		
+		//Confirm Password Field
+		utilityMethods.visible(UM.cNewPassword_Div, 
+				"Change Password:Verify that Confirm Password input field is visible");
+		utilityMethods.clickable(UM.cNewPassword_Input, 
+				"Change Password:Verify that Confirm Password input field is clickable");
+		utilityMethods.sendKeys_Input(UM.cNewPassword_Input, 500, "includeChar",
+				"Change Password:Verify that Confirm Password input field allow user to input alphabets,numerics and special character.");
+		utilityMethods.verifyfieldmandatory(UM.cNewPassword_Input, 500, UM.cNewPassword_Error,
+				"Change Password:Verify that Confirm Password input field show error tooltip if field is empty.");
+		
+		// Change Password Button
+		utilityMethods.visible(UM.SubmitPasswordDisabled, 
+				"Change Password:Verify that Submit Password button is visible.");
+		utilityMethods.visible(UM.SubmitPasswordDisabled, 
+				"Change Password:Verify that Submit Password button is disable by default.");
+		utilityMethods.visible(UM.LogoutButton, 
+				"Change Password:Verify that Logout button is visible");
+		utilityMethods.clickable(UM.LogoutButton, 
+				"Change Password:Verify that Logout button is visible");
+		
+		test = report.createTest("Change Password:Verify the user is able to update the password.");
+		if(UM.ChangePasswordWindow()==true) {
+			test.log(Status.PASS, "Password changed successfully.");
+		}else {
+			test.log(Status.PASS, "Password not changed successfully.");
+		}
 		String ProjectName = utilityMethods.randomString(10);
 		PM.CreateNewProject(ProjectName);
 		Thread.sleep(2000);
@@ -136,9 +190,11 @@ public class UserManagement extends Configuration {
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		UM.LandingOnAdminViewPage();
+		UM.ValidationModule(UserName, null, ProjectName);
 		UM.Remove(UserName, UM.Users,UM.UsersList);
 		UM.UserView.click();
 		PM.DeleteProject(ProjectName);
+
 		driver.close();
 	}
 	@Test(groups = {"smoke","regression"}, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
@@ -160,10 +216,10 @@ public class UserManagement extends Configuration {
 		LM.LoginUser(UserName + "@gmail.com", "Alivia21!");
 		
 		try {
-		   String ActualLoginFailureText = UM.LoginFailuretext.getText();
+		   String ActualLoginFailureText = LM.LoginFailuretext.getText();
 			System.out.println(ActualLoginFailureText);
 			
-		    if (UM.LoginFailuretext.isDisplayed() == true) {
+		    if (LM.LoginFailuretext.isDisplayed() == true) {
 		        System.out.println("Login failure window is being shown");
 		        UM.Okbutton.click();
 		    }
@@ -212,10 +268,10 @@ public class UserManagement extends Configuration {
 		LM.LoginUser(UserName + "@gmail.com", "Alivia21!");
 		
 		try {
-		   String ActualLoginFailureText = UM.LoginFailuretext.getText();
+		   String ActualLoginFailureText = LM.LoginFailuretext.getText();
 			System.out.println(ActualLoginFailureText);
 			
-		    if (UM.LoginFailuretext.isDisplayed() == true) {
+		    if (LM.LoginFailuretext.isDisplayed() == true) {
 		        System.out.println("Login failure window is being shown");
 		        UM.Okbutton.click();
 		    }
@@ -276,10 +332,10 @@ public class UserManagement extends Configuration {
 		LM.LoginUser(UserName + "@gmail.com", "Alivia21!");
 		
 		try {
-		   String ActualLoginFailureText = UM.LoginFailuretext.getText();
+		   String ActualLoginFailureText = LM.LoginFailuretext.getText();
 			System.out.println(ActualLoginFailureText);
 			
-		    if (UM.LoginFailuretext.isDisplayed() == true) {
+		    if (LM.LoginFailuretext.isDisplayed() == true) {
 		        System.out.println("Login failure window is being shown");
 		        UM.Okbutton.click();
 		    }

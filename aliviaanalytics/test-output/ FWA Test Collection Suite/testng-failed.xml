@@ -4,17 +4,17 @@
   <test thread-count="5" name="First Test(failed)" verbose="10">
     <groups>
       <run>
-        <include name="regression1"/>
+        <include name="regression2"/>
       </run>
     </groups>
     <classes>
-      <class name="automationCases.Scheduler">
+      <class name="automationCases.UserManagement">
         <methods>
-          <include name="FWA_Scheduler_002"/>
           <include name="startTest"/>
           <include name="endTest"/>
+          <include name="FWA_UserManagement_008"/>
         </methods>
-      </class> <!-- automationCases.Scheduler -->
+      </class> <!-- automationCases.UserManagement -->
     </classes>
   </test> <!-- First Test(failed) -->
 </suite> <!-- Failed suite [ FWA Test Collection Suite] -->

@@ -29,9 +29,9 @@ public class Configuration {
 	public static WebDriver driver;
 	public static ExtentReports report;
 
-	static String username;
-	static String url;
-	static String password;
+	public static String username;
+	public static String url;
+	public static String password;
 	public static String test1username;
 	public static String test1password;
 	public static String instanceName;
@@ -55,7 +55,7 @@ public class Configuration {
 			instanceName = (String) jsonObject.get("instanceName");
 			System.out.println(instanceName);
 			
-//	  System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\datafiles\\chromedriver.exe");
+     //	  System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\datafiles\\chromedriver.exe");
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.setCapability("ACCEPT_INSECURE_CERTS", true);
@@ -84,9 +84,8 @@ public class Configuration {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		
 		LoginModel LM = PageFactory.initElements(driver, automationModels.LoginModel.class);
-		LM.LoginFormFill(username, password);
-		LM.loginbutton.click();
-		System.out.println("User click on login button");
+		LM.LoginUser(username, password);
+		System.out.println("User clicks on login button");
 		utilityMethods.waitForVisibility(PM.GetStarted);
 		if(PM.GetStarted.isDisplayed()) {
 			System.out.println("The User is logged in successfully");

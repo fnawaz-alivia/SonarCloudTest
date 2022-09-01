@@ -3,6 +3,7 @@ package automationUtils;
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -52,7 +53,6 @@ public class utilityMethods extends Configuration {
 	public static String randomString(int size) {
 		return RandomStringUtils.randomAlphabetic(size);
 	}
-
 	public static void moveToElement(WebElement element) throws Error {
 		Actions builder = new Actions(driver);
 
@@ -75,10 +75,6 @@ public class utilityMethods extends Configuration {
 		return str;
 	}
 
-	public static int itemsSize(List<WebElement> itemList) {
-		int size = itemList.size();
-		return size;
-	}
 
 	public static void visible(WebElement element, String testTitle) {
 		test = report.createTest(testTitle);
@@ -97,7 +93,7 @@ public class utilityMethods extends Configuration {
 			test.log(Status.FAIL, "The element is not clickable");
 		}
 	}
-
+	
 	public static void disable(WebElement element, String testTitle) {
 		test = report.createTest(testTitle);
 		if (!element.isEnabled()) {
@@ -105,6 +101,16 @@ public class utilityMethods extends Configuration {
 		} else {
 			test.log(Status.FAIL, "The element is not disable");
 		}
+	}
+	public static void clearField(WebElement el) {
+		utilityMethods.time(1000);
+		el.clear();
+		utilityMethods.time(1000);
+	}
+	public static void click(WebElement el) {
+		utilityMethods.time(1000);
+		el.click();
+		utilityMethods.time(1000);
 	}
 
 	public static void clicked_elementVisible(WebElement element, int time, WebElement element1, String testTitle) {
@@ -120,6 +126,7 @@ public class utilityMethods extends Configuration {
 	}
 
 	public static void testCase_Duplicate(WebElement element, int time, String type, String sendData) {
+		time(time);
 		if (type.equals("sendKeys")) {
 			element.clear();
 			element.sendKeys(sendData);
@@ -183,10 +190,24 @@ public class utilityMethods extends Configuration {
 			test.log(Status.FAIL, "The information is saved with invalid data.");
 		}
 	}
+	public static void validateInputSpaces(WebElement el1,String senData,WebElement el2,List<WebElement> screen,String testTitle) {
+		test = report.createTest(testTitle);
+		el1.clear();
+		el1.sendKeys(senData);
+		el2.click();
+		time(1000);
+		el2.click();
+		time(1000);
+		if (screen.size()==0) {
+			test.log(Status.PASS, "The information is not saved with invalid data");
+		} else {
+			test.log(Status.FAIL, "The information is saved with invalid data.");
+		}
+	}
 
 	public static void cropSpaces_TextArea(WebElement element, WebElement element2, WebElement element3,
-			WebElement element4, String sendData) {
-		test = report.createTest("Verify that Spaces are croped from the text when click on saved button");
+			WebElement element4, String sendData,String testTitle) {
+		test = report.createTest(testTitle);
 		element.clear();
 		element.sendKeys(sendData);
 		element2.click();
@@ -203,51 +224,117 @@ public class utilityMethods extends Configuration {
 			test.log(Status.FAIL, "Spaces are not croped from the text.");
 		}
 	}
-	public static void verifyCropSpacesForSidePanel(
-			WebElement el,WebElement el2, List<WebElement> list,WebElement el3, List<WebElement> el4,String sendData,String testTitle) {
-		test = report.createTest(testTitle);
-		el.clear();
-		time(500);
-		el.sendKeys(sendData);
-		time(500);
-		el2.click();
-		time(500);
-		if(list.size()==1) {
-			test.log(Status.PASS, "Information doesn't saved with invalid data. ");
-		}
-		else {
-			test.log(Status.FAIL, "Information saved with invalid data.");
-		}
-		test = report.createTest("Verify that Spaces are croped from the text after saving.");
-		el3.clear();
-		el3.sendKeys(sendData);
-		time(500);
-		for(WebElement li : el4)
-		if(!li.getAttribute("textContent").equals(sendData)) {
-			test.log(Status.PASS, "Spaces are croped form the text.");
-		}else {
-			test.log(Status.FAIL, "Spaces are croped form the text.");
-		}
+
+	public static void verifyCropSpacesTextField_SidePanel(WebElement sfsp, WebElement rbsp, WebElement cnfsp, WebElement cnfif,
+			WebElement cnfsb, List<WebElement> el4, String sendData, String testTitle) {
 		
+		/* This function will firstly clear the search text field, Secondly Create the folder by adding spaces
+		   in input field and then verify spaces..
+		   Note : This function will only work for sidepanel */
+		
+		test = report.createTest(testTitle);
+		sfsp.sendKeys(Keys.chord(Keys.CONTROL, "a" + Keys.BACK_SPACE));
+		utilityMethods.time(500);
+		rbsp.click();
+		utilityMethods.time(500);
+		cnfsp.click();
+		time(500);
+		cnfif.clear();
+		time(500);
+		cnfif.sendKeys(sendData);
+		time(500);
+		cnfsb.click();
+		time(500);
+		sfsp.sendKeys(sendData);
+		time(500);
+		for (WebElement li : el4)
+			if (!li.getAttribute("textContent").equals(sendData)) {
+				test.log(Status.PASS, "Spaces are croped form the text.");
+			} else {
+				test.log(Status.FAIL, "Spaces are not croped form the text.");
+			}
+
+	}
+	
+	public static void verifyCropSpacesTextArea_SidePanel(WebElement sfsp, WebElement rbsp, WebElement cnfsp, WebElement cnfif,WebElement cnfta,
+			WebElement cnfsb, WebElement edbt, List<WebElement> list,WebElement cancel, String sendData, String testTitle) {
+		
+		/* This function will firstly clear the search text field, Secondly Create the folder by adding spaces
+		   in text area and then open the same created foler to verify text area spaces */
+		
+		test = report.createTest(testTitle);
+		sfsp.sendKeys(Keys.chord(Keys.CONTROL, "a" + Keys.BACK_SPACE));
+		utilityMethods.time(500);
+		rbsp.click();
+		utilityMethods.time(500);
+		cnfsp.click();
+		time(500);
+		cnfif.clear();
+		time(500);
+		cnfif.sendKeys(sendData);
+		time(500);
+		cnfta.sendKeys(sendData);
+		time(500);
+		cnfsb.click();
+		time(500);
+		sfsp.sendKeys(sendData);
+		time(500);
+		Actions action = new Actions(driver);
+		action.moveToElement(list.get(0)).contextClick().build().perform();
+		edbt.click();
+		time(1000);
+		if (cnfta.getAttribute("textContent").equals(sendData)) {
+			test.log(Status.PASS, "Spaces are croped form the text.");
+		} else {
+			test.log(Status.FAIL, "Spaces are not croped form the text.");
+		}
+		cancel.click();
+	}
+	public static void removeList_SidePanel(List<WebElement> el,WebElement e1,List<WebElement> e2,WebElement del,WebElement yes,WebElement ok) {
+		
+		// This function will clear the text of search input field from sidepanel and then remove all items in the list....
+		time(1000);
+		e1.sendKeys(Keys.chord(Keys.CONTROL, "a" + Keys.BACK_SPACE));
+		time(1000);
+		for(int i = el.size()-1;i>=0;i--) {
+			Actions action = new Actions(driver);
+			action.moveToElement(e2.get(i)).contextClick().build().perform();
+			utilityMethods.time(1000);
+			action.moveToElement(del).click().build().perform();
+			utilityMethods.time(1000);
+			yes.click();
+			utilityMethods.time(1000);
+			ok.click();
+		}
 	}
 
-	public static void senKeys_Input(WebElement element, int time, String type, String testTitle) {
+	public static void sendKeys_Input(WebElement element, int time, String type, String testTitle) {
 		test = report.createTest(testTitle);
 
-		String sendStr_Int = "NewColumn12";
+		String sendStr = "NewColumn";
+		String sendInt = "12";
 		String sendChar = "'!@_ #$)/(+='";
+		time(500);
 		element.clear();
-		element.sendKeys(sendStr_Int + sendChar);
+		element.sendKeys(sendStr+sendInt+sendChar);
 		time(time);
 		String getInputValue = element.getAttribute("value");
 		if (type.equals("includeChar")) {
-			if (getInputValue.equals(sendStr_Int + sendChar)) {
+			if (getInputValue.equals(sendStr+sendInt+sendChar)) {
 				test.log(Status.PASS, "The field is containing valid value");
 			} else {
 				test.log(Status.FAIL, "The field is containing invalid value");
 			}
-		} else {
-			if (getInputValue.equals(sendStr_Int)) {
+		}
+		if(type.equals("onlyInt")) {
+			if (getInputValue.equals(sendInt)) {
+				test.log(Status.PASS, "The field is containing valid value");
+			} else {
+				test.log(Status.FAIL, "The field is containing invalid value");
+			}
+		}
+		else {
+			if (getInputValue.equals(sendStr+sendInt)) {
 				test.log(Status.PASS, "The field is containing valid value");
 			} else {
 				test.log(Status.FAIL, "The field is containing invalid value");
@@ -268,20 +355,52 @@ public class utilityMethods extends Configuration {
 			test.log(Status.FAIL, "The Data is not entered in the field.");
 		}
 	}
-	public static void validateSearchPlaceholder(WebElement element,String data,String testTitle) {
+	public static void verifyDropdownOptionSelected(List<WebElement> eList,WebElement e2,String testTitle) {
+		// Before run this function make sure dropdown list is visible...
+		test = report.createTest(testTitle);
+		Random rand = new Random();
+		int i = rand.nextInt(eList.size());
+		String getText = eList.get(i).getText();
+		time(500);
+		if(eList.get(i).isEnabled()) {
+			test.log(Status.PASS, "The selected item from the list is clickable.");
+		}else {
+			test.log(Status.FAIL, "The selected item from the list is not clickable.");
+		}
+		eList.get(i).click();
+		time(500);
+		String getValue = e2.getAttribute("value");
+		if(getText.toLowerCase().equals(getValue.toLowerCase())) {
+			test.log(Status.PASS, "The Selected value from the dropdown is presenting in the field.");
+		}
+		else {
+			test.log(Status.FAIL, "The Selected value from the dropdown is not presenting in the field.");
+		}
+	}
+	public static void validateSearchPlaceholder(WebElement element, String data, String testTitle) {
 		test = report.createTest(testTitle);
 		element.clear();
 		String getPlaceholder = element.getAttribute("placeholder");
 		time(300);
-		if(getPlaceholder.equals(data)) {
-			test.log(Status.PASS, "This Search field conatins "+getPlaceholder+" by default.");
-		}else {
-			test.log(Status.FAIL, "This Search field doesn't conatins "+getPlaceholder+" by default.");
+		if (getPlaceholder.equals(data) ) {
+			test.log(Status.PASS, "This Search field conatins " + getPlaceholder + " by default.");
+		} else {
+			test.log(Status.FAIL, "This Search field doesn't conatins " + getPlaceholder + " by default.");
 		}
-		
+	}
+	public static void validateSearchValue(WebElement element, String data, String testTitle) {
+		test = report.createTest(testTitle);
+		String getValue = element.getAttribute("value");
+		time(300);
+		if (getValue.equals(data)) {
+			test.log(Status.PASS, "This Search field conatins " + getValue + " by default.");
+		} else {
+			test.log(Status.FAIL, "This Search field doesn't conatins " + getValue + " by default.");
+		}
 	}
 
-	public static void validateSearchList(WebElement element, List<WebElement> elementList, String data, String testTitle) {
+	public static void validateSearchList_SidePanel(WebElement element, List<WebElement> elementList,
+			List<WebElement> childList, String data, String testTitle) {
 		test = report.createTest(testTitle);
 		element.clear();
 		time(100);
@@ -289,20 +408,64 @@ public class utilityMethods extends Configuration {
 		time(500);
 		if (elementList.size() > 0) {
 			for (WebElement list : elementList) {
-				if (list.getText().contains(data) && list.isDisplayed()) {
-					test.log(Status.PASS, "The Search is working beacuase type word '" + data + "' is present in " + list.getText());
-				} 
-				else {
-					test.log(Status.FAIL, "The Search is not working beacuase type word '" + data + "' is not present in "+ list.getText());
+				if (list.getText().toLowerCase().contains(data.toLowerCase()) && list.isDisplayed()) {
+					test.log(Status.PASS,
+							"The Search is working beacuase type word '" + data + "' is present in " + list.getText());
+				} else {
+					for (WebElement li : childList) {
+						if (li.getText().toLowerCase().contains(data.toLowerCase()) && list.isDisplayed()) {
+							test.log(Status.PASS, "The Search is working beacuase type word '" + data
+									+ "' is present in " + li.getText());
+						} else {
+							test.log(Status.FAIL,
+									"The Search is not working beacuase type word '" + data + "' is not present");
+						}
+					}
 				}
 			}
 		} else {
 			test.log(Status.PASS, "No element found against the typed word '" + data + "' in the list.");
 		}
 	}
-	
 
-	public static void text_Match(WebElement element, String data, String testTitle) {
+	public static void validateSearch(WebElement element, List<WebElement> elementList, String data, String testTitle) {
+		test = report.createTest(testTitle);
+		element.clear();
+		time(100);
+		element.sendKeys(data);
+		time(1000);
+		if (elementList.size() > 0) {
+			for (WebElement list : elementList) {
+				if (list.getText().toLowerCase().contains(data.toLowerCase()) && list.isDisplayed()) {
+					test.log(Status.PASS,
+							"The Search is working beacuase type word '" + data + "' is present in " + list.getText());
+				} else {
+					test.log(Status.FAIL, "The Search is not working beacuase type word '" + data + "' is not present");
+				}
+			}
+		} else {
+			test.log(Status.PASS, "No element found against the typed word '" + data + "' in the list.");
+		}
+	}
+	public static void validateText_Match(WebElement element, String data, String testTitle) {
+		test = report.createTest(testTitle);
+		String getInputValue = element.getText();
+		if (getInputValue.contains(data)) {
+			test.log(Status.PASS, "The field is containing " + getInputValue);
+		} else {
+			test.log(Status.FAIL, "The field is not containing " + getInputValue);
+		}
+	}
+	public static void validateElementText_NotMatch(WebElement element, String data, String testTitle) {
+		test = report.createTest(testTitle);
+		String getInputValue = element.getText();
+		if (!getInputValue.equals(data)) {
+			test.log(Status.PASS, "The field is containing " + getInputValue);
+		} else {
+			test.log(Status.FAIL, "The field is not containing " + getInputValue);
+		}
+	}
+	public static void validateInputText_Match(WebElement element, String data, String testTitle) {
 		test = report.createTest(testTitle);
 		String getInputValue = element.getAttribute("value");
 		if (getInputValue.equals(data)) {
@@ -312,18 +475,63 @@ public class utilityMethods extends Configuration {
 		}
 	}
 
-	public static void text_NotMatch(WebElement element, String data, String testTitle) {
+	public static void validateInputText_NotMatch(WebElement element, String data, String testTitle) {
 		test = report.createTest(testTitle);
 		String getInputValue = element.getAttribute("value");
 		if (!getInputValue.equals(data)) {
-			test.log(Status.PASS, "The field is containing " + getInputValue);
+			test.log(Status.PASS, "The field is containing " + data);
 		} else {
-			test.log(Status.FAIL, "The field is not containing " + getInputValue);
+			test.log(Status.FAIL, "The field is not containing " + data);
+		}
+	}
+	
+	public static void validateUpDownButton(WebElement div, WebElement input, WebElement update, WebElement move, String testTitle) {
+		test = report.createTest(testTitle);
+		Actions action = new Actions(driver);
+		action.moveToElement(div).doubleClick().build().perform();
+		time(1000);
+		input.sendKeys("test");
+		time(1000);
+		update.click();
+		time(1000);
+		move.click();
+		time(1000);
+		if(!div.getText().equals("test")) {
+			test.log(Status.PASS, "The arrow button is clicked and item is switched from it's position.");
+		}else {
+			test.log(Status.FAIL, "The arrow button is clicked but item is not switched from it's position.");
+		}
+	}
+	public static void verifyDragDropByOffsets(WebElement sourceEl,int x,int y,List<WebElement> canvasItems,String testTitle) {
+		test = report.createTest(testTitle);
+		int beforeSize = canvasItems.size();
+		Actions builder = new Actions(driver);
+		builder.clickAndHold(sourceEl).moveByOffset(x, y).release().build().perform();
+		time(1000);
+		int afterSize = canvasItems.size();
+		if(afterSize>beforeSize) {
+			test.log(Status.PASS, "The selected item drag and drop successfully.");
+		}else {
+			test.log(Status.PASS, "The selected item not drag and drop successfully.");	
+		}
+	}
+	public static void verifyDragDropByLocation(WebElement sourceEl,WebElement destinationEl,List<WebElement> canvasItems,String testTitle) {
+		test = report.createTest(testTitle);
+		int beforeSize = canvasItems.size();
+		Actions builder = new Actions(driver);
+		builder.dragAndDrop(sourceEl,destinationEl).release().build().perform();
+		time(1000);
+		int afterSize = canvasItems.size();
+		if(afterSize>beforeSize) {
+			test.log(Status.PASS, "The selected item drag and drop successfully.");
+		}else {
+			test.log(Status.PASS, "The selected item not drag and drop successfully.");	
 		}
 	}
 
 	public static void list_Visible(WebElement element, int time, List<WebElement> element2, String testTitle) {
 		test = report.createTest(testTitle);
+		time(time);
 		element.click();
 		time(time);
 		if (element2.size() > 0 && element2.get(0).isDisplayed()) {
@@ -338,12 +546,12 @@ public class utilityMethods extends Configuration {
 		element.click();
 		time(time);
 		if (element2.size() == 0) {
-			test.log(Status.PASS, "The element is close");
+			test.log(Status.PASS, "The element is close.");
 		} else {
 			if (element2.get(0).isDisplayed()) {
-				test.log(Status.FAIL, "The element is not close");
+				test.log(Status.FAIL, "The element is not close.");
 			} else {
-				test.log(Status.PASS, "The element is close");
+				test.log(Status.PASS, "The element is close.");
 			}
 
 		}
@@ -360,17 +568,95 @@ public class utilityMethods extends Configuration {
 			test.log(Status.FAIL, "The element is not match");
 		}
 	}
-
-	public static void size_Match(int size1, int size2, String testTitle) {
+	public static void verifyListSorting(WebElement element2, int time, List<WebElement> element, String testTitle) {
 		test = report.createTest(testTitle);
-		int beforeSize = size1;
-		int afterSize = size2;
-		if (beforeSize != afterSize) {
+		String[] firstList = Columns(element).split(",");
+		time(time);
+		element2.click();
+		time(time);
+		String[] secondList = Columns(element).split(",");
+		if (!firstList[0].equals(secondList[0])) {
+			test.log(Status.PASS, "The list is sorted");
+		} else {
+			test.log(Status.FAIL, "The list is not sorted");
+		}
+	}
+	public static void verifyItemAdded(List<WebElement> list,WebElement e,String testTitle) {
+		test = report.createTest(testTitle);
+		int beforeSize = list.size();
+		time(500);
+		e.click();
+		time(500);
+		int afterSize = list.size();
+		if (afterSize > beforeSize) {
+			test.log(Status.PASS, "The item added successfully.");
+		} else {
+			test.log(Status.FAIL, "The item not added.");
+		}
+	}
+
+	public static void verifyItemRemove(WebElement removeButton,List<WebElement> itemList, String testTitle) {
+		test = report.createTest(testTitle);
+		int beforeSize = itemList.size();
+		removeButton.click();
+		time(1000);
+		int afterSize = itemList.size();
+		if (afterSize<beforeSize) {
 			test.log(Status.PASS, "The element remove form the list");
 		} else {
 			test.log(Status.FAIL, "The element is not remove from the list");
 		}
+	}
+	
+	public static void verifyItemRemoveOnSelection(WebElement removeButton,List<WebElement> itemList, String testTitle) {
+		test = report.createTest(testTitle);
+		int beforeSize = itemList.size();
+		itemList.get(0).click();
+		time(1000);
+		removeButton.click();
+		time(1000);
+		int afterSize = itemList.size();
+		if (afterSize<beforeSize) {
+			test.log(Status.PASS, "The element remove form the list");
+		} else {
+			test.log(Status.FAIL, "The element is not remove from the list");
+		}
+	}
 
+	public static void verifyItemRemove_OkButton(WebElement removeButton,List<WebElement> itemList, WebElement okButton, String testTitle) {
+		test = report.createTest(testTitle);
+		int beforeSize = itemList.size();
+		removeButton.click();
+		time(1000);
+		okButton.click();
+		time(1000);
+		int afterSize = itemList.size();
+		if (afterSize<beforeSize) {
+			test.log(Status.PASS, "The element remove form the list");
+		} else {
+			test.log(Status.FAIL, "The element is not remove from the list");
+		}
+	}
+	public static void verifyItemNotRemove(WebElement removeButton,List<WebElement> itemList, String testTitle) {
+		test = report.createTest(testTitle);
+		int beforeSize = itemList.size();
+		removeButton.click();
+		time(1000);
+		int afterSize = itemList.size();
+		if (afterSize==beforeSize) {
+			test.log(Status.PASS, "The element not remove form the list");
+		} else {
+			test.log(Status.FAIL, "The element is remove from the list");
+		}
+	}
+	public static void verifySizeMatch(List<WebElement> list, int size2, String testTitle) {
+		test = report.createTest(testTitle);
+		int size = list.size();
+		if (size >= size2) {
+			test.log(Status.PASS, "The element list are appearing correctly.");
+		} else {
+			test.log(Status.FAIL, "The element list are not appearing correctly.");
+		}
 	}
 
 	public static void verifyIncrementButton(WebElement element, WebElement element2) {
@@ -514,31 +800,145 @@ public class utilityMethods extends Configuration {
 			test.log(Status.FAIL, "hovering on the Question mark dosn't display " + data);
 		}
 	}
-	    
-    public static void trycatch(WebElement element,WebElement element1,WebElement element2,int time,String testTitle) {
- 
-    	try {
-            test = report.createTest(testTitle);
-	        element.click();
-	        try {
-	            Thread.sleep(time);
-	        } catch (InterruptedException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	        }
-	        if (element1.isDisplayed()) {
-	            test.log(Status.PASS, "The element is visible");
-	        } else {
-	            test.log(Status.FAIL, "The element is not visible");
-	        }
+
+	public static void verifyChildFolder_SidePanel(WebElement sf, List<WebElement> folder, WebElement el, WebElement el2,
+			WebElement el3, List<WebElement> el4, String sendData) {
+		// This function will firstly clear the text search then search the desired folder and select it and create sub folder inside it...
+		test = report.createTest(
+				"Verify that 'Inner Folder' is creating when 'Create New Folder' by selecting parent folder");
+		sf.sendKeys(Keys.chord(Keys.CONTROL, "a" + Keys.BACK_SPACE));
+		utilityMethods.time(1000);
+		sf.sendKeys(" CropSpaceBT");
+		utilityMethods.time(1000);
+		folder.get(0).click();
+		time(500);
+		sf.sendKeys(Keys.chord(Keys.CONTROL, "a" + Keys.BACK_SPACE));
+		time(500);
+		el.click();
+		time(500);
+		el2.sendKeys(sendData);
+		el3.click();
+		time(500);
+		if (el4.size() == 0) {
+			test.log(Status.PASS, "Child Folder Created successfully");
+		} else {
+			test.log(Status.FAIL, "Child Folder not Created unfortunately.");
+		}
+	}
+
+	public static void verifyListExpandAndCollapse_SidePanel(WebElement el, WebElement el2, List<WebElement> el3) {
+		test = report
+				.createTest("Side Pane: Veify that Side Panel Filter is expanding when click on Expand All button.");
+		el.click();
+		time(500);
+		if (el3.size() > 0) {
+			test.log(Status.PASS, "Side Panel List section is expanding");
+		} else {
+			test.log(Status.PASS, "Side Panel List section is not expanding");
+		}
+		test = report
+				.createTest("Side Pane: Veify that Side Panel Filter is collapsing when click on Collapse All button.");
+		el2.click();
+		time(500);
+		if (el3.size() == 0) {
+			test.log(Status.PASS, "Side Panel List section is collapsing");
+		} else {
+			test.log(Status.PASS, "Side Panel List section is not collapsing");
+		}
+
+	}
+	public static void verifyItemVisibleOnHover(WebElement el,WebElement el2,String testTitle) {
+		test = report.createTest(testTitle);
+		Actions actions = new Actions(driver);
+		actions.moveToElement(el).build().perform();
+		time(500);
+		if (el2.isDisplayed()) {
+			test.log(Status.PASS, "The Item is visible when hover on it.");
+		} else {
+			test.log(Status.FAIL, "The Item is not visible when hover on it.");
+		}
+	}
+	public static void verifyColumnRemoveCheckbox(List<WebElement> li,List<WebElement> columnName,String testTitle) {
+		test = report.createTest("Remove Case: "+testTitle);
+		time(500);
+		int size1 = columnName.size();
+		li.get(0).click();
+		time(100);
+		int size2 = columnName.size();
+		if(size1>size2) {
+			test.log(Status.PASS, "The Selected Column removed.");
+		}else {
+			test.log(Status.FAIL, "The Selected Column not removed.");
+		}
+		test = report.createTest("Add Case: "+testTitle);
+		li.get(0).click();
+		time(500);
+		int size3 = columnName.size();
+		if(size2<size3) {
+			test.log(Status.PASS, "The Selected Column Add.");
+		}else {
+			test.log(Status.FAIL, "The Selected Column not Add.");
+		}
+
+	}
+	public static void QueryBuilderWithColumns(WebElement input,String data,List<WebElement> Columns,List<WebElement> screen,WebElement ok,String testTitle) {
+		test = report.createTest(testTitle);
+		time(1000);
+		input.click();
+		input.sendKeys(data);
+		input.sendKeys(Keys.ENTER);
+		time(1500);
+		Columns.get(3).click();
+		Columns.get(4).click();
+		Columns.get(5).click();
+		ok.click();
+		time(500);
+		if(screen.size()==0) {
+			test.log(Status.PASS, "The Query Builder created.");
+		}else {
+			test.log(Status.PASS, "The Query Builder not created.");
+		}
+	}
+	public static void QueryBuilderWithoutColumns(WebElement input,String data,List<WebElement> screen,WebElement ok,String testTitle) {
+		test = report.createTest(testTitle);
+		time(1000);
+		input.click();
+		input.sendKeys(data);
+		input.sendKeys(Keys.ENTER);
+		time(1500);
+		ok.click();
+		time(500);
+		if(screen.size()==0) {
+			test.log(Status.PASS, "The Query Builder created.");
+		}else {
+			test.log(Status.PASS, "The Query Builder not created.");
+		}
+	}
+
+	public static void trycatch(WebElement element, WebElement element1, WebElement element2, int time,
+			String testTitle) {
+
+		try {
+			test = report.createTest(testTitle);
+			element.click();
+			try {
+				Thread.sleep(time);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
-			catch (Exception e) {
-				 test = report.createTest(testTitle);
-				 element2.click();
-				  test.log(Status.FAIL, "The element is not visible");
+			if (element1.isDisplayed()) {
+				test.log(Status.PASS, "The element is visible");
+			} else {
+				test.log(Status.FAIL, "The element is not visible");
 			}
+
+		}
+
+		catch (Exception e) {
+			test = report.createTest(testTitle);
+			element2.click();
+			test.log(Status.FAIL, "The element is not visible");
+		}
     }
-    
-    
 }

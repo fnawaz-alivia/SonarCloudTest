@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
+import automationModels.DataCleansingModel;
 import automationModels.ModelingLibraryModel;
 import automationModels.ModelingModel;
 import automationModels.ProjectModel;
@@ -109,7 +110,25 @@ public class Models extends Configuration {
 			MM.ExecutionOfModel();
 			driver.close();
 
-	}
+		}
+		@Test(groups = {"smoke", "regression1" })
+		public void FWA_Model_006() throws Exception {
+			Configuration.BConfiguration();
+			Configuration.LoginApplication();
+			ModelingModel MM = PageFactory.initElements(driver, automationModels.ModelingModel.class);
+			ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+			utilityMethods.waitForVisibility(PM.GetStarted);
+			Thread.sleep(8000);
+
+			// This function will take you to the Modeling screen
+			MM.LandingOnPageModeling();
+			// This function will validate the Left & Right Side Panel Of Modeling Screen
+			MM.verifyModelingLeftSidePanel();
+			MM.verifyModelingRightSidePanel();
+			// This function will validate the Canvas Of Modeling Screen
+			MM.verifyModelingCanvas();
+		
+		}
 	
 }
 	

@@ -157,6 +157,8 @@ public class UserManagementModel extends Configuration {
 
 	public WebElement NameField;
 	
+
+	
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield') and @type = 'text' and @name = 'description']")
 
 	public WebElement DescriptionField;
@@ -385,23 +387,52 @@ public class UserManagementModel extends Configuration {
 		}
 	}
 	
-	public void ValidationModule(String value,WebElement Module,String Option) throws InterruptedException {
+	public void ValidationModule(String ModuleValue,WebElement Module,String Option) throws InterruptedException {
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		utilityMethods.visible(Module, 
-				"Admin View:Verify that"+ Module+ "button is visible");
+				"Admin View:Verify that"+ ModuleValue+ "button is visible");
 		utilityMethods.clickable(Module, 
-				"Admin View:Verify that"+ Module+ "button is clickable");
-		utilityMethods.list_Visible(Module, 2000, ComboOptionsList, Option);
+				"Admin View:Verify that"+ ModuleValue+ "button is clickable");
+		utilityMethods.list_Visible(Module, 2000, ModuleList, "Admin View:Verify that clicking by "+ ModuleValue+ "list shows");
 		
 		int BeforeCreate=this.ModuleList.size();
 		System.out.println(BeforeCreate+ "BeforeCreate");
-		this.Create.click();
-		Thread.sleep(2000);
-		this.NameField.sendKeys(value);
-		this.DescriptionField.sendKeys(value);
+		
+		utilityMethods.visible(Create, 
+				"Admin View:Verify that create button is visible for "+ ModuleValue);
+		utilityMethods.clickable(Create, 
+				"Admin View:Verify that create button is clickable for "+ ModuleValue);
+		utilityMethods.clicked_Single(Create, 2000, NameField, "verify that Create" +ModuleValue+"screen shows clciking on create button");
+		utilityMethods.visible(NameField, 
+				"Create "+ModuleValue+"Screen:verify that name filed is visisble");
+		utilityMethods.clickable(NameField, 
+				"Create "+ModuleValue+" Screen:verify that name filed is clickable");
+		utilityMethods.verifyfieldmandatory(NameField, 500,PM.exclamationmark , "Create "+ModuleValue+"Screen:verify that name filed is mandatory");
+		utilityMethods.verifyFieldInputs(NameField);
+	
+		utilityMethods.visible(DescriptionField, 
+				"Create "+ModuleValue+" Screen:verify that description filed is visisble");
+		utilityMethods.clickable(DescriptionField, 
+				"Create "+ModuleValue+" Screen:verify that description filed is clickable");
+		utilityMethods.verifyfieldmandatory(DescriptionField, 500,PM.exclamationmark , "Create "+ModuleValue+"Screen:verify that name description is mandatory");
+		utilityMethods.verifyFieldInputs(DescriptionField);
+		
+		utilityMethods.visible(combooption, 
+				"Create "+ModuleValue+" Screen:verify that dropdown is visisble");
+		utilityMethods.clickable(combooption, 
+				"Create "+ModuleValue+" Screen:verify that dropdown is clickable");
 		this.combooption.click();
 		this.SelectComboOption(Option);
-		this.CreateModuleButton.click();
-		Thread.sleep(2000);
+		utilityMethods.visible(combooption, 
+				"Create "+ModuleValue+" Screen:verify that create button is visisble");
+		utilityMethods.clickable(combooption, 
+				"Create "+ModuleValue+" Screen:verify that create button clickable");
+		utilityMethods.visible(Cancel, 
+				"Create "+ModuleValue+" Screen:verify that cancel button visisble");
+		utilityMethods.clickable(Cancel, 
+				"Create "+ModuleValue+"Screen:verify that cancel button clickable");
+		utilityMethods.list_Visible(Cancel, 2000, ModuleList, "Create "+ModuleValue+" Screen:verify that "+ModuleValue+"list shows clicking cancel button");
+	
 	}
 	public boolean CreateModule(String value,WebElement Module,String Option) throws InterruptedException {
 		Module.click();

@@ -332,7 +332,7 @@ public class UserManagement extends Configuration {
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(8000);
 		UM.LandingOnAdminViewPage();
-		
+		UM.ValidationModule("Groups", UM.Groups, "Admin's Department");
 		test = report.createTest("Verify the created group shows in groups list");
 		String GroupName = utilityMethods.randomString(10);
 		if(UM.CreateModule(GroupName, UM.Groups, "Admin's Department")==true) {

@@ -532,7 +532,7 @@ public class UserManagementModel extends Configuration {
 		utilityMethods.verifyfieldmandatory(this.lastName_Input, 500, this.lastName_Error_Div,
 				"Admin View:Verify that error appear on the field when field of Last Name is empty.");
 
-		// Phone Number
+		// ... Phone Number
 		utilityMethods.visible(this.phoneNumber_Div, "Admin View:Verify that Phone Number field is present.");
 		utilityMethods.clickable(this.phoneNumber_Input, "Admin View:Verify that Phone Number field is clickable.");
 		utilityMethods.sendKeys_Input(this.phoneNumber_Input, 500, "onlyInt",
@@ -705,7 +705,7 @@ public class UserManagementModel extends Configuration {
 		int AfterCreate = this.ModuleList.size();
 		System.out.println(AfterCreate + "AfterCreate");
 
-		if (AfterCreate > BeforeCreate) {
+		if (AfterCreate < BeforeCreate) {
 			return true;
 		}
 		return false;

@@ -17,7 +17,20 @@ import configuration.Configuration;
 
 public class UserManagement extends Configuration {
 	public static ExtentTest test;
-	@Test(groups = {"smoke","regression"}, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
+
+	@Test(groups = { "smoke", "regression" }, priority = 1 ,retryAnalyzer = listeners.RetryAnalyzer.class )
+	public void FWA_UserManagement_000() throws InterruptedException {	
+		Configuration.BConfiguration();
+		Configuration.LoginApplication();
+		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
+		UserManagementModel UM = PageFactory.initElements(driver, automationModels.UserManagementModel.class);
+		utilityMethods.waitForVisibility(PM.LoadedProjectText);
+		Thread.sleep(8000);
+		UM.LandingOnAdminViewPage();
+		UM.UserDetailFormValidation();
+		driver.close();
+	}
+	@Test(groups = { "smoke", "regression" }, priority = 1 ,retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_UserManagement_001() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -87,7 +100,7 @@ public class UserManagement extends Configuration {
 		    }
 		}
 		catch (Exception e) {
-			System.out.println("Thereis an issue with userlocked scenario");
+			System.out.println("There is an issue with userlocked scenario");
 		} 
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
@@ -96,7 +109,7 @@ public class UserManagement extends Configuration {
 		driver.close();
 	}
 	
-	@Test(groups = {"smoke","regression11"}, priority = 1)
+	@Test(groups = {"smoke","regression"}, priority = 1)
 	public void FWA_UserManagement_003() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -190,9 +203,6 @@ public class UserManagement extends Configuration {
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		UM.LandingOnAdminViewPage();
-
-		UM.ValidationModule(UserName, null, ProjectName);
-
 		UM.Remove(UserName, "Users",UM.Users,UM.UsersList);
 		UM.UserView.click();
 		PM.DeleteProject(ProjectName);
@@ -406,7 +416,7 @@ public class UserManagement extends Configuration {
 
 		driver.close();
 }
-	@Test(groups = {"smoke","regression2"}, priority = 1)
+	@Test(groups = {"smoke","regression"}, priority = 1)
 	public void FWA_UserManagement_008() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();

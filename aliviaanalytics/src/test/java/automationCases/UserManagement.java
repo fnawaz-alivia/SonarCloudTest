@@ -70,7 +70,7 @@ public class UserManagement extends Configuration {
 		driver.close();
 		
 }
-	@Test(groups = {"smoke","regression"}, priority = 1)
+	@Test(groups = {"smoke","regression"}, priority = 1, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_UserManagement_002() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -110,7 +110,7 @@ public class UserManagement extends Configuration {
 		driver.close();
 	}
 	
-	@Test(groups = {"smoke","regression"}, priority = 1)
+	@Test(groups = {"smoke","regression"}, priority = 1, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_UserManagement_003() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -261,7 +261,7 @@ public class UserManagement extends Configuration {
 		driver.close();
 	}
 	
-	@Test(groups = {"smoke","regression"}, priority = 1)
+	@Test(groups = {"smoke","regression"}, priority = 1, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_UserManagement_005() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -326,7 +326,7 @@ public class UserManagement extends Configuration {
 		driver.close();
 	}
 	
-	@Test(groups = {"smoke","regression"}, priority = 1)
+	@Test(groups = {"smoke","regression"}, priority = 1, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_UserManagement_006() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -389,7 +389,7 @@ public class UserManagement extends Configuration {
 		PM.DeleteProject(ProjectName);
 		driver.close();
 	}
-	@Test(groups = {"smoke","regression"}, priority = 1)
+	@Test(groups = {"smoke","regression"}, priority = 1, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_UserManagement_007() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -417,7 +417,7 @@ public class UserManagement extends Configuration {
 
 		driver.close();
 }
-	@Test(groups = {"smoke","regression"}, priority = 1)
+	@Test(groups = {"smoke","regression"}, priority = 1, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_UserManagement_008() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();

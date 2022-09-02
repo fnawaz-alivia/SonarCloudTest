@@ -15,7 +15,7 @@
 <class name="automationCases.QueryBuilder" />
 <class name="automationCases.DataCleansing" />
 <class name="automationCases.Charting" />
-<class name="automationCases.Security" />
+<class name="automationCases.UserManagement" />
 <class name="automationCases.Scheduler" />
 <class name="automationCases.RuleLibrary" />
 <class name="automationCases.Dashboard" />

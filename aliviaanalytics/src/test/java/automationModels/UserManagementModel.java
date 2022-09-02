@@ -33,13 +33,12 @@ public class UserManagementModel extends Configuration {
 
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'combo-') and @class = 'x-form-error-msg x-form-invalid-icon x-form-invalid-icon-default' and (text() = 'This field is required' or . = 'This field is required')]")
 
-	public WebElement comboboxexclamationmark ;
+	public WebElement comboboxexclamationmark;
 
-	
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield') and @type = 'password' and @name = 'oldpassword']")
 
 	public WebElement oldPassword_Div;
-	
+
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield') and @type = 'password' and @name = 'oldpassword']/following::div[1]/div")
 
 	public WebElement oldPassword_Error;
@@ -47,11 +46,11 @@ public class UserManagementModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[@id = 'password-cid-inputEl' and @type = 'password' and @name = 'newpassword']")
 
 	public WebElement newPassword_Input;
-	
+
 	@FindBy(how = How.XPATH, using = "//*[@id = 'password-cid-inputEl' and @type = 'password' and @name = 'newpassword']/parent::div")
 
 	public WebElement newPassword_Div;
-	
+
 	@FindBy(how = How.XPATH, using = "//*[@id = 'password-cid-inputEl' and @type = 'password' and @name = 'newpassword']/following::div[1]/div")
 
 	public WebElement newPassword_Error;
@@ -59,11 +58,11 @@ public class UserManagementModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[@id = 'cpassword-cid-inputEl' and @type = 'password' and @name = 'cnewpassword']")
 
 	public WebElement cNewPassword_Input;
-	
+
 	@FindBy(how = How.XPATH, using = "//*[@id = 'cpassword-cid-inputEl' and @type = 'password' and @name = 'cnewpassword']/parent::div")
 
 	public WebElement cNewPassword_Div;
-	
+
 	@FindBy(how = How.XPATH, using = "//*[@id = 'cpassword-cid-inputEl' and @type = 'password' and @name = 'cnewpassword']/following::div[1]/div")
 
 	public WebElement cNewPassword_Error;
@@ -71,7 +70,7 @@ public class UserManagementModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//a[starts-with(@id, 'button') and (text() = 'Submit Password' or . = 'Submit Password') and contains(@class,'x-btn-disabled')]")
 
 	public WebElement SubmitPasswordDisabled;
-	
+
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button') and (text() = 'Submit Password' or . = 'Submit Password')]")
 
 	public WebElement SubmitPassword;
@@ -104,7 +103,7 @@ public class UserManagementModel extends Configuration {
 
 	WebElement userNameEmailID_Error_Div;
 
-	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'userName']/following::div[1]/div/ul")
+	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'textfield-') and @type = 'text' and @name = 'userName']/following::div[1]/div")
 
 	List<WebElement> userNameEmailID_Error;
 
@@ -339,7 +338,6 @@ public class UserManagementModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//span[starts-with(@id, 'button-') and (text() = 'Yes' or . = 'Yes')]")
 
 	public WebElement Yes;
-	
 
 	@FindBy(how = How.XPATH, using = "//span[starts-with(@id, 'button-') and (text() = 'No' or . = 'No')]")
 
@@ -368,7 +366,7 @@ public class UserManagementModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//div[contains(@class, 'x-btn x-form-file-btn x-unselectable x-btn-default-small')]//child::input")
 
 	public WebElement UploadProfilePicture;
-	
+
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button') and (text() = 'Done' or . = 'Done')]")
 
 	public WebElement DoneButton;
@@ -376,11 +374,11 @@ public class UserManagementModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'menuitem') and (text() = 'Change Password' or . = 'Change Password')]")
 
 	public WebElement ChangePassword;
-	
+
 	@FindBy(how = How.XPATH, using = "//*[text() = 'Change Password' or . = 'Change Password']")
 
 	public List<WebElement> ChangePasswordScreen;
-	
+
 	@FindBy(how = How.XPATH, using = "//*[text() = 'Password has been changed successfully...']")
 
 	public List<WebElement> ChangedPasswordScreen;
@@ -400,8 +398,6 @@ public class UserManagementModel extends Configuration {
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button-') and (text() = 'User View' or . = 'User View')]")
 
 	public WebElement UserView;
-
-
 
 	@FindBy(how = How.XPATH, using = "//*[starts-with(@id, 'button') and (text() = 'Department' or . = 'Department')]")
 
@@ -467,22 +463,22 @@ public class UserManagementModel extends Configuration {
 				"Admin View:Verify that User Name Email ID field allow user input alphabets, characters and special character.");
 
 		// ... Email Validation .... //
-		utilityMethods.verifyValidationFields("Invalid_Info", this.userNameEmailID_Input, userName,
-				this.userNameEmailID_Error,
+		utilityMethods.verifyValidationFields("Invalid", this.userNameEmailID_Input, userName,
+				this.userNameEmailID_Error_Div,
 				"Admin View:Verify that error appear on the field when enter invalid Email 1 { " + userName + " }.");
-		utilityMethods.verifyValidationFields("Invalid_Info", this.userNameEmailID_Input, userName + "@",
-				this.userNameEmailID_Error,
+		utilityMethods.verifyValidationFields("Invalid", this.userNameEmailID_Input, userName + "@",
+				this.userNameEmailID_Error_Div,
 				"Admin View:Verify that error appear on the field when enter invalid Email 2 { " + userName + "@ }.");
-		utilityMethods.verifyValidationFields("Invalid_Info", this.userNameEmailID_Input, userName + "@gmail",
-				this.userNameEmailID_Error,
+		utilityMethods.verifyValidationFields("Invalid", this.userNameEmailID_Input, userName + "@gmail",
+				this.userNameEmailID_Error_Div,
 				"Admin View:Verify that error appear on the field when enter invalid Email 3 { " + userName
 						+ "@gmail }.");
-		utilityMethods.verifyValidationFields("Invalid_Info", this.userNameEmailID_Input, userName + "@gmail.c",
-				this.userNameEmailID_Error,
+		utilityMethods.verifyValidationFields("Invalid", this.userNameEmailID_Input, userName + "@gmail.c",
+				this.userNameEmailID_Error_Div,
 				"Admin View:Verify that error appear on the field when enter invalid Email 3 { " + userName
 						+ "@gmail.c }.");
-		utilityMethods.verifyValidationFields("Valid_Info", this.userNameEmailID_Input, userName + "@gmail.com",
-				this.userNameEmailID_Error,
+		utilityMethods.verifyValidationFields("Valid", this.userNameEmailID_Input, userName + "@gmail.com",
+				this.userNameEmailID_Error_Div,
 				"Admin View:Verify that No error appear on the field when enter valid Email { " + userName
 						+ "@gmail.com }.");
 
@@ -491,14 +487,14 @@ public class UserManagementModel extends Configuration {
 
 		// Title
 		utilityMethods.visible(this.title_Div, "Admin View:Verify that Title field is present.");
-		utilityMethods.clickable(this.title_Input, "Admin View:Verify that Title field is clickable.");
+		utilityMethods.clickable(this.title_Input, "" + "Admin View:Verify that Title field is clickable.");
 		utilityMethods.sendKeys_Input(this.title_Input, 500, "includeChar",
 				"Admin View:Verify that Title field allow user input alphabets, characters and special character.");
 
 		// ... Title Validation ... //
-		utilityMethods.verifyValidationFields("Invalid_Info", this.title_Input, userName + "!@", this.title_Error,
+		utilityMethods.verifyValidationFields("Invalid", this.title_Input, userName + "!@", this.title_Error_Div,
 				"Admin View:Verify that error appear on the field when enter invalid Title.");
-		utilityMethods.verifyValidationFields("Valid_Info", this.title_Input, userName, this.title_Error,
+		utilityMethods.verifyValidationFields("Valid", this.title_Input, userName, this.title_Error_Div,
 				"Admin View:Verify that No error appear on the field when enter valid Title.");
 
 		// First Name
@@ -508,10 +504,10 @@ public class UserManagementModel extends Configuration {
 				"Admin View:Verify that First Name field allow user input alphabets, characters and special character.");
 
 		// ... First Name Validation ... //
-		utilityMethods.verifyValidationFields("Invalid_Info", this.firstName_Input, userName + "!@",
-				this.firstName_Error,
+		utilityMethods.verifyValidationFields("Invalid", this.firstName_Input, userName + "!@",
+				this.firstName_Error_Div,
 				"Admin View:Verify that error appear on the field when enter invalid First Name.");
-		utilityMethods.verifyValidationFields("Valid_Info", this.firstName_Input, userName, this.firstName_Error,
+		utilityMethods.verifyValidationFields("Valid", this.firstName_Input, userName, this.firstName_Error_Div,
 				"Admin View:Verify that No error appear on the field when enter valid First Name.");
 
 		utilityMethods.verifyfieldmandatory(this.firstName_Input, 500, this.firstName_Error_Div,
@@ -524,9 +520,9 @@ public class UserManagementModel extends Configuration {
 				"Admin View:Verify that Last Name field allow user input alphabets, characters and special character.");
 
 		// ... Last Name Validation ... //
-		utilityMethods.verifyValidationFields("Invalid_Info", this.lastName_Input, userName + "!@", this.lastName_Error,
+		utilityMethods.verifyValidationFields("Invalid", this.lastName_Input, userName + "!@", this.lastName_Error_Div,
 				"Admin View:Verify that error appear on the field when enter invalid Last Name.");
-		utilityMethods.verifyValidationFields("Valid_Info", this.lastName_Input, userName, this.lastName_Error,
+		utilityMethods.verifyValidationFields("Valid", this.lastName_Input, userName, this.lastName_Error_Div,
 				"Admin View:Verify that No error appear on the field when enter valid Last Name.");
 
 		utilityMethods.verifyfieldmandatory(this.lastName_Input, 500, this.lastName_Error_Div,
@@ -539,9 +535,9 @@ public class UserManagementModel extends Configuration {
 				"Admin View:Verify that Phone Number field allow user input only integer");
 
 		// ... Phone Number Validation ... //
-		utilityMethods.verifyValidationFields("Invalid_Info", this.phoneNumber_Input, userName, this.phoneNumber_Error,
+		utilityMethods.verifyValidationFields("Invalid", this.phoneNumber_Input, userName, this.phoneNumber_Error_Div,
 				"Admin View:Verify that error appear on the field when enter invalid Phone Number.");
-		utilityMethods.verifyValidationFields("Valid_Info", this.phoneNumber_Input, "303", this.phoneNumber_Error,
+		utilityMethods.verifyValidationFields("Valid", this.phoneNumber_Input, "303", this.phoneNumber_Error_Div,
 				"Admin View:Verify that No error appear on the field when enter valid Phone Number.");
 
 		// External ID
@@ -557,7 +553,8 @@ public class UserManagementModel extends Configuration {
 				"Admin View:Verify that Password field allow user input alphabets, characters and special character.");
 
 		// ... Password Validation ... //
-		utilityMethods.verifyValidationFields("Valid_Info", this.password_Input, userName + "testA12!", this.password_Error,
+		utilityMethods.verifyValidationFields("Valid", this.password_Input, userName + "testA12!",
+				this.password_Error_Div,
 				"Admin View:Verify that No error appear on the field when enter valid Password.");
 
 		utilityMethods.verifyfieldmandatory(this.password_Input, 500, this.password_Error_Div,
@@ -570,10 +567,9 @@ public class UserManagementModel extends Configuration {
 				"Admin View:Verify that Confirm Password field allow user input alphabets, characters and special character.");
 
 		// ... Confirm Password Validation ... //
-		utilityMethods.verifyValidationFields("Valid_Info", this.cpassword_Input, userName + "testA12!",
-				this.cpassword_Error,
+		utilityMethods.verifyValidationFields("Valid", this.cpassword_Input, userName + "testA12!",
+				this.cpassword_Error_Div,
 				"Admin View:Verify that No error appear on the field when enter valid Confirm Password.");
-
 		utilityMethods.verifyfieldmandatory(this.cpassword_Input, 500, this.cpassword_Error_Div,
 				"Admin View:Verify that error appear on the field when field of Confirm Password is empty.");
 
@@ -593,10 +589,8 @@ public class UserManagementModel extends Configuration {
 				"Admin View:Verify that selected dropdown option is present in the input field of Prefferd Language.");
 
 		// User Group
-		utilityMethods.visible(this.userGroup_Div, 
-				"Admin View:Verify that User Group field is present.");
-		utilityMethods.clickable(this.userGroup_Dropdown, 
-				"Admin View:Verify that User Group field is clickable.");
+		utilityMethods.visible(this.userGroup_Div, "Admin View:Verify that User Group field is present.");
+		utilityMethods.clickable(this.userGroup_Dropdown, "Admin View:Verify that User Group field is clickable.");
 
 		utilityMethods.verifyDropdownManadatory(this.userGroup_Dropdown, 500, this.userNameEmailID_Input,
 				this.userGroup_Error_Div,
@@ -606,6 +600,8 @@ public class UserManagementModel extends Configuration {
 				"Admin View:Verify that User Group dropdown list is present when click on its dropdown.");
 		utilityMethods.verifyDropdownOptionSelectedLi(this.DropdownListLi, this.selectedUserGroup_Input,
 				"Admin View:Verify that selected dropdown option is present in the input field of UserGroup.");
+
+		this.userNameEmailID_Input.click();
 
 		// User Locked
 
@@ -648,7 +644,6 @@ public class UserManagementModel extends Configuration {
 				"Admin View:Verify that Make DataBase Admin checkbox is selected when click on it.");
 		utilityMethods.clicked_elementVisible(this.MakeDatabaseAdmin, 500, this.UnselectedMakeDatabaseAdmin,
 				"Admin View:Verify that Make DataBase Admin checkbox is unSelected when click selected one.");
-		
 
 	}
 
@@ -659,14 +654,14 @@ public class UserManagementModel extends Configuration {
 		this.SubmitPassword.click();
 		this.Okbutton.click();
 		utilityMethods.time(1000);
-		if(this.ChangedPasswordScreen.size()==1) {
+		if (this.ChangedPasswordScreen.size() == 1) {
 			return true;
 		}
 		return false;
 	}
 
 	public boolean CreateUser(String userName, String UserLocked, String ForcePasswordChange, String MakeSecurityAdmin,
-			String MakeDatabaseAdmin)  {
+			String MakeDatabaseAdmin) {
 
 		this.Users.click();
 		utilityMethods.time(2000);
@@ -722,33 +717,25 @@ public class UserManagementModel extends Configuration {
 
 	public void ValidationModule(String ModuleValue, WebElement Module, String Option) throws InterruptedException {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		
-		utilityMethods.visible(Module, 
-				"Admin View:Verify that" + ModuleValue + "button is visible");
-		utilityMethods.clickable(Module, 
-				"Admin View:Verify that" + ModuleValue + "button is clickable");
+
+		utilityMethods.visible(Module, "Admin View:Verify that" + ModuleValue + "button is visible");
+		utilityMethods.clickable(Module, "Admin View:Verify that" + ModuleValue + "button is clickable");
 		utilityMethods.list_Visible(Module, 2000, ModuleList,
 				"Admin View:Verify that clicking by " + ModuleValue + "list shows");
 
 		int BeforeCreate = this.ModuleList.size();
 		System.out.println(BeforeCreate + "BeforeCreate");
 
-
-
-		utilityMethods.visible(Create, 
-				"Admin View:Verify that create button is visible for " + ModuleValue);
-		utilityMethods.clickable(Create, 
-				"Admin View:Verify that create button is clickable for " + ModuleValue);
+		utilityMethods.visible(Create, "Admin View:Verify that create button is visible for " + ModuleValue);
+		utilityMethods.clickable(Create, "Admin View:Verify that create button is clickable for " + ModuleValue);
 		utilityMethods.clicked_Single(Create, 2000, NameField,
 				"verify that Create" + ModuleValue + "screen shows clciking on create button");
-		utilityMethods.visible(NameField, 
-				"Create " + ModuleValue + "Screen:verify that name filed is visisble");
-		utilityMethods.clickable(NameField, 
-				"Create " + ModuleValue + " Screen:verify that name filed is clickable");
+		utilityMethods.visible(NameField, "Create " + ModuleValue + "Screen:verify that name filed is visisble");
+		utilityMethods.clickable(NameField, "Create " + ModuleValue + " Screen:verify that name filed is clickable");
 		utilityMethods.verifyfieldmandatory(NameField, 500, PM.exclamationmark,
 				"Create " + ModuleValue + "Screen:verify that name filed is mandatory");
-		utilityMethods.sendKeys_Input(NameField,500,"includeChar",
-				"Create " + ModuleValue + "Screen:verify that name filed let users input alphabets,numerics and special charcters.");
+		utilityMethods.sendKeys_Input(NameField, 500, "includeChar", "Create " + ModuleValue
+				+ "Screen:verify that name filed let users input alphabets,numerics and special charcters.");
 		utilityMethods.visible(DescriptionField,
 				"Create " + ModuleValue + " Screen:verify that description filed is visisble");
 		utilityMethods.clickable(DescriptionField,
@@ -757,24 +744,17 @@ public class UserManagementModel extends Configuration {
 				"Create " + ModuleValue + "Screen:verify that name description is mandatory");
 		utilityMethods.verifyFieldInputs(DescriptionField);
 
-		utilityMethods.visible(combooption, 
-				"Create " + ModuleValue + " Screen:verify that dropdown is visisble");
-		utilityMethods.clickable(combooption, 
-				"Create " + ModuleValue + " Screen:verify that dropdown is clickable");
+		utilityMethods.visible(combooption, "Create " + ModuleValue + " Screen:verify that dropdown is visisble");
+		utilityMethods.clickable(combooption, "Create " + ModuleValue + " Screen:verify that dropdown is clickable");
 
-		
-		utilityMethods.verifyDropdownManadatory(combooption, 500, DescriptionField, this.comboboxexclamationmark, 
-				"Create "+ModuleValue+"Screen:verify that dropdown value is mandatory");
+		utilityMethods.verifyDropdownManadatory(combooption, 500, DescriptionField, this.comboboxexclamationmark,
+				"Create " + ModuleValue + "Screen:verify that dropdown value is mandatory");
 		this.combooption.click();
 		this.SelectComboOption(Option);
-		utilityMethods.visible(combooption, 
-				"Create " + ModuleValue + " Screen:verify that create button is visisble");
-		utilityMethods.clickable(combooption, 
-				"Create " + ModuleValue + " Screen:verify that create button clickable");
-		utilityMethods.visible(Cancel, 
-				"Create " + ModuleValue + " Screen:verify that cancel button visisble");
-		utilityMethods.clickable(Cancel, 
-				"Create " + ModuleValue + "Screen:verify that cancel button clickable");
+		utilityMethods.visible(combooption, "Create " + ModuleValue + " Screen:verify that create button is visisble");
+		utilityMethods.clickable(combooption, "Create " + ModuleValue + " Screen:verify that create button clickable");
+		utilityMethods.visible(Cancel, "Create " + ModuleValue + " Screen:verify that cancel button visisble");
+		utilityMethods.clickable(Cancel, "Create " + ModuleValue + "Screen:verify that cancel button clickable");
 		utilityMethods.list_Visible(Cancel, 2000, ModuleList,
 				"Create " + ModuleValue + " Screen:verify that " + ModuleValue + "list shows clicking cancel button");
 
@@ -804,89 +784,79 @@ public class UserManagementModel extends Configuration {
 
 	public boolean CreateOrganization(String value) throws InterruptedException {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
-		utilityMethods.visible(Organization, 
-				"Admin View:Verify that Organization button is visible");
-		utilityMethods.clickable(Organization, 
-				"Admin View:Verify thatbutton is clickable");
-		
-		utilityMethods.list_Visible(Organization, 2000, ModuleList, "Admin View:Verify that clicking by Organization list shows");
-		int BeforeCreate=this.ModuleList.size();
-		System.out.println(BeforeCreate+ "BeforeCreate");
+		utilityMethods.visible(Organization, "Admin View:Verify that Organization button is visible");
+		utilityMethods.clickable(Organization, "Admin View:Verify thatbutton is clickable");
+
+		utilityMethods.list_Visible(Organization, 2000, ModuleList,
+				"Admin View:Verify that clicking by Organization list shows");
+		int BeforeCreate = this.ModuleList.size();
+		System.out.println(BeforeCreate + "BeforeCreate");
 		Thread.sleep(2000);
-		utilityMethods.visible(Create, 
-				"Admin View:Verify that create button is visible for Organization");
-		utilityMethods.clickable(Create, 
-				"Admin View:Verify that create button is clickable for Organization");
-		utilityMethods.clicked_Single(Create, 2000, NameField, "verify that Create Organization screen shows clciking on create button");
-		utilityMethods.visible(NameField, 
-				"Create Organization Screen:verify that name filed is visisble");
-		utilityMethods.clickable(NameField, 
-				"Create Organization Screen:verify that name filed is clickable");
-		utilityMethods.verifyfieldmandatory(NameField, 500,PM.exclamationmark , "Create Organization Screen:verify that name filed is mandatory");
+		utilityMethods.visible(Create, "Admin View:Verify that create button is visible for Organization");
+		utilityMethods.clickable(Create, "Admin View:Verify that create button is clickable for Organization");
+		utilityMethods.clicked_Single(Create, 2000, NameField,
+				"verify that Create Organization screen shows clciking on create button");
+		utilityMethods.visible(NameField, "Create Organization Screen:verify that name filed is visisble");
+		utilityMethods.clickable(NameField, "Create Organization Screen:verify that name filed is clickable");
+		utilityMethods.verifyfieldmandatory(NameField, 500, PM.exclamationmark,
+				"Create Organization Screen:verify that name filed is mandatory");
 		utilityMethods.verifyFieldInputs(NameField);
-	
-		utilityMethods.visible(DescriptionField, 
+
+		utilityMethods.visible(DescriptionField,
 				"Create Organization Screen:verify that description filed is visisble");
-		utilityMethods.clickable(DescriptionField, 
+		utilityMethods.clickable(DescriptionField,
 				"Create Organization Screen:verify that description filed is clickable");
-		utilityMethods.verifyfieldmandatory(DescriptionField, 500,PM.exclamationmark , "Create Organization Screen:verify that name description is mandatory");
+		utilityMethods.verifyfieldmandatory(DescriptionField, 500, PM.exclamationmark,
+				"Create Organization Screen:verify that name description is mandatory");
 		utilityMethods.verifyFieldInputs(DescriptionField);
-		utilityMethods.visible(Cancel, 
-				"Create Organization Screen:verify that cancel button visisble");
-		utilityMethods.clickable(Cancel, 
-				"Create Organization Screen:verify that cancel button clickable");
+		utilityMethods.visible(Cancel, "Create Organization Screen:verify that cancel button visisble");
+		utilityMethods.clickable(Cancel, "Create Organization Screen:verify that cancel button clickable");
 		this.NameField.clear();
 		this.NameField.sendKeys(value);
 		this.DescriptionField.clear();
 		this.DescriptionField.sendKeys(value);
-		utilityMethods.visible(CreateModuleButton, 
-				"Create Organization Screen:verify that create button visisble");
-		utilityMethods.clickable(CreateModuleButton, 
-				"Create Organization Screen:verify that create button clickable");
-		utilityMethods.list_Visible(CreateModuleButton, 2000, ModuleList, "Create Organization Screen:verify that Organization list shows clicking create button");
-	
-		int AfterCreate=this.ModuleList.size();
-		System.out.println(AfterCreate+ "AfterCreate");
-		if (AfterCreate>BeforeCreate) {
-			
-			return true; 
+		utilityMethods.visible(CreateModuleButton, "Create Organization Screen:verify that create button visisble");
+		utilityMethods.clickable(CreateModuleButton, "Create Organization Screen:verify that create button clickable");
+		utilityMethods.list_Visible(CreateModuleButton, 2000, ModuleList,
+				"Create Organization Screen:verify that Organization list shows clicking create button");
+
+		int AfterCreate = this.ModuleList.size();
+		System.out.println(AfterCreate + "AfterCreate");
+		if (AfterCreate > BeforeCreate) {
+
+			return true;
 		}
 		return false;
 	}
 
-	
-		
-	public boolean Remove(String value,String ModuleValue, WebElement Module,List<WebElement>  List) throws InterruptedException {
-		
-			Module.click();
-			Thread.sleep(2000);
-			int BeforeDelete=this.ModuleList.size();
-			System.out.println(BeforeDelete+ "BeforeDelete");
-			for (WebElement el : List) {
-				if (el.getText().equals(value)) {
-					el.click();
-					break;
-				}
+	public boolean Remove(String value, String ModuleValue, WebElement Module, List<WebElement> List)
+			throws InterruptedException {
+
+		Module.click();
+		Thread.sleep(2000);
+		int BeforeDelete = this.ModuleList.size();
+		System.out.println(BeforeDelete + "BeforeDelete");
+		for (WebElement el : List) {
+			if (el.getText().equals(value)) {
+				el.click();
+				break;
 			}
-			utilityMethods.visible(Remove, 
-					"Admin View:Verify that remove button is visible for "+ ModuleValue);
-			utilityMethods.clickable(Remove, 
-					"Admin View:Verify that remove button is clickable for "+ ModuleValue);
-			utilityMethods.clicked_Single(Remove, 2000, Yes, "verify that confirmation window opens clicking remove button for"+ ModuleValue);
-			utilityMethods.visible(No, 
-					"confirmation window:Verify that NO button is visible for "+ ModuleValue);
-			utilityMethods.clickable(No, 
-					"confirmation window:Verify that NO button is clickable for "+ ModuleValue);
-			utilityMethods.visible(Yes, 
-					"confirmation window:Verify that NO button is visible for "+ ModuleValue);
-			utilityMethods.clickable(Yes, 
-					"confirmation window:Verify that NO button is clickable for "+ ModuleValue);
-			utilityMethods.list_Visible(Yes, 2000, this.ModuleList, "verify that "+ ModuleValue+" list shows clicking on yes button");
-			int AfterDelete=this.ModuleList.size();
-			System.out.println(AfterDelete+ "AfterDelete");
-			if (AfterDelete<BeforeDelete) {
-			
-			return true; 
+		}
+		utilityMethods.visible(Remove, "Admin View:Verify that remove button is visible for " + ModuleValue);
+		utilityMethods.clickable(Remove, "Admin View:Verify that remove button is clickable for " + ModuleValue);
+		utilityMethods.clicked_Single(Remove, 2000, Yes,
+				"verify that confirmation window opens clicking remove button for" + ModuleValue);
+		utilityMethods.visible(No, "confirmation window:Verify that NO button is visible for " + ModuleValue);
+		utilityMethods.clickable(No, "confirmation window:Verify that NO button is clickable for " + ModuleValue);
+		utilityMethods.visible(Yes, "confirmation window:Verify that NO button is visible for " + ModuleValue);
+		utilityMethods.clickable(Yes, "confirmation window:Verify that NO button is clickable for " + ModuleValue);
+		utilityMethods.list_Visible(Yes, 2000, this.ModuleList,
+				"verify that " + ModuleValue + " list shows clicking on yes button");
+		int AfterDelete = this.ModuleList.size();
+		System.out.println(AfterDelete + "AfterDelete");
+		if (AfterDelete < BeforeDelete) {
+
+			return true;
 		}
 		return false;
 
@@ -903,7 +873,7 @@ public class UserManagementModel extends Configuration {
 		utilityMethods.time(300);
 		this.LogoutButton.click();
 		utilityMethods.time(1000);
-		if(LM.loginScreen.size()==1) {
+		if (LM.loginScreen.size() == 1) {
 			return true;
 		}
 		return false;

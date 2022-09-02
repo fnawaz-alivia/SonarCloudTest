@@ -310,11 +310,9 @@ public class utilityMethods extends Configuration {
 
 	public static void sendKeys_Input(WebElement element, int time, String type, String testTitle) {
 		test = report.createTest(testTitle);
-
 		String sendStr = "NewColumn";
 		String sendInt = "12";
 		String sendChar = "'!@_ #$)/(+='";
-		time(time);
 		element.clear();
 		element.sendKeys(sendStr+sendInt+sendChar);
 		time(time);
@@ -786,10 +784,9 @@ public class utilityMethods extends Configuration {
 
 	public static void verifyfieldmandatory(WebElement element, int time, WebElement element2, String testTitle) {
 		test = report.createTest(testTitle);
-		element.click();
 		element.sendKeys("ABCD");
 		element.clear();
-		utilityMethods.time(time);
+		time(time);
 		if (element2.isDisplayed()) {
 			test.log(Status.PASS, "Exclamtion marks appear on the right side of the field.");
 		} else {
@@ -806,7 +803,7 @@ public class utilityMethods extends Configuration {
 	public static void verifyDropdownManadatory(WebElement element, int time, WebElement element2, WebElement element3,String testTitle) {
 		test = report.createTest(testTitle);
 		element.click();
-		utilityMethods.time(time);
+		time(time);
 		element2.click();
 		if (element3.isDisplayed()) {
 			test.log(Status.PASS, "Exclamtion marks appear on the right side of the field.");
@@ -823,14 +820,13 @@ public class utilityMethods extends Configuration {
 		
 		
 	}
-	public static void verifyValidationFields(String type,WebElement input,String sendData,List<WebElement> error,String testTitle) {
+	public static void verifyValidationFields(String type,WebElement input,String sendData,WebElement error,String testTitle) {
 		test = report.createTest(testTitle);
-		if (type.equals("Valid_Info")) {
+		if (type.equals("Valid")) {
 			input.clear();
-			time(500);
 			input.sendKeys(sendData);
 			time(500);
-			if (error.size()==0) {
+			if (!error.isDisplayed()) {
 				test.log(Status.PASS, "The Mandatory Check is not appear.");
 			} else {
 				test.log(Status.FAIL, "The Mandatory Check is appear.");
@@ -838,10 +834,9 @@ public class utilityMethods extends Configuration {
 			
 		}else {
 			input.clear();
-			time(500);
 			input.sendKeys(sendData);
 			time(500);
-			if (error.size()==1) {
+			if (error.isDisplayed()) {
 				test.log(Status.PASS, "The Mandatory Check is appear.");
 			} else {
 				test.log(Status.FAIL, "The Mandatory Check is not appear.");
@@ -945,37 +940,12 @@ public class utilityMethods extends Configuration {
 		}
 
 	}
-	public static void QueryBuilderWithColumns(WebElement input,String data,List<WebElement> Columns,List<WebElement> screen,WebElement ok,String testTitle) {
+	public static void booleanTestCase(boolean fun,String testTitle) {
 		test = report.createTest(testTitle);
-		time(1000);
-		input.click();
-		input.sendKeys(data);
-		input.sendKeys(Keys.ENTER);
-		time(1500);
-		Columns.get(3).click();
-		Columns.get(4).click();
-		Columns.get(5).click();
-		ok.click();
-		time(500);
-		if(screen.size()==0) {
-			test.log(Status.PASS, "The Query Builder created.");
+		if(fun==true) {
+			test.log(Status.PASS, "The test case is passed.");
 		}else {
-			test.log(Status.PASS, "The Query Builder not created.");
-		}
-	}
-	public static void QueryBuilderWithoutColumns(WebElement input,String data,List<WebElement> screen,WebElement ok,String testTitle) {
-		test = report.createTest(testTitle);
-		time(1000);
-		input.click();
-		input.sendKeys(data);
-		input.sendKeys(Keys.ENTER);
-		time(1500);
-		ok.click();
-		time(500);
-		if(screen.size()==0) {
-			test.log(Status.PASS, "The Query Builder created.");
-		}else {
-			test.log(Status.PASS, "The Query Builder not created.");
+			test.log(Status.FAIL, "The test case is failed.");
 		}
 	}
 

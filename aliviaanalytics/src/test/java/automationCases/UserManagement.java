@@ -19,6 +19,7 @@ public class UserManagement extends Configuration {
 	public static ExtentTest test;
 
 	@Test(groups = { "smoke", "regression" }, priority = 1 ,retryAnalyzer = listeners.RetryAnalyzer.class)
+
 	public void FWA_UserManagement_000() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();

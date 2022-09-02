@@ -314,7 +314,7 @@ public class utilityMethods extends Configuration {
 		String sendStr = "NewColumn";
 		String sendInt = "12";
 		String sendChar = "'!@_ #$)/(+='";
-		time(500);
+		time(time);
 		element.clear();
 		element.sendKeys(sendStr+sendInt+sendChar);
 		time(time);

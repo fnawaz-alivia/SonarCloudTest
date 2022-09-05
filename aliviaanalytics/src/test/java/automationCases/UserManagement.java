@@ -18,7 +18,7 @@ import configuration.Configuration;
 public class UserManagement extends Configuration {
 	public static ExtentTest test;
 
-	@Test(groups = { "smoke", "regression" }, priority = 1 ,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = { "smoke", "regression" }, priority = 1, retryAnalyzer = listeners.RetryAnalyzer.class)
 
 	public void FWA_UserManagement_000() throws InterruptedException {	
 		Configuration.BConfiguration();
@@ -31,7 +31,7 @@ public class UserManagement extends Configuration {
 		UM.UserDetailFormValidation();
 		driver.close();
 	}
-	@Test(groups = { "smoke", "regression" }, priority = 1 ,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = { "smoke", "regression" }, priority = 2, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_UserManagement_001() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -70,7 +70,7 @@ public class UserManagement extends Configuration {
 		driver.close();
 		
 }
-	@Test(groups = {"smoke","regression"}, priority = 1, retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = {"smoke","regression"}, priority = 3, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_UserManagement_002() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -82,18 +82,40 @@ public class UserManagement extends Configuration {
 		UM.LandingOnAdminViewPage();
 		Thread.sleep(4000);
 		String UserName = utilityMethods.randomString(10);
-		UM.CreateUser(UserName, "UserLocked", "", "", "");
-		UM.LogoutUser();
+
+		
+		test = report.createTest("Admin View:Verify the we can create the userwith Userlocaked option.");
+
+		if(UM.CreateUser(UserName, "UserLocked", "", "", "")==true) {
+			
+			test.log(Status.PASS, "The created user is being shown in user list.");
+		}
+		else {
+			test.log(Status.FAIL, "The created user is not being shown in user list.");
+		}
+		test = report.createTest("Admin View:Verify the user is able to logout.");
+		if(UM.LogoutUser()==true) {
+			test.log(Status.PASS, "The user is logout");
+		}else {
+			test.log(Status.FAIL, "The user is not logout");
+		}
 		Thread.sleep(3000);
 		LM.LoginUser(UserName + "@gmail.com", "Alivia21!");
-		
+		test = report.createTest("Verify the user gets the message Account Locked for user when we checked the user locked check box");
 		try {
 			LM.LoginFailuretext.isDisplayed();
 
 		   String ActualLoginFailureText = LM.LoginFailuretext.getText();
 			System.out.println(ActualLoginFailureText);
 			String ExpectedLoginFailureText = "Account Locked for user";
-			if (ExpectedLoginFailureText.contains(ActualLoginFailureText));
+			if (ActualLoginFailureText.contains(ExpectedLoginFailureText))
+			{
+				test.log(Status.PASS, "The user is getting the message as Account Locked for user ");
+			}
+			else {
+				test.log(Status.FAIL, "The user is not getting the message as Account Locked for user ");
+				
+			}
 			
 		    if (LM.LoginFailuretext.isDisplayed() == true) {
 		        System.out.println("Login failure window is being shown");
@@ -106,11 +128,17 @@ public class UserManagement extends Configuration {
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		UM.LandingOnAdminViewPage();
-		UM.Remove(UserName,"Users" ,UM.Users,UM.UsersList);
+		
+		test = report.createTest("Admin View:Verify we can the remove the added user .");
+		if(UM.Remove(UserName,"Users" ,UM.Users,UM.UsersList)==true) {
+			test.log(Status.PASS, "The user is removed");
+		}else {
+			test.log(Status.FAIL, "The user is not removed");
+		}
 		driver.close();
 	}
 	
-	@Test(groups = {"smoke","regression"}, priority = 1, retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = {"smoke","regression"}, priority = 4, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_UserManagement_003() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -204,13 +232,17 @@ public class UserManagement extends Configuration {
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		UM.LandingOnAdminViewPage();
-		UM.Remove(UserName, "Users",UM.Users,UM.UsersList);
+		if(UM.Remove(UserName,"Users" ,UM.Users,UM.UsersList)==true) {
+			test.log(Status.PASS, "The user is removed");
+		}else {
+			test.log(Status.FAIL, "The user is not removed");
+		}
 		UM.UserView.click();
 		PM.DeleteProject(ProjectName);
 
 		driver.close();
 	}
-	@Test(groups = {"smoke","regression"}, priority = 1,retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = {"smoke","regression"}, priority = 5, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_UserManagement_004() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -221,13 +253,24 @@ public class UserManagement extends Configuration {
 		Thread.sleep(8000);
 		UM.LandingOnAdminViewPage();
 		Thread.sleep(4000);
+		test = report.createTest("Admin View:Verify the user is creating with MakeSecurityAdmin option.");
 		String UserName = utilityMethods.randomString(10);
-		UM.CreateUser(UserName, "", "", "MakeSecurityAdmin", "");
-		UM.LogoutUser();
+		if(UM.CreateUser(UserName, "", "", "MakeSecurityAdmin", "")==true) {
+			test.log(Status.PASS, "The created user is being shown in user list.");
+		}else {
+			test.log(Status.FAIL, "The created user is not being shown in user list.");
+		}
+		
+		test = report.createTest("Admin View:Verify the user is able to logout.");
+		if(UM.LogoutUser()==true) {
+			test.log(Status.PASS, "The user is logout");
+		}else {
+			test.log(Status.FAIL, "The user is not logout");
+		}
 		Thread.sleep(3000);
 	
 		LM.LoginUser(UserName + "@gmail.com", "Alivia21!");
-		
+		test = report.createTest("Verify that the secuity admin user is able to access all the projects");
 		try {
 		   String ActualLoginFailureText = LM.LoginFailuretext.getText();
 			System.out.println(ActualLoginFailureText);
@@ -245,23 +288,35 @@ public class UserManagement extends Configuration {
 		if (ProjectsCount>1) {
 			
 			System.out.println("All the projects are being shown to security user");
+			test.log(Status.PASS, "All the projects are being shown to security user");
+		}
+		else {
+			test.log(Status.FAIL, "All the projects are not being shown to security user");
 		}
 		String ProjectName = utilityMethods.randomString(10);
 		PM.CreateNewProject(ProjectName);
 		Thread.sleep(2000);
+		utilityMethods.visible(UM.MenuButton, "Admin View:Verify that menu Button is present.");
+		utilityMethods.clickable(UM.MenuButton, "Admin View:Verify that menu Button clickable.");
 		UM.MenuButton.click();
+		utilityMethods.visible(UM.LogoutButton, "Admin View:Verify that logout Button is present.");
+		utilityMethods.clickable(UM.LogoutButton, "Admin View:Verify that logout Button clickable.");
 		UM.LogoutButton.click();
 		Thread.sleep(2000);
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		UM.LandingOnAdminViewPage();
-		UM.Remove(UserName,"Users" ,UM.Users,UM.UsersList);
+		if(UM.Remove(UserName,"Users" ,UM.Users,UM.UsersList)==true) {
+			test.log(Status.PASS, "The user is removed");
+		}else {
+			test.log(Status.FAIL, "The user is not removed");
+		}
 		UM.UserView.click();
 		PM.DeleteProject(ProjectName);
 		driver.close();
 	}
 	
-	@Test(groups = {"smoke","regression"}, priority = 1, retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = {"smoke","regression"}, priority = 6, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_UserManagement_005() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -273,9 +328,20 @@ public class UserManagement extends Configuration {
 		Thread.sleep(8000);
 		UM.LandingOnAdminViewPage();
 		Thread.sleep(4000);
+		test = report.createTest("Admin View:Verify the user is creating with MakeDatabaseAdmin option.");
 		String UserName = utilityMethods.randomString(10);
-		UM.CreateUser(UserName, "", "", "", "MakeDatabaseAdmin");
-		UM.LogoutUser();
+		if(UM.CreateUser(UserName, "", "", "", "MakeDatabaseAdmin")==true) {
+			test.log(Status.PASS, "The created user is being shown in user list.");
+		}else {
+			test.log(Status.FAIL, "The created user is not being shown in user list.");
+		}
+		
+		test = report.createTest("Admin View:Verify the user is able to logout.");
+		if(UM.LogoutUser()==true) {
+			test.log(Status.PASS, "The user is logout");
+		}else {
+			test.log(Status.FAIL, "The user is not logout");
+		}
 		Thread.sleep(3000);
 	
 		LM.LoginUser(UserName + "@gmail.com", "Alivia21!");
@@ -285,10 +351,9 @@ public class UserManagement extends Configuration {
 			System.out.println(ActualLoginFailureText);
 			
 		    if (LM.LoginFailuretext.isDisplayed() == true) {
-		        System.out.println("Login failure window is being shown");
-		        UM.Okbutton.click();
+		    	 UM.Okbutton.click();
 		    }
-		}
+		    }
 		catch (Exception e) {
 			System.out.println("Thereis an issue with login scenario");
 		} 
@@ -303,11 +368,15 @@ public class UserManagement extends Configuration {
 		PM.PublicOption.click();
 		DSM.databaseName.clear();
 		DSM.databaseName.sendKeys("ai_analysis");
+		test = report.createTest("Verify that the Database Admin user is able access this database");
 		try {
 		if (UM.WarrningMessageforDBAccess.isDisplayed()) {
-			
-			System.out.println("The DatabaseAdmin user is not able access this database");
+			test.log(Status.PASS, "the Database Admin user is able access this database");
 		}
+		else {
+			test.log(Status.FAIL, "The created user is not being shown in user list.");
+		}
+		
 		
 	}
 	catch (Exception e) {
@@ -320,13 +389,17 @@ public class UserManagement extends Configuration {
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		UM.LandingOnAdminViewPage();
-		UM.Remove(UserName,"Users" ,UM.Users,UM.UsersList);
+		if(UM.Remove(UserName,"Users" ,UM.Users,UM.UsersList)==true) {
+			test.log(Status.PASS, "The user is removed");
+		}else {
+			test.log(Status.FAIL, "The user is not removed");
+		}
 		UM.UserView.click();
 		PM.DeleteProject(ProjectName);
 		driver.close();
 	}
 	
-	@Test(groups = {"smoke","regression"}, priority = 1, retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = {"smoke","regression"}, priority = 7, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_UserManagement_006() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -338,8 +411,19 @@ public class UserManagement extends Configuration {
 		UM.LandingOnAdminViewPage();
 		Thread.sleep(4000);
 		String UserName = utilityMethods.randomString(10);
-		UM.CreateUser(UserName, "", "", "", "");
-		UM.LogoutUser();
+		test = report.createTest("Admin View:Verify the user is being created");
+
+		if(UM.CreateUser(UserName, "", "", "", "")==true) {
+			test.log(Status.PASS, "The created user is being shown in user list.");
+		}else {
+			test.log(Status.FAIL, "The created user is not being shown in user list.");
+		}
+		test = report.createTest("Admin View:Verify the user is able to logout.");
+		if(UM.LogoutUser()==true) {
+			test.log(Status.PASS, "The user is logout");
+		}else {
+			test.log(Status.FAIL, "The user is not logout");
+		}
 		Thread.sleep(3000);
 	
 		LM.LoginUser(UserName + "@gmail.com", "Alivia21!");
@@ -359,18 +443,31 @@ public class UserManagement extends Configuration {
 		String ProjectName = utilityMethods.randomString(10);
 		PM.CreateNewProject(ProjectName);
 		Thread.sleep(2000);
-		UM.MenuButton.click();
-		UM.ProfilePicture.click();
+		utilityMethods.visible(UM.MenuButton, "verify that menu button is visisble");
+		utilityMethods.clickable(UM.MenuButton, "verify that meun button clickable");
+		utilityMethods.clicked_Single(UM.MenuButton, 0, UM.ProfilePicture, "Menu options list shows clicking on menu button ");
+		utilityMethods.visible(UM.ProfilePicture, "verify that profile picture is visisble");
+		utilityMethods.clickable(UM.ProfilePicture, "verify that  profile picture is clickable");
+		utilityMethods.clicked_Single(UM.ProfilePicture, 2000, UM.DoneButton, "Verify that update profile picture screen opens clicking on profile picture option");
 		String ImagePathForProfilePic = Paths.get(System.getProperty("user.dir") + "\\src\\datafiles\\profilepic.png")
 				.toAbsolutePath().toString();
 		UM.UploadProfilePicture.sendKeys(ImagePathForProfilePic);
-		Thread.sleep(2000);
-		UM.DoneButton.click();
-		Thread.sleep(2000);
+		
+		utilityMethods.clickable(UM.UploadProfilePicture, "Update profile picture Screen :verify that  upload picture button  is clickable");
+		utilityMethods.visible(UM.DoneButton, "Update profile picture Screen :verify that done button is visisble");
+		utilityMethods.clickable(UM.DoneButton, "Update profile picture Screen :verify that done button  is clickable");
+		utilityMethods.clicked_Single(UM.DoneButton, 2000, UM.VerifyProfilePicture, "Verify that update profile picture screen gets disappeared by clicking done button");
+		test = report.createTest("Admin View:Verify that updated profile picture shows on user icon ");
 		if(UM.VerifyProfilePicture.isDisplayed()==true) {
 			System.out.println("The profile picture is uploaded successfully");
+			test.log(Status.PASS, "The profile picture is uploaded successfully");
+		}
+		else {
+			test.log(Status.FAIL, "The profile picture is not uploaded");
 		}
 		UM.MenuButton.click();
+		utilityMethods.visible(UM.ChangePassword, "verify that ChangePassword option is visisble");
+		utilityMethods.clickable(UM.ChangePassword, "verify that  ChangePassword option is clickable");
 		UM.ChangePassword.click();
 		Thread.sleep(2000);
 		UM.ChangePasswordWindow();
@@ -384,12 +481,16 @@ public class UserManagement extends Configuration {
 		LM.LoginUser(Configuration.username, Configuration.password);
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		UM.LandingOnAdminViewPage();
-		UM.Remove(UserName,"Users" ,UM.Users,UM.UsersList);
+		if(UM.Remove(UserName,"Users" ,UM.Users,UM.UsersList)==true) {
+			test.log(Status.PASS, "The user is removed");
+		}else {
+			test.log(Status.FAIL, "The user is not removed");
+		}
 		UM.UserView.click();
 		PM.DeleteProject(ProjectName);
 		driver.close();
 	}
-	@Test(groups = {"smoke","regression"}, priority = 1, retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = {"smoke","regression"}, priority = 8, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_UserManagement_007() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -417,7 +518,7 @@ public class UserManagement extends Configuration {
 
 		driver.close();
 }
-	@Test(groups = {"smoke","regression"}, priority = 1, retryAnalyzer = listeners.RetryAnalyzer.class)
+	@Test(groups = {"smoke","regression"}, priority = 9, retryAnalyzer = listeners.RetryAnalyzer.class)
 	public void FWA_UserManagement_008() throws InterruptedException {	
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();

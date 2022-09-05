@@ -293,10 +293,22 @@ public class DataSourceModel extends Configuration {
 	public int CountDataSources(String DSName) throws InterruptedException {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		PM.GetStarted.click();
-		this.DataRepository.click();
-		this.ManageDataSources.click();
-		utilityMethods.waitForVisibility(this.SearchTabDataSource);
-		this.SearchTabDataSource.click();
+		utilityMethods.visible(this.DataRepository,
+				"Side Pane: Verify that Data Repository dropdown is visible in the side pane");
+		utilityMethods.clickable(this.DataRepository, "Side Pane: Verify that Data Repository dropdown is clickable ");
+		utilityMethods.clicked_Single(this.DataRepository, 0, this.ManageDataSources,
+				"Side Pane:Verify that clicking on the Data Repository displays a list of its sub-modules in the dropdown ");
+		utilityMethods.visible(this.ManageDataSources,
+				"Side Pane: Verify that Manage Data Sources Button is present in Data Repository dropdown ");
+		utilityMethods.clickable(this.ManageDataSources,
+				"Side Pane: Verify that Manage Data Sources Button is clickable ");
+		utilityMethods.clicked_Single(this.ManageDataSources, 0, this.SearchTabDataSource,
+				"Side Pane: Verify that clicking on Manage Data Sources Button navigates to 'Manage Data Sources' screen");
+		Thread.sleep(2000);
+		utilityMethods.visible(this.SearchTabDataSource,
+				"Verify that Search Text Field is visible on the Data source screen. ");
+		utilityMethods.clickable(this.SearchTabDataSource,
+				"Verify that Search Text Field is clickable and editable on the Data source screen.");
 		this.SearchTabDataSource.clear();
 		this.SearchTabDataSource.sendKeys(DSName);
 		this.RefreshDataSourcelist.click();
@@ -304,7 +316,7 @@ public class DataSourceModel extends Configuration {
 		return this.DataSourcesList.size();
 	}
 
-	public void LoadDataSoucre(String DSName) throws InterruptedException {
+	public boolean LoadDataSoucre(String DSName) throws InterruptedException {
 		DataCleansingModel DCM = PageFactory.initElements(driver, automationModels.DataCleansingModel.class);
 
 		utilityMethods.waitForVisibility(this.SearchTabDataSource);
@@ -314,12 +326,18 @@ public class DataSourceModel extends Configuration {
 		this.SearchTabDataSource.sendKeys(DSName);
 		test.log(Status.PASS, "The search tab works for data sources");
 		test = report.createTest("Verify that updated DataSource file shows in datasources list");
-		int updatedDSCount = this.CountDataSources(DSName);
+		
+		this.RefreshDataSourcelist.click();
+		Thread.sleep(3000);
+		int updatedDSCount = this.DataSourcesList.size();
 		System.out.println(updatedDSCount);
 		if (updatedDSCount == 2) {
+			
 			test.log(Status.PASS, "The created/updated DataSource file is being shown in datasources list");
-
-		} else {
+			return true;
+		} 
+		
+		else {
 			test.log(Status.FAIL, "The created/updated DataSource file is not being shown in datasources list");
 		}
 
@@ -349,6 +367,8 @@ public class DataSourceModel extends Configuration {
 		} catch (Exception e) {
 			
 		}
+		
+		return false;
 	}
 	
 
@@ -784,19 +804,51 @@ public class DataSourceModel extends Configuration {
 
 	}
 
-	public void CreateMSSQLServerDSwithouTest(String DSName,String dbName, String tableName) throws InterruptedException {
+	public void CreateMSSQLServerDSForInitiative(String DSName,String dbName, String tableName) throws InterruptedException {
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
 		PM.GetStarted.click();
 		try {
-			this.DataRepository.click();
-			this.ManageDataSources.click();
+			utilityMethods.visible(this.DataRepository,
+					"Create Data Source for Initiative: Side Pane: Verify that Data Repository dropdown is visible in the side pane");
+			utilityMethods.clickable(this.DataRepository,
+					"Create Data Source for Initiative:Side Pane: Verify that Data Repository dropdown is clickable ");
+			utilityMethods.clicked_Single(this.DataRepository, 0, this.ManageDataSources,
+					"Create Data Source for Initiative:Side Pane:Verify that clicking on the Data Repository displays a list of its sub-modules in the dropdown ");
+			utilityMethods.visible(this.ManageDataSources,
+					"Create Data Source for Initiative:Side Pane: Verify that Manage Data Sources Button is present in Data Repository dropdown ");
+			utilityMethods.clickable(this.ManageDataSources,
+					"Create Data Source for Initiative:Side Pane: Verify that Manage Data Sources Button is clickable ");
+			utilityMethods.clicked_Single(this.ManageDataSources, 0, this.SearchTabDataSource,
+					"Create Data Source for Initiative:Side Pane: Verify that clicking on Manage Data Sources Button navigates to 'Manage Data Sources' screen");
 			Thread.sleep(2000);
+			utilityMethods.visible(this.SearchTabDataSource,
+					"Create Data Source for Initiative:Verify that Search Text Field is visible on the Data source screen. ");
+			utilityMethods.clickable(this.SearchTabDataSource,
+					"Create Data Source for Initiative:Verify that Search Text Field is clickable and editable on the Data source screen.");
 			this.SearchTabDataSource.click();
-			this.MicrosoftSQLServer.click();
+			utilityMethods.visible(this.MicrosoftSQLServer,
+					"Create Data Source for Initiative:Verify that Create Microsoft SQL Server  Button is visible");
+			utilityMethods.clickable(this.MicrosoftSQLServer,
+					"Create Data Source for Initiative:Verify that Create Microsoft SQL Server  Button is clickable and the user can click.");
+			utilityMethods.clicked_Single(this.MicrosoftSQLServer, 1000, PM.PublicOption,
+					"Create Data Source for Initiative:Verify that Create Microsoft SQL Server Button opens 'Create Microsoft SQL Server Data Source' screen upon clicking.");
+			utilityMethods.verifyRadioButtonPrivatePublicVisible(RadioButtonList);
+			utilityMethods.verifyRadioButtonPrivatePublicClickable(RadioButtonList);
 			Thread.sleep(2000);
 			PM.PublicOption.click();
+			utilityMethods.visible(this.DataSourceName,
+					"Create Data Source for Initiative:Create Microsoft SQL Server Data Source Window: Verify that Data Source Name Text Box is visible on the Landing Page");
+			utilityMethods.clickable(this.DataSourceName,
+					"Create Data Source for Initiative:Create Microsoft SQL Server Data Source Window :Verify that Data Source Name Text Box is editable.");
+			utilityMethods.verifyfieldmandatory(this.DataSourceName, 2000, PM.exclamationmark,
+					"Create Data Source for Initiative:Verify that if the Data Source  Name is empty an exclamation mark should appear on right side");
+			utilityMethods.verifyFieldInputs(this.DataSourceName);
 			this.DataSourceName.clear();
 			this.DataSourceName.sendKeys(DSName);
+			utilityMethods.visible(this.instanceName,
+					"Create Data Source for Initiative:Create Microsoft SQL Server Data Source:Verify that Instance Name/IP Address Dropdown Text Box is visible on the Landing Page. ");
+			utilityMethods.clickable(this.instanceName,
+					"Create Data Source for Initiative:Create Microsoft SQL Server Data Source :Verify that Instance Name/IP Address Dropdown Text Box is  clickable.");
 			this.instanceName.clear();
 			System.out.println(Configuration.instanceName);
 			this.instanceName.sendKeys(Configuration.instanceName);
@@ -804,6 +856,30 @@ public class DataSourceModel extends Configuration {
 			this.databaseName.clear();
 			this.databaseName.sendKeys(dbName);
 			this.databaseName.sendKeys(Keys.ENTER);
+			utilityMethods.visible(this.WindowsAuthentication,
+					"Create Data Source for Initiative:Create Microsoft SQL Server Data Source:Verify that Windows Authentication Radio Button is visible. ");
+			utilityMethods.clickable(this.WindowsAuthentication,
+					"Create Data Source for Initiative:Create Microsoft SQL Server Data Source :Verify that Windows Authentication Radio Button is clickable.");
+			utilityMethods.visible(this.DatabaseAuthentication,
+					"Create Data Source for Initiative:Create Microsoft SQL Server Data Source:Verify that Database Authentication Radio Button is visible.");
+			utilityMethods.clickable(this.DatabaseAuthentication,
+					"Create Data Source for Initiative:Create Microsoft SQL Server Data Source :Verify that Database Authentication Radio Button is clickable.");
+			utilityMethods.disable(this.input_Username_SQL_SEVER, "Create Data Source for Initiative:Verify that Username Text Field is disabled when Windows Authentication is selected.");
+			utilityMethods.disable(this.input_Password_SQL_SERVER, "Create Data Source for Initiative:Verify that password  Field is disabled when Windows Authentication is selected.");
+			this.DatabaseAuthentication.click();
+			utilityMethods.clickable(this.input_Username_SQL_SEVER,
+					"Create Data Source for Initiative:Verify that Username Text Field is only editable when Database Authentication is selected.");
+			utilityMethods.clickable(this.input_Password_SQL_SERVER,
+					"Create Data Source for Initiative:Verify that password Field is only editable when Database Authentication is selected.");
+			utilityMethods.visible(this.Connect,
+					"Create Data Source for Initiative:Create Microsoft SQL Server Data Source:Verify that Connect Button is visible.");
+			utilityMethods.clickable(this.Connect, "Create Data Source for Initiative:Verify that Connect Button is clickable. ");
+			
+			 utilityMethods.verifyfieldmandatory(this.input_Username_SQL_SEVER, 2000,
+						PM.exclamationmark, "Create Data Source for Initiative:Verify that Username Text Field shows a red exclamation mark to the right when it is left empty.");
+			 utilityMethods.verifyfieldmandatory(this.input_Password_SQL_SERVER, 2000,
+						PM.exclamationmark, "Create Data Source for Initiative:Verify that Password Text Field shows a red exclamation mark to the right when it is left empty.");
+			this.WindowsAuthentication.click();
 			this.Connect.click();
 			Thread.sleep(2000);
 			this.ChooseTableName.sendKeys(tableName);

@@ -26,9 +26,8 @@ public class CreateInitiative extends Configuration{
 	String DashboardName ="Fake_Dental_Dashboard_"+randomint;
 	String InitiativeName ="Initiative_"+randomint;
 	String SelectTop = "10" ;
-	@Test(groups = { "regression1" }, priority = 1)
+	@Test(groups = { "regression" }, priority = 1)
 	public void FWA_CreateInitiative_001() throws InterruptedException {
-		try {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
 		ProjectModel PM = PageFactory.initElements(driver, automationModels.ProjectModel.class);
@@ -36,19 +35,28 @@ public class CreateInitiative extends Configuration{
 		utilityMethods.waitForVisibility(PM.LoadedProjectText);
 		Thread.sleep(2000);
 		System.out.println(DSName);
-		DSM.CreateMSSQLServerDSwithouTest(DSName,"FakeDataDemo_Dev","ALIV_EHCClaimAll_BigData");
-		//DSM.LoadDataSoucre(DSName);
-		System.out.println(DSName1);
-		DSM.CreateMSSQLServerDSwithouTest(DSName1,"FakeDataDemo_Dev","ALIV_EHCClaimAll_BigData_Provider_RiskScore");
-		//DSM.LoadDataSoucre(DSName1);
-        driver.close();
+		DSM.CreateMSSQLServerDSForInitiative(DSName,"FakeDataDemo_Dev","ALIV_DentalClaimAll");
+
+		test = report.createTest("Verify that the data source created for initiative claims shows in data sources list.");
+		if(DSM.LoadDataSoucre(DSName)==true) {
+			test.log(Status.PASS, "The  created data source is being shown in list ");
+		}else {
+			test.log(Status.FAIL, "The  created data source is not being shown in list ");
 		}
-		catch (Exception e) {
-			
-		}	
+		System.out.println(DSName1);
+		DSM.CreateMSSQLServerDSForInitiative(DSName1,"FakeDataDemo_Dev","ALIV_DentalClaimAll_Provider_RiskScore");
+		test = report.createTest("Verify that the data source created for initiative risk scores  shows in data sources list.");
+		if(DSM.LoadDataSoucre(DSName1)==true) {
+			test.log(Status.PASS, "The  created data source is being shown in list ");
+		}else {
+			test.log(Status.FAIL, "The  created data source is not being shown in list ");
+		}
+
+        driver.close();
+	
 	}
 	
-	@Test(groups = { "smoke" ,"regression1"}, priority = 2)
+	@Test(groups = { "smoke" ,"regression"}, priority = 2)
 	public void FWA_CreateInitiative_002() throws InterruptedException {
 		Configuration.BConfiguration();
 		Configuration.LoginApplication();
@@ -63,7 +71,7 @@ public class CreateInitiative extends Configuration{
 	driver.close();
 	}
 	
-	@Test(groups = {"smoke","regression1"}, priority = 3)
+	@Test(groups = {"smoke","regression"}, priority = 3,dependsOnMethods = { "FWA_CreateInitiative_002" })
 	public void FWA_CreateInitiative_003() throws InterruptedException {
 		
 		Configuration.BConfiguration();
@@ -75,15 +83,28 @@ public class CreateInitiative extends Configuration{
 		Thread.sleep(8000);
 		SM.LandingOnSchedulerPage();
 		SM.CreateProcessforInitiative(RuleGroupName);
+		test = report.createTest("Verify that the output data sources are being created and shown in data source list after successfull execution of scheduler ");
+
 		int DSCount=DSM.CountDataSources(OutputDSName);
 		int DSCount1=DSM.CountDataSources(OutputDSName1);
 		System.out.println(DSCount);
 		System.out.println(DSCount1);
+		
+		if (DSCount == 2 & DSCount1==2 ) {
+			
+			test.log(Status.PASS, "The created DataSources  are being shown in datasources list");
+		
+		} 
+		
+		else {
+			test.log(Status.FAIL, "The created DataSources are not being shown in datasources list");
+		}
+		
 		driver.close();
 		
 	}
 	
-	@Test(groups = { "smoke","regression1" }, priority = 4)
+	@Test(groups = { "smoke","regression" }, priority = 4,dependsOnMethods = { "FWA_CreateInitiative_003" })
 	public void FWA_CreateInitiative_004() throws InterruptedException {
 		
 		

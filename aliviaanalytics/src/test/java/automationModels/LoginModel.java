@@ -38,10 +38,16 @@ public class LoginModel {
 	@Test
 
 	public void LoginUser(String uname, String pw) {
+		utilityMethods.visible(username, "Login Screen :Verify that User Name Field is present.");
+		utilityMethods.clickable(username, "Login Screen:Verify that User Name Field is clickable.");
 		username.clear();
 		username.sendKeys(uname);
+		utilityMethods.visible(password, "Login Screen:Verify that password Field is present.");
+		utilityMethods.clickable(password, "Login Screen:Verify that password Field is clickable.");
 		password.clear();
 		password.sendKeys(pw);
+		utilityMethods.visible(loginbutton, "Login Screen:Verify that Profile Button is present.");
+		utilityMethods.clickable(loginbutton, "Login Screen:Verify that Profile Button is clickable.");
 		loginbutton.click();
 		
 	}

@@ -648,9 +648,46 @@ public class UserManagementModel extends Configuration {
 	}
 
 	public boolean ChangePasswordWindow() {
+		
+		// Old Password Field
+		utilityMethods.visible(this.oldPassword_Div, 
+				"Change Password:Verify that Old Password input field is visible.");
+		utilityMethods.clickable(this.oldPassword_Input, 
+				"Change Password:Verify that Old Password input field is clickable.");
+		utilityMethods.sendKeys_Input(this.oldPassword_Input, 500, "includeChar",
+				"Change Password:Verify that Old Password input field allow user to input alphabets,numerics and special character.");
+		utilityMethods.verifyfieldmandatory(this.oldPassword_Input, 500, this.oldPassword_Error,
+				"Change Password:Verify that Old Password input field show error tooltip if field is empty.");
+		this.oldPassword_Input.clear();
 		this.oldPassword_Input.sendKeys("Alivia21!");
+		//New Password Field
+				utilityMethods.visible(this.newPassword_Div, 
+						"Change Password:Verify that New Password input field is visible");
+				utilityMethods.clickable(this.newPassword_Input, 
+						"Change Password:Verify that New Password input field is clickable");
+				utilityMethods.sendKeys_Input(this.newPassword_Input, 500, "includeChar",
+						"Change Password:Verify that Old Password input field allow user to input alphabets,numerics and special character.");
+				utilityMethods.verifyfieldmandatory(this.newPassword_Input, 500, this.newPassword_Error,
+						"Change Password:Verify that New Password input field show error tooltip if field is empty.");
+				this.newPassword_Input.clear();
 		this.newPassword_Input.sendKeys("Alivia2120!");
+		
+		//Confirm Password Field
+		utilityMethods.visible(this.cNewPassword_Div, 
+				"Change Password:Verify that Confirm Password input field is visible");
+		utilityMethods.clickable(this.cNewPassword_Input, 
+				"Change Password:Verify that Confirm Password input field is clickable");
+		utilityMethods.sendKeys_Input(this.cNewPassword_Input, 500, "includeChar",
+				"Change Password:Verify that Confirm Password input field allow user to input alphabets,numerics and special character.");
+		utilityMethods.verifyfieldmandatory(this.cNewPassword_Input, 500, this.cNewPassword_Error,
+				"Change Password:Verify that Confirm Password input field show error tooltip if field is empty.");
+		this.cNewPassword_Input.clear();
 		this.cNewPassword_Input.sendKeys("Alivia2120!");
+		utilityMethods.visible(this.cNewPassword_Div, 
+				"Change Password:Verify that Confirm Password input field is visible");
+		utilityMethods.clickable(this.cNewPassword_Input, 
+				"Change Password:Verify that Confirm Password input field is clickable");
+		
 		this.SubmitPassword.click();
 		this.Okbutton.click();
 		utilityMethods.time(1000);
@@ -700,7 +737,7 @@ public class UserManagementModel extends Configuration {
 		int AfterCreate = this.ModuleList.size();
 		System.out.println(AfterCreate + "AfterCreate");
 
-		if (AfterCreate < BeforeCreate) {
+		if (AfterCreate > BeforeCreate) {
 			return true;
 		}
 		return false;

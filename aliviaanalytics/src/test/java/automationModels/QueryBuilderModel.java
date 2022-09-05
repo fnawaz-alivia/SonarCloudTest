@@ -203,6 +203,10 @@ public class QueryBuilderModel extends Configuration {
 
 	WebElement LogicalExpression;
 	
+	@FindBy(how = How.XPATH, using = "//div[contains(@data-errorqtip,'This field is required')]")
+
+	WebElement TextFieldMandatory;
+	
 	// .... Logical Expression .... //
 	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'x-window-closable')]//div[text()='Expression Builder']")
@@ -2172,38 +2176,85 @@ public class QueryBuilderModel extends Configuration {
 public void  CreateNewRuleAndGroupForInitiative(String DSName, String DSName1, String OutputDSName ,String OutputDSName1, String RuleGroupName) throws InterruptedException {
 		
 		utilityMethods.waitForVisibility(this.SelectDataSourceTab);
+		utilityMethods.visible(SelectDataSourceTab, "Query Builder Page : Verify that search tab is visible " );
+		utilityMethods.clickable(SelectDataSourceTab, "Query Builder Page : Verify that search tab is clickable  ");
 		this.SelectDataSourceTab.click();
 		this.SelectDataSourceTab.sendKeys(DSName);
 		this.SelectDataSourceTab.sendKeys(Keys.ENTER);
 		Thread.sleep(3000);
+		utilityMethods.visible(SelectAllColumnsOfDS, "Add Multiple Coulmns Screen shown by selecting data source" );
+		
+
+		utilityMethods.visible(AggrBuilderUtilityokButton, "Add Multiple Coulmns Screen : Verify that check box is present to select all the columns " );
+		utilityMethods.clickable(AggrBuilderUtilityokButton, "Add Multiple Coulmns Screen : Verify that check box is clickable to select all the columns");
+		
 		this.SelectAllColumnsOfDS.click();
-		this.AggrBuilderUtilityokButton.click();
-		Thread.sleep(2000);
-		test = report.createTest("Verify the rule is saved by clicking on save button.");
+		
+		utilityMethods.visible(AggrBuilderUtilityokButton, "Add Multiple Coulmns Screen : Verify that ok button is visible" );
+		utilityMethods.clickable(AggrBuilderUtilityokButton, "Add Multiple Coulmns Screen : Verify that ok button  is clickable  ");
+		utilityMethods.clicked_Single(AggrBuilderUtilityokButton, 2000, SelectDataSourceTab, "Add Multiple Coulmns Screen gets disappeared by clicking on Ok button ");
+		
+		utilityMethods.visible(QBSaveButton, "Query Builder Page  : Verify that QB save button is visible" );
+		utilityMethods.clickable(QBSaveButton, "Query Builder Page : Verify that QB save  is clickable  ");
+		
+	
 		new Actions(driver).moveToElement(this.QBSaveButton).moveByOffset(20, 5).click().perform();
 		Thread.sleep(2000);
-		SaveAsNewRule.click();
-		Thread.sleep(2000);
-		test.log(Status.PASS, "The rule is saved by clicking on save button.");
+		
+		utilityMethods.visible(SaveAsNewRule, "Query Builder Page  :  Verify that save as rule option is visible" );
+		utilityMethods.clickable(SaveAsNewRule, "Query Builder Page  :  Verify that save as rule option  is clickable  ");
+		utilityMethods.clicked_Single(SaveAsNewRule, 2000, RuleNameInput, "Save As Rule Screen opens clicking on save as new rule option");
+		
+	
 		utilityMethods.waitForVisibility(RuleNameInput);
-		test = report.createTest("Save As Rule Window -Verify The Rule name is editable");
+		utilityMethods.visible(this.RuleNameInput,
+				"Save As Rule Screen: Verify that Rule Name field is visible");
+		
+		utilityMethods.clickable(this.RuleNameInput,
+				"Save As Rule Screen:Verify that Rule Name field is clickable");
+		
+		utilityMethods.sendKeys_Input(this.RuleNameInput,100,"includeChar",
+				"Save As Rule Screen:Verify that Rule name field allow user to input alphabets ,numrics and special characters");
+		
+		utilityMethods.verifyfieldmandatory(this.RuleNameInput, 100, this.TextFieldMandatory, 
+				"Save As Rule Screen:Verify that Rule Name Text Field mandatory check is present when field is empty ");
 		String randomint = RandomStringUtils.randomNumeric(3);
 		String NewRuleName = "Output_Fake_Claims_Rule"+randomint;
+		RuleNameInput.clear();
 		RuleNameInput.sendKeys(NewRuleName);
 		System.out.println("RuleName"+NewRuleName);
-		test.log(Status.PASS, "The Rule name is editable");
-		test = report.createTest("Verify the Create New group Button works");
+
 		Thread.sleep(2000);
-		CreateNewRuleGroup.click();
-		test.log(Status.PASS, "The Create New group Button works");
-		test = report.createTest("Save As Rule Window - Create New Rule Group - Verify Rule group name is editable.");
+		
+		utilityMethods.visible(CreateNewRuleGroup, "Save As Rule Screen  :  Verify that create New Rule Group button is visible" );
+		utilityMethods.clickable(CreateNewRuleGroup, "Save As Rule Screen  :  Verify that create New Rule Group button  is clickable  ");
+		utilityMethods.clicked_Single(CreateNewRuleGroup, 2000, RuleGroupNameInput, "create New Rule Group screen opens clicking on save as new rule option");
+		utilityMethods.visible(this.RuleGroupNameInput,
+				"create New Rule Group screen: Verify that Rule group Name field is visible");
+		
+		utilityMethods.clickable(this.RuleGroupNameInput,
+				"create New Rule Group screen:Verify that Rule group Name field is clickable");
+		
+		utilityMethods.sendKeys_Input(this.RuleGroupNameInput,100,"includeChar",
+				"create New Rule Group screen:Verify that Rule group name field allow user to input alphabets ,numrics and special characters");
+
+
+		RuleGroupNameInput.clear();
 		RuleGroupNameInput.sendKeys(RuleGroupName);
-		test.log(Status.PASS, "The Rule group name is editable.");
+		
 		Thread.sleep(2000);
-		test = report.createTest("Save As Rule Window - Create New Rule Group - Verify that the save option saves the details of rule group.");
-		RuleGroupSaveButton.click();
-		test.log(Status.PASS, "The save option saves the details of rule group");
-		test = report.createTest("Verify the user is able to select the rule Group while creating rule ");
+		utilityMethods.visible(this.RuleGroupSaveButton,
+				"create New Rule Group screen: Verify that save btton  is visible");
+		
+		utilityMethods.clickable(this.RuleGroupSaveButton,
+				"create New Rule Group screen:Verify that save btton is clickable");
+		utilityMethods.clicked_Single(RuleGroupSaveButton, 2000, RuleGroupId, "create New Rule Group screen gets disappeared  clicking on save button ");
+		
+		
+		utilityMethods.visible(RuleGroupId, "Save As Rule Screen  :  Verify that  Rule Group field is visible" );
+		utilityMethods.clickable(RuleGroupId, "Save As Rule Screen  :  Verify that ule Group field  is clickable  ");
+		
+		
 		  RuleGroupId.click();
 		  Thread.sleep(3000);
 	        utilityMethods.SetTextwithActionClass(RuleGroupId, RuleGroupName);
@@ -2214,41 +2265,90 @@ public void  CreateNewRuleAndGroupForInitiative(String DSName, String DSName1, S
 		Thread.sleep(2000);
 		System.out.println("RuleGroup"+RuleGroupName);
 		RuleGroupId.sendKeys(Keys.ENTER);
-		test.log(Status.PASS, "The user is able to select the rule Group while creating rule");
+	
 		Thread.sleep(2000);
-		AdvancedOptions.click();
+		
+		utilityMethods.visible(this.AdvancedOptions, "Save As Rule Screen  :  Verify that Advanced Option button is visible" );
+		utilityMethods.clickable(this.AdvancedOptions, "Save As Rule Screen  :  Verify that Advanced Option button is clickable  ");
+		utilityMethods.clicked_elementVisible(this.AdvancedOptions, 500, this.Forcererunchainedruletoproducefreshresults,
+				"Save As Rule Screen  :  Verify that clicking on Advanced Option button other options appear. ");
+		utilityMethods.visible(this.Forcererunchainedruletoproducefreshresults,
+				"Save As Rule Screen  :  Verify that Force Re run chained rule option is visible" );
+		utilityMethods.clickable(this.Forcererunchainedruletoproducefreshresults, 
+				"Save As Rule Screen  :  Verify that Force Re run chained rule option is clickable  ");
 		this.Forcererunchainedruletoproducefreshresults.click();
+		utilityMethods.visible(this.MaintainAllExecutionResults, 
+				"Save As Rule Screen  :  Verify that Maintain All Execution option is visible" );
+		utilityMethods.clickable(this.MaintainAllExecutionResults, 
+				"Save As Rule Screen  :  Verify that Maintain All Execution option is clickable  ");
 		this.MaintainAllExecutionResults.click();
+		utilityMethods.visible(this.SaveResultintofollowingDataSource, 
+				"Save As Rule Screen  :  Verify that Save Result into following DataSource option is visible" );
+		utilityMethods.clickable(this.SaveResultintofollowingDataSource, 
+				"Save As Rule Screen  :  Verify that Save Result into following DataSource option is clickable  ");
 		this.SaveResultintofollowingDataSource.click();
+		utilityMethods.visible(this.outputdataSourceName, 
+				"Save As Rule Screen  :  Verify that Save Result into following DataSource field name is visible" );
+		utilityMethods.clickable(this.outputdataSourceName, 
+				"Save As Rule Screen  :  Verify that Save Result into following DataSource field name is clickable  ");
+		
+		
+		
 		this.outputdataSourceName.sendKeys(OutputDSName);
+		utilityMethods.visible(this.RuleSaveButton, 
+				"Save As Rule Screen  :  Verify that Save button  is visible" );
+		utilityMethods.clickable(this.RuleSaveButton, 
+				"Save As Rule Screen  :  Verify that Save button is clickable  ");
 		RuleSaveButton.click();
 		utilityMethods.waitForVisibility(OKConfigureRule);
 		OKConfigureRule.click();
 		Thread.sleep(5000);
-		test = report.createTest("Verify that reset button clear every detail in QB work space.");
+		utilityMethods.visible(this.ResetButtonQB, 
+				"Query builder  Screen  :  Verify that ResetButtonQB  is visible" );
+		utilityMethods.clickable(this.ResetButtonQB, 
+				"Query builder Screen  :  Verify that ResetButtonQB is clickable  ");
 		ResetButtonQB.click();
-		test.log(Status.PASS, "The reset button clear every detail in QB work space");
+
 		utilityMethods.waitForVisibility(this.SelectDataSourceTab);
+		utilityMethods.visible(SelectDataSourceTab, "Query Builder Page : Verify that search tab is visible " );
+		utilityMethods.clickable(SelectDataSourceTab, "Query Builder Page : Verify that search tab is clickable  ");
 		this.SelectDataSourceTab.click();
 		this.SelectDataSourceTab.sendKeys(DSName1);
 		this.SelectDataSourceTab.sendKeys(Keys.ENTER);
 		Thread.sleep(3000);
 		this.SelectAllColumnsOfDS.click();
-		this.AggrBuilderUtilityokButton.click();
-		Thread.sleep(2000);
-		test = report.createTest("Verify the rule is saved by clicking on save button.");
+		
+		utilityMethods.visible(AggrBuilderUtilityokButton, "Add Multiple Coulmns Screen : Verify that ok button is visible" );
+		utilityMethods.clickable(AggrBuilderUtilityokButton, "Add Multiple Coulmns Screen : Verify that ok button  is clickable  ");
+		utilityMethods.clicked_Single(AggrBuilderUtilityokButton, 2000, SelectDataSourceTab, "Add Multiple Coulmns Screen gets disappeared by clicking on Ok button ");
+		
+		utilityMethods.visible(QBSaveButton, "Query Builder Page  : Verify that QB save button is visible" );
+		utilityMethods.clickable(QBSaveButton, "Query Builder Page : Verify that QB save  is clickable  ");
+
 		new Actions(driver).moveToElement(this.QBSaveButton).moveByOffset(20, 5).click().perform();
 		Thread.sleep(2000);
-		SaveAsNewRule.click();
-		Thread.sleep(2000);
-		test.log(Status.PASS, "The rule is saved by clicking on save button.");
+		utilityMethods.visible(SaveAsNewRule, "Query Builder Page  :  Verify that save as rule option is visible" );
+		utilityMethods.clickable(SaveAsNewRule, "Query Builder Page  :  Verify that save as rule option  is clickable  ");
+		utilityMethods.clicked_Single(SaveAsNewRule, 2000, RuleNameInput, "Save As Rule Screen opens clicking on save as new rule option");
+		utilityMethods.visible(this.RuleNameInput,
+				"Save As Rule Screen: Verify that Rule Name field is visible");
+		
+		utilityMethods.clickable(this.RuleNameInput,
+				"Save As Rule Screen:Verify that Rule Name field is clickable");
+		
+		utilityMethods.sendKeys_Input(this.RuleNameInput,100,"includeChar",
+				"Save As Rule Screen:Verify that Rule name field allow user to input alphabets ,numrics and special characters");
+		
+		utilityMethods.verifyfieldmandatory(this.RuleNameInput, 100, this.TextFieldMandatory, 
+				"Save As Rule Screen:Verify that Rule Name Text Field mandatory check is present when field is empty ");
+		
+		
 		utilityMethods.waitForVisibility(RuleNameInput);
 		test = report.createTest("Save As Rule Window -Verify The Rule name is editable");
 		String NewRuleName1 = "Output_Fake_RiskScores_Rule"+randomint;
 		RuleNameInput.sendKeys(NewRuleName1);
 		System.out.println("RuleName"+NewRuleName1);
-		test.log(Status.PASS, "The Rule name is editable");
-		test = report.createTest("Verify the Create New group Button works");
+		
 		Thread.sleep(2000);
 		RuleGroupId.click();
 		Thread.sleep(3000);
@@ -2259,18 +2359,36 @@ public void  CreateNewRuleAndGroupForInitiative(String DSName, String DSName1, S
         RuleGroupId.sendKeys(RuleGroupName);
 		System.out.println("RuleGroup"+RuleGroupName);
 		RuleGroupId.sendKeys(Keys.ENTER);
-		test.log(Status.PASS, "The user is able to select the rule Group while creating rule");
+	
 		Thread.sleep(2000);
-		AdvancedOptions.click();
+		utilityMethods.visible(this.AdvancedOptions, "Save As Rule Screen  :  Verify that Advanced Option button is visible" );
+		utilityMethods.clickable(this.AdvancedOptions, "Save As Rule Screen  :  Verify that Advanced Option button is clickable  ");
+		utilityMethods.clicked_elementVisible(this.AdvancedOptions, 500, this.Forcererunchainedruletoproducefreshresults,
+				"Save As Rule Screen  :  Verify that clicking on Advanced Option button other options appear. ");
+		utilityMethods.visible(this.Forcererunchainedruletoproducefreshresults,
+				"Save As Rule Screen  :  Verify that Force Re run chained rule option is visible" );
+		utilityMethods.clickable(this.Forcererunchainedruletoproducefreshresults, 
+				"Save As Rule Screen  :  Verify that Force Re run chained rule option is clickable  ");
 		this.Forcererunchainedruletoproducefreshresults.click();
+		utilityMethods.visible(this.MaintainAllExecutionResults, 
+				"Save As Rule Screen  :  Verify that Maintain All Execution option is visible" );
+		utilityMethods.clickable(this.MaintainAllExecutionResults, 
+				"Save As Rule Screen  :  Verify that Maintain All Execution option is clickable  ");
 		this.MaintainAllExecutionResults.click();
+		utilityMethods.visible(this.SaveResultintofollowingDataSource, 
+				"Save As Rule Screen  :  Verify that Save Result into following DataSource option is visible" );
+		utilityMethods.clickable(this.SaveResultintofollowingDataSource, 
+				"Save As Rule Screen  :  Verify that Save Result into following DataSource option is clickable  ");
 		this.SaveResultintofollowingDataSource.click();
+		utilityMethods.visible(this.outputdataSourceName, 
+				"Save As Rule Screen  :  Verify that Save Result into following DataSource field name is visible" );
+		utilityMethods.clickable(this.outputdataSourceName, 
+				"Save As Rule Screen  :  Verify that Save Result into following DataSource field name is clickable  ");
 		this.outputdataSourceName.sendKeys(OutputDSName1);
 		RuleSaveButton.click();
 		utilityMethods.waitForVisibility(OKConfigureRule);
 		OKConfigureRule.click();
 		Thread.sleep(5000);
-		test = report.createTest("Verify that reset button clear every detail in QB work space.");
 		ResetButtonQB.click();
 	}
 

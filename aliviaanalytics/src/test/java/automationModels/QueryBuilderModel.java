@@ -652,6 +652,10 @@ public class QueryBuilderModel extends Configuration {
 
 	WebElement DataSourceInput;
 	
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,' x-form-item-no-label') and contains(@class,'x-form-dirty')]//input[@name='datasource-combobox']")
+
+	WebElement SelectedDataSourceInput;
+	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'query-datasource-pane-cls')]/div/div/div")
 
 	List<WebElement> QueryBuilderPaneList;
@@ -1078,11 +1082,8 @@ public class QueryBuilderModel extends Configuration {
 		
 		// Select Data Source Before 
 		
-		utilityMethods.QueryBuilderWithColumns(this.DataSourceInput,"Medical Transactions",this.SelectedDSColumnsList,
-				this.MultipleColumnsScreen,this.AggrBuilderUtilityokButton,
+		utilityMethods.booleanTestCase(this.CreateQueryBuilder("requiredColumn", "Medical Transactions"),
 				"Verify that upon selecting a data source its name appears in Select Data Source text box.");
-
-		
 		
 		// DUPLICATE CASE to open advance dropdown to select logical expression button...
 		utilityMethods.testCase_Duplicate(this.AdvancedDropdownButton, 500, "click", ""); 
@@ -1693,8 +1694,7 @@ public class QueryBuilderModel extends Configuration {
 				"Verify that Select Data Source Dropdown has down arrow button which is clickable.");		
 		utilityMethods.list_Visible(this.DataSourceDropdown, 500,this.DropdownListLi,
 				"Verify that clicking on the arrow a list of available data sources is displayed in a dropdown.");
-		utilityMethods.QueryBuilderWithColumns(this.DataSourceInput,"Medical",this.SelectedDSColumnsList,
-				this.MultipleColumnsScreen,this.AggrBuilderUtilityokButton,
+		utilityMethods.booleanTestCase(this.CreateQueryBuilder("requiredColumn", "Medical Transactions"),
 				"Verify that upon selecting a data source its name appears in Select Data Source text box.");
 
 	}
@@ -1785,20 +1785,15 @@ public class QueryBuilderModel extends Configuration {
 		// Select Data Sources Before any Operation and now it required two data source for this case,
 		
 		// Medical Data Source
-		utilityMethods.QueryBuilderWithoutColumns(this.DataSourceInput,"Medical",
-				this.MultipleColumnsScreen,this.AggrBuilderUtilityokButton,
-				"Verify that upon selecting a data source its name appears in Select Data Source text box.");
 		
+		utilityMethods.booleanTestCase(this.CreateQueryBuilder("", "Medical Transactions"),
+				"Verify that upon selecting a data source its name appears in Select Data Source text box.");
 		this.QueryBuilderPaneAddDropdown.click();
 		utilityMethods.time(1000);
 		this.AddDataSource.click();
 		utilityMethods.time(1000);
-		
-		utilityMethods.QueryBuilderWithoutColumns(this.DataSourceInput,"Automation1",
-				this.MultipleColumnsScreen,this.AggrBuilderUtilityokButton,
-				"Verify that upon selecting a data source its name appears in Select Data Source text box.");
-		
-		
+		utilityMethods.booleanTestCase(this.CreateQueryBuilder("", "Automation1"),
+				"Verify that upon selecting a data source its name appears in Select Data Source text box.");		
 		// Join Button
 		utilityMethods.visible(this.Join, 
 				"Verify that Join Button is visible on the Query Builder screen. ");
@@ -1868,6 +1863,8 @@ public class QueryBuilderModel extends Configuration {
 		utilityMethods.verifyDropdownOptionSelected(this.DropdownListDiv, this.JoinColumn2Input, 
 				"Query Builder: Verify that join Column 2 list are clickable and clicking on any column in the dropdown selects it.");
 		
+		
+		
 		// Validate Errors
 		
 		/*
@@ -1914,6 +1911,24 @@ public class QueryBuilderModel extends Configuration {
 		this.SaveQBFilterName.click();
 		utilityMethods.waitForVisibility(this.OkButtonQB);
 		this.OkButtonQB.click();
+	}
+	public boolean CreateQueryBuilder(String requireColumn,String DataSource) {
+		utilityMethods.time(1000);
+		this.DataSourceInput.click();
+		this.DataSourceInput.sendKeys(DataSource);
+		this.SelectedDataSourceInput.sendKeys(Keys.ENTER);
+		utilityMethods.time(1500);
+		if(requireColumn.equals("requiredColumn")) {
+			this.SelectedDSColumnsList.get(3).click();
+			this.SelectedDSColumnsList.get(4).click();
+			this.SelectedDSColumnsList.get(5).click();
+		}
+		this.AggrBuilderUtilityokButton.click();
+		utilityMethods.time(1500);
+		if(SelectedDataSourceInput.getAttribute("value").contains(DataSource)) {
+			return true;
+		}
+		return false;
 	}
 
 	public void CreateNewRuleAndGroup() throws InterruptedException {

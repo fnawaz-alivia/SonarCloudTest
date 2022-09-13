@@ -4,7 +4,7 @@
 	<test name="First Test">
 		<groups>
 			<run>
-				<include name="regression1213" />
+				<include name="regression123" />
 			</run>
 		</groups>
 		<classes>

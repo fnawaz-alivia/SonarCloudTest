@@ -2,7 +2,7 @@ name: Build
 on:
   push:
     branches:
-      - main
+      - selenium_faisal
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
